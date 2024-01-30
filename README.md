@@ -19,6 +19,7 @@ Customer and administrator can use this web
 
 #### Function
 - Login/Register account
+- Login with Google
 - Verify account by Email
 - Wishlist Product
 - Payment with VNPAY
