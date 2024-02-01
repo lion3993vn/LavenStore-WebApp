@@ -19,7 +19,7 @@ Customer and administrator can use this web
 
 #### Function
 - **Login/Register account**: Người dùng có thể tạo tài khoản, mật khẩu. Khi tạo tài khoản người dùng có thể thêm email để sau này có thể dùng chức năng forgot password.
-- **Login with google: Khi có tài khoản google, người dùng có thể đăng nhập với nó.
+- **Login with google**: Khi có tài khoản google, người dùng có thể đăng nhập với nó.
 - **Forgot password**: Người dùng sẽ được gửi 1 mã code qua Email đã đăng kí, sau đó có thể nhập cái mới.
 - **Add to cart**: Khi xem danh sách hoa, người dùng có thể nhấn vào nút add to cart để thêm hoa vào giỏ hàng.
 - **Profile**: Người dùng tự chỉnh sửa thông tin, thêm địa chỉ, đổi mật khẩu, xem các đơn hàng của mình
