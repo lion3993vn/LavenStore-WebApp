@@ -11,60 +11,88 @@ and open the template in the editor.
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="./assets/css/bootstrap/bootstrap.css">
-    <link rel="stylesheet" href="./assets/css/profile.css">
+    <link rel="stylesheet" href="./assets/css/styleprofile.css">
     <link rel="stylesheet" href="./assets/fonts/fontawesome-free-6.5.1-web/css/all.css">
 </head>
 
 <body>
-    <div class="banner">
+
+    <!-- Start banner -->
+    <div class="banner container-fuild">
         <h1>My profile</h1>
         <p>Home <span><i class="fa-solid fa-chevron-right"></i></span> Profile</p>
     </div>
+    <!-- End banner -->
 
+    <!-- Start content -->
     <div class="container">
         <div class="content row justify-content-center g-2">
+
+            <!-- Start navbat -->
             <div class="bar col-md-7">
                 <h1>Tai Le</h1>
                 <hr>
-                <ul>
-                    <li>Infromation
-                        <ul>
-                            <li>Profile</li>
-                            <li>Address</li>
-                            <li>Change password</li>
+                <ul id="nav">
+                    <li><a href="#">Infromation</a>
+                        <ul class="subnav">
+                            <li><a href="#">Profile</a></li>
+                            <li><a href="#">Address</a></li>
+                            <li><a href="#">Change password</a></li>
                         </ul>
                     </li>
-                    <li>My Purchase</li>
-                    <li>Logout</li>
+                    <li><a href="#">My Purchase</a></li>
+                    <li><a href="#">Logout</a></li>
                 </ul>
             </div>
+            <!-- End navbar -->
 
-            <form class="col-md-5" action="">
-                <h5>My profile</h5>
-                <span>Username: </span> <span>Taile03</span><br>
-                <label>Full name: </label> <input type="text" name="fullname"><br>
-                <div class="birth">
-                    <label>Date of birth: </label>
-                    <input type="text" name="day">
-                    <input type="text" name="month">
-                    <input type="text" name="year">
-                </div>
-                <div>
-                    <span>Gender: </span>
-                    <input type="radio" id="gender1" name="gender">
-                    <label for="gender1">Nam</label>
-                    <input type="radio" id="gender2" name="gender">
-                    <label for="gender2">Nữ</label>
-                </div>
-                    <label>Phone number: </label> <input type="text" name="phone"><br>
-                    <span>Email: </span> <span>taile1234@gmail.com</span> <input class="btn-update" type="button" value="Update"><br>
-                    <input class="btn-submit" type="submit" value="Save Change">
-            </form>
+            <!-- Start form -->
+            <div class="col-md-5">
+                <form action="">
+                    <h5>My profile</h5>
+                    <div class="row">
+
+                        <!-- Start label side -->
+                        <div class="label col-md-5">
+                            <p>Username: </p>
+                            <p>Full name: </p>
+                            <p>Date of birth: </p>
+                            <p>Gender: </p>
+                            <p>Phone number: </p>
+                            <p>Email: </p>
+                        </div>
+                        <!-- End label side -->
+
+                        <!-- Start input side -->
+                        <div class="input col-md-7">
+                            <p>Taile03</p>
+                            <input type="text" name="fullname"><br>
+                            <div class="birth">
+
+                                <input type="text" name="day">
+                                <input type="text" name="month">
+                                <input type="text" name="year">
+                            </div>
+                            <div>
+                                <input type="radio" id="gender1" name="gender">
+                                <label for="gender1">Nam</label>
+                                <input type="radio" id="gender2" name="gender">
+                                <label for="gender2">Nữ</label>
+                            </div>
+                            <input type="text" name="phone"><br>
+                            <span>taile1234@gmail.com</span> <input class="btn-update" type="button" value="Update"><br>
+                            <input class="btn-submit" type="submit" value="Save Change">
+                        </div>
+                        <!-- End input side -->
+
+                    </div>
+                </form>
+            </div>
+            <!-- End form -->
+
         </div>
-
     </div>
-
-
+    <!-- End content -->
 
     <!--script js bootstrap-->
     <script src="./assets/js/bootstrap/bootstrap.bundle.min.js"></script>

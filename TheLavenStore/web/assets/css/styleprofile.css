@@ -1,14 +1,19 @@
 @import url('https://fonts.googleapis.com/css2?family=Vidaloka&display=swap');
 
+/* All reset */
 * {
     padding: 0;
     margin: 0;
 }
 
+/* CSS Banner */
 .banner {
     height: 214px;
+    background-repeat: no-repeat;
+    background-size: cover;
     background-image: url(../img/banner.png);
     text-align: center;
+    margin-bottom: 5%;
 }
 
 .banner h1 {
@@ -28,8 +33,9 @@
     font-size: 20px;
 }
 
+/* CSS Bar */
 .bar {
-    background: #ccc;
+    background: #CFA877;
     width: 250px;
 }
 
@@ -39,12 +45,47 @@
     padding: 15px;
 }
 
-.bar li {
+
+
+#nav li {
     list-style: none;
 }
 
-form * {
-    margin: 5px 0;
+#nav a {
+    text-decoration: none;
+    color: #000;
+    display: block;
+}
+
+
+#nav>li:hover>a,
+#nav .subnav li:hover a {
+    background-color: #CF9142;
+}
+
+#nav .subnav li:hover a {
+    display: block;
+}
+
+.subnav {
+    display: none;
+}
+
+#nav li:hover .subnav {
+    display: block;
+}
+
+/* CSS Form */
+
+form .label p{
+    margin-left: 20px;
+    margin-bottom: 25px;
+    font-weight: 650;
+}
+
+form .input input {
+    
+    margin-bottom: 25px;
 }
 
 form .birth input {
