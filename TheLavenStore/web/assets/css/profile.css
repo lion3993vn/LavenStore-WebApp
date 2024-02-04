@@ -1,0 +1,70 @@
+@import url('https://fonts.googleapis.com/css2?family=Vidaloka&display=swap');
+
+* {
+    padding: 0;
+    margin: 0;
+}
+
+.banner {
+    height: 214px;
+    background-image: url(../img/banner.png);
+    text-align: center;
+}
+
+.banner h1 {
+    padding-top: 80px;
+    font-family: 'Vidaloka', serif;
+}
+
+.banner p {
+    color: #8B6E4A;
+}
+
+.banner p span {
+    margin: 0 15px;
+}
+
+.content {
+    font-size: 20px;
+}
+
+.bar {
+    background: #ccc;
+    width: 250px;
+}
+
+.bar h1 {
+    display: block;
+    text-align: center;
+    padding: 15px;
+}
+
+.bar li {
+    list-style: none;
+}
+
+form * {
+    margin: 5px 0;
+}
+
+form .birth input {
+    width: 60px;
+    margin-right: 5px;
+}
+
+form .btn-update {
+    margin-left: 20px;
+    padding: 0 5px;
+    background-color: #fff;
+    color: #FF6B6B;
+    border: 2px solid #FF6B6B;
+}
+
+form .btn-submit {
+    background: linear-gradient(91.47deg, #8b6e4a -4.66%, #ddb481 31.82%, #8c6e4a 76.06%, #d6ae7c 115.4%);
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    padding: 5px 12px;
+    font-size: 15px;
+}

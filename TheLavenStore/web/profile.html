@@ -5,21 +5,71 @@ To change this template file, choose Tools | Templates
 and open the template in the editor.
 -->
 <html>
-    <head>
-        <title>TODO supply a title</title>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <link rel="stylesheet" href="./assets/css/bootstrap/bootstrap.css">
-    </head>
-    <body>
-        <div class="text-center">day la profile</div>
-        
-        
-        
-        
-        <!--script js bootstrap-->
-        <script src="./assets/js/bootstrap/bootstrap.bundle.min.js"></script>
-        <script src="./assets/js/bootstrap/bootstrap.min.js"></script>
-        <script src="./assets/js/bootstrap/bootstrap.esm.min.js"></script>
-    </body>
+
+<head>
+    <title>TODO supply a title</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./assets/css/bootstrap/bootstrap.css">
+    <link rel="stylesheet" href="./assets/css/profile.css">
+    <link rel="stylesheet" href="./assets/fonts/fontawesome-free-6.5.1-web/css/all.css">
+</head>
+
+<body>
+    <div class="banner">
+        <h1>My profile</h1>
+        <p>Home <span><i class="fa-solid fa-chevron-right"></i></span> Profile</p>
+    </div>
+
+    <div class="container">
+        <div class="content row justify-content-center g-2">
+            <div class="bar col-md-7">
+                <h1>Tai Le</h1>
+                <hr>
+                <ul>
+                    <li>Infromation
+                        <ul>
+                            <li>Profile</li>
+                            <li>Address</li>
+                            <li>Change password</li>
+                        </ul>
+                    </li>
+                    <li>My Purchase</li>
+                    <li>Logout</li>
+                </ul>
+            </div>
+
+            <form class="col-md-5" action="">
+                <h5>My profile</h5>
+                <span>Username: </span> <span>Taile03</span><br>
+                <label>Full name: </label> <input type="text" name="fullname"><br>
+                <div class="birth">
+                    <label>Date of birth: </label>
+                    <input type="text" name="day">
+                    <input type="text" name="month">
+                    <input type="text" name="year">
+                </div>
+                <div>
+                    <span>Gender: </span>
+                    <input type="radio" id="gender1" name="gender">
+                    <label for="gender1">Nam</label>
+                    <input type="radio" id="gender2" name="gender">
+                    <label for="gender2">Nữ</label>
+                </div>
+                    <label>Phone number: </label> <input type="text" name="phone"><br>
+                    <span>Email: </span> <span>taile1234@gmail.com</span> <input class="btn-update" type="button" value="Update"><br>
+                    <input class="btn-submit" type="submit" value="Save Change">
+            </form>
+        </div>
+
+    </div>
+
+
+
+    <!--script js bootstrap-->
+    <script src="./assets/js/bootstrap/bootstrap.bundle.min.js"></script>
+    <script src="./assets/js/bootstrap/bootstrap.min.js"></script>
+    <script src="./assets/js/bootstrap/bootstrap.esm.min.js"></script>
+</body>
+
 </html>
