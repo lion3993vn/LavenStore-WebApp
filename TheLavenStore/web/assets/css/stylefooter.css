@@ -1,0 +1,30 @@
+*{
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+    font-family: sans-serif;
+}
+.footer{
+    background-color: #D9D9D9;
+}
+.title-footer{
+    font-size: 20px;
+    color: #8B6E4A;
+    font-weight: 700;
+    font-family: 'Volkhov', serif;
+    margin-bottom: 4px;
+}
+.text-noticia{
+    font-family: 'Noticia Text', serif;
+    color: rgba(0, 0, 0, 0.5);
+}
+.icon-text-footer{
+    color: rgba(0, 0, 0, 0.8);
+}
+.mxh-footer{
+    text-decoration: none;
+    color: rgba(0, 0, 0, 0.5);
+}
+.logop-footer{
+    width: 25%;
+}
