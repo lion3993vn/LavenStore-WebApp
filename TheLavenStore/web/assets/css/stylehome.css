@@ -1,0 +1,36 @@
+.banner {
+    font-family: 'Noticia Text', serif;
+    color: #8B6E4A;
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.banner-text {
+    text-align: center;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+#slogan1 {
+    font-size: 2.40625em;
+}
+
+#slogan2 {
+    opacity: 0.54;
+}
+
+.banner .banner-text button {
+    background: linear-gradient(to right, #7f6749, #cca676, #7f6749, #cca676, #7f6749);
+    border: none;
+    border-radius: 5px;
+    padding: 0 3vw;
+    font-size: 1vw;
+    margin-right: 2vw;
+    margin-left: 2vw;
+    margin-top: 1.3vw;
+    margin-bottom: 2vw;
+}
