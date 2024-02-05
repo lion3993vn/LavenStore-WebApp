@@ -9,7 +9,6 @@
 }
 
 .banner h1 {
-    padding-top: 80px;
     font-family: 'Vidaloka', serif;
 }
 
@@ -36,10 +35,6 @@
 }
 
 /* CSS Form */
-
-form .birth input {
-    width: 3.64em;
-}
 
 form .btn-update {
     background-color: #fff;

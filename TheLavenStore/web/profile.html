@@ -19,7 +19,7 @@ and open the template in the editor.
     <div class="container-fuild">
         <!-- Start banner -->
         <div class="banner container-fuild pb-5 mb-5">
-            <h1>My profile</h1>
+            <h1 class="pt-5">My profile</h1>
             <p>Home <span><i class="px-4 fa-solid fa-chevron-right"></i></span> Profile</p>
         </div>
         <!-- End banner -->
@@ -27,14 +27,15 @@ and open the template in the editor.
         <!-- Start content -->
         <div class="container">
             <div class="content row justify-content-center">
-                <!-- Start navbar -->
-                <div class="bar col-md-2 p-2">
+
+                <!-- Start Slider navbar -->
+                <div class="bar col-2 ps-2 py-2 pe-0">
                     <p class="text-center mb-0 fs-2">Tai Le</p>
                     <hr>
-                    <ul class="fs-6 p-1" id="nav">
+                    <ul class="fs-5 py-1 ps-1" id="nav">
                         <li><i class="pe-2 fa-solid fa-user"></i><a href="#">Information</a>
                             <ul class="subnav ps-5">
-                                <li><a class="profile d-block" href="#">Profile</a></li>
+                                <li class="profile d-block"><a href="#">Profile</a></li>
                                 <li><a href="#">Address</a></li>
                                 <li><a href="#">Change password</a></li>
                             </ul>
@@ -46,10 +47,10 @@ and open the template in the editor.
                 <!-- End navbar -->
 
                 <!-- Start form -->
-                <div class="col-md-6 ms-4">
+                <div class="col-8 ms-4">
                     <form action="">
-                        <h5 class="mt-4">My profile</h5>
-                        <table class="fs-5">
+                        <h5 class="mt-4 fw-bold">My profile</h5>
+                        <table class="fs-5 fw-medium">
                             <tbody>
                                 <tr>
                                     <td class="px-5 pb-2">Username:</td>
@@ -57,37 +58,37 @@ and open the template in the editor.
                                 </tr class="my-2">
                                 <tr>
                                     <td class="px-5 pb-2">Full name: </td>
-                                    <td class="pb-2"><input type="text" name="fullname"></td>
+                                    <td class="pb-2"><input class="form-control" type="text" name="fullname"></td>
                                 </tr>
                                 <tr>
                                     <td class="px-5 pb-2">Date of birth: </td>
-                                    <td class="pb-2">
-                                        <span class="birth">
-                                            <input type="text" name="day">
-                                            <input type="text" name="month">
-                                            <input type="text" name="year">
+                                    <td class="pb-2 ">
+                                        <span class="input-group-sm input-group-text border border-0 p-0">
+                                            <input class="form-control" type="text" name="month">
+                                            <input class="form-control mx-2" type="text" name="year">
+                                            <input class="form-control" type="text" name="day">
                                         </span>
                                     </td>
                                 </tr>
                                 <tr>
                                     <td class="px-5 pb-2">Gender: </td>
                                     <td class="pb-2">
-                                        <span>
-                                            <input type="radio" id="gender1" name="gender">
-                                            <label for="gender1">Nam</label>
-                                            <input type="radio" id="gender2" name="gender">
-                                            <label for="gender2">Nữ</label>
+                                        <span class="input-group">
+                                            <input class="me-2" type="radio" id="gender1" name="gender">
+                                            <label class="me-2" for="gender1">Nam</label>
+                                            <input class="me-2" type="radio" id="gender2" name="gender">
+                                            <label class="me-2" for="gender2">Nữ</label>
                                         </span>
                                     </td>
                                 </tr>
                                 <tr>
                                     <td class="px-5 pb-2">Phone number: </td>
-                                    <td class="pb-2"><input type="text" name="phone"></td>
+                                    <td class="pb-2"><input class="form-control" type="text" name="phone"></td>
                                 </tr>
                                 <tr>
                                     <td class="px-5">Email: </td>
                                     <td class="pb-2">taile1234@gmail.com</td>
-                                    <td><input class="float-end ms-5 btn-update" type="button" value="Update"></td>
+                                    <td><input class="float-end ms-5 rounded btn-update" type="button" value="Update"></td>
                                 </tr>
                             </tbody>
                         </table>
