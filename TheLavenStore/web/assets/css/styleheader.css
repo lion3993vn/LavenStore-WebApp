@@ -18,7 +18,15 @@
     color: #8B6E4A;
     font-size: 16px;
 }
-.nav-link:hover{
+.nav-link:hover, .nav-link:focus{
     color: #8B6E4A;
-    border-bottom: 2px solid #8B6E4A;
+}
+.nav-right:hover{
+    border-bottom: 0;
+}
+.icon-user{
+    padding-right: 4px;
+}
+#name{
+    padding-left: 4px;
 }
