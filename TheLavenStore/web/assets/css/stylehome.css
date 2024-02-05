@@ -34,3 +34,32 @@
     margin-top: 1.3vw;
     margin-bottom: 2vw;
 }
+
+.new-release-section h2 {
+    color: #8B6E4A;
+    text-align: center;
+}
+
+.new-release-section button {
+    background: linear-gradient(to right, #cca676, #7f6749, #cca676);
+    border: none;
+    border-radius: 5px;
+    padding: 0 3vw;
+    font-size: 1vw;
+    margin-right: 2vw;
+    margin-left: 2vw;
+    margin-top: 1.3vw;
+    margin-bottom: 2vw;
+}
+
+.new-release-section .item {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+.new-release-section .item button {
+    margin-top: 1.3vw;
+    margin-bottom: 2vw;
+}
