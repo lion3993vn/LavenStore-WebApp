@@ -19,35 +19,61 @@ and open the template in the editor.
     <div class="container-fuild">
         <!-- Start banner -->
         <div class="banner container-fuild pb-5 mb-5">
-            <h1 class="pt-5">My profile</h1>
-            <p>Home <span><i class="px-4 fa-solid fa-chevron-right"></i></span> Profile</p>
+
+            <p><a href="#">Home</a><span><i class="px-4 fa-solid fa-chevron-right"></i></span>Profile</p>
         </div>
         <!-- End banner -->
 
         <!-- Start content -->
         <div class="container">
-            <div class="content row justify-content-center">
+            <div class="row">
 
                 <!-- Start Slider navbar -->
-                <div class="bar col-2 ps-2 py-2 pe-0">
-                    <p class="text-center mb-0 fs-2">Tai Le</p>
-                    <hr>
-                    <ul class="fs-5 py-1 ps-1" id="nav">
-                        <li><i class="pe-2 fa-solid fa-user"></i><a href="#">Information</a>
-                            <ul class="subnav ps-5">
-                                <li class="profile d-block"><a href="#">Profile</a></li>
-                                <li><a href="#">Address</a></li>
-                                <li><a href="#">Change password</a></li>
-                            </ul>
-                        </li>
-                        <li><i class="pe-2 fa-solid fa-credit-card"></i><a href="#">My Purchase</a></li>
-                        <li><i class="pe-2 fa-solid fa-arrow-right-from-bracket"></i><a href="#">Logout</a></li>
-                    </ul>
+                <div class="bar col-md-2">
+                    <table class="w-100">
+                        <tr class="text-center">
+                            <th colspan="2">
+                                <p class="fw-normal fs-1 p-2">TaiLe</p>
+                            </th>
+                        </tr>
+                        
+                        <tr>
+                            <td colspan="2" class=""><div class="hr ps-4 pe-4" ></div></td>
+                        </tr>
+
+                        <tr>
+                            <td><i class=" fa-solid fa-user"></i></td>
+                            <td><a href="#">Information</a></td>
+                        </tr>
+
+                        <tr>
+                            <td></td>
+                            <td class="ps-3 profile"><a href="#">Profile</a></td>
+                        </tr>
+                        <tr>
+                            <td></td>
+                            <td class="ps-3"><a href="#">Address</a></td>
+                        </tr>
+                        <tr>
+                            <td></td>
+                            <td class="ps-3"><a href="#">Change password</a></td>
+                        </tr>
+                        <tr>
+                            <td><i class=" fa-solid fa-credit-card"></i></td>
+                            <td><a href="#">My Purchase</a></td>
+                        </tr>
+                        <tr>
+                            <td><i class=" fa-solid fa-arrow-right-from-bracket"></i></td>
+                            <td><a href="#">Logout</a></td>
+                        </tr>
+                    </table>
+
                 </div>
-                <!-- End navbar -->
+
+                <!-- End Slider navbar -->
 
                 <!-- Start form -->
-                <div class="col-8 ms-4">
+                <div class="col-md-10">
                     <form action="">
                         <h5 class="mt-4 fw-bold">My profile</h5>
                         <table class="fs-5 fw-medium">
@@ -88,7 +114,8 @@ and open the template in the editor.
                                 <tr>
                                     <td class="px-5">Email: </td>
                                     <td class="pb-2">taile1234@gmail.com</td>
-                                    <td><input class="float-end ms-5 rounded btn-update" type="button" value="Update"></td>
+                                    <td><input class="float-end ms-5 rounded btn-update" type="button" value="Update">
+                                    </td>
                                 </tr>
                             </tbody>
                         </table>

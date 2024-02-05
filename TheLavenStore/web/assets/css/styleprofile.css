@@ -16,19 +16,36 @@
     color: #8B6E4A;
 }
 
+.banner a {
+    text-decoration: none;
+    color: #8B6E4A;
+}
+
 /* CSS Bar */
 .bar {
     background: #CFA877;
+
 }
 
-#nav li {
-    list-style: none;
+.bar table{
+    width: 100%;
 }
 
-#nav a {
+.bar .hr1{
+    width: 100%;
+}
+
+.bar a {
     text-decoration: none;
     color: #000;
 }
+
+.bar .hr {
+    background: #000;
+    height: 1px;
+    width: 100%;
+}
+
 
 .profile {
     background-color: #CF9142;
@@ -42,8 +59,21 @@ form .btn-update {
     border: 2px solid #FF6B6B;
 }
 
+form .btn-update:hover {
+    background-color: #FF6B6B;
+    color: #fff;
+    border: 2px solid #FF6B6B;
+}
+
 form .btn-submit {
     background: linear-gradient(91.47deg, #8b6e4a -4.66%, #ddb481 31.82%, #8c6e4a 76.06%, #d6ae7c 115.4%);
     color: #fff;
     border: none;
+}
+
+form .btn-submit:hover {
+    background: linear-gradient(91.47deg, #8b6e4a -4.66%, #ddb481 31.82%, #8c6e4a 76.06%, #d6ae7c 115.4%);
+    color: #fff;
+    border: none;
+    box-shadow: #000;
 }
