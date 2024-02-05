@@ -13,6 +13,23 @@
     text-decoration: none;
     color: #8B6E4A;
 }
+.nav-item {
+    position: relative;
+    overflow: hidden;
+}
+.nav-left::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    width: 0; /* Kích thước mặc định là 0 */
+    height: 2px; /* Độ dày của thanh trượt */
+    background-color: #8B6E4A; /* Màu sắc của thanh trượt */
+    transition: width 0.3s ease; /* Thêm transition cho hiệu ứng mượt mà */
+  }
+.nav-left:hover::after {
+    width: 100%;
+}
 .nav-link{
     font-family: 'Averia Serif Libre', sans-serif;
     color: #8B6E4A;
@@ -21,6 +38,7 @@
 .nav-link:hover, .nav-link:focus{
     color: #8B6E4A;
 }
+
 .nav-right:hover{
     border-bottom: 0;
 }
