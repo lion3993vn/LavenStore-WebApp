@@ -1,19 +1,11 @@
 @import url('https://fonts.googleapis.com/css2?family=Vidaloka&display=swap');
 
-/* All reset */
-* {
-    padding: 0;
-    margin: 0;
-}
-
 /* CSS Banner */
 .banner {
-    height: 214px;
     background-repeat: no-repeat;
     background-size: cover;
-    background-image: url(../img/banner.png);
+    background-image: url(../img/banner_profileedit.png);
     text-align: center;
-    margin-bottom: 5%;
 }
 
 .banner h1 {
@@ -24,27 +16,11 @@
 .banner p {
     color: #8B6E4A;
 }
-    
-.banner p span {
-    margin: 0 15px;
-}
-
-.content {
-    font-size: 20px;
-}
 
 /* CSS Bar */
 .bar {
     background: #CFA877;
-    width: 250px;
 }
-
-.bar h1 {
-    display: block;
-    text-align: center;
-    padding: 15px;
-}
-
 
 #nav li {
     list-style: none;
@@ -53,47 +29,19 @@
 #nav a {
     text-decoration: none;
     color: #000;
-    display: block;
 }
 
-#nav>li:hover>a,
-#nav .subnav li:hover a {
+.profile {
     background-color: #CF9142;
-}
-
-#nav .subnav li:hover a {
-    display: block;
-}
-
-.subnav {
-    display: none;
-}
-
-#nav li:hover .subnav {
-    display: block;
 }
 
 /* CSS Form */
 
-form .label p{
-    margin-left: 20px;
-    margin-bottom: 25px;
-    font-weight: 650;
-}
-
-form .input input {
-    
-    margin-bottom: 25px;
-}
-
 form .birth input {
-    width: 60px;
-    margin-right: 5px;
+    width: 3.64em;
 }
 
 form .btn-update {
-    margin-left: 20px;
-    padding: 0 5px;
     background-color: #fff;
     color: #FF6B6B;
     border: 2px solid #FF6B6B;
@@ -103,7 +51,4 @@ form .btn-submit {
     background: linear-gradient(91.47deg, #8b6e4a -4.66%, #ddb481 31.82%, #8c6e4a 76.06%, #d6ae7c 115.4%);
     color: #fff;
     border: none;
-    border-radius: 5px;
-    padding: 5px 12px;
-    font-size: 15px;
 }
