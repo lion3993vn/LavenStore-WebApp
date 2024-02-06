@@ -14,6 +14,14 @@
     text-decoration: none;
     color: #8B6E4A;
 }
+.table-reg{
+    width: 60%;
+}
+.title-login{
+    color: #8B6E4A;
+    font-weight: 600;
+    font-size: 24px;
+}
 .title-login{
     color: #8B6E4A;
     font-weight: 600;
@@ -34,53 +42,23 @@
     color: #FF0000;
 }
 .hidden{
-    /* display: none; */
+    display: none;
 }
-.remember-login{
-    width: 50%;
+.captcha-login{
+    padding: 10px 0;
 }
-.remember-login input{
-    width: 15px;
-    height: 15px;
+.captcha-content{
+    border: 1px solid black;
 }
-.remember-login p{
-    display: inline-block;
-    padding-left: 10px;
-    margin-bottom: 0;
+.reg-btn{
 }
-.forgot-pass{
-    width: 50%;
-}
-.forgot-pass a{
-    text-decoration: none;
-    color: black;
-}
-.login-btn{
-}
-.login-btn input{
+.reg-btn input{
     width: 100%;
     background: linear-gradient(91.47deg, #8b6e4a -4.66%, #ddb481 31.82%, #8c6e4a 76.06%, #d6ae7c 115.4%);
     border: none;
     color: white;
     font-size: 15px;
     border-radius: 5px;
-}
-.hr-login{
-    height: 1px;
-    background-color: black;
-}
-.login-google{
-    border: 2px solid black;
-    width: 40%;
-    padding: 5px;
-    cursor: pointer;
-}
-.login-google img{
-    width: 17%;
-}
-.login-google p{
-    display: inline-block;
-    width: 80%;
 }
 .title-dangki{
     margin-top: 3em;
