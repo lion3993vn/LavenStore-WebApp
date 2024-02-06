@@ -6,83 +6,188 @@ and open the template in the editor.
 -->
 <html>
     <head>
-        <title>TODO supply a title</title>
+        <title>Laven Store</title>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Noticia+Text">
         <link rel="stylesheet" href="./assets/css/bootstrap/bootstrap.css">
         <link rel="stylesheet" href="./assets/css/stylehome.css">
         <link rel="stylesheet" href="./assets/css/font/css/all.css">
     </head>
     <body>
         <div class="banner container-fluid">
-            <div class="row">
-                <div class="banner-background col-lg-12">
-                    <img src="./assets/img/banner.png" alt="Website Banner" class="img-fluid">
-                    <div class="banner-text col-lg-8">
-                        <p id="slogan1">The Color Of Your Life</p>
-                        <p id="slogan2">PREMIUM FLOWERS AND BOUQUETS</p>
-                        <button class="btn btn-primary col-lg-2">Shop Now</button>
-                        <button class="btn btn-secondary col-lg-2">Best Seller</button>
+            <div class="banner-background">
+                <img src="./assets/img/banner.png" alt="Website Banner" class="img-fluid w-100">
+            </div>
+            <div class="banner-text col-md-8">
+                <p id="slogan1">The Color Of Your Life</p>
+                <p id="slogan2">PREMIUM FLOWERS AND BOUQUETS</p>
+                <button class="btn btn-primary col-md-2">Shop Now</button>
+                <button class="btn btn-secondary col-md-2">Best Seller</button>
+            </div>
+        </div>
+        <!-- <section>
+            <h2 class="new-release-header text-center">NEW RELEASES</h2>
+            <div class="new-release-section container">
+                <div class="item-listing row justify-content-center">
+                    <div class="item col-md-4">
+                        <div class="item-image w-100 p-3">
+                            <img src="./assets/img/item.png" alt="Item 1" class="img-fluid">
+                            <button class="btn btn-primary">ADD TO CART</button>
+                        </div>
+                        <div class="item-details">
+                            <h3>Item 1</h3>
+                            <p>$24.99</p>
+                        </div>
+                    </div>
+                    <div class="item col-md-4 w-100 p-3">
+                        <img src="./assets/img/item.png" alt="Item 2" class="img-fluid">
+                            <button class="btn btn-primary">ADD TO CART</button>
+                        <div class="item-details">
+                            <h3>Item 2</h3>
+                            <p>$24.99</p>
+                        </div>
+                    </div>
+                    <div class="item col-md-4 w-100 p-3">
+                        <img src="./assets/img/item.png" alt="Item 3" class="img-fluid">
+                            <button class="btn btn-primary">ADD TO CART</button>
+                        <div class="item-details">
+                            <h3>Item 3</h3>
+                            <p>$14.99</p>
+                        </div>
                     </div>
                 </div>
             </div>
-        </div>
-        <div class="new-release-section container-fluid">
-            <div class="row justify-content-lg-center">
-                <div class="col-lg-10">
-                    <h2 class="new-release-header">NEW RELEASES</h2>
-                    <div class="item-listing row justify-content-lg-center">
-                        <div class="item col-lg-4">
-                            <div class="item-image">
-                                <img src="./assets/img/item.png" alt="Item 1" class="img-fluid col-lg-10">
-                                <form
-                                    class="item-form d-none d-lg-inline"
-                                    action="/cart/add"
-                                    method="post"
-                                    item_id=""
-                                >
-                                    <button class="btn btn-primary">ADD TO CART</button>
-                                </form>
+        </section> -->
+        <section class="new-release">
+            <h2 class="new-release-header text-center">NEW RELEASES</h2>
+            <div class="container-fluid">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-md-4 text-center">
+                            <div class="item-image w-100 p-3">
+                                <button class="btn btn-primary w-75">ADD TO CART</button>
                             </div>
                             <div class="item-details">
                                 <h3>Item 1</h3>
                                 <p>$24.99</p>
                             </div>
                         </div>
-                        <div class="item col-lg-4">
-                            <img src="./assets/img/item.png" alt="Item 2" class="img-fluid col-lg-10">
-                            <form
-                                class="item-form d-none d-lg-inline"
-                                action="/cart/add"
-                                method="post"
-                                item_id=""
-                            >
-                                <button class="btn btn-primary">ADD TO CART</button>
-                            </form>
+                        <div class="col-md-4 text-center">
+                            <div class="item-image w-100 p-3">
+                                <button class="btn btn-primary w-75">ADD TO CART</button>
+                            </div>
                             <div class="item-details">
-                                <h3>Item 2</h3>
+                                <h3>Item 1</h3>
                                 <p>$24.99</p>
                             </div>
                         </div>
-                        <div class="item col-lg-4">
-                            <img src="./assets/img/item.png" alt="Item 3" class="img-fluid col-lg-10">
-                            <form
-                                class="item-form d-none d-lg-inline"
-                                action="/cart/add"
-                                method="post"
-                                item_id=""
-                            >
-                                <button class="btn btn-primary">ADD TO CART</button>
-                            </form>
+                        <div class="col-md-4 text-center">
+                            <div class="item-image w-100 p-3">
+                                <button class="btn btn-primary w-75">ADD TO CART</button>
+                            </div>
                             <div class="item-details">
-                                <h3>Item 3</h3>
-                                <p>$14.99</p>
+                                <h3>Item 1</h3>
+                                <p>$24.99</p>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
-        </div>
+        </section>
+        <section class="best-seller">
+            <h2 class="new-release-header text-center">BEST SELLER</h2>
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col-md-3 text-center">
+                        <div class="content-seller">
+                            <div class="item-image w-100 p-3">
+                                <button class="btn btn-primary w-75">ADD TO CART</button>
+                            </div>
+                            <div class="item-details">
+                                <h3>Item 1</h3>
+                                <p>$24.99</p>
+                            </div>
+                        </div>
+                    </div><div class="col-md-3 text-center">
+                        <div class="content-seller">
+                            <div class="item-image w-100 p-3">
+                                <button class="btn btn-primary w-75">ADD TO CART</button>
+                            </div>
+                            <div class="item-details">
+                                <h3>Item 1</h3>
+                                <p>$24.99</p>
+                            </div>
+                        </div>
+                    </div><div class="col-md-3 text-center">
+                        <div class="content-seller">
+                            <div class="item-image w-100 p-3">
+                                <button class="btn btn-primary w-75">ADD TO CART</button>
+                            </div>
+                            <div class="item-details">
+                                <h3>Item 1</h3>
+                                <p>$24.99</p>
+                            </div>
+                        </div>
+                    </div><div class="col-md-3 text-center">
+                        <div class="content-seller">
+                            <div class="item-image w-100 p-3">
+                                <button class="btn btn-primary w-75">ADD TO CART</button>
+                            </div>
+                            <div class="item-details">
+                                <h3>Item 1</h3>
+                                <p>$24.99</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-3 text-center">
+                        <div class="content-seller">
+                            <div class="item-image w-100 p-3">
+                                <button class="btn btn-primary w-75">ADD TO CART</button>
+                            </div>
+                            <div class="item-details">
+                                <h3>Item 1</h3>
+                                <p>$24.99</p>
+                            </div>
+                        </div>
+                    </div><div class="col-md-3 text-center">
+                        <div class="content-seller">
+                            <div class="item-image w-100 p-3">
+                                <button class="btn btn-primary w-75">ADD TO CART</button>
+                            </div>
+                            <div class="item-details">
+                                <h3>Item 1</h3>
+                                <p>$24.99</p>
+                            </div>
+                        </div>
+                    </div><div class="col-md-3 text-center">
+                        <div class="content-seller">
+                            <div class="item-image w-100 p-3">
+                                <button class="btn btn-primary w-75">ADD TO CART</button>
+                            </div>
+                            <div class="item-details">
+                                <h3>Item 1</h3>
+                                <p>$24.99</p>
+                            </div>
+                        </div>
+                    </div><div class="col-md-3 text-center">
+                        <div class="content-seller">
+                            <div class="item-image w-100 p-3">
+                                <button class="btn btn-primary w-75">ADD TO CART</button>
+                            </div>
+                            <div class="item-details">
+                                <h3>Item 1</h3>
+                                <p>$24.99</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
         <!--script js bootstrap-->
         <script src="./assets/js/bootstrap/bootstrap.bundle.min.js"></script>
         <script src="./assets/js/bootstrap/bootstrap.min.js"></script>
