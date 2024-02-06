@@ -16,41 +16,64 @@ and open the template in the editor.
     <body>
         <div class="banner container-fluid">
             <div class="row">
-                <div class="banner-background col-md-12">
+                <div class="banner-background col-lg-12">
                     <img src="./assets/img/banner.png" alt="Website Banner" class="img-fluid">
-                    <div class="banner-text col-md-8">
+                    <div class="banner-text col-lg-8">
                         <p id="slogan1">The Color Of Your Life</p>
                         <p id="slogan2">PREMIUM FLOWERS AND BOUQUETS</p>
-                        <button class="btn btn-primary col-md-2">Shop Now</button>
-                        <button class="btn btn-secondary col-md-2">Best Seller</button>
+                        <button class="btn btn-primary col-lg-2">Shop Now</button>
+                        <button class="btn btn-secondary col-lg-2">Best Seller</button>
                     </div>
                 </div>
             </div>
         </div>
         <div class="new-release-section container-fluid">
-            <div class="row justify-content-md-center">
-                <div class="col-md-10">
+            <div class="row justify-content-lg-center">
+                <div class="col-lg-10">
                     <h2 class="new-release-header">NEW RELEASES</h2>
-                    <div class="item-listing row justify-content-md-center">
-                        <div class="item col-md-4">
-                            <img src="./assets/img/item.png" alt="Item 1" class="img-fluid col-10">
-                            <button class="btn btn-primary">ADD TO CART</button>
+                    <div class="item-listing row justify-content-lg-center">
+                        <div class="item col-lg-4">
+                            <div class="item-image">
+                                <img src="./assets/img/item.png" alt="Item 1" class="img-fluid col-lg-10">
+                                <form
+                                    class="item-form d-none d-lg-inline"
+                                    action="/cart/add"
+                                    method="post"
+                                    item_id=""
+                                >
+                                    <button class="btn btn-primary">ADD TO CART</button>
+                                </form>
+                            </div>
                             <div class="item-details">
                                 <h3>Item 1</h3>
                                 <p>$24.99</p>
                             </div>
                         </div>
-                        <div class="item col-md-4">
-                            <img src="./assets/img/item.png" alt="Item 2" class="img-fluid col-10">
-                            <button class="btn btn-primary">ADD TO CART</button>
+                        <div class="item col-lg-4">
+                            <img src="./assets/img/item.png" alt="Item 2" class="img-fluid col-lg-10">
+                            <form
+                                class="item-form d-none d-lg-inline"
+                                action="/cart/add"
+                                method="post"
+                                item_id=""
+                            >
+                                <button class="btn btn-primary">ADD TO CART</button>
+                            </form>
                             <div class="item-details">
                                 <h3>Item 2</h3>
                                 <p>$24.99</p>
                             </div>
                         </div>
-                        <div class="item col-md-4">
-                            <img src="./assets/img/item.png" alt="Item 3" class="img-fluid col-10">
-                            <button class="btn btn-primary">ADD TO CART</button>
+                        <div class="item col-lg-4">
+                            <img src="./assets/img/item.png" alt="Item 3" class="img-fluid col-lg-10">
+                            <form
+                                class="item-form d-none d-lg-inline"
+                                action="/cart/add"
+                                method="post"
+                                item_id=""
+                            >
+                                <button class="btn btn-primary">ADD TO CART</button>
+                            </form>
                             <div class="item-details">
                                 <h3>Item 3</h3>
                                 <p>$14.99</p>

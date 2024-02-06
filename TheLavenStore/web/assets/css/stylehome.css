@@ -63,19 +63,22 @@
     margin-bottom: 2vw;
 }
 
-
 .new-release-section .item button {
     position: absolute;
     bottom: 0;
     background: linear-gradient(to right, #7f6749, #cca676, #7f6749, #cca676);
     border: none;
-    border-radius: 5px;
     padding: 0 3vw;
     font-size: 1vw;
-    margin-right: 2vw;
-    margin-left: 2vw;
-    margin-top: 1.3vw;
-    margin-bottom: 2vw;
+    cursor: pointer;
+    top: 70%;
+    left: 50%;
+    bottom:20%;
+    transform: translate(-50%, -50%);
+    -ms-transform: translate(-50%, -50%);
+    -webkit-transform: translate(-50%, -50%);
+    -moz-transform: translate(-50%, -50%);
+    -o-transform: translate(-50%, -50%);
 }
 
 .new-release-section .item-listing {
@@ -85,4 +88,3 @@
     text-align: center;
     /* Added property */
 }
-
