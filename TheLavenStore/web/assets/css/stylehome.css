@@ -43,58 +43,6 @@
     margin-bottom: 2rem;
 }
 
-.new-release-section {
-    font-family: 'Myanmar Sans Pro', sans-serif;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    margin-top: 5rem;
-    margin-bottom: 5rem;
-}
-
-.new-release-section h2 {
-    font-weight: bold;
-    color: #8B6E4A;
-    text-align: center;
-    margin-bottom: 2vh;
-}
-
-.best-seller-section {
-    font-family: 'Myanmar Sans Pro', sans-serif;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    margin-top: 5rem;
-    margin-bottom: 5rem;
-}
-
-.new-release-header {
-    font-weight: bold;
-    color: #8B6E4A;
-    text-align: center;
-    margin-bottom: 2vh;
-}
-
-.best-seller-section h2 {
-    font-weight: bold;
-    color: #8B6E4A;
-    text-align: center;
-    margin-bottom: 2vh;
-}
-
-.item {
-    display: flex;
-    justify-content: center;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    position: relative;
-    justify-content: center;
-    align-items: center;
-    width: calc(33.33% - 2rem);
-    margin-bottom: 2rem;
-}
-
 .new-release button {
     position: absolute;
     transform: translateX(-50%);
@@ -124,14 +72,6 @@
     -o-transform: translateX();
 }
 
-.item-listing {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    text-align: center;
-    /* Added property */
-}
-
 .item-details h3 {
     margin-top: 1.5rem;
     font-weight: bold;
@@ -153,7 +93,7 @@
     background-image: url("../img/item.png");
     background-position: center;
     background-size: cover;
-    height: 20em;
+    height: 18em;
 }
 .item-image {
     position: relative;
@@ -161,4 +101,21 @@
 
 .content-seller{
     margin: 1.5em;
+}
+.subscribe{
+    background-image: url("../img/subscribe.png");
+    background-size: cover;
+}
+.subscribe-text h2{
+    font-family: 'Josefin Sans', sans-serif;
+    color:#CFA877;
+    font-weight: bold;
+    font-size: 1.8em;
+}
+.subscribe-text p{
+    font-family: 'Josefin Sans', sans-serif;
+}
+.subscribe button{
+    color:#ffffff;
+    background-color: #CFA877;
 }
