@@ -42,7 +42,14 @@
     margin-top: 1.3rem;
     margin-bottom: 2rem;
 }
-
+.new-release-header {
+    font-family: 'Open Sans', sans-serif;
+    font-weight: bold;
+    color: #8B6E4A;
+    margin-top: 3em;
+    margin-bottom: 1em;
+    text-align: center;
+}
 .new-release button {
     position: absolute;
     transform: translateX(-50%);
