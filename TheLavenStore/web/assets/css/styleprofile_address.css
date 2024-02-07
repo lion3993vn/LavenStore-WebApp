@@ -61,15 +61,8 @@
     background-color: #CF9142;
 }
 
+
 /* CSS Form */
-
-.nameprofile[type=text] {
-    font-weight: 600;
-}
-
-input[type=radio] {
-    transform: scale(1.5);
-}
 
 form .btn-submit {
     background: linear-gradient(91.47deg, #8b6e4a -4.66%, #ddb481 31.82%, #8c6e4a 76.06%, #d6ae7c 115.4%);

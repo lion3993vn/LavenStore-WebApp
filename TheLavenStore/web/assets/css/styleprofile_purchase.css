@@ -63,12 +63,46 @@
 
 /* CSS Form */
 
+table .order_header {
+    width: 80%;
+    border-bottom: 2px solid #000;
+}
+
 .nameprofile[type=text] {
     font-weight: 600;
 }
 
 input[type=radio] {
     transform: scale(1.5);
+}
+
+.complete {
+    padding: 0.2rem 1.5rem;
+    background: #4DC95A;
+    color: white;
+}
+
+.cancelled {
+    padding: 0.2rem 1.5rem;
+    background: #E74646;
+    color: white;
+}
+
+.pending {
+    padding: 0.2rem 1.5rem;
+    background: #9AA14B;
+    color: white;
+}
+
+.total_money,
+.idpurchase {
+    color: #8b6e4a;
+}
+
+.vline {
+    height: 1.5rem;
+    border-left: 2px solid #000;
+    opacity: 50%;
 }
 
 form .btn-submit {
@@ -82,4 +116,8 @@ form .btn-submit:hover {
     color: #fff;
     border: none;
     box-shadow: #000;
+}
+
+.success_content {
+    color: #26AA99;
 }
