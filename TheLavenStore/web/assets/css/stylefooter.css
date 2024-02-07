@@ -28,9 +28,10 @@
 .logop-footer{
     width: 25%;
 }
-.copyright{
+.copyright-border{
     background-color: #d9d9d963;
 }
 .copyright-content{
     font-family: 'Dongle', serif;
+    font-size: 20px;
 }
