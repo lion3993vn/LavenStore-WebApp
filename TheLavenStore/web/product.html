@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
     <head>
-        <title>Boxes - The LAVEN STORE</title>
+        <title>Product Details - The LAVEN STORE</title>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -65,15 +65,24 @@
                                 </select>
                             </form>
                         </div>
-                        <div class="order offset-md-1 mt-3 row">
-                            <input
-                                class="form-control w-25 border border-1 border-dark rounded-0"
-                                type="number"
-                                value="1"
-                                min="1"
-                                max="100"
-                                step="1"
-                            >
+                        <div class="order mt-3 row">
+                            <div class="w-25 d-flex align-items-center">
+                                <div class="btn btn-secondary rounded-0 w-25 text-center h-100 d-flex align-items-center" id="quantity-down" onclick="sub()">
+                                    <span>-</span>
+                                </div>
+                                <input
+                                    class="form-control w-50 border border-1 border-dark rounded-0 text-center h-100"
+                                    type="number"
+                                    value="1"
+                                    min="1"
+                                    max="100"
+                                    step="1"
+                                    id="quantity"
+                                >
+                                <div class="btn btn-secondary rounded-0 w-25 text-center h-100 d-flex align-items-center" id="quantity-up" onclick="add()">
+                                    <span>+</span>
+                                </div>
+                            </div>
                             <span class="col-md-1"></span>
                             <button class="btn btn-primary w-25 rounded-0 add-to-cart pt-2 pb-2">ADD TO CART</button>
                             <span class="col-md-1"></span>
@@ -139,5 +148,17 @@
                 <script src="./assets/js/bootstrap/bootstrap.bundle.min.js"></script>
                 <script src="./assets/js/bootstrap/bootstrap.min.js"></script>
                 <script src="./assets/js/bootstrap/bootstrap.esm.min.js"></script>
+                <script>
+                    function sub() {
+                        var input = document.getElementById('quantity');
+                        if (input.value > 1) {
+                            input.value = parseInt(input.value) - 1;
+                        }
+                    }
+                    function add() {
+                        var input = document.getElementById('quantity');
+                        if (input.value < 100) {input.value = parseInt(input.value) + 1;}
+                    }
+                </script>
             </body>
         </html>

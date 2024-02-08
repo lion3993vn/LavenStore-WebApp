@@ -100,7 +100,7 @@
     background-image: url("../img/item.png");
     background-position: center;
     background-size: cover;
-    height: 18em;
+    height: 20em;
 }
 .item-image {
     position: relative;
@@ -112,6 +112,7 @@
 .subscribe{
     background-image: url("../img/subscribe.png");
     background-size: cover;
+    background-position: center;
 }
 .subscribe-text h2{
     font-family: 'Josefin Sans', sans-serif;
@@ -126,3 +127,4 @@
     color:#ffffff;
     background-color: #CFA877;
 }
+

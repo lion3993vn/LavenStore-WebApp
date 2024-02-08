@@ -148,3 +148,15 @@
 .item-details p {
     font-family: 'Open Sans', sans-serif;
 }
+
+input[type="number"]::-webkit-inner-spin-button,
+input[type="number"]::-webkit-outer-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+#quantity-up #quantity-down {
+    background-color: #F7F7F7;
+    color: #8B6E4A;
+    font-size: 1.40625em;
+    width: auto;
+}
