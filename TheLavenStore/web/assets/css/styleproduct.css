@@ -41,22 +41,74 @@
     color: #8B6E4A;
 }
 
-.navigation-bar a {
-    font-size: 1.25em;
-    color: #000000;
-    font-family: 'Inter', sans-serif;
+.item-name {
+    color: #171717;
+    font-size: 3.40625em;
+    font-family: "Vidaloka", serif;
 }
 
-.navigation-bar a:hover {
-    color: #444444;
+.wishlist {
+    color: #8B6E4A;
+    font-size: 2em;
+}
+
+.rating {
+    color: #8B6E4A;
+}
+
+.item-details-text {
+    font-family: "Open Sans", sans-serif;
+}
+
+.item-price {
+    font-size: 2.40625em;
+    color: #8B6E4A;
+    font-family: "Open Sans", sans-serif;
+}
+
+.delivery {
+    color: #8B6E4A;
+}
+
+.delivery-icon {
+    font-size: 3em;
+}
+
+.delivery-text {
+    font-size: 1.40625em;
+    font-family: "Open Sans", sans-serif;
+}
+
+.delivery-label {
     font-weight: bold;
+    font-size: 1.40625em;
+    font-family: "Open Sans", sans-serif;
 }
 
-.current {
-    text-decoration: underline;
+.add-to-cart {
+    background: linear-gradient(to right, #cca676, #cca676, #7f6749, #cca676, #cca676);
+    border: none;
+    font-size: 1rem;
+    cursor: pointer;
 }
 
-.seller .item-image {
+.share-button {
+    font-size: 1.40625em;
+    background-color: #F7F7F7;
+    color: #8B6E4A;
+    width: auto;
+}
+
+.related-flowers-header {
+    font-family: 'Open Sans', sans-serif;
+    font-weight: bold;
+    color: #8B6E4A;
+    margin-top: 3em;
+    margin-bottom: 1em;
+    text-align: center;
+}
+
+.related-flowers .item-image {
     background-image: url("../img/item.png");
     background-position: center;
     background-size: cover;
@@ -71,7 +123,7 @@
     margin: 1.5em;
 }
 
-.seller button {
+.related-flowers button {
     position: absolute;
     transform: translateX(-50%);
     left: 50%;
