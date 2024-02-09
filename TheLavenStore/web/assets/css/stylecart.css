@@ -4,10 +4,16 @@
     box-sizing: border-box;
     font-family: sans-serif;
 }
+.w-10{
+    width: 10%;
+}
+.w-15{
+    width: 15%;
+}
 .banner {
     background-repeat: no-repeat;
     background-size: cover;
-    background-image: url("/assets/img/banner.png");
+    background-image: url("/web/assets/img/banner.png");
     text-align: center;
 }
 
@@ -50,9 +56,11 @@ p{
     margin: 20px;
     border-radius: 5px;
 }
-.number{
-    width: 25%;
-}
 .trash{
     cursor: pointer;
+}
+input[type="number"]::-webkit-inner-spin-button,
+input[type="number"]::-webkit-outer-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
 }

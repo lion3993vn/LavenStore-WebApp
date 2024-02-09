@@ -50,68 +50,96 @@ and open the template in the editor.
                                         <td class="text-center Dongle p-3">Total</td>
                                         <td class="text-center Dongle p-3">Remove</td>
                                     </tr>
-                                    <tr class="b">
-                                        <td class="text-center p-1"><img src="./assets/img/Wild.png" alt=""></td>
-                                        <td class="textbody" >
-                                            <p class="mb-0">Wild</p>                                          
-                                        </td>
-                                        <td class="text-center textbody ">
-                                            <p class="mb-0">VND 299.000</p>                                            
-                                        </td>
-                                        <td class="text-center">
-                                            <div class="button ">
-                                                <input type="number" class="number text-center" value="5"></input>
+                                    <td class="text-center p-1"><img src="./assets/img/Wild.png" alt=""></td>
+                                    <td class="textbody">
+                                        <p class="mb-0">Wild</p>
+                                    </td>
+                                    <td class="text-center textbody ">
+                                        <p class="mb-0">VND 299.000</p>
+                                    </td>
+                                    <td class="">
+                                        <div class="btn-quantity w-100 d-flex justify-content-center">
+                                            <div class="btn btn-secondary rounded-0 w-10 text-center p-2"
+                                                id="quantity-down" onclick="sub('quantity1')">
+                                                <span>-</span>
                                             </div>
-                                        </td>
-                                        <td class="text-center textbody">
-                                            <p class="mb-0">VND 1.495.000</p>                                          
-                                        </td>
-                                        <td class="text-center ">
-                                            <div class="trash"><i class="fa-solid fa-trash-can"></i></div>
-                                        </td>
-                                    </tr>
-                                    <tr class="b ">
-                                        <td class="text-center p-1"> <img src="./assets/img/Stylish.png" alt=""></td>
-                                        <td class=" textbody">
-                                            <p class="mb-0">Stylish</p>                                          
-                                        </td>
-                                        <td class="text-center textbody">
-                                            <p class="mb-0">VND 259.000</p>                                          
-                                        </td>
-                                        <td class="text-center"> 
-                                            <div class="button ">
-                                                <input type="number" class="number text-center" value="5"></input>
+                                            <div class="button w-15">
+                                                <input type="number" class="text-center w-100 p-2" id="quantity1"
+                                                    value="5"></input>
                                             </div>
-                                        </td>
-                                        <td class="text-center textbody">
-                                            <p class="mb-0">VND 2.590.000</p>                                           
-                                        </td>
-                                        <td class="text-center">
-                                            <div class="trash"><i class="fa-solid fa-trash-can"></i></div>
-                                        </td>
-                                    </tr>
-                                    <tr class="b">
-                                        <td class="text-center p-1"><img src="./assets/img/Vibrant.png" alt=""></td>
-                                        <td class=" textbody">
-                                            <p class="mb-0">Vibrant</p>                                           
-                                        </td>
-                                        <td class="text-center textbody">
-                                            <p class="mb-0">VND 259.000</p>                                           
-                                        </td>
-                                        <td class="text-center">
-                                            <div class="button ">
-                                                
-                                                <input type="number" class="number text-center" value="5"></input>
-                                               
+                                            <div class="btn btn-secondary rounded-0 w-10 text-center p-2"
+                                                id="quantity-up" onclick="add('quantity1')">
+                                                <span>+</span>
                                             </div>
-                                        </td>
-                                        <td class="text-center textbody">
-                                            <p class="mb-0">VND 518.000</p>                                          
-                                        </td>
-                                        <td class="text-center">
-                                            <div class="trash"><i class="fa-solid fa-trash-can"></i></div>
-                                        </td>
-                                    </tr>
+                                        </div>
+                                    </td>
+                                    <td class="text-center textbody">
+                                        <p class="mb-0">VND 1.495.000</p>
+                                    </td>
+                                    <td class="text-center ">
+                                        <div class="trash"><i class="fa-solid fa-trash-can"></i></div>
+                                    </td>
+                                </tr>
+                                <td class="text-center p-1"><img src="./assets/img/Wild.png" alt=""></td>
+                                    <td class="textbody">
+                                        <p class="mb-0">Wild</p>
+                                    </td>
+                                    <td class="text-center textbody ">
+                                        <p class="mb-0">VND 299.000</p>
+                                    </td>
+                                    <td class="">
+                                        <div class="btn-quantity w-100 d-flex justify-content-center">
+                                            <div class="btn btn-secondary rounded-0 w-10 text-center p-2"
+                                                id="quantity-down" onclick="sub('quantity2')">
+                                                <span>-</span>
+                                            </div>
+                                            <div class="button w-15">
+                                                <input type="number" class="text-center w-100 p-2" id="quantity2"
+                                                    value="5"></input>
+                                            </div>
+                                            <div class="btn btn-secondary rounded-0 w-10 text-center p-2"
+                                                id="quantity-up" onclick="add('quantity2')">
+                                                <span>+</span>
+                                            </div>
+                                        </div>
+                                    </td>
+                                    <td class="text-center textbody">
+                                        <p class="mb-0">VND 1.495.000</p>
+                                    </td>
+                                    <td class="text-center ">
+                                        <div class="trash"><i class="fa-solid fa-trash-can"></i></div>
+                                    </td>
+                                </tr>
+                                <td class="text-center p-1"><img src="./assets/img/Wild.png" alt=""></td>
+                                    <td class="textbody">
+                                        <p class="mb-0">Wild</p>
+                                    </td>
+                                    <td class="text-center textbody ">
+                                        <p class="mb-0">VND 299.000</p>
+                                    </td>
+                                    <td class="">
+                                        <div class="btn-quantity w-100 d-flex justify-content-center">
+                                            <div class="btn btn-secondary rounded-0 w-10 text-center p-2"
+                                                id="quantity-down" onclick="sub('quantity3')">
+                                                <span>-</span>
+                                            </div>
+                                            <div class="button w-15">
+                                                <input type="number" class="text-center w-100 p-2" id="quantity3"
+                                                    value="5"></input>
+                                            </div>
+                                            <div class="btn btn-secondary rounded-0 w-10 text-center p-2"
+                                                id="quantity-up" onclick="add('quantity3')">
+                                                <span>+</span>
+                                            </div>
+                                        </div>
+                                    </td>
+                                    <td class="text-center textbody">
+                                        <p class="mb-0">VND 1.495.000</p>
+                                    </td>
+                                    <td class="text-center ">
+                                        <div class="trash"><i class="fa-solid fa-trash-can"></i></div>
+                                    </td>
+                                </tr>
                                     <tr class="a">
                                         <td class="text-center Dongle">Total payment:</td>
                                         <td class="Dongle p-3 ">
@@ -152,5 +180,18 @@ and open the template in the editor.
         <script src="./assets/js/bootstrap/bootstrap.bundle.min.js"></script>
         <script src="./assets/js/bootstrap/bootstrap.min.js"></script>
         <script src="./assets/js/bootstrap/bootstrap.esm.min.js"></script>
+        <script>
+            function sub(a) {
+                var input = document.getElementById(a);
+                if (input.value > 1) {
+                    input.value = parseInt(input.value) - 1;
+                }
+            }
+            function add(a) {
+                var input = document.getElementById(a);
+                if (input.value < 100) {input.value = parseInt(input.value) + 1;}
+            }
+        </script>
+
     </body>
 </html>
