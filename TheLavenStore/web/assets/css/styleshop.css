@@ -29,17 +29,18 @@
     font-weight: bold;
 }
 
-.nav-link:active {
+.navigation-bar a:active {
     background: none;
     color: #000000;
 }
 
-.nav-link:focus {
+.navigation-bar a:focus {
     background: none;
     color: #000000;
 }
 
 .current {
+    background: none;
     text-decoration: underline;
 }
 
