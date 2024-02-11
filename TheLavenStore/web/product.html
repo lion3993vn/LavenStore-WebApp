@@ -15,12 +15,9 @@
     </head>
     <body>
         <!-- banner -->
-        <div class="banner container-fluid">
-            <div class="banner-background">
-                <img src="./assets/img/banner.png" alt="Website Banner" class="img-fluid w-100">
-            </div>
-            <div class="banner-text">
-                <h1 id="slogan1">Boxes</h1>
+        <div class="banner container-fluid text-center py-5">
+            <h1 class="banner-title">Boxes</h1>
+            <div class="banner-subtitle">
                 <a class="tab-links" href="/home.html">Home</a>
                 <i class="tab-links fa-solid fa-angle-right"></i>
                 <a class="tab-links" href="/shop.html">Shop</a>
@@ -28,127 +25,136 @@
                 <a class="tab-links" href="/product.html">Wild</a>
             </div>
         </div>
-        <!-- product -->
-        <section>
-            <div class="container mt-5 mb-5">
-                <div class="row mt-5 mb-5">
-                    <div class="item-image col-md-5">
-                        <img src="./assets/img/item.png" alt="Item Image" class="img-fluid w-100">
-                    </div>
-                    <div class="item-details offset-md-1 col-md-6">
+    </div>
+    <!-- product -->
+    <section>
+        <div class="container mt-5 mb-5">
+            <div class="row mt-5 mb-5">
+                <div class="item-image col-md-5">
+                    <img src="./assets/img/item.png" alt="Item Image" class="img-fluid w-100">
+                </div>
+                <div class="item-details offset-md-1 col-md-6">
+                    <a href="#" class="">
                         <i class="fa-regular fa-star wishlist p-3 float-end"></i>
-                        <h1 class="item-name mb-3">Wild</h1>
-                        <div class="rating mt-3 mb-3">
-                            <i class="fa-solid fa-star checked"></i>
-                            <i class="fa-solid fa-star checked"></i>
-                            <i class="fa-solid fa-star checked"></i>
-                            <i class="fa-solid fa-star-half-stroke half-checked"></i>
-                            <i class="fa-regular fa-star unchecked"></i>
+                    </a>
+                    <h1 class="item-name mb-3">Wild</h1>
+                    <div class="rating mt-3 mb-3">
+                        <i class="fa-solid fa-star checked"></i>
+                        <i class="fa-solid fa-star checked"></i>
+                        <i class="fa-solid fa-star checked"></i>
+                        <i class="fa-solid fa-star-half-stroke half-checked"></i>
+                        <i class="fa-regular fa-star unchecked"></i>
+                    </div>
+                    <p class="item-details-text mb-3 mt-3">
+                        Một sự pha trộn độc đáo của hoa tulip trắng, tím và cam được tô điểm thêm bởi sự lựa chọn hấp dẫn của hương vani thơm ngon, quả chanh hồ trăn và bánh hạnh nhân sô cô la.
+                    </p>
+                    <p class="item-price mt-3 mb-3">VND 299.000</p>
+                    <div class="delivery border border-1 border-dark rounded-0 col-md-4 pt-3 pb-3 text-center ">
+                        <div class="delivery-icon mb-3">
+                            <i class="fa-solid fa-truck-fast"></i>
                         </div>
-                        <p class="item-details-text mb-3 mt-3">
-                            Một sự pha trộn độc đáo của hoa tulip trắng, tím và cam được tô điểm thêm bởi sự lựa chọn hấp dẫn của hương vani thơm ngon, quả chanh hồ trăn và bánh hạnh nhân sô cô la.
-                        </p>
-                        <p class="item-price mt-3 mb-3">$19.99</p>
-                        <div class="delivery border border-1 border-dark rounded-0 col-md-4 pt-3 pb-3 text-center ">
-                            <div class="delivery-icon mb-3">
-                                <i class="fa-solid fa-truck-fast"></i>
+                        <div class="delivery-text">Local Delivery</div>
+                    </div>
+                    <div class="delivery-time mt-5 col-md-9 ">
+                        <form>
+                            <label for="delivery-time" class="form-label delivery-label">Delivery / Pickup Time:</label>
+                            <select class="form-select border border-1 border-dark rounded-0" aria-label="Delivery / Pickup Time">
+                                <option selected>Please select</option>
+                                <option value="1">12:00 PM - 6:00 PM</option>
+                                <option value="2">6:00 PM - 10:00 PM</option>
+                            </select>
+                        </form>
+                    </div>
+                    <div class="order mt-3 row">
+                        <div class="w-25 d-flex align-items-center">
+                            <div class="btn btn-secondary rounded-0 w-25 text-center h-100 d-flex align-items-center" id="quantity-down" onclick="sub()">
+                                <span>-</span>
                             </div>
-                            <div class="delivery-text">Local Delivery</div>
-                        </div>
-                        <div class="delivery-time mt-5 col-md-9 ">
-                            <form>
-                                <label for="delivery-time" class="form-label delivery-label">Delivery / Pickup Time:</label>
-                                <select class="form-select border border-1 border-dark rounded-0" aria-label="Delivery / Pickup Time">
-                                    <option selected>Please select</option>
-                                    <option value="1">12:00 PM - 6:00 PM</option>
-                                    <option value="2">6:00 PM - 10:00 PM</option>
-                                </select>
-                            </form>
-                        </div>
-                        <div class="order mt-3 row">
-                            <div class="w-25 d-flex align-items-center">
-                                <div class="btn btn-secondary rounded-0 w-25 text-center h-100 d-flex align-items-center" id="quantity-down" onclick="sub()">
-                                    <span>-</span>
-                                </div>
-                                <input
-                                    class="form-control w-50 border border-1 border-dark rounded-0 text-center h-100"
-                                    type="number"
-                                    value="1"
-                                    min="1"
-                                    max="100"
-                                    step="1"
-                                    id="quantity"
-                                >
-                                <div class="btn btn-secondary rounded-0 w-25 text-center h-100 d-flex align-items-center" id="quantity-up" onclick="add()">
-                                    <span>+</span>
-                                </div>
+                            <input
+                                class="form-control w-50 border border-1 border-dark rounded-0 text-center h-100"
+                                type="number"
+                                value="1"
+                                min="1"
+                                max="100"
+                                step="1"
+                                id="quantity"
+                            >
+                            <div class="btn btn-secondary rounded-0 w-25 text-center h-100 d-flex align-items-center" id="quantity-up" onclick="add()">
+                                <span>+</span>
                             </div>
-                            <span class="col-md-1"></span>
-                            <button class="btn btn-primary w-25 rounded-0 add-to-cart pt-2 pb-2">ADD TO CART</button>
-                            <span class="col-md-1"></span>
-                            <button class="btn rounded-0 share-button ">
-                                <i class="fa-solid fa-share-nodes pt-2 pb-2"></i>
-                            </button>
+                        </div>
+                        <span class="col-md-1"></span>
+                        <a href="" class="btn btn-secondary rounded-0 w-25 text-center py-3 h-100 align-items-center add-to-cart">ADD TO CART</a>
+                        <span class="col-md-1"></span>
+                        <a href="" class="btn rounded-0 share-button ">
+                            <i class="fa-solid fa-share-nodes pt-2 pb-2"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <section class="related-flowers">
+        <div class="container-fluid">
+            <div class="col-md-12">
+                <p class="text-center real-title">BEST SELLER</p>
+            </div>
+            <div class="row mt-5 mb-5">
+                <div class="col-md-3">
+                    <div class="item-sell">
+                        <div class="img-item text-center position-relative">
+                            <img src="./assets/img/item.png" alt="" class="w-100">
+                            <a href="" class="addcart-bestseller position-absolute start-50 translate-middle">ADD TO CART</a>
+                        </div>
+                        <div class="info-item text-center">
+                            <a href="">Wild</a>
+                            <p>VND 299.000</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="item-sell">
+                        <div class="img-item text-center position-relative">
+                            <img src="./assets/img/item.png" alt="" class="w-100">
+                            <a href="" class="addcart-bestseller position-absolute start-50 translate-middle">ADD TO CART</a>
+                        </div>
+                        <div class="info-item text-center">
+                            <a href="">Wild</a>
+                            <p>VND 299.000</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="item-sell">
+                        <div class="img-item text-center position-relative">
+                            <img src="./assets/img/item.png" alt="" class="w-100">
+                            <a href="" class="addcart-bestseller position-absolute start-50 translate-middle">ADD TO CART</a>
+                        </div>
+                        <div class="info-item text-center">
+                            <a href="">Wild</a>
+                            <p>VND 299.000</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="item-sell">
+                        <div class="img-item text-center position-relative">
+                            <img src="./assets/img/item.png" alt="" class="w-100">
+                            <a href="" class="addcart-bestseller position-absolute start-50 translate-middle">ADD TO CART</a>
+                        </div>
+                        <div class="info-item text-center">
+                            <a href="">Wild</a>
+                            <p>VND 299.000</p>
                         </div>
                     </div>
                 </div>
             </div>
-        </section>
-        <section class="related-flowers">
-            <div class="container-fluid">
-                <h2 class="related-flowers-header text-center">RELATED FLOWERS</h2>
-                <div class="row mt-5 mb-5">
-                    <div class="col-md-3 text-center">
-                        <div class="content-seller">
-                            <div class="item-image w-100 p-3">
-                                <button class="btn btn-primary w-75">ADD TO CART</button>
-                            </div>
-                            <div class="item-details">
-                                <h3>Item 1</h3>
-                                <p>$24.99</p>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-md-3 text-center">
-                        <div class="content-seller">
-                            <div class="item-image w-100 p-3">
-                                <button class="btn btn-primary w-75">ADD TO CART</button>
-                            </div>
-                            <div class="item-details">
-                                <h3>Item 1</h3>
-                                <p>$24.99</p>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-md-3 text-center">
-                        <div class="content-seller">
-                            <div class="item-image w-100 p-3">
-                                <button class="btn btn-primary w-75">ADD TO CART</button>
-                            </div>
-                            <div class="item-details">
-                                <h3>Item 1</h3>
-                                <p>$24.99</p>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-md-3 text-center">
-                        <div class="content-seller">
-                            <div class="item-image w-100 p-3">
-                                <button class="btn btn-primary w-75">ADD TO CART</button>
-                            </div>
-                            <div class="item-details">
-                                <h3>Item 1</h3>
-                                <p>$24.99</p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <!--script js bootstrap-->
-                <script src="./assets/js/bootstrap/jquery.min.js"></script>
-                <script src="./assets/js/bootstrap/bootstrap.bundle.min.js"></script>
-                <script src="./assets/js/bootstrap/bootstrap.min.js"></script>
-                <script src="./assets/js/bootstrap/bootstrap.esm.min.js"></script>
-                <script>
+            <!--script js bootstrap-->
+            <script src="./assets/js/bootstrap/jquery.min.js"></script>
+            <script src="./assets/js/bootstrap/bootstrap.bundle.min.js"></script>
+            <script src="./assets/js/bootstrap/bootstrap.min.js"></script>
+            <script src="./assets/js/bootstrap/bootstrap.esm.min.js"></script>
+            <script>
                     function sub() {
                         var input = document.getElementById('quantity');
                         if (input.value > 1) {
@@ -159,6 +165,6 @@
                         var input = document.getElementById('quantity');
                         if (input.value < 100) {input.value = parseInt(input.value) + 1;}
                     }
-                </script>
-            </body>
-        </html>
+            </script>
+        </body>
+    </html>
