@@ -1,0 +1,32 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+.nav-left{
+    border: 1px solid black;
+    height: 100vh;
+    background-color: #222B40;
+}
+.logo{
+    
+}
+.logo a{
+    text-decoration: none;
+}
+.logo-left{
+    background-color: white;
+    color: black;
+    font-weight: 700;
+    font-size: 18px;
+    font-family: 'Inter', serif;
+}
+.logo-right{
+    color: white;
+    font-weight: 700;
+    font-size: 18px;
+    font-family: 'Inter', serif;
+}
+.nav-body-top{
+    width: 100%;
+}
