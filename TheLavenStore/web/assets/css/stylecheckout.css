@@ -119,8 +119,8 @@
     margin: auto;
     background-color: white;
     text-align: center;
+    border: 1px solid #CCCCCC;
 }
-
 .table-checkout .payment td {
     /* padding: 2px 15px; */
 }
