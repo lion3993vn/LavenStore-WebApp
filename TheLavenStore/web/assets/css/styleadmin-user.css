@@ -102,3 +102,12 @@ body{
 .hover-dashboard:hover a{
     color: #F8B940 !important;
 }
+.search-user input{
+    background-color: #151C2C;
+    border: none;
+    border-radius: 5px;
+    color: #768490;
+}
+.table-body{
+    color: white;
+}
