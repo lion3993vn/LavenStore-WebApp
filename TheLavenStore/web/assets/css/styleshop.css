@@ -115,3 +115,22 @@
     opacity: 1;
     bottom: 5%;
 }
+.paging{
+
+}
+.paging a{
+    text-decoration: none;
+    color: #8B6E4A;
+    padding: 0.5em 1.0em;
+    background-color: white;
+    border: 1px solid #30394B;
+    border-radius: 5px;
+}
+.paging a:hover{
+    background-color: #cca676;
+    color: white;
+}
+.active-paging{
+    background-color: #cca676 !important;
+    color: white !important;
+}
