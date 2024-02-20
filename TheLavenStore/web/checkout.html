@@ -1,0 +1,256 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TODO supply a title</title>
+    <link rel="stylesheet" href="./assets/css/bootstrap/bootstrap.css">
+
+    <!-- link font google -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Vidaloka">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Myanmar Sans Pro">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Dongle">
+
+    <!-- link css checkout -->
+    <link rel="stylesheet" href="./assets/css/stylecheckout.css">
+
+    <!-- link font icon -->
+    <link rel="stylesheet" href="./assets/css/font/css/all.css">
+
+</head>
+
+<style>
+
+</style>
+
+
+<body>
+    <section>
+        <banner>
+            <div class="banner container-fluid pb-5 mb-5">
+                <h1 class="pt-5">Checkout</h1>
+                <p class="myhome"><a href="#">Home</a><span><i class="px-4 fa-solid fa-chevron-right"></i></span>Cart
+                </p>
+            </div>
+        </banner>
+    </section>
+
+    <div class="background-container">
+        <div class="container">
+            <form action="">
+                <div>
+                    <div class="checkout row justify-content-between">
+                        <div class="col-md-6 d-flex flex-column justify-content-center align-items-center">
+                            <div>
+                                <p class="fw-light" style="font-family: 'Vidaloka', serif;">Delivery information</p>
+                                <table class="px-5">
+                                    <!-- Start form -->
+                                    <div class="">
+                                        <form action="">
+                                            <table class="">
+                                                <tbody>
+                                                    <tr>
+                                                        <td class="pe-3 pb-2"><input
+                                                                class="form-control ps-1 border border-2 border-dark rounded-1"
+                                                                type="text" name="firstname" placeholder="Firstname">
+                                                        </td>
+                                                        <td class="pb-2"><input
+                                                                class="form-control ps-1 border border-2 border-dark rounded-1"
+                                                                type="text" name="Lastname" placeholder="Lastname">
+                                                        </td>
+                                                    </tr>
+
+                                                    <tr>
+                                                        <td class="pb-2" colspan="2"><input
+                                                                class="form-control border border-2 border-dark rounded-1"
+                                                                type="text" name="phone" placeholder="Mobile Phone">
+                                                        </td>
+                                                    </tr>
+
+                                                    <tr>
+                                                        <td class="pb-2" colspan="2"><input
+                                                                class="form-control border border-2 border-dark rounded-1"
+                                                                type="text" name="city" placeholder="City">
+                                                        </td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td class="pb-2" colspan="2"><input
+                                                                class="form-control border border-2 border-dark rounded-1"
+                                                                type="text" name="district" placeholder="District">
+                                                        </td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td class="pb-2" colspan="2"><input
+                                                                class="form-control border border-2 border-dark rounded-1"
+                                                                type="text" name="ward" placeholder="Ward">
+                                                        </td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td class="pb-2" colspan="2"><input
+                                                                class="form-control border border-2 border-dark rounded-1"
+                                                                type="text" name="Address" placeholder="Address">
+                                                        </td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td class="pb-2" rowspan="" colspan="2">
+                                                            <div class="form-floating">
+                                                                <textarea
+                                                                    class="form-control border border-2 border-dark rounded-1 h-100"
+                                                                    name="note"></textarea>
+                                                                <label for="floatingTextarea">Note</label>
+                                                            </div>
+                                                        </td>
+                                                    </tr>
+                                                </tbody>
+                                            </table>
+                                    </div>
+
+                                    <div class="container-fluid mt-5">
+                                        <table class="table table-cart">
+                                            <thead>
+                                                <tr class="title">
+                                                    <th>Product</th>
+                                                    <th>Price</th>
+                                                    <th>Quantity</th>
+                                                    <th>Total</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody class="left-tbody fw-semibold">
+                                                <tr>
+                                                    <td>
+                                                        <div class="product">
+                                                            <img src="./assets/img/Rectangle 34.png" alt>
+                                                            <p>Wild</p>
+                                                        </div>
+
+                                                    </td>
+                                                    <td class="quantity">
+                                                        $18.00
+                                                    </td>
+                                                    <td>1</td>
+                                                    <td>$18.00</td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                            </div>
+
+
+                            <div class="col-md-4 cart_total">
+                                <table class="w-100 border border-2 border-secondary-subtle">
+                                    <thead>
+                                        <td colspan="2" class="title py-2 px-3 fw-semibold fs-5">
+                                            Cart total
+                                        </td>
+                                    </thead>
+                                    <tbody class="d-fle">
+                                        <tr class="caculator">
+                                            <td class="ps-3 pb-2 text-secondary fw-semibold">Subtotal:</td>
+                                            <td class="pe-3 pb-2 text-end fw-bold">$167.00</td>
+                                        </tr>
+                                        <tr class="caculator">
+                                            <td class="ps-3 pb-2 text-secondary fw-semibold">Shipping:</td>
+                                            <td class="pe-3 pb-2 text-end fw-bold">$3.00</td>
+                                        </tr>
+                                        <tr>
+                                            <td class="border-1" colspan="2"></td>
+                                        </tr>
+                                        <tr class="caculator">
+                                            <td class="ps-3 py-2 fw-bold">Total:</td>
+                                            <td class="pe-3 py-2 text-end fw-bold text-danger">$170.00</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+
+                            <div class="table-checkout mt-5 w-100 p-3">
+                                <table class="w-100">
+                                    <thead>
+                                        <td colspan="2" class="title text-start fw-semibold pb-2">
+                                            Payment Method
+                                        </td>
+                                    </thead>
+                                    <tbody>
+                                        <tr class="payment">
+                                            <td class="pb-2">
+                                                <div class="vnpay-method">
+                                                    <label class="vnpay">
+                                                        <input type="radio" readonly name="payment-method"
+                                                            value="vnpay">
+                                                        <span class="radio-fake"></span>
+                                                        <span class="lable">
+                                                            <div style="cursor: pointer; height: 64px;">
+                                                                <div class="payment-method_detail">
+                                                                    <img src="./assets/img/vnpay.png" alt=""
+                                                                        width="40px">
+                                                                    <div style="margin-right: 12px;">
+                                                                        <div class="payment-method_title">
+                                                                            <span>Payment with VNPAY</span>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </span>
+                                                    </label>
+                                                </div>
+                                            </td>
+                                        </tr>
+                                        <tr class="payment">
+                                            <td>
+                                                <div class="vnpay-method">
+                                                    <label class="vnpay">
+                                                        <input type="radio" readonly name="payment-method"
+                                                            value="vnpay">
+                                                        <span class="radio-fake"></span>
+                                                        <span class="lable">
+                                                            <div style="cursor: pointer; height: 64px;">
+                                                                <div class="payment-method_detail">
+                                                                    <div>
+                                                                        <i
+                                                                            class="ps-1 pe-3 fs-3 fa-solid fa-money-bill"></i>
+                                                                    </div>
+
+                                                                    <div style="margin-right: 12px;">
+                                                                        <div class="payment-method_title">
+                                                                            <span>Payment on delivery</span>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </span>
+                                                    </label>
+                                                </div>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td class="check-terms">
+                                                <div class="terms my-3">
+                                                    <input type="checkbox">
+                                                    <p>I have read and accept the terms and conditions</p>
+                                                </div>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td colspan="2" class="check-out" readonly>
+                                                <input class="submit w-75 rounded-1 fw-medium fs-4" type="submit" value="Payment">
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+        </div>
+
+        <script src="./assets/js/bootstrap/jquery.min.js"></script>
+        <script src="./assets/js/bootstrap/popper.min.js"></script>
+        <script src="./assets/js/bootstrap/bootstrap.bundle.min.js"></script>
+        <script src="./assets/js/bootstrap/bootstrap.min.js"></script>
+        <script src="./assets/js/bootstrap/bootstrap.esm.min.js"></script>
+</body>
+
+</html>
