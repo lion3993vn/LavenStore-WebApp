@@ -42,16 +42,19 @@ and open the template in the editor.
                             <td colspan="2" class="py-1"><span class="nav-title">Shop</span></td>
                         </tr>
                         <tr>
-                            <td></td> 
-                            <td class="py-1 ps-3 hover-dashboard"><a href="" class=""><i class="fa-solid fa-user"></i> <span>User Management</span></a></td>
+                            <td></td>
+                            <td class="py-1 ps-3 hover-dashboard"><a href="" class=""><i class="fa-solid fa-user"></i>
+                                    <span>User Management</span></a></td>
                         </tr>
                         <tr>
                             <td></td>
-                            <td class="py-1 ps-3 hover-dashboard"><a href="" class=""><i class="fa-solid fa-cart-shopping"></i> <span>Order Management</span></a></td>
+                            <td class="py-1 ps-3 hover-dashboard"><a href="" class=""><i class="fa-solid fa-cart-shopping"></i>
+                                    <span>Order Management</span></a></td>
                         </tr>
                         <tr>
                             <td></td>
-                            <td class="py-1 ps-3 active"><a href="" class=""><i class="fa-solid fa-box-open"></i> <span>Product Management</span></a></td>
+                            <td class="py-1 ps-3 active"><a href="" class=""><i
+                                        class="fa-solid fa-box-open"></i> <span>Product Management</span></a></td>
                         </tr>
                         <tr>
                             <td class="py-2"><i class="fa-solid fa-right-from-bracket"></i></td>
@@ -74,7 +77,7 @@ and open the template in the editor.
                             <i class="fa-solid fa-house"></i>
                         </div>
                         <div class="pos-nav d-flex align-content-center p-2 py-3">
-                            <p class="m-0">Home</p><span>/User Management</span>
+                            <p class="m-0">Home</p><span>/Product Management</span>
                         </div>
                     </div>
                     <div class="col-md-2 d-flex align-content-center justify-content-center">
@@ -89,139 +92,198 @@ and open the template in the editor.
                         <div class="flex-content text-center w-100">
                             <div class="body-top w-100">
                                 <div class="body-title d-flex justify-content-between align-items-center w-100">
-                                    <span class="ms-3">Users</span>
-                                    <div class="add-user px-3 py-1 me-3" data-bs-toggle="modal" data-bs-target="#add-user">
-                                        <a href="#"><p class="m-0 inter">+ Add User</p></a>
+                                    <span class="ms-3">Product Management</span>
+                                    <div class="add-product px-3 py-1 me-3" data-bs-toggle="modal" data-bs-target="#add-product">
+                                        <a href="#"><p class="m-0 inter">+ Add Product</p></a>
                                     </div>
                                 </div>
                             </div>
                             <div class="body-center">
                                 <div class="container-fluid">
                                     <div class="row">
-                                        <div class="col-md-12">
-                                            <div class="search-user float-start p-3"><input type="text" class="p-1 ps-3" placeholder="Search user"></div>
+                                        <div class="col-md-12 d-flex justify-content-start">
+                                            <div class="search-user p-3"><input type="text" class="p-1 ps-3"
+                                                    placeholder="Search Product"></div>
+                                            <div class="filter-status p-3">
+                                                <select name="" id="" class="p-1">
+                                                    <option value="" selected disabled>Type</option>
+                                                    <option value="">Cancelled</option>
+                                                    <option value="">Pending</option>
+                                                    <option value="">Completed</option>
+                                                </select>
+                                            </div>
                                         </div>
                                         <div class="col-md-12 p-0">
                                             <table class="w-100 table-body">
                                                 <tr class="table-header">
-                                                    <td class="p-3 px-4"><span class="float-start">Username</span></td>
-                                                    <td class="p-3 px-4 "><span class="float-start">Fullname</span></td>
-                                                    <td class="p-3 px-4 "><span class="float-start">Email</span></td>
-                                                    <td class="p-3 px-4 "><span class="float-start">Phone number</span></td>
-                                                    <td class="p-3 px-4 "><span class="float-start">Address</span></td>
-                                                    <td class="p-3 px-4 "><span class="float-start">Role</span></td>
+                                                    <td class="p-3 px-4"><span class="float-start">ProductID</span></td>
+                                                    <td class="p-3 px-4 "><span class="float-start">Name</span></td>
+                                                    <td class="p-3 px-4 "><span class="float-start">Type</span></td>
+                                                    <td class="p-3 px-4 "><span>Quantity</span></td>
+                                                    <td class="p-3 px-4 "><span class="float-start">Price</span></td>
+                                                    <td class="p-3 px-4 "><span>Rating</span></td>
+                                                    <td class="p-3 px-4 "><span>Image</span></td>
+                                                    <td class="p-3 px-4 description-product"><span>Description</span></td>
                                                     <td class="p-3 px-4 "><span>Action</span></td>
                                                 </tr>
                                                 <tr class="table-content">
-                                                    <td class="p-3 px-4 "><span class="float-start">Taile03</span></td>
-                                                    <td class="p-3 px-4 "><span class="float-start">Le Thanh Tai</span></td>
-                                                    <td class="p-3 px-4 "><span class="float-start">taile03@gmail.com</span></td>
-                                                    <td class="p-3 px-4 "><span class="float-start">0909 113 114</span></td>
-                                                    <td class="p-3 px-4 "><span class="float-start">Thu Duc</span></td>
-                                                    <td class="p-3 px-4 "><span class="float-start">Admin</span></td>
+                                                    <td class="p-3 px-4 "><span class="float-start">B005</span></td>
+                                                    <td class="p-3 px-4 "><span class="float-start">Wild</span></td>
+                                                    <td class="p-3 px-4 "><span class="float-start">Box</span></td>
+                                                    <td class="p-3 px-4 "><span>10</span></td>
+                                                    <td class="p-3 px-4 "><span class="float-start">250.000</span></td>
+                                                    <td class="p-3 px-4 "><span>4.5</span></td>
+                                                    <td class="w-10">
+                                                        <div class="img-product">
+                                                            <img src="https://cdn.discordapp.com/attachments/1202620106140680202/1209469151865737266/image_1.png?ex=65e708ec&is=65d493ec&hm=6bc26e41387e3c9a363f9692c932d4ac107c5154d318235bfa8f3063fcdec641&" alt="">
+                                                        </div>
+                                                    </td>
+                                                    <td class="p-3 px-4 description-product"><span>Một sự pha trộn độc đáo của hoa tulip trắng, tím và cam được tô điểm thêm bởi sự lựa chọn hấp dẫn của hương vani thơm ngon, quả chanh hồ trăn và bánh hạnh nhân sô cô la.</span></td>
                                                     <td class="p-3 px-4 d-flex justify-content-center">
-                                                        <div class="edit-user p-2" data-bs-toggle="modal" data-bs-target="#edit-user">
+                                                        <div class="edit-product p-2" data-bs-toggle="modal" data-bs-target="#edit-product">
                                                             <i class="fa-solid fa-pen-to-square"></i>
                                                         </div>
-                                                        <div class="delete-user p-2"><i class="fa-solid fa-trash"></i></div>
+                                                        <div class="delete-product p-2"><i class="fa-solid fa-trash"></i></div>
                                                     </td>
                                                 </tr>
                                                 <tr class="table-content">
-                                                    <td class="p-3 px-4 "><span class="float-start">Taile03</span></td>
-                                                    <td class="p-3 px-4 "><span class="float-start">Le Thanh Tai</span></td>
-                                                    <td class="p-3 px-4 "><span class="float-start">taile03@gmail.com</span></td>
-                                                    <td class="p-3 px-4 "><span class="float-start">0909 113 114</span></td>
-                                                    <td class="p-3 px-4 "><span class="float-start">Thu Duc</span></td>
-                                                    <td class="p-3 px-4 "><span class="float-start">Admin</span></td>
+                                                    <td class="p-3 px-4 "><span class="float-start">B005</span></td>
+                                                    <td class="p-3 px-4 "><span class="float-start">Wild</span></td>
+                                                    <td class="p-3 px-4 "><span class="float-start">Box</span></td>
+                                                    <td class="p-3 px-4 "><span>10</span></td>
+                                                    <td class="p-3 px-4 "><span class="float-start">250.000</span></td>
+                                                    <td class="p-3 px-4 "><span>4.5</span></td>
+                                                    <td class="w-10">
+                                                        <div class="img-product">
+                                                            <img src="https://cdn.discordapp.com/attachments/1202620106140680202/1209469151865737266/image_1.png?ex=65e708ec&is=65d493ec&hm=6bc26e41387e3c9a363f9692c932d4ac107c5154d318235bfa8f3063fcdec641&" alt="">
+                                                        </div>
+                                                    </td>
+                                                    <td class="p-3 px-4 description-product"><span>Một sự pha trộn độc đáo của hoa tulip trắng, tím và cam được tô điểm thêm bởi sự lựa chọn hấp dẫn của hương vani thơm ngon, quả chanh hồ trăn và bánh hạnh nhân sô cô la.</span></td>
                                                     <td class="p-3 px-4 d-flex justify-content-center">
-                                                        <div class="edit-user p-2" data-bs-toggle="modal" data-bs-target="#edit-user">
+                                                        <div class="edit-product p-2" data-bs-toggle="modal" data-bs-target="#edit-product">
                                                             <i class="fa-solid fa-pen-to-square"></i>
                                                         </div>
-                                                        <div class="delete-user p-2"><i class="fa-solid fa-trash"></i></div>
+                                                        <div class="delete-product p-2"><i class="fa-solid fa-trash"></i></div>
                                                     </td>
                                                 </tr>
                                                 <tr class="table-content">
-                                                    <td class="p-3 px-4 "><span class="float-start">Taile03</span></td>
-                                                    <td class="p-3 px-4 "><span class="float-start">Le Thanh Tai</span></td>
-                                                    <td class="p-3 px-4 "><span class="float-start">taile03@gmail.com</span></td>
-                                                    <td class="p-3 px-4 "><span class="float-start">0909 113 114</span></td>
-                                                    <td class="p-3 px-4 "><span class="float-start">Thu Duc</span></td>
-                                                    <td class="p-3 px-4 "><span class="float-start">Admin</span></td>
+                                                    <td class="p-3 px-4 "><span class="float-start">B005</span></td>
+                                                    <td class="p-3 px-4 "><span class="float-start">Wild</span></td>
+                                                    <td class="p-3 px-4 "><span class="float-start">Box</span></td>
+                                                    <td class="p-3 px-4 "><span>10</span></td>
+                                                    <td class="p-3 px-4 "><span class="float-start">250.000</span></td>
+                                                    <td class="p-3 px-4 "><span>4.5</span></td>
+                                                    <td class="w-10">
+                                                        <div class="img-product">
+                                                            <img src="https://cdn.discordapp.com/attachments/1202620106140680202/1209469151865737266/image_1.png?ex=65e708ec&is=65d493ec&hm=6bc26e41387e3c9a363f9692c932d4ac107c5154d318235bfa8f3063fcdec641&" alt="">
+                                                        </div>
+                                                    </td>
+                                                    <td class="p-3 px-4 description-product"><span>Một sự pha trộn độc đáo của hoa tulip trắng, tím và cam được tô điểm thêm bởi sự lựa chọn hấp dẫn của hương vani thơm ngon, quả chanh hồ trăn và bánh hạnh nhân sô cô la.</span></td>
                                                     <td class="p-3 px-4 d-flex justify-content-center">
-                                                        <div class="edit-user p-2" data-bs-toggle="modal" data-bs-target="#edit-user">
+                                                        <div class="edit-product p-2" data-bs-toggle="modal" data-bs-target="#edit-product">
                                                             <i class="fa-solid fa-pen-to-square"></i>
                                                         </div>
-                                                        <div class="delete-user p-2"><i class="fa-solid fa-trash"></i></div>
+                                                        <div class="delete-product p-2"><i class="fa-solid fa-trash"></i></div>
                                                     </td>
                                                 </tr>
                                                 <tr class="table-content">
-                                                    <td class="p-3 px-4 "><span class="float-start">Taile03</span></td>
-                                                    <td class="p-3 px-4 "><span class="float-start">Le Thanh Tai</span></td>
-                                                    <td class="p-3 px-4 "><span class="float-start">taile03@gmail.com</span></td>
-                                                    <td class="p-3 px-4 "><span class="float-start">0909 113 114</span></td>
-                                                    <td class="p-3 px-4 "><span class="float-start">Thu Duc</span></td>
-                                                    <td class="p-3 px-4 "><span class="float-start">Admin</span></td>
+                                                    <td class="p-3 px-4 "><span class="float-start">B005</span></td>
+                                                    <td class="p-3 px-4 "><span class="float-start">Wild</span></td>
+                                                    <td class="p-3 px-4 "><span class="float-start">Box</span></td>
+                                                    <td class="p-3 px-4 "><span>10</span></td>
+                                                    <td class="p-3 px-4 "><span class="float-start">250.000</span></td>
+                                                    <td class="p-3 px-4 "><span>4.5</span></td>
+                                                    <td class="w-10">
+                                                        <div class="img-product">
+                                                            <img src="https://cdn.discordapp.com/attachments/1202620106140680202/1209469151865737266/image_1.png?ex=65e708ec&is=65d493ec&hm=6bc26e41387e3c9a363f9692c932d4ac107c5154d318235bfa8f3063fcdec641&" alt="">
+                                                        </div>
+                                                    </td>
+                                                    <td class="p-3 px-4 description-product"><span>Một sự pha trộn độc đáo của hoa tulip trắng, tím và cam được tô điểm thêm bởi sự lựa chọn hấp dẫn của hương vani thơm ngon, quả chanh hồ trăn và bánh hạnh nhân sô cô la.</span></td>
                                                     <td class="p-3 px-4 d-flex justify-content-center">
-                                                        <div class="edit-user p-2" data-bs-toggle="modal" data-bs-target="#edit-user">
+                                                        <div class="edit-product p-2" data-bs-toggle="modal" data-bs-target="#edit-product">
                                                             <i class="fa-solid fa-pen-to-square"></i>
                                                         </div>
-                                                        <div class="delete-user p-2"><i class="fa-solid fa-trash"></i></div>
+                                                        <div class="delete-product p-2"><i class="fa-solid fa-trash"></i></div>
                                                     </td>
                                                 </tr>
                                                 <tr class="table-content">
-                                                    <td class="p-3 px-4 "><span class="float-start">Taile03</span></td>
-                                                    <td class="p-3 px-4 "><span class="float-start">Le Thanh Tai</span></td>
-                                                    <td class="p-3 px-4 "><span class="float-start">taile03@gmail.com</span></td>
-                                                    <td class="p-3 px-4 "><span class="float-start">0909 113 114</span></td>
-                                                    <td class="p-3 px-4 "><span class="float-start">Thu Duc</span></td>
-                                                    <td class="p-3 px-4 "><span class="float-start">Admin</span></td>
+                                                    <td class="p-3 px-4 "><span class="float-start">B005</span></td>
+                                                    <td class="p-3 px-4 "><span class="float-start">Wild</span></td>
+                                                    <td class="p-3 px-4 "><span class="float-start">Box</span></td>
+                                                    <td class="p-3 px-4 "><span>10</span></td>
+                                                    <td class="p-3 px-4 "><span class="float-start">250.000</span></td>
+                                                    <td class="p-3 px-4 "><span>4.5</span></td>
+                                                    <td class="w-10">
+                                                        <div class="img-product">
+                                                            <img src="https://cdn.discordapp.com/attachments/1202620106140680202/1209469151865737266/image_1.png?ex=65e708ec&is=65d493ec&hm=6bc26e41387e3c9a363f9692c932d4ac107c5154d318235bfa8f3063fcdec641&" alt="">
+                                                        </div>
+                                                    </td>
+                                                    <td class="p-3 px-4 description-product"><span>Một sự pha trộn độc đáo của hoa tulip trắng, tím và cam được tô điểm thêm bởi sự lựa chọn hấp dẫn của hương vani thơm ngon, quả chanh hồ trăn và bánh hạnh nhân sô cô la.</span></td>
                                                     <td class="p-3 px-4 d-flex justify-content-center">
-                                                        <div class="edit-user p-2" data-bs-toggle="modal" data-bs-target="#edit-user">
+                                                        <div class="edit-product p-2" data-bs-toggle="modal" data-bs-target="#edit-product">
                                                             <i class="fa-solid fa-pen-to-square"></i>
                                                         </div>
-                                                        <div class="delete-user p-2"><i class="fa-solid fa-trash"></i></div>
+                                                        <div class="delete-product p-2"><i class="fa-solid fa-trash"></i></div>
                                                     </td>
                                                 </tr>
                                                 <tr class="table-content">
-                                                    <td class="p-3 px-4 "><span class="float-start">Taile03</span></td>
-                                                    <td class="p-3 px-4 "><span class="float-start">Le Thanh Tai</span></td>
-                                                    <td class="p-3 px-4 "><span class="float-start">taile03@gmail.com</span></td>
-                                                    <td class="p-3 px-4 "><span class="float-start">0909 113 114</span></td>
-                                                    <td class="p-3 px-4 "><span class="float-start">Thu Duc</span></td>
-                                                    <td class="p-3 px-4 "><span class="float-start">Admin</span></td>
+                                                    <td class="p-3 px-4 "><span class="float-start">B005</span></td>
+                                                    <td class="p-3 px-4 "><span class="float-start">Wild</span></td>
+                                                    <td class="p-3 px-4 "><span class="float-start">Box</span></td>
+                                                    <td class="p-3 px-4 "><span>10</span></td>
+                                                    <td class="p-3 px-4 "><span class="float-start">250.000</span></td>
+                                                    <td class="p-3 px-4 "><span>4.5</span></td>
+                                                    <td class="w-10">
+                                                        <div class="img-product">
+                                                            <img src="https://cdn.discordapp.com/attachments/1202620106140680202/1209469151865737266/image_1.png?ex=65e708ec&is=65d493ec&hm=6bc26e41387e3c9a363f9692c932d4ac107c5154d318235bfa8f3063fcdec641&" alt="">
+                                                        </div>
+                                                    </td>
+                                                    <td class="p-3 px-4 description-product"><span>Một sự pha trộn độc đáo của hoa tulip trắng, tím và cam được tô điểm thêm bởi sự lựa chọn hấp dẫn của hương vani thơm ngon, quả chanh hồ trăn và bánh hạnh nhân sô cô la.</span></td>
                                                     <td class="p-3 px-4 d-flex justify-content-center">
-                                                        <div class="edit-user p-2" data-bs-toggle="modal" data-bs-target="#edit-user">
+                                                        <div class="edit-product p-2" data-bs-toggle="modal" data-bs-target="#edit-product">
                                                             <i class="fa-solid fa-pen-to-square"></i>
                                                         </div>
-                                                        <div class="delete-user p-2"><i class="fa-solid fa-trash"></i></div>
+                                                        <div class="delete-product p-2"><i class="fa-solid fa-trash"></i></div>
                                                     </td>
                                                 </tr>
                                                 <tr class="table-content">
-                                                    <td class="p-3 px-4 "><span class="float-start">Taile03</span></td>
-                                                    <td class="p-3 px-4 "><span class="float-start">Le Thanh Tai</span></td>
-                                                    <td class="p-3 px-4 "><span class="float-start">taile03@gmail.com</span></td>
-                                                    <td class="p-3 px-4 "><span class="float-start">0909 113 114</span></td>
-                                                    <td class="p-3 px-4 "><span class="float-start">Thu Duc</span></td>
-                                                    <td class="p-3 px-4 "><span class="float-start">Admin</span></td>
+                                                    <td class="p-3 px-4 "><span class="float-start">B005</span></td>
+                                                    <td class="p-3 px-4 "><span class="float-start">Wild</span></td>
+                                                    <td class="p-3 px-4 "><span class="float-start">Box</span></td>
+                                                    <td class="p-3 px-4 "><span>10</span></td>
+                                                    <td class="p-3 px-4 "><span class="float-start">250.000</span></td>
+                                                    <td class="p-3 px-4 "><span>4.5</span></td>
+                                                    <td class="w-10">
+                                                        <div class="img-product">
+                                                            <img src="https://cdn.discordapp.com/attachments/1202620106140680202/1209469151865737266/image_1.png?ex=65e708ec&is=65d493ec&hm=6bc26e41387e3c9a363f9692c932d4ac107c5154d318235bfa8f3063fcdec641&" alt="">
+                                                        </div>
+                                                    </td>
+                                                    <td class="p-3 px-4 description-product"><span>Một sự pha trộn độc đáo của hoa tulip trắng, tím và cam được tô điểm thêm bởi sự lựa chọn hấp dẫn của hương vani thơm ngon, quả chanh hồ trăn và bánh hạnh nhân sô cô la.</span></td>
                                                     <td class="p-3 px-4 d-flex justify-content-center">
-                                                        <div class="edit-user p-2" data-bs-toggle="modal" data-bs-target="#edit-user">
+                                                        <div class="edit-product p-2" data-bs-toggle="modal" data-bs-target="#edit-product">
                                                             <i class="fa-solid fa-pen-to-square"></i>
                                                         </div>
-                                                        <div class="delete-user p-2"><i class="fa-solid fa-trash"></i></div>
+                                                        <div class="delete-product p-2"><i class="fa-solid fa-trash"></i></div>
                                                     </td>
                                                 </tr>
                                                 <tr class="table-content">
-                                                    <td class="p-3 px-4 "><span class="float-start">Taile03</span></td>
-                                                    <td class="p-3 px-4 "><span class="float-start">Le Thanh Tai</span></td>
-                                                    <td class="p-3 px-4 "><span class="float-start">taile03@gmail.com</span></td>
-                                                    <td class="p-3 px-4 "><span class="float-start">0909 113 114</span></td>
-                                                    <td class="p-3 px-4 "><span class="float-start">Thu Duc</span></td>
-                                                    <td class="p-3 px-4 "><span class="float-start">Admin</span></td>
+                                                    <td class="p-3 px-4 "><span class="float-start">B005</span></td>
+                                                    <td class="p-3 px-4 "><span class="float-start">Wild</span></td>
+                                                    <td class="p-3 px-4 "><span class="float-start">Box</span></td>
+                                                    <td class="p-3 px-4 "><span>10</span></td>
+                                                    <td class="p-3 px-4 "><span class="float-start">250.000</span></td>
+                                                    <td class="p-3 px-4 "><span>4.5</span></td>
+                                                    <td class="w-5">
+                                                        <div class="img-product">
+                                                            <img src="https://cdn.discordapp.com/attachments/1202620106140680202/1209469151865737266/image_1.png?ex=65e708ec&is=65d493ec&hm=6bc26e41387e3c9a363f9692c932d4ac107c5154d318235bfa8f3063fcdec641&" alt="">
+                                                        </div>
+                                                    </td>
+                                                    <td class="p-3 px-4 description-product"><span>Một sự pha trộn độc đáo của hoa tulip trắng, tím và cam được tô điểm thêm bởi sự lựa chọn hấp dẫn của hương vani thơm ngon, quả chanh hồ trăn và bánh hạnh nhân sô cô la.</span></td>
                                                     <td class="p-3 px-4 d-flex justify-content-center">
-                                                        <div class="edit-user p-2" data-bs-toggle="modal" data-bs-target="#edit-user">
+                                                        <div class="edit-product p-2" data-bs-toggle="modal" data-bs-target="#edit-product">
                                                             <i class="fa-solid fa-pen-to-square"></i>
                                                         </div>
-                                                        <div class="delete-user p-2"><i class="fa-solid fa-trash"></i></div>
+                                                        <div class="delete-product p-2"><i class="fa-solid fa-trash"></i></div>
                                                     </td>
                                                 </tr>
                                             </table>
@@ -243,148 +305,233 @@ and open the template in the editor.
         </div>
     </div>
 
-    <!-- Modal add user -->
-    <div class="modal" id="add-user">
+    <!-- Modal add product -->
+    <div class="modal" id="add-product">
         <div class="modal-dialog modal-dialog-centered">
-          <div class="modal-content">
-      
-            <!-- Modal Header -->
-            <div class="py-2 header-modal d-flex justify-content-between">
-              <h4 class="modal-title inter ms-3">Add new user</h4>
-              <div class="btn-close-modal me-3" data-bs-dismiss="modal"><i class="fa-solid fa-x"></i></div>
+            <div class="modal-content">
+
+                <!-- Modal Header -->
+                <div class="py-2 header-modal d-flex justify-content-between">
+                    <h4 class="modal-title inter ms-3">Product Add</h4>
+                    <div class="btn-close-modal me-3" data-bs-dismiss="modal"><i class="fa-solid fa-x"></i></div>
+                </div>
+
+                <!-- Modal body -->
+                <div class="modal-body">
+                    <div class="p-2">
+                        <table class="w-100 table-modal">
+                            <tr>
+                                <td class="w-20"><span class="py-2">Name:</span></td>
+                                <td class="py-2"><input type="text" class="ps-2 p-1 w-100"></td>
+                            </tr>
+                            <tr>
+                                <td><span class="py-2">Type:</span></td>
+                                <td class="py-2"><select name="" id="" class="ps-2 p-1">
+                                    <option value="" selected disabled>Choose</option>
+                                    <option value="">Birthday</option>
+                                    <option value="">Weeding</option>
+                                    <option value="">Boxes</option>
+                                </select></td>
+                            </tr>
+                            <tr>
+                                <td><span class="py-2">Price:</span></td>
+                                <td class="py-2"><input type="text" class="ps-2 p-1 w-100"></td>
+                            </tr>
+                            <tr>
+                                <td><span class="py-2">Quantity:</span></td>
+                                <td>
+                                    <div class="btn-quantity w-100 d-flex justify-content-start p-2">
+                                        <div class="btn btn-secondary rounded-0 w-10 text-center p-2"
+                                            id="quantity-down" onclick="sub('quantity1')">
+                                            <span>-</span>
+                                        </div>
+                                        <div class="button w-15">
+                                            <input type="number" class="text-center w-100 p-2" id="quantity1"
+                                                value="5"></input>
+                                        </div>
+                                        <div class="btn btn-secondary rounded-0 w-10 text-center p-2"
+                                            id="quantity-up" onclick="add('quantity1')">
+                                            <span>+</span>
+                                        </div>
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td><span class="py-2">Rate:</span></td>
+                                <td>
+                                    <div class="btn-quantity w-100 d-flex justify-content-start p-2">
+                                        <div class="btn btn-secondary rounded-0 w-10 text-center p-2"
+                                            id="quantity-down" onclick="subfloat('rate1')">
+                                            <span>-</span>
+                                        </div>
+                                        <div class="button w-15">
+                                            <input type="text" pattern="[0-9]*[.,]?[0-9]+" class="text-center w-100 p-2" id="rate1"
+                                                value="5"></input>
+                                        </div>
+                                        <div class="btn btn-secondary rounded-0 w-10 text-center p-2"
+                                            id="quantity-up" onclick="addfloat('rate1')">
+                                            <span>+</span>
+                                        </div>
+                                    </div>
+                                </td>
+                            </tr>
+                        </table>
+                    </div>
+                    <div class="title-product-modal p-2 my-1">
+                        <span class="w-100">Description: </span>
+                    </div>
+                    <div class="p-2 description-text">
+                        <textarea id="myTextarea" name="myTextarea" rows="4" cols="50" class="w-100 p-2"></textarea>
+                    </div>
+                    <div class="title-product-modal p-2 my-1">
+                        <span class="w-100">URL image: </span>
+                    </div>
+                    <div class="p-2 description-text">
+                        <textarea id="myTextarea" name="myTextarea" rows="4" cols="50" class="w-100 p-2"></textarea>
+                    </div>
+                    
+                </div>
+
+                <!-- Modal footer -->
+                <div class="footer-modal py-4 d-flex justify-content-end">
+                    <div class="close me-4">
+                        <div class="modal-btn-close p-2 px-4" data-bs-dismiss="modal"><span>Close</span></div>
+                    </div>
+                    <div class="save-modal me-4">
+                        <input type="submit" value="Save" class="input-submit p-2 px-4 inter">
+                    </div>
+                </div>
+
             </div>
-      
-            <!-- Modal body -->
-            <div class="modal-body">
-                <table class="w-100 table-modal">
-                    <tr>
-                        <td colspan="2" class="py-2"><span class="inter">Username</span></td>
-                    </tr>
-                    <tr>
-                        <td class="pe-1 py-1"><input type="text" placeholder="" class="w-100 p-1"></td>
-                        <td></td>
-                    </tr>
-                    <tr class="row-error">
-                        <td colspan="2"><span class="error-text">User name is already exist</span></td>
-                    </tr>
-                    <tr>
-                        <td colspan="2" class="py-2">Password</td>
-                    </tr>
-                    <tr>
-                        <td colspan="2" class="pe-1 py-1"><input type="text" class="w-100 p-1"></td>
-                    </tr>
-                    <tr>
-                        <td class="py-2">Role</td>
-                        <td class="py-2">Phone number</td>
-                    </tr>
-                    <tr>
-                        <td class="pe-1 py-1"><select class="w-100 p-1">
-                            <option value="admin">Admin</option>
-                            <option value="admin">User</option>
-                          </select></td>
-                        <td class="pe-1 py-1"><input type="text" class="w-100 p-1"></td>
-                    </tr>
-                    <tr>
-                        <td colspan="2" class="py-2">Email</td>
-                    </tr>
-                    <tr>
-                        <td colspan="2" class="pe-1 py-1"><input type="text" class="w-100 p-1"></td>
-                    </tr>
-                    <tr>
-                        <td colspan="2" class="py-2">Address</td>
-                    </tr>
-                    <tr>
-                        <td colspan="2" class="pe-1 py-1"><input type="text" class="w-100 p-1"></td>
-                    </tr>
-                </table>
-            </div>
-      
-            <!-- Modal footer -->
-            <div class="footer-modal py-4 d-flex justify-content-end">
-              <div class="close me-4">
-                <div class="modal-btn-close p-2 px-4" data-bs-dismiss="modal"><span>Close</span></div>
-              </div>
-              <div class="save-modal me-4">
-                <input type="submit" value="Add user" class="input-submit p-2 px-3 inter">
-              </div>
-            </div>
-      
-          </div>
         </div>
-      </div>
-      <!-- Modal edit user -->
-      <div class="modal" id="edit-user">
+    </div>
+
+    <!-- modal edit product -->
+    <div class="modal" id="edit-product">
         <div class="modal-dialog modal-dialog-centered">
-          <div class="modal-content">
-      
-            <!-- Modal Header -->
-            <div class="py-2 header-modal d-flex justify-content-between">
-              <h4 class="modal-title inter ms-3">Edit user</h4>
-              <div class="btn-close-modal me-3" data-bs-dismiss="modal"><i class="fa-solid fa-x"></i></div>
+            <div class="modal-content">
+
+                <!-- Modal Header -->
+                <div class="py-2 header-modal d-flex justify-content-between">
+                    <h4 class="modal-title inter ms-3">Product Modify</h4>
+                    <div class="btn-close-modal me-3" data-bs-dismiss="modal"><i class="fa-solid fa-x"></i></div>
+                </div>
+
+                <!-- Modal body -->
+                <div class="modal-body">
+                    <div class="p-2">
+                        <table class="w-100 table-modal">
+                            <tr>
+                                <td class="w-20"><span class="py-2">Name:</span></td>
+                                <td class="py-2"><input type="text" class="ps-2 p-1 w-100"></td>
+                            </tr>
+                            <tr>
+                                <td><span class="py-2">Type:</span></td>
+                                <td class="py-2"><select name="" id="" class="ps-2 p-1">
+                                    <option value="" selected disabled>Choose</option>
+                                    <option value="">Birthday</option>
+                                    <option value="">Weeding</option>
+                                    <option value="">Boxes</option>
+                                </select></td>
+                            </tr>
+                            <tr>
+                                <td><span class="py-2">Price:</span></td>
+                                <td class="py-2"><input type="text" class="ps-2 p-1 w-100"></td>
+                            </tr>
+                            <tr>
+                                <td><span class="py-2">Quantity:</span></td>
+                                <td>
+                                    <div class="btn-quantity w-100 d-flex justify-content-start p-2">
+                                        <div class="btn btn-secondary rounded-0 w-10 text-center p-2"
+                                            id="quantity-down" onclick="sub('quantity2')">
+                                            <span>-</span>
+                                        </div>
+                                        <div class="button w-15">
+                                            <input type="number" class="text-center w-100 p-2" id="quantity2"
+                                                value="5"></input>
+                                        </div>
+                                        <div class="btn btn-secondary rounded-0 w-10 text-center p-2"
+                                            id="quantity-up" onclick="add('quantity2')">
+                                            <span>+</span>
+                                        </div>
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td><span class="py-2">Rate:</span></td>
+                                <td>
+                                    <div class="btn-quantity w-100 d-flex justify-content-start p-2">
+                                        <div class="btn btn-secondary rounded-0 w-10 text-center p-2"
+                                            id="quantity-down" onclick="subfloat('rate2')">
+                                            <span>-</span>
+                                        </div>
+                                        <div class="button w-15">
+                                            <input type="text" pattern="[0-9]*[.,]?[0-9]+" class="text-center w-100 p-2" id="rate2"
+                                                value="5"></input>
+                                        </div>
+                                        <div class="btn btn-secondary rounded-0 w-10 text-center p-2"
+                                            id="quantity-up" onclick="addfloat('rate2')">
+                                            <span>+</span>
+                                        </div>
+                                    </div>
+                                </td>
+                            </tr>
+                        </table>
+                    </div>
+                    <div class="title-product-modal p-2 my-1">
+                        <span class="w-100">Description: </span>
+                    </div>
+                    <div class="p-2 description-text">
+                        <textarea id="myTextarea" name="myTextarea" rows="4" cols="50" class="w-100 p-2"></textarea>
+                    </div>
+                    <div class="title-product-modal p-2 my-1">
+                        <span class="w-100">URL image: </span>
+                    </div>
+                    <div class="p-2 description-text">
+                        <textarea id="myTextarea" name="myTextarea" rows="4" cols="50" class="w-100 p-2"></textarea>
+                    </div>
+                    
+                </div>
+
+                <!-- Modal footer -->
+                <div class="footer-modal py-4 d-flex justify-content-end">
+                    <div class="close me-4">
+                        <div class="modal-btn-close p-2 px-4" data-bs-dismiss="modal"><span>Close</span></div>
+                    </div>
+                    <div class="save-modal me-4">
+                        <input type="submit" value="Save" class="input-submit p-2 px-4 inter">
+                    </div>
+                </div>
+
             </div>
-      
-            <!-- Modal body -->
-            <div class="modal-body">
-                <table class="w-100 table-modal">
-                    <tr>
-                        <td colspan="2" class="py-2"><span class="inter">Username</span></td>
-                    </tr>
-                    <tr>
-                        <td class="pe-1 py-1"><input type="text" placeholder="" class="w-100 p-1"></td>
-                        <td></td>
-                    </tr>
-                    <tr class="row-error">
-                        <td colspan="2"><span class="error-text">User name is already exist</span></td>
-                    </tr>
-                    <tr>
-                        <td colspan="2" class="py-2">Password</td>
-                    </tr>
-                    <tr>
-                        <td colspan="2" class="pe-1 py-1"><input type="text" class="w-100 p-1"></td>
-                    </tr>
-                    <tr>
-                        <td class="py-2">Role</td>
-                        <td class="py-2">Phone number</td>
-                    </tr>
-                    <tr>
-                        <td class="pe-1 py-1"><select class="w-100 p-1">
-                            <option value="admin">Admin</option>
-                            <option value="admin">User</option>
-                          </select></td>
-                        <td class="pe-1 py-1"><input type="text" class="w-100 p-1"></td>
-                    </tr>
-                    <tr>
-                        <td colspan="2" class="py-2">Email</td>
-                    </tr>
-                    <tr>
-                        <td colspan="2" class="pe-1 py-1"><input type="text" class="w-100 p-1"></td>
-                    </tr>
-                    <tr>
-                        <td colspan="2" class="py-2">Address</td>
-                    </tr>
-                    <tr>
-                        <td colspan="2" class="pe-1 py-1"><input type="text" class="w-100 p-1"></td>
-                    </tr>
-                </table>
-            </div>
-      
-            <!-- Modal footer -->
-            <div class="footer-modal py-4 d-flex justify-content-end">
-              <div class="close me-4">
-                <div class="modal-btn-close p-2 px-4" data-bs-dismiss="modal"><span>Close</span></div>
-              </div>
-              <div class="save-modal me-4">
-                <input type="submit" value="Save" class="input-submit p-2 px-4 inter">
-              </div>
-            </div>
-      
-          </div>
         </div>
-      </div>
+    </div>
     <!--script js bootstrap-->
     <script src="./assets/js/bootstrap/bootstrap.bundle.min.js"></script>
     <script src="./assets/js/bootstrap/bootstrap.min.js"></script>
     <script src="./assets/js/bootstrap/bootstrap.esm.min.js"></script>
+    <script>
+        function sub(a) {
+                var input = document.getElementById(a);
+                if (input.value > 1) {
+                    input.value = parseInt(input.value) - 1;
+                }
+            }
+            function subfloat(a) {
+                var input = document.getElementById(a);
+                if (parseFloat(input.value) >=0.5) {
+                    input.value = parseFloat(input.value) - 0.5;
+                }
+            }
+        function add(a) {
+                var input = document.getElementById(a);
+                if (input.value < 100) {input.value = parseInt(input.value) + 1;}
+            }
+        function addfloat(a) {
+                var input = document.getElementById(a);
+                if (parseFloat(input.value) < 5) {input.value = parseFloat(input.value) + 0.5;}
+            }
+    </script>
 </body>
 
 </html>
