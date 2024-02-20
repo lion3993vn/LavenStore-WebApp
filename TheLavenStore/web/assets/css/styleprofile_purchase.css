@@ -1,0 +1,142 @@
+@import url('https://fonts.googleapis.com/css2?family=Vidaloka&display=swap');
+
+/* CSS Banner */
+.banner {
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-image: url(../img/banner_profileedit.png);
+    text-align: center;
+    margin-bottom: 7rem;
+}
+
+.banner h1 {
+    font-family: 'Vidaloka', serif;
+}
+
+.banner p {
+    color: #8B6E4A;
+}
+
+.banner a {
+    text-decoration: none;
+    color: #8B6E4A;
+}
+
+/* CSS Bar */
+.bar {
+    background: #CFA877;
+    height: 35em;
+}
+
+.bar table {
+    width: 100%;
+}
+
+.bar .hr1 {
+    width: 100%;
+}
+
+.bar a {
+    text-decoration: none;
+    color: #000;
+}
+
+.bar .hr {
+    background: #000;
+    height: 1px;
+    width: 100%;
+}
+
+.birday {
+    width: 23.65%;
+    text-align: center;
+    display: inline-block;
+}
+
+.profile {
+    background-color: #CF9142;
+}
+
+.bar tr:hover>td {
+    background-color: #CF9142;
+}
+
+/* CSS Form */
+
+table .order_header {
+    width: 80%;
+    border-bottom: 2px solid #000;
+}
+
+.nameprofile[type=text] {
+    font-weight: 600;
+}
+
+input[type=radio] {
+    transform: scale(1.5);
+}
+
+.complete {
+    padding: 0.2rem 1.5rem;
+    background: #4DC95A;
+    color: white;
+}
+
+.cancelled {
+    padding: 0.2rem 1.5rem;
+    background: #E74646;
+    color: white;
+}
+
+.pending {
+    padding: 0.2rem 1.5rem;
+    background: #9AA14B;
+    color: white;
+}
+
+.total_money,
+.idpurchase {
+    color: #8b6e4a;
+}
+
+.vline {
+    height: 1.5rem;
+    border-left: 2px solid #000;
+    opacity: 50%;
+}
+
+form .btn-submit {
+    background: linear-gradient(91.47deg, #8b6e4a -4.66%, #ddb481 31.82%, #8c6e4a 76.06%, #d6ae7c 115.4%);
+    color: #fff;
+    border: none;
+}
+
+form .btn-submit:hover {
+    background: linear-gradient(91.47deg, #8b6e4a -4.66%, #ddb481 31.82%, #8c6e4a 76.06%, #d6ae7c 115.4%);
+    color: #fff;
+    border: none;
+    box-shadow: #000;
+}
+
+.success_content {
+    color: #26AA99;
+}
+.paging{
+
+}
+.paging a{
+    text-decoration: none;
+    color: #8B6E4A;
+    padding: 0.5em 1.0em;
+    background-color: white;
+    border: 1px solid #30394B;
+    border-radius: 5px;
+}
+.paging a:hover{
+    background-color: #cca676;
+    color: white;
+}
+.active-paging{
+    background-color: #cca676 !important;
+    color: white !important;
+}

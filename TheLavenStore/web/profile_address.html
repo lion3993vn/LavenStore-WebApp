@@ -11,7 +11,7 @@ and open the template in the editor.
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="./assets/css/bootstrap/bootstrap.css">
-    <link rel="stylesheet" href="./assets/css/styleprofile.css">
+    <link rel="stylesheet" href="./assets/css/styleprofile_address.css">
     <link rel="stylesheet" href="./assets/css/font/css/all.css">
 </head>
 
@@ -49,11 +49,11 @@ and open the template in the editor.
                             <td><a href="#">Information</a></td>
                         </tr>
 
-                        <tr class=" profile">
+                        <tr>
                             <td></td>
                             <td class="ps-3"><a href="#">Profile</a></td>
                         </tr>
-                        <tr>
+                        <tr class=" profile">
                             <td></td>
                             <td class="ps-3"><a href="#">Address</a></td>
                         </tr>
@@ -82,51 +82,33 @@ and open the template in the editor.
                         <table class="fs-5 fw-medium">
                             <tbody>
                                 <tr>
-                                    <td class="px-5 pb-2">Username:</td>
-                                    <td class="pb-2">Taile03</td>
-                                </tr class="my-2">
-                                <tr>
-                                    <td class="px-5 pb-2 w-25">Full name: </td>
+                                    <td class="px-5 pb-2 w-25">City: </td>
                                     <td class="pb-2 w-75"><input
-                                            class="nameprofile form-control w-75 border border-2 border-dark rounded-0"
-                                            type="text" name="fullname" placeholder="Enter your number"></td>
+                                            class="form-control w-75 border border-2 border-dark rounded-1" type="text"
+                                            name="City"></td>
                                 </tr>
                                 <tr>
-                                    <td class="px-5 pb-2 w-25">Date of birth: </td>
-                                    <td class="pb-2 w-75">
-                                        <input class="form-control birday border border-2 border-dark rounded-0"
-                                            type="text" name="month">
-                                        <input class="form-control mx-2 birday border border-2 border-dark rounded-0"
-                                            type="text" name="year">
-                                        <input class="form-control birday border border-2 border-dark rounded-0"
-                                            type="text" name="day">
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td class="px-5 pb-2">Gender: </td>
-                                    <td class="pb-2">
-                                        <span class="input-group">
-                                            <input class="me-2 " type="radio" id="gender1" name="gender">
-                                            <label class="me-4" for="gender1">Nam</label>
-                                            <input class="me-2" type="radio" id="gender2" name="gender">
-                                            <label class="me-2" for="gender2">Nữ</label>
-                                        </span>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td class="px-5 pb-2 w-25">Phone number: </td>
+                                    <td class="px-5 pb-2 w-25">District: </td>
                                     <td class="pb-2"><input
-                                            class="form-control w-75 border border-2 border-dark rounded-0" type="text"
-                                            name="phone" placeholder="Enter your number"></td>
+                                            class="form-control w-75 border border-2 border-dark rounded-1" type="text"
+                                            name="district"></td>
                                 </tr>
                                 <tr>
-                                    <td class="px-5 w-25">Email: </td>
-                                    <td class="w-75">taile1234@gmail.com</td>
+                                    <td class="px-5 pb-2 w-25">Ward: </td>
+                                    <td class="pb-2"><input
+                                            class="form-control w-75 border border-2 border-dark rounded-1" type="text"
+                                            name="ward"></td>
+                                </tr>
+                                <tr>
+                                    <td class="px-5 pb-2 w-25">Note: </td>
+                                    <td class="pb-2"><input
+                                            class="form-control w-75 border border-2 border-dark rounded-1" type="text"
+                                            name="note" placeholder="Street Name, Building, House No."></td>
                                 </tr>
                                 <tr>
                                     <td></td>
                                     <td>
-                                        <div class="my-5">
+                                        <div class="my-3">
                                             <input class="p-2 btn-submit fs-6 rounded-1" type="submit"
                                                 value="Save Changes">
                                         </div>
