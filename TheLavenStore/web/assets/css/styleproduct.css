@@ -1,0 +1,175 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+.w-10{
+    width: 10%;
+}
+.w-15{
+    width: 15%;
+}
+.w-30{
+    width: 30%;
+}
+.w-40{
+    width: 40%;
+}
+.noticia {
+    font-family: 'Noticia Text', serif;
+}
+
+.banner {
+    background-image: url(../img/banner.png);
+    background-position: center;
+    background-size: cover;
+}
+
+.banner-title {
+    color: #171717;
+    font-size: 2.70625em;
+    font-family: "Vidaloka", serif;
+}
+
+.tab-links {
+    font-size: 1.10625em;
+    font-family: "Myanmar Sans Pro", sans-serif;
+    text-decoration: none;
+    margin: 0 .5em;
+    color: #8B6E4A;
+}
+.name-product{
+    font-family: 'Vidaloka', sans-serif;
+    font-size: 48px;
+}
+.add-wishlist{
+    text-decoration: none;
+}
+
+/* CHUA ADD WISHLIST */
+/* .box-wishlist{
+    border: 1px solid black;
+    border-radius: 50%;
+}
+.icon-wishlist{
+    padding: 10px;
+    font-size: 20px;
+    color: black;
+} */
+
+/* DA ADD WISHLIST */
+.box-wishlist{
+    border: 1px solid black;
+    border-radius: 50%;
+    background-color: black;
+}
+.icon-wishlist{
+    padding: 10px;
+    font-size: 20px;
+    color: #8B6E4A;
+}
+.rank-product{
+    color: #8B6E4A;
+}
+.product-price p{
+    font-size: 20px;
+}
+.delivery{
+    border: 2px solid #8B6E4A;
+    cursor: pointer;
+}
+.delivery i{
+    font-size: 40px;
+    color: #8b6e4acf;
+}
+.delivery p{
+    font-size: 20px;
+    color: #333333;
+}
+.select-time p{
+    font-weight: 700;
+    font-size: 16px;
+    font-family: sans-serif;
+}
+.select-time select{
+}
+input[type="number"]::-webkit-inner-spin-button,
+input[type="number"]::-webkit-outer-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+.add-quantity{
+}
+.btn-quantity-down, .btn-quantity-up{
+    background-color: #EDEDED;
+}
+.input-quantity{
+}
+.info-cart-product a{
+    text-decoration: none;
+}
+.btn-down, .btn-up{
+    background-color: #EDEDED;
+}
+.add-cart{
+    background: linear-gradient(to right, #7f6749, #cca676, #7f6749, #cca676);
+    color: white;
+}
+.btn-share{
+    background-color: #F7F7F7;
+    color: #8B6E4A;
+    border: 1px solid black;
+    font-size: 20px;
+}
+.real-title{
+    font-family: sans-serif;
+    font-size: 25px;
+    color: #8B6E4A;
+    font-weight: 600;
+}
+.item-sell{
+    padding: 1em;
+}
+.img-item{
+    overflow: hidden;
+}
+.img-item img{
+    transition: transform 0.3s ease;
+}
+.img-item:hover img{
+    transform: scale(1.2);
+}
+.info-item{
+
+}
+.info-item a{
+    text-decoration: none;
+    color: #8B6E4A;
+    font-size: 25px;
+    font-family: 'Vidaloka', serif;
+}
+.info-item p{
+    font-size: 16px;
+}
+.img-item .addcart-bestseller{
+    text-decoration: none;
+    color: black;
+    background-color: white;
+    font-size: 15px;
+    bottom: 0%;
+    border-radius: 5px;
+    width: 18em;
+    padding: 5px 0;
+    opacity: 0;
+    transition: bottom 0.3s ease, opacity 0.3s ease;
+}
+.img-item .addcart-bestseller:hover{
+    color: white;
+    background: linear-gradient(to right, #7f6749, #cca676, #7f6749, #cca676);
+    width: 18em;
+    padding: 5px 0;
+}
+.img-item:hover .addcart-bestseller{
+    opacity: 1;
+    bottom: 5%;
+}

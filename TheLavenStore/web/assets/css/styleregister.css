@@ -1,0 +1,77 @@
+*{
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+    font-family: sans-serif;
+}
+.noticia-text{
+    font-family: 'Noticia Text', serif;
+}
+.nav-login{
+    color: #8B6E4A;
+}
+.nav-login a{
+    text-decoration: none;
+    color: #8B6E4A;
+}
+.table-reg{
+    width: 60%;
+}
+.title-login{
+    color: #8B6E4A;
+    font-weight: 600;
+    font-size: 24px;
+}
+.title-login{
+    color: #8B6E4A;
+    font-weight: 600;
+    font-size: 24px;
+}
+.input-login input{
+    border-radius: 5px;
+    width: 100%;
+    border: 1px solid rgba(0, 0, 0, 1);
+    height: 30px;
+    padding-left: 10px;
+}
+.input-login input::placeholder{
+    font-size: 15px;
+    color: rgba(0, 0, 0, 0.3);
+}
+.text-error{
+    color: #FF0000;
+}
+.hidden{
+    display: none;
+}
+.captcha-login{
+    padding: 10px 0;
+}
+.captcha-content{
+    border: 1px solid black;
+}
+.reg-btn{
+}
+.reg-btn input{
+    width: 100%;
+    background: linear-gradient(91.47deg, #8b6e4a -4.66%, #ddb481 31.82%, #8c6e4a 76.06%, #d6ae7c 115.4%);
+    border: none;
+    color: white;
+    font-size: 15px;
+    border-radius: 5px;
+}
+.title-dangki{
+    margin-top: 3em;
+}
+.content-reg p{
+    color: rgba(0, 0, 0, 0.6);
+    font-size: 16px;
+}
+.btn-reg a{
+    background: linear-gradient(91.47deg, #8b6e4a -4.66%, #ddb481 31.82%, #8c6e4a 76.06%, #d6ae7c 115.4%);
+    border-radius: 5px;
+    text-decoration: none;
+    color: white;
+    width: 20%;
+    padding: 5px;
+}

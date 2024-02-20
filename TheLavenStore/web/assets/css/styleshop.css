@@ -1,0 +1,136 @@
+.banner {
+    background-image: url(../img/banner.png);
+    background-position: center;
+    background-size: cover;
+}
+
+.banner-title {
+    color: #171717;
+    font-size: 2.70625em;
+    font-family: "Vidaloka", serif;
+}
+
+.tab-links {
+    font-size: 1.10625em;
+    font-family: "Myanmar Sans Pro", sans-serif;
+    text-decoration: none;
+    margin: 0 .5em;
+    color: #8B6E4A;
+}
+
+.navigation-bar a {
+    font-size: 1.25em;
+    color: #000000;
+    font-family: 'Inter', sans-serif;
+}
+
+.navigation-bar a:hover {
+    color: #444444;
+    font-weight: bold;
+}
+
+.navigation-bar a:active {
+    background: none;
+    color: #000000;
+}
+
+.navigation-bar a:focus {
+    background: none;
+    color: #000000;
+}
+
+.current {
+    background: none;
+    text-decoration: underline;
+}
+
+
+.item-sell {
+    padding: 1em;
+}
+
+.img-item {}
+.img-item img{
+    transition: transform 0.3s ease;
+}
+.img-item:hover img{
+    transform: scale(1.2);
+}
+.img-item .addcart {
+    text-decoration: none;
+    color: white;
+    background: linear-gradient(to right, #7f6749, #cca676, #7f6749, #cca676);
+    font-size: 15px;
+    bottom: 3%;
+    border-radius: 5px;
+    width: 22em;
+    padding: 5px 0;
+}
+
+.img-item .sold-out {
+    text-decoration: none;
+    color: white;
+    background-color: #B1B1B1;
+    font-size: 20px;
+    border-radius: 50%;
+    padding: 10px 0;
+    width: 5em;
+    height: 5em;
+}
+
+.info-item {}
+
+.info-item a {
+    text-decoration: none;
+    color: #8B6E4A;
+    font-size: 25px;
+    font-family: 'Vidaloka', serif;
+}
+
+.info-item p {
+    font-size: 16px;
+}
+.img-item{
+    overflow: hidden;
+}
+.img-item .addcart-bestseller{
+    text-decoration: none;
+    color: black;
+    background-color: white;
+    font-size: 15px;
+    bottom: 0%;
+    border-radius: 5px;
+    width: 18em;
+    padding: 5px 0;
+    opacity: 0;
+    transition: bottom 0.3s ease, opacity 0.3s ease;
+}
+.img-item .addcart-bestseller:hover{
+    color: white;
+    background: linear-gradient(to right, #7f6749, #cca676, #7f6749, #cca676);
+    width: 18em;
+    padding: 5px 0;
+}
+.img-item:hover .addcart-bestseller{
+    opacity: 1;
+    bottom: 5%;
+}
+.paging{
+
+}
+.paging a{
+    text-decoration: none;
+    color: #8B6E4A;
+    padding: 0.5em 1.0em;
+    background-color: white;
+    border: 1px solid #30394B;
+    border-radius: 5px;
+}
+.paging a:hover{
+    background-color: #cca676;
+    color: white;
+}
+.active-paging{
+    background-color: #cca676 !important;
+    color: white !important;
+}

@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<html>
+    <head>
+        <title>TODO supply a title</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="./assets/css/bootstrap/bootstrap.css">
+        
+        <!-- link font google -->
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Vidaloka">
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Myanmar Sans Pro">
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Dongle">
+
+        <!-- link css cart -->
+        <link rel="stylesheet" href="./assets/css/stylecart.css">
+
+        <!-- link font icon -->
+        <link rel="stylesheet" href="./assets/css/font/css/all.css">
+    </head>
+
+    <body>
+        <section>
+            <banner>
+            <div class="banner container-fluid pb-5 mb-5">
+                <h1 class="pt-5">Shopping Cart</h1>
+                <p class="myhome"><a href="#">Home</a><span><i class="px-4 fa-solid fa-chevron-right"></i></span>Cart</p>
+            </div>                         
+           </banner>
+        </section>
+        
+        <section>
+            <div class="container-fluid">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <form action="#" >
+                                <table class="w-100">
+                                    <tr class="a">
+                                        <td class="text-center Dongle p-3">Product</td>
+                                        <td class="text-center p-3"></td>
+                                        <td class="text-center Dongle p-3">Price</td>
+                                        <td class="text-center Dongle p-3">Quatity</td>
+                                        <td class="text-center Dongle p-3">Total</td>
+                                        <td class="text-center Dongle p-3">Remove</td>
+                                    </tr>
+                                    <td class="text-center p-1"><img src="./assets/img/Wild.png" alt=""></td>
+                                    <td class="textbody">
+                                        <p class="mb-0">Wild</p>
+                                    </td>
+                                    <td class="text-center textbody ">
+                                        <p class="mb-0">VND 299.000</p>
+                                    </td>
+                                    <td class="">
+                                        <div class="btn-quantity w-100 d-flex justify-content-center">
+                                            <div class="btn btn-secondary rounded-0 w-10 text-center p-2"
+                                                id="quantity-down" onclick="sub('quantity1')">
+                                                <span>-</span>
+                                            </div>
+                                            <div class="button w-15">
+                                                <input type="number" class="text-center w-100 p-2" id="quantity1"
+                                                    value="5"></input>
+                                            </div>
+                                            <div class="btn btn-secondary rounded-0 w-10 text-center p-2"
+                                                id="quantity-up" onclick="add('quantity1')">
+                                                <span>+</span>
+                                            </div>
+                                        </div>
+                                    </td>
+                                    <td class="text-center textbody">
+                                        <p class="mb-0">VND 1.495.000</p>
+                                    </td>
+                                    <td class="text-center ">
+                                        <div class="trash"><i class="fa-solid fa-trash-can"></i></div>
+                                    </td>
+                                </tr>
+                                <td class="text-center p-1"><img src="./assets/img/Wild.png" alt=""></td>
+                                    <td class="textbody">
+                                        <p class="mb-0">Wild</p>
+                                    </td>
+                                    <td class="text-center textbody ">
+                                        <p class="mb-0">VND 299.000</p>
+                                    </td>
+                                    <td class="">
+                                        <div class="btn-quantity w-100 d-flex justify-content-center">
+                                            <div class="btn btn-secondary rounded-0 w-10 text-center p-2"
+                                                id="quantity-down" onclick="sub('quantity2')">
+                                                <span>-</span>
+                                            </div>
+                                            <div class="button w-15">
+                                                <input type="number" class="text-center w-100 p-2" id="quantity2"
+                                                    value="5"></input>
+                                            </div>
+                                            <div class="btn btn-secondary rounded-0 w-10 text-center p-2"
+                                                id="quantity-up" onclick="add('quantity2')">
+                                                <span>+</span>
+                                            </div>
+                                        </div>
+                                    </td>
+                                    <td class="text-center textbody">
+                                        <p class="mb-0">VND 1.495.000</p>
+                                    </td>
+                                    <td class="text-center ">
+                                        <div class="trash"><i class="fa-solid fa-trash-can"></i></div>
+                                    </td>
+                                </tr>
+                                <td class="text-center p-1"><img src="./assets/img/Wild.png" alt=""></td>
+                                    <td class="textbody">
+                                        <p class="mb-0">Wild</p>
+                                    </td>
+                                    <td class="text-center textbody ">
+                                        <p class="mb-0">VND 299.000</p>
+                                    </td>
+                                    <td class="">
+                                        <div class="btn-quantity w-100 d-flex justify-content-center">
+                                            <div class="btn btn-secondary rounded-0 w-10 text-center p-2"
+                                                id="quantity-down" onclick="sub('quantity3')">
+                                                <span>-</span>
+                                            </div>
+                                            <div class="button w-15">
+                                                <input type="number" class="text-center w-100 p-2" id="quantity3"
+                                                    value="5"></input>
+                                            </div>
+                                            <div class="btn btn-secondary rounded-0 w-10 text-center p-2"
+                                                id="quantity-up" onclick="add('quantity3')">
+                                                <span>+</span>
+                                            </div>
+                                        </div>
+                                    </td>
+                                    <td class="text-center textbody">
+                                        <p class="mb-0">VND 1.495.000</p>
+                                    </td>
+                                    <td class="text-center ">
+                                        <div class="trash"><i class="fa-solid fa-trash-can"></i></div>
+                                    </td>
+                                </tr>
+                                    <tr class="a">
+                                        <td class="text-center Dongle">Total payment:</td>
+                                        <td class="Dongle p-3 ">
+                                            <p class="mb-0">VND 4.603.000</p>                                           
+                                        </td>
+                                        <td></td>
+                                        <td></td>
+                                        <td></td>
+                                        <td class="text-center  ">
+                                            <div class="">
+                                                <div class="textbody checkout " type="submit" value="">Checkout</div>                             
+                                            </div>
+                                        </td>
+                                    </tr>
+                                </table>
+                            </form>
+                           
+                        </div>
+                        
+                    </div>
+                </div>
+                
+            </div>
+        </section>
+
+       
+        
+       
+            
+            
+            
+            
+        
+        
+        
+        
+        <!--script js bootstrap-->
+        <script src="./assets/js/bootstrap/bootstrap.bundle.min.js"></script>
+        <script src="./assets/js/bootstrap/bootstrap.min.js"></script>
+        <script src="./assets/js/bootstrap/bootstrap.esm.min.js"></script>
+        <script>
+            function sub(a) {
+                var input = document.getElementById(a);
+                if (input.value > 1) {
+                    input.value = parseInt(input.value) - 1;
+                }
+            }
+            function add(a) {
+                var input = document.getElementById(a);
+                if (input.value < 100) {input.value = parseInt(input.value) + 1;}
+            }
+        </script>
+
+    </body>
+</html>
