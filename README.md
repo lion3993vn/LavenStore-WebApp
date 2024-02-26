@@ -70,5 +70,9 @@ Customer and administrator can use this web
 ![The LAVEN STORE](https://cdn.discordapp.com/attachments/1202620106140680202/1202624686454866031/product-manager-add.png?ex=65e9d204&is=65d75d04&hm=2697dad7b455330ed504fa6ffeb761fda0f9ca09c52a3b7a8be00878b8295831&)
 ![The LAVEN STORE](https://cdn.discordapp.com/attachments/1202620106140680202/1202624685670670436/product-manager-modify.png?ex=65e9d204&is=65d75d04&hm=08f18eb3b2117f7791708e0611ff795b000260f75e061b81b1a7d281363725d9&)
 
+#### Entity Relationship Diagram
+
+![The LAVEN STORE](https://cdn.discordapp.com/attachments/1202620106140680202/1211766088451227698/thelavenstore.png?ex=65ef641d&is=65dcef1d&hm=33151d18b8c05bc360240a26dbf84745111ac2a5f92f5589a212e1ce1d8649d3&)
+
 #### References:
 - Figma: [The LAVEN STORE](https://www.figma.com/file/VwOE5jngD07N00OydAgRC9/version-1.0?type=design&node-id=138%3A2&mode=design&t=kRl7sah9T2KRONWB-1)
