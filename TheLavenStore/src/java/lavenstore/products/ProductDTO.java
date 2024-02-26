@@ -5,8 +5,6 @@
  */
 package lavenstore.products;
 
-import java.util.Date;
-
 /**
  *
  * @author Pham Hieu
@@ -20,9 +18,8 @@ public class ProductDTO {
     private float rate;
     private String description;
     private String image;
-    private Date date;
 
-    public ProductDTO(int ID, String name, int cateID, int quantity, int price, float rate, String description, String image, Date date) {
+    public ProductDTO(int ID, String name, int cateID, int quantity, int price, float rate, String description, String image) {
         this.ID = ID;
         this.name = name;
         this.cateID = cateID;
@@ -31,7 +28,6 @@ public class ProductDTO {
         this.rate = rate;
         this.description = description;
         this.image = image;
-        this.date = date;
     }
 
     public ProductDTO() {
@@ -99,14 +95,6 @@ public class ProductDTO {
 
     public void setImage(String image) {
         this.image = image;
-    }
-
-    public Date getDate() {
-        return date;
-    }
-
-    public void setDate(Date date) {
-        this.date = date;
     }
     
 }
