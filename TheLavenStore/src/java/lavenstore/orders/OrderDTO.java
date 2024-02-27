@@ -19,12 +19,12 @@ public class OrderDTO {
     private String paymentMethod;
     private String location;
     private String phoneNumber;
-    private int price;
+    private int amount;
     private String status;
     private String orderCode;
     private String note;
 
-    public OrderDTO(int ID, int userID, Date date, Date paymentDate, String paymentMethod, String location, String phoneNumber, int price, String status, String orderCode, String note) {
+    public OrderDTO(int ID, int userID, Date date, Date paymentDate, String paymentMethod, String location, String phoneNumber, int amount, String status, String orderCode, String note) {
         this.ID = ID;
         this.userID = userID;
         this.date = date;
@@ -32,7 +32,7 @@ public class OrderDTO {
         this.paymentMethod = paymentMethod;
         this.location = location;
         this.phoneNumber = phoneNumber;
-        this.price = price;
+        this.amount = amount;
         this.status = status;
         this.orderCode = orderCode;
         this.note = note;
@@ -97,12 +97,12 @@ public class OrderDTO {
         this.phoneNumber = phoneNumber;
     }
 
-    public int getPrice() {
-        return price;
+    public int getamount() {
+        return amount;
     }
 
-    public void setPrice(int price) {
-        this.price = price;
+    public void setamount(int amount) {
+        this.amount = amount;
     }
 
     public String getStatus() {
