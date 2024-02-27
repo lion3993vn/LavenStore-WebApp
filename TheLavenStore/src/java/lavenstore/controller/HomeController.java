@@ -14,6 +14,8 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+import lavenstore.products.ProductDAO;
+import lavenstore.products.ProductDTO;
 
 /**
  *
@@ -21,15 +23,18 @@ import javax.servlet.http.HttpSession;
  */
 public class HomeController extends HttpServlet {
 
-    private static final String ERROR = "home.html";
-    private static final String SUCCESS = "home.html";
+    private static final String ERROR = "home.jsp";
+    private static final String SUCCESS = "home.jsp";
 
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         String url = ERROR;
         try {
-            
+            ProductDAO dao = new ProductDAO();
+            List<ProductDTO> releaseList = dao.getNewReleaseProduct();
+            request.setAttribute("release", releaseList);
+            url = SUCCESS;
         } catch (Exception e) {
             log("Error at HomeController: " + e.toString());
             request.setAttribute("MESSAGE", "Somethings are error...");
