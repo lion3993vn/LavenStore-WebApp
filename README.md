@@ -72,7 +72,7 @@ Customer and administrator can use this web
 
 #### Entity Relationship Diagram
 
-![The LAVEN STORE](https://cdn.discordapp.com/attachments/1202620106140680202/1211766088451227698/thelavenstore.png?ex=65ef641d&is=65dcef1d&hm=33151d18b8c05bc360240a26dbf84745111ac2a5f92f5589a212e1ce1d8649d3&)
+![The LAVEN STORE](https://cdn.discordapp.com/attachments/1202620106140680202/1211866057434865684/thelavenstore.png?ex=65efc137&is=65dd4c37&hm=ec7b56588259af3d8566cf79a3d3f642ac26e9a2577894523d2ca8e7f74137c0&)
 
 #### References:
 - Figma: [The LAVEN STORE](https://www.figma.com/file/VwOE5jngD07N00OydAgRC9/version-1.0?type=design&node-id=138%3A2&mode=design&t=kRl7sah9T2KRONWB-1)
