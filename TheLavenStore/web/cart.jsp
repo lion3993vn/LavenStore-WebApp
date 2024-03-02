@@ -61,7 +61,7 @@ and open the template in the editor.
                                         <td class="text-center p-3"></td>
                                         <td class="text-center Dongle p-3">Price</td>
                                         <td class="text-center Dongle p-3">Quantity</td>
-                                        <td class="text-center Dongle p-3">Total</td>
+                                        <td class="text-center Dongle p-3 w-15">Total</td>
                                         <td class="text-center Dongle p-3">Remove</td>
                                     </tr>
                                     <c:set var="o" value="${requestScope.cartList}"/>
@@ -77,8 +77,8 @@ and open the template in the editor.
                                             <td class="">
                                                 <div class="btn-quantity w-100 d-flex justify-content-center">
                                                     <form action="processcart" method="post">
-                                                        <input type="hidden" value="-1" name="num">
-                                                        <input type="hidden" value="${i.product.name}" name="pid">
+                                                        <input type="hidden" value="-1" name="quantity">
+                                                        <input type="hidden" value="${i.product.ID}" name="pid">
                                                         <input type="submit" href="" class="btn btn-secondary rounded-0 w-100 text-center p-2 px-3 h-100"
                                                                value="-">
                                                         </form>
@@ -87,15 +87,15 @@ and open the template in the editor.
                                                                value="${i.quantity}" readonly></input>
                                                     </div>
                                                     <form action="processcart" method="post">
-                                                        <input type="hidden" value="1" name="num">
-                                                        <input type="hidden" value="${i.product.name}" name="pid">
+                                                        <input type="hidden" value="1" name="quantity">
+                                                        <input type="hidden" value="${i.product.ID}" name="pid">
                                                         <input type="submit" href="" class="btn btn-secondary rounded-0 w-100 text-center p-2 px-3 h-100"
                                                                value="+">
                                                         </form>
                                                 </div>
                                             </td>
-                                            <td class="text-center textbody">
-                                                <p class="mb-0" style="color: #8B6E4A;">VND <fmt:formatNumber pattern="#,###" value="${(i.price*i.quantity)}"/></p>
+                                            <td class="text-center textbody w-15">
+                                                <div class="mb-0 float-end w-100" style="color: #8B6E4A;"><span class="float-end Dongle">VND <fmt:formatNumber pattern="#,###" value="${(i.price*i.quantity)}"/></span></div>
                                             </td>
                                             <td class="text-center ">
                                                 <div class="trash" onclick="submitDeleteForm(${i.product.ID})"><i class="fa-solid fa-trash-can"></i></div>

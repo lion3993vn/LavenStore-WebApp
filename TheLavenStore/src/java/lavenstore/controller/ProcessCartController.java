@@ -37,7 +37,7 @@ public class ProcessCartController extends HttpServlet {
      */
     private static final String SUCCESS = "CartController";
     private static final String ERROR = "CartController";
-    
+
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         String url = SUCCESS;
@@ -56,24 +56,40 @@ public class ProcessCartController extends HttpServlet {
                 }
             }
             String deleteItem = request.getParameter("deleteID");
+            String pid = request.getParameter("pid");
             if (deleteItem != null) {
-
-            } else {
+                String[] pids = valueCart.split(",");
+                String out = "";
+                for (int i = 0; i < pids.length; i++) {
+                    String[] s = pids[i].split(":");
+                    if (!s[0].equals(deleteItem)) {
+                        if (out.isEmpty()) {
+                            out = pids[i];
+                        } else {
+                            out += "," + pids[i];
+                        }
+                    }
+                }
+                if(!out.isEmpty()){
+                    Cookie c = new Cookie("cart", out);
+                    c.setMaxAge(60 * 60 * 24 * 60);
+                    response.addCookie(c);
+                }
+            } else if (pid != null) {
                 Cart cart = new Cart(valueCart, list);
 
-                String number = request.getParameter("num");
-                String id = request.getParameter("pid");
+                String quantity = request.getParameter("quantity");
 
-                int pid = Integer.parseInt("id");
+                int proID = Integer.parseInt(pid);
 
-                ProductDTO p = pdao.getProductByID(pid);
+                ProductDTO p = pdao.getProductByID(proID);
                 int numStore = p.getQuantity();
 
-                int num = Integer.parseInt("number");
-                if (num == -1 && cart.getQuantityByID(pid) <= 1) {
-                    cart.removeItemCart(pid);
+                int num = Integer.parseInt(quantity);
+                if (num == -1 && cart.getQuantityByID(proID) <= 1) {
+                    cart.removeItemCart(proID);
                 } else {
-                    if (num == 1 && cart.getQuantityByID(pid) >= numStore) {
+                    if (num == 1 && cart.getQuantityByID(proID) >= numStore) {
                         num = 0;
                     }
                     int price = p.getPrice();
@@ -90,13 +106,13 @@ public class ProcessCartController extends HttpServlet {
                     }
                 }
                 Cookie c = new Cookie("cart", valueCart);
-                c.setMaxAge(60*60*24*60);
-                request.setAttribute("cart", c);
+                c.setMaxAge(60 * 60 * 24 * 60);
+                response.addCookie(c);
             }
         } catch (Exception e) {
-
-        } finally{
-            request.getRequestDispatcher(url).forward(request, response);
+            e.printStackTrace();
+        } finally {
+            response.sendRedirect(url);
         }
     }
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
