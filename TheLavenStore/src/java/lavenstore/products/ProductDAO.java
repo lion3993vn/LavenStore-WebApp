@@ -8,6 +8,7 @@ package lavenstore.products;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 import lavenstore.utils.DBUtils;
@@ -22,7 +23,7 @@ public class ProductDAO {
     
     private static final String GET_PRODUCT_BY_ID = "SELECT * FROM Product WHERE ID = ?";
     
-    public List<ProductDTO> getAllProduct(){
+    public List<ProductDTO> getAllProduct() throws SQLException{
         Connection conn = null;
         List<ProductDTO> list = new ArrayList<>();
         PreparedStatement psm = null;
@@ -44,11 +45,15 @@ public class ProductDAO {
             }
         }catch(Exception e){
             e.printStackTrace();
+        }finally {
+            if (rs != null) rs.close();
+            if (psm != null) psm.close();
+            if (conn != null) conn.close();
         }
         return list;
     }
     
-    public ProductDTO getProductByID(int id){
+    public ProductDTO getProductByID(int id) throws SQLException{
         Connection conn = null;
         ProductDTO product = null;
         PreparedStatement psm = null;
@@ -71,6 +76,10 @@ public class ProductDAO {
             }
         }catch(Exception e){
             e.printStackTrace();
+        }finally {
+            if (rs != null) rs.close();
+            if (psm != null) psm.close();
+            if (conn != null) conn.close();
         }
         return product;
     }
