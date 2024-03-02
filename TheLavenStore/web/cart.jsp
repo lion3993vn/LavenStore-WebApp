@@ -76,18 +76,22 @@ and open the template in the editor.
                                             </td>
                                             <td class="">
                                                 <div class="btn-quantity w-100 d-flex justify-content-center">
-                                                    <div href="" class="btn btn-secondary rounded-0 w-10 text-center p-2"
-                                                         id="quantity-down" onclick="changeQuantityForm('-1',${i.product.name})">
-                                                        <span>-</span>
-                                                    </div>
+                                                    <form action="processcart" method="post">
+                                                        <input type="hidden" value="-1" name="num">
+                                                        <input type="hidden" value="${i.product.name}" name="pid">
+                                                        <input type="submit" href="" class="btn btn-secondary rounded-0 w-100 text-center p-2 px-3 h-100"
+                                                               value="-">
+                                                        </form>
                                                     <div class="button w-15">
                                                         <input type="number" class="text-center w-100 p-2" id="quantity1"
                                                                value="${i.quantity}" readonly></input>
                                                     </div>
-                                                    <div href="" class="btn btn-secondary rounded-0 w-10 text-center p-2"
-                                                         id="quantity-up" onclick="changeQuantityForm('1',${i.product.name})">
-                                                        <span>+</span>
-                                                    </div>
+                                                    <form action="processcart" method="post">
+                                                        <input type="hidden" value="1" name="num">
+                                                        <input type="hidden" value="${i.product.name}" name="pid">
+                                                        <input type="submit" href="" class="btn btn-secondary rounded-0 w-100 text-center p-2 px-3 h-100"
+                                                               value="+">
+                                                        </form>
                                                 </div>
                                             </td>
                                             <td class="text-center textbody">
@@ -128,42 +132,6 @@ and open the template in the editor.
         <script src="./assets/js/bootstrap/bootstrap.min.js"></script>
         <script src="./assets/js/bootstrap/bootstrap.esm.min.js"></script>
         <script>
-            function changeQuantityForm(quantity, productId) {
-                // Kiểm tra xem form đã tồn tại
-                var form = document.getElementById('quantityForm');
-                if (!form) {
-                    // Nếu không tồn tại, tạo mới form
-                    form = document.createElement('form');
-                    form.id = 'quantityForm';
-
-                    // Tạo input quantity
-                    var numInput = document.createElement('input');
-                    numInput.type = 'hidden';
-                    numInput.value = quantity;
-                    numInput.name = 'num';
-
-                    // Tạo input product ID
-                    var idInput = document.createElement('input');
-                    idInput.type = 'hidden';
-                    idInput.value = productId;
-                    idInput.name = 'pid';
-
-                    // Thêm input vào form
-                    form.appendChild(numInput);
-                    form.appendChild(idInput);
-
-                    // Thêm form vào body
-                    document.body.appendChild(form);
-                }
-
-                // Cấu hình action và method của form
-                form.action = 'processcart';
-                form.method = 'post';
-
-                // Submit form
-                form.submit();
-            }
-
             function submitDeleteForm(id) {
                 // Kiểm tra xem form đã tồn tại
                 var form = document.getElementById('deleteForm');
