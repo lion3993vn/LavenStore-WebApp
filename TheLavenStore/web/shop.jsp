@@ -18,13 +18,14 @@
         <link rel="stylesheet" href="./assets/css/font/css/all.css">
     </head>
     <body>
+
         <!-- banner -->
         <div class="banner container-fluid text-center py-5">
-            <h1 class="banner-title ">Boxes</h1>
+            <h1 class="banner-title ">${requestScope.current.cateName}</h1>
             <div class="banner-subtitle">
-                <a class="tab-links" href="/home.html">Home</a>
+                <a class="tab-links" href="/home.jsp">Home</a>
                 <i class="tab-links fa-solid fa-angle-right"></i>
-                <a class="tab-links" href="/shop.html">Shop</a>
+                <a class="tab-links" href="/shop.jsp">Shop</a>
             </div>
         </div>
         <!-- navbar -->
@@ -32,21 +33,12 @@
             <div class="container-fluid">
                 <div class="row mt-5 mb-5">
                     <ul class="navigation-bar nav offset-md-1 col-md-8">
-                        <li class="nav-item">
-                            <a class="nav-link current" href="#">Boxes</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="#">Birthday</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="#">Party</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="#">Celebrate</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="#">Wedding</a>
-                        </li>
+                        <c:forEach items="${list}" var="i">
+                            <li class="nav-item">
+                                <a class="nav-link ${(i.cateID == requestScope.current.cateID)?"current":""}" href="shop?cateid=${i.cateID}">${i.cateName}</a>
+                            </li>
+                        </c:forEach>
+
                         <li class="nav-item dropdown" style="margin-left: auto;">
                             <div class="dropdown">
                                 <a
@@ -87,154 +79,20 @@
         <section class="seller">
             <div class="container-fluid">
                 <div class="row mt-5 mb-5">
-                    <div class="col-md-3">
-                        <div class="item-sell">
-                            <div class="img-item text-center position-relative">
-                                <a href="#"><img src="./assets/img/item.png" alt="" class="w-100"></a>
-                                <a href="" class="addcart-bestseller position-absolute start-50 translate-middle">ADD TO CART</a>
-                            </div>
-                            <div class="info-item text-center">
-                                <a href="">Wild</a>
-                                <p>VND 299.000</p>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-md-3">
-                        <div class="item-sell">
-                            <div class="img-item text-center position-relative">
-                                <a href="#"><img src="./assets/img/item.png" alt="" class="w-100"></a>
-                                <a href="" class="addcart-bestseller position-absolute start-50 translate-middle">ADD TO CART</a>
-                            </div>
-                            <div class="info-item text-center">
-                                <a href="">Wild</a>
-                                <p>VND 299.000</p>
+                    <c:forEach items="${plist}" var="i">
+                        <div class="col-md-3">
+                            <div class="item-sell">
+                                <div class="img-item text-center position-relative">
+                                    <a href="detail?pid=${i.ID}"><img src="${i.image}" alt="" class="w-100"></a>
+                                    <a href="" class="addcart-bestseller position-absolute start-50 translate-middle">ADD TO CART</a>
+                                </div>
+                                <div class="info-item text-center">
+                                    <a href="detail?pid=${i.ID}">${i.name}</a>
+                                    <p>VND ${i.price}</p>
+                                </div>
                             </div>
                         </div>
-                    </div>
-                    <div class="col-md-3">
-                        <div class="item-sell">
-                            <div class="img-item text-center position-relative">
-                                <a href="#"><img src="./assets/img/item.png" alt="" class="w-100"></a>
-                                <a href="" class="addcart-bestseller position-absolute start-50 translate-middle">ADD TO CART</a>
-                            </div>
-                            <div class="info-item text-center">
-                                <a href="">Wild</a>
-                                <p>VND 299.000</p>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-md-3">
-                        <div class="item-sell">
-                            <div class="img-item text-center position-relative">
-                                <a href="#"><img src="./assets/img/item.png" alt="" class="w-100"></a>
-                                <a href="" class="addcart-bestseller position-absolute start-50 translate-middle">ADD TO CART</a>
-                            </div>
-                            <div class="info-item text-center">
-                                <a href="">Wild</a>
-                                <p>VND 299.000</p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="col-md-3">
-                        <div class="item-sell">
-                            <div class="img-item text-center position-relative">
-                                <a href="#"><img src="./assets/img/item.png" alt="" class="w-100"></a>
-                                <a href="" class="addcart-bestseller position-absolute start-50 translate-middle">ADD TO CART</a>
-                            </div>
-                            <div class="info-item text-center">
-                                <a href="">Wild</a>
-                                <p>VND 299.000</p>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-md-3">
-                        <div class="item-sell">
-                            <div class="img-item text-center position-relative">
-                                <a href="#"><img src="./assets/img/item.png" alt="" class="w-100"></a>
-                                <a href="" class="addcart-bestseller position-absolute start-50 translate-middle">ADD TO CART</a>
-                            </div>
-                            <div class="info-item text-center">
-                                <a href="">Wild</a>
-                                <p>VND 299.000</p>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-md-3">
-                        <div class="item-sell">
-                            <div class="img-item text-center position-relative">
-                                <a href="#"><img src="./assets/img/item.png" alt="" class="w-100"></a>
-                                <a href="" class="addcart-bestseller position-absolute start-50 translate-middle">ADD TO CART</a>
-                            </div>
-                            <div class="info-item text-center">
-                                <a href="">Wild</a>
-                                <p>VND 299.000</p>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-md-3">
-                        <div class="item-sell">
-                            <div class="img-item text-center position-relative">
-                                <a href="#"><img src="./assets/img/item.png" alt="" class="w-100"></a>
-                                <a href="" class="addcart-bestseller position-absolute start-50 translate-middle">ADD TO CART</a>
-                            </div>
-                            <div class="info-item text-center">
-                                <a href="">Wild</a>
-                                <p>VND 299.000</p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="col-md-3">
-                        <div class="item-sell">
-                            <div class="img-item text-center position-relative">
-                                <a href="#"><img src="./assets/img/item.png" alt="" class="w-100"></a>
-                                <a href="" class="addcart-bestseller position-absolute start-50 translate-middle">ADD TO CART</a>
-                            </div>
-                            <div class="info-item text-center">
-                                <a href="">Wild</a>
-                                <p>VND 299.000</p>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-md-3">
-                        <div class="item-sell">
-                            <div class="img-item text-center position-relative">
-                                <a href="#"><img src="./assets/img/item.png" alt="" class="w-100"></a>
-                                <a href="" class="addcart-bestseller position-absolute start-50 translate-middle">ADD TO CART</a>
-                            </div>
-                            <div class="info-item text-center">
-                                <a href="">Wild</a>
-                                <p>VND 299.000</p>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-md-3">
-                        <div class="item-sell">
-                            <div class="img-item text-center position-relative">
-                                <a href="#"><img src="./assets/img/item.png" alt="" class="w-100"></a>
-                                <a href="" class="addcart-bestseller position-absolute start-50 translate-middle">ADD TO CART</a>
-                            </div>
-                            <div class="info-item text-center">
-                                <a href="">Wild</a>
-                                <p>VND 299.000</p>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-md-3">
-                        <div class="item-sell">
-                            <div class="img-item text-center position-relative">
-                                <a href="#"><img src="./assets/img/item.png" alt="" class="w-100"></a>
-                                <a href="" class="addcart-bestseller position-absolute start-50 translate-middle">ADD TO CART</a>
-                            </div>
-                            <div class="info-item text-center">
-                                <a href="">Wild</a>
-                                <p>VND 299.000</p>
-                            </div>
-                        </div>
-                    </div>
+                    </c:forEach>
                 </div>
                 <div class="row mb-5">
                     <div class="col-md-12 d-flex justify-content-end paging">

@@ -1,49 +1,55 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package lavenstore.controller;
 
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.List;
 import javax.servlet.ServletException;
+import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import lavenstore.products.CategoryDAO;
+import lavenstore.products.CategoryDTO;
+import lavenstore.products.ProductDAO;
+import lavenstore.products.ProductDTO;
 
-/**
- *
- * @author Pham Hieu
- */
-public class MainController extends HttpServlet {
+@WebServlet(name = "ShopController", urlPatterns = {"/shop"})
+public class ShopController extends HttpServlet {
 
-    private static final String NOT_FOUND = "notfound.html";
-    private static final String HOME_CONTROLLER = "HomeController";
-    private static final String SHOP_CONTROLLER = "shop";
-    private static final String DETAIL_CONTROLLER = "detail";
+    private static final String ERROR = "shop.jsp";
+    private static final String SUCCESS = "shop.jsp";
 
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
-        String url = HOME_CONTROLLER;
+        String url = ERROR;
+        String cid = request.getParameter("cateid");
+
+        int cateid = 0;
         try {
-            String action = request.getParameter("action");
-            if (action == null) {
-                url = HOME_CONTROLLER;
-            } else if (action.equals("shop")) {
-                url = SHOP_CONTROLLER;
-            } else if (action.equals("detail")) {
-                url = SHOP_CONTROLLER;
+            if (cid == null) {
+                cateid = 1;
             } else {
-                url = NOT_FOUND;
+                cateid = Integer.parseInt(cid);
             }
+            CategoryDAO dao = new CategoryDAO();
+            ProductDAO pdao = new ProductDAO();
+            List<CategoryDTO> list = dao.getListCategory();
+            List<ProductDTO> plist = pdao.getListByCateId(cateid);
+            for (CategoryDTO c : list) {
+                if (c.getCateID() == cateid) {
+                    request.setAttribute("current", c);
+                }
+            }
+            request.setAttribute("plist", plist);
+            request.setAttribute("list", list);
+            url = SUCCESS;
         } catch (Exception e) {
-            log("Error at MainController: " + e.toString());
+            log("Error at HomeController: " + e.toString());
+            request.setAttribute("MESSAGE", "Somethings are error...");
         } finally {
             request.getRequestDispatcher(url).forward(request, response);
         }
-
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">

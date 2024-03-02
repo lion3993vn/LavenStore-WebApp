@@ -1,49 +1,39 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+
 package lavenstore.controller;
 
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.List;
 import javax.servlet.ServletException;
+import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import lavenstore.products.ProductDAO;
+import lavenstore.products.ProductDTO;
 
-/**
- *
- * @author Pham Hieu
- */
-public class MainController extends HttpServlet {
+@WebServlet(name = "ProductController", urlPatterns = {"/ProductController"})
+public class ProductController extends HttpServlet {
 
-    private static final String NOT_FOUND = "notfound.html";
-    private static final String HOME_CONTROLLER = "HomeController";
-    private static final String SHOP_CONTROLLER = "shop";
-    private static final String DETAIL_CONTROLLER = "detail";
+
+    private static final String ERROR = "admin-product.jsp";
+    private static final String SUCCESS = "admin-product.jsp";
 
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
-        String url = HOME_CONTROLLER;
+        String url = ERROR;
         try {
-            String action = request.getParameter("action");
-            if (action == null) {
-                url = HOME_CONTROLLER;
-            } else if (action.equals("shop")) {
-                url = SHOP_CONTROLLER;
-            } else if (action.equals("detail")) {
-                url = SHOP_CONTROLLER;
-            } else {
-                url = NOT_FOUND;
-            }
+            ProductDAO dao = new ProductDAO();
+            List<ProductDTO> list = dao.getListProduct();
+            request.setAttribute("list", list);
+            url = SUCCESS;
         } catch (Exception e) {
-            log("Error at MainController: " + e.toString());
+            log("Error at HomeController: " + e.toString());
+            request.setAttribute("MESSAGE", "Somethings are error...");
         } finally {
             request.getRequestDispatcher(url).forward(request, response);
         }
-
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
