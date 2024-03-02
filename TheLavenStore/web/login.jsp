@@ -1,3 +1,4 @@
+<%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <!--
 To change this license header, choose License Headers in Project Properties.
@@ -41,20 +42,20 @@ and open the template in the editor.
         <div class="container">
             <div class="row">
                 <div class="col-md-6">
-                    <form action="">
+                    <form action="login" method="post">
                         <div class="d-flex justify-content-center">
                             <table class="w-50">
                                 <tr>
                                     <td colspan="2"><p class="noticia-text title-login">Đăng nhập</p></td>
                                 </tr>
                                 <tr>
-                                    <td colspan="2" class="input-login py-2"><input type="text" placeholder="Username"></td>
+                                    <td colspan="2" class="input-login py-2"><input type="text" placeholder="Username" name="Username"></td>
                                 </tr>
                                 <tr>
-                                    <td colspan="2" class="input-login py-2"><input type="text" placeholder="Password"></td>
+                                    <td colspan="2" class="input-login py-2"><input type="password" placeholder="Password" name="Password"></td>
                                 </tr>
-                                <tr class="hidden">
-                                    <td colspan="2"><p class="noticia-text text-error">Sai tài khoản hoặc mật khẩu</p></td>
+                                <tr>
+                                    <td colspan="2"><p class="noticia-text text-error">${error}</p></td>
                                 </tr>
                                 <tr>
                                     <td class="remember-login"><input type="checkbox"><p>Remember me</p></td>
@@ -82,7 +83,7 @@ and open the template in the editor.
                         <p class="w-50 text-center noticia-text">Bạn là người dùng mới, hãy đăng kí ngay để có thể nhận những ưu đãi từ chúng tôi</p>
                     </div>
                     <div class="d-flex justify-content-center btn-reg">
-                        <a href="#" class="text-center">Đăng ký</a>
+                        <a href="MainController?action=register" class="text-center">Đăng ký</a>
                     </div>
                 </div>
             </div>

@@ -1,3 +1,4 @@
+<%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <!--
 To change this license header, choose License Headers in Project Properties.
@@ -46,35 +47,35 @@ and open the template in the editor.
         <div class="container">
             <div class="row">
                 <div class="col-md-6">
-                    <form action="">
+                    <form action="register" method="post">
                         <div class="d-flex justify-content-center">
                             <table class="table-reg">
                                 <tr>
                                     <td colspan="2"><p class="noticia-text title-login">Đăng ký</p></td>
                                 </tr>
                                 <tr>
-                                    <td colspan="2" class="input-login py-2"><input type="text" placeholder="Username"></td>
-                                </tr>
-                                <tr class="hidden">
-                                    <td colspan="2"><p class="noticia-text text-error mb-0">Tên đăng nhập phải từ 4-20 chữ số</p></td>
+                                    <td colspan="2" class="input-login py-2"><input type="text" placeholder="Username" name="Username"></td>
                                 </tr>
                                 <tr>
-                                    <td colspan="2" class="input-login py-2"><input type="text" placeholder="Email"></td>
-                                </tr>
-                                <tr class="hidden">
-                                    <td colspan="2"><p class="noticia-text text-error mb-0">Email không hợp lệ</p></td>
+                                    <td colspan="2"><p class="noticia-text text-error mb-0">${errorUsername}</p></td>
                                 </tr>
                                 <tr>
-                                    <td colspan="2" class="input-login py-2"><input type="text" placeholder="Password"></td>
+                                    <td colspan="2" class="input-login py-2"><input type="text" placeholder="Email" name="Email"></td>
                                 </tr>
-                                <tr class="hidden">
-                                    <td colspan="2"><p class="noticia-text text-error mb-0">Mật khẩu phải có từ 4 chữ số</p></td>
+                              <tr>
+                                    <td colspan="2"><p class="noticia-text text-error mb-0">${errorEmail}</p></td>
                                 </tr>
                                 <tr>
-                                    <td colspan="2" class="input-login py-2"><input type="text" placeholder="Confirm Password"></td>
+                                    <td colspan="2" class="input-login py-2"><input type="password" placeholder="Password" name="Password"></td>
                                 </tr>
-                                <tr class="hidden">
-                                    <td colspan="2"><p class="noticia-text text-error mb-0">Mật khẩu không trùng khớp</p></td>
+                                <tr>
+                                    <td colspan="2"><p class="noticia-text text-error mb-0">${errorPassword}</p></td>
+                                </tr>
+                                <tr>
+                                    <td colspan="2" class="input-login py-2"><input type="password" placeholder="Confirm Password" name="Password2"></td>
+                                </tr>
+                                <tr>
+                                    <td colspan="2"><p class="noticia-text text-error mb-0">${errorPassword2}</p></td>
                                 </tr>
                                 <tr>
                                     <td colspan="2" class="captcha-login">
@@ -95,7 +96,7 @@ and open the template in the editor.
                         <p class="w-50 text-center noticia-text">Bạn đã có tài khoản, đăng nhập ngay!</p>
                     </div>
                     <div class="d-flex justify-content-center btn-reg">
-                        <a href="#" class="text-center">Đăng nhập</a>
+                        <a href="MainController?action=login" class="text-center">Đăng nhập</a>
                     </div>
                 </div>
             </div>
