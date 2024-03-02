@@ -7,30 +7,31 @@ and open the template in the editor.
 -->
 <html>
 
-<head>
-    <title>Laven Store - Login</title>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <head>
+        <title>Laven Store - Login</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <!-- link bootstrap -->
-    <link rel="stylesheet" href="./assets/css/bootstrap/bootstrap.css">
+        <!-- link bootstrap -->
+        <link rel="stylesheet" href="./assets/css/bootstrap/bootstrap.css">
 
-    <!-- link google font -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Noticia+Text">
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Volkhov">
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto">
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Averia+Serif+Libre">
+        <!-- link google font -->
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Noticia+Text">
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Volkhov">
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto">
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Averia+Serif+Libre">
 
-    <!-- link icon -->
-    <link rel="stylesheet" href="./assets/css/font/css/all.css">
+        <!-- link icon -->
+        <link rel="stylesheet" href="./assets/css/font/css/all.css">
 
-    <!-- link login style -->
-    <link rel="stylesheet" href="./assets/css/stylelogin.css">
-</head>
+        <!-- link login style -->
+        <link rel="stylesheet" href="./assets/css/stylelogin.css">
+    </head>
 
-<body>
+    <body>
+    <c:set var="cookie" value="${pageContext.request.cookies}"/>
     <div class="container p-5">
         <div class="row">
             <div class="col-md-12 text-center nav-login">
@@ -49,16 +50,16 @@ and open the template in the editor.
                                     <td colspan="2"><p class="noticia-text title-login">Đăng nhập</p></td>
                                 </tr>
                                 <tr>
-                                    <td colspan="2" class="input-login py-2"><input type="text" placeholder="Username" name="Username"></td>
+                                    <td colspan="2" class="input-login py-2"><input type="text" placeholder="Username" name="Username" value="${cookie.Username.value}" required></td>
                                 </tr>
                                 <tr>
-                                    <td colspan="2" class="input-login py-2"><input type="password" placeholder="Password" name="Password"></td>
+                                    <td colspan="2" class="input-login py-2"><input type="password" placeholder="Password" name="Password" value="${cookie.Password.value}" required></td>
                                 </tr>
                                 <tr>
                                     <td colspan="2"><p class="noticia-text text-error">${error}</p></td>
                                 </tr>
                                 <tr>
-                                    <td class="remember-login"><input type="checkbox"><p>Remember me</p></td>
+                                    <td class="remember-login"><input type="checkbox" name="Remember" ${cookie.Remember !=null ? 'checked' : ''}><p>Remember me</p></td>
                                     <td class="forgot-pass"><a href="#" class="float-end">Quên mật khẩu ?</a></td>
                                 </tr>
                                 <tr>

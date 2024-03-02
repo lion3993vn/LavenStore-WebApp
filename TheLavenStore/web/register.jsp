@@ -54,25 +54,25 @@ and open the template in the editor.
                                     <td colspan="2"><p class="noticia-text title-login">Đăng ký</p></td>
                                 </tr>
                                 <tr>
-                                    <td colspan="2" class="input-login py-2"><input type="text" placeholder="Username" name="Username"></td>
+                                    <td colspan="2" class="input-login py-2"><input type="text" placeholder="Username" name="Username" required></td>
                                 </tr>
                                 <tr>
                                     <td colspan="2"><p class="noticia-text text-error mb-0">${errorUsername}</p></td>
                                 </tr>
                                 <tr>
-                                    <td colspan="2" class="input-login py-2"><input type="text" placeholder="Email" name="Email"></td>
+                                    <td colspan="2" class="input-login py-2"><input type="text" placeholder="Email" name="Email" required></td>
                                 </tr>
                               <tr>
                                     <td colspan="2"><p class="noticia-text text-error mb-0">${errorEmail}</p></td>
                                 </tr>
                                 <tr>
-                                    <td colspan="2" class="input-login py-2"><input type="password" placeholder="Password" name="Password"></td>
+                                    <td colspan="2" class="input-login py-2"><input type="password" placeholder="Password" name="Password" required></td>
                                 </tr>
                                 <tr>
                                     <td colspan="2"><p class="noticia-text text-error mb-0">${errorPassword}</p></td>
                                 </tr>
                                 <tr>
-                                    <td colspan="2" class="input-login py-2"><input type="password" placeholder="Confirm Password" name="Password2"></td>
+                                    <td colspan="2" class="input-login py-2"><input type="password" placeholder="Confirm Password" name="Password2" required></td>
                                 </tr>
                                 <tr>
                                     <td colspan="2"><p class="noticia-text text-error mb-0">${errorPassword2}</p></td>

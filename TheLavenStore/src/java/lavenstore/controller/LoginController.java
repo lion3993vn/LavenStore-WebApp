@@ -8,6 +8,7 @@ package lavenstore.controller;
 import java.io.IOException;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
+import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -33,22 +34,39 @@ public class LoginController extends HttpServlet {
      */
     private static final String ERROR = "login.jsp";
     private static final String SUCCESS = "HomeController";
+
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         String url = ERROR;
         try {
-            String username = null;
-            username = request.getParameter("Username");
-            String password = null;
-            password = request.getParameter("Password");
+            String username = request.getParameter("Username");
+            String password = request.getParameter("Password");
+            String remember = request.getParameter("Remember");
             UserDAO u = new UserDAO();
             UserDTO user = u.login(username, password);
             if (user == null) {
                 request.setAttribute("error", "Sai tài khoản hoặc mật khẩu");
             } else {
                 url = SUCCESS;
+                //tao session
                 HttpSession s = request.getSession();
                 s.setAttribute("account", user);
+                //tao cookie
+                Cookie cUser = new Cookie("Username", username);
+                Cookie cPass = new Cookie("Password", password);
+                Cookie cRem = new Cookie("Remember", remember);
+                if (remember != null) {
+                    cUser.setMaxAge(60 * 60 * 24 * 365); //cookie ton tai 365 ngay
+                    cPass.setMaxAge(60 * 60 * 24 * 365);
+                    cRem.setMaxAge(60 * 60 * 24 * 365);
+                } else {
+                    cUser.setMaxAge(0);
+                    cPass.setMaxAge(0);
+                    cRem.setMaxAge(0);
+                }
+                response.addCookie(cUser);
+                response.addCookie(cPass);
+                response.addCookie(cRem);
             }
         } catch (Exception e) {
             log("Error at HomeController: " + e.toString());
