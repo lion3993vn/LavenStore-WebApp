@@ -1,3 +1,4 @@
+<%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <!--
 To change this license header, choose License Headers in Project Properties.
@@ -38,6 +39,7 @@ and open the template in the editor.
                         <p class="forgot-title text-center content-forgot">Reset Password</p>
                         <div class="d-flex justify-content-center">
                             <table class="w-50">
+                                <form action="forgot-password-2" method="post"> 
                                 <tr>
                                     <td colspan="3">Password</td>
                                 </tr>
@@ -47,20 +49,20 @@ and open the template in the editor.
                                 </tr>
                                 <tr class="hidden-error">
                                     <td colspan="3">
-                                        <p class="text-error m-0">Mật khẩu phải từ 4 chữ số</p>
+                                        <p class="text-error m-0">${requestScope.errorPassword}</p>
                                     </td>
                                 </tr>
                                 <tr>
                                     <td colspan="3">Confirm password</td>
                                 </tr>
                                 <tr>
-                                    <td colspan="2" class="pt-2"><input class="w-100" type="text" placeholder="" name="otp">
+                                    <td colspan="2" class="pt-2"><input class="w-100 ps-2" type="text" placeholder="" name="password2">
                                     </td>
                                     <td></td>
                                 </tr>
                                 <tr class="hidden-error">
                                     <td colspan="3">
-                                        <p class="text-error m-0">Mật khẩu không hợp lệ</p>
+                                        <p class="text-error m-0">${requestScope.errorPassword2}</p>
                                     </td>
                                 </tr>
                                 <tr>
@@ -71,6 +73,7 @@ and open the template in the editor.
                                 <tr>
                                     <td colspan="3" class="py-2">Không nhận được mail? Hãy thử lại</td>
                                 </tr>
+                                </form>
                             </table>
                         </div>
                     </div>

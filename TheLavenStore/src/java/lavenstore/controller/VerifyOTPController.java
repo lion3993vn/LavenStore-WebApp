@@ -7,53 +7,59 @@ package lavenstore.controller;
 
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.text.DecimalFormat;
+import java.util.Random;
 import javax.servlet.ServletException;
+import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
+import lavenstore.email.Email;
 
 /**
  *
- * @author Pham Hieu
+ * @author huyhu
  */
-public class MainController extends HttpServlet {
+@WebServlet(name = "VerifyOTP", urlPatterns = {"/verify-otp"})
+public class VerifyOTPController extends HttpServlet {
 
-    private static final String NOT_FOUND = "notfound.html";
-
-    private static final String HOME_CONTROLLER = "HomeController";
-    private static final String LOGIN_PAGE = "login.jsp";
-    private static final String REGISTER_PAGE = "register.jsp";
-    private static final String FORGOT_PASSWORD_PAGE = "forgot_password.jsp";
-    private static final String LOGIN = "login";
-    private static final String REGISTER = "register";
-    private static final String FORGOT_PASSWORD = "forgot-password";
+    /**
+     * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
+     * methods.
+     *
+     * @param request servlet request
+     * @param response servlet response
+     * @throws ServletException if a servlet-specific error occurs
+     * @throws IOException if an I/O error occurs
+     */
+    private static final String ERROR = "forgot_password.jsp";
+    private static final String SUCCESS = "forgot_password2.jsp";
 
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
-        String url = HOME_CONTROLLER;
+        String url = ERROR;
         try {
-            String action = request.getParameter("action");
-            if (action == null) {
-                url = HOME_CONTROLLER;
-            } else if (action.equals(LOGIN)) {
-                url = LOGIN_PAGE;
-            } else if (action.equals(REGISTER)) {
-                url = REGISTER_PAGE;
-            } else if (action.equals(FORGOT_PASSWORD)) {
-                url = FORGOT_PASSWORD_PAGE;
+            HttpSession session = request.getSession(false);
+            String otp = (String) session.getAttribute("OTP");
+            String txtOTP = request.getParameter("txtOTP");
+            String txtEmail = request.getParameter("Email");
+            if (txtOTP.equals(otp)) {
+                session.setAttribute("Email",txtEmail);
+                url = SUCCESS;
             } else {
-                url = NOT_FOUND;
+                request.setAttribute("message", "OTP không đúng, hãy thử lại!");
             }
+            session.removeAttribute("OTP");
         } catch (Exception e) {
-            log("Error at MainController: " + e.toString());
+            log("Error at VerifyOTP " + e.toString());
         } finally {
             request.getRequestDispatcher(url).forward(request, response);
         }
-
     }
 
-// <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
+    // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
     /**
      * Handles the HTTP <code>GET</code> method.
      *

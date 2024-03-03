@@ -25,6 +25,8 @@ public class UserDAO {
     private static final String GET_USER_BY_EMAIL = "SELECT * FROM Users WHERE Email = ?";
     private static final String ADD_USER = "INSERT INTO [Users] ([Username],[Password],[Email],[Role]) VALUES (?,?,?,?)";
     private static final String GET_ALL_USER = "SELECT * FROM Users";
+    private static final String UPDATE_PASSWORD = "UPDATE Users SET [Password] = ? WHERE ID = ?";
+
     public UserDTO login(String username, String password) throws SQLException {
         UserDTO user = null;
         Connection con = null;
@@ -89,7 +91,8 @@ public class UserDAO {
         }
         return user;
     }
- public UserDTO getUserByEmail(String email) throws SQLException {
+
+    public UserDTO getUserByEmail(String email) throws SQLException {
         UserDTO user = null;
         Connection con = null;
         PreparedStatement stmt = null;
@@ -102,7 +105,6 @@ public class UserDAO {
             if (rs.next()) {
                 user = new UserDTO(rs.getInt(1), rs.getString(2), rs.getString(3), rs.getString(4), rs.getString(5), rs.getString(6), rs.getString(7), rs.getString(8));
             }
-            con.close();
         } catch (Exception ex) {
             System.out.println("Error in servlet. Details:" + ex.getMessage());
             ex.printStackTrace();
@@ -119,6 +121,7 @@ public class UserDAO {
         }
         return user;
     }
+
     public boolean insert(UserDTO newUser) throws SQLException, ClassNotFoundException, NamingException {
         boolean check = false;
         Connection conn = null;
@@ -170,5 +173,30 @@ public class UserDAO {
             }
         }
         return listUser;
+    }
+
+    public boolean updatePassword(UserDTO user) throws SQLException {
+        boolean check = false;
+        Connection conn = null;
+        PreparedStatement ptm = null;
+        try {
+            conn = DBUtils.getConnection();
+            if (conn != null) {
+                ptm = conn.prepareStatement(UPDATE_PASSWORD);
+                ptm.setString(1, user.getPassword());
+                ptm.setInt(2, user.getID());
+                check = ptm.executeUpdate() > 0 ? true : false;
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            if (ptm != null) {
+                ptm.close();
+            }
+            if (conn != null) {
+                conn.close();
+            }
+        }
+        return check;
     }
 }

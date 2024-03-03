@@ -1,3 +1,4 @@
+<%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <!--
 To change this license header, choose License Headers in Project Properties.
@@ -27,6 +28,7 @@ and open the template in the editor.
 
     <!-- link login style -->
     <link rel="stylesheet" href="./assets/css/styleforgot_password.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
 </head>
 
 <body>
@@ -37,13 +39,15 @@ and open the template in the editor.
                     <div class="w-50 px-3 py-5 box-forgot">
                         <p class="forgot-title text-center content-forgot">Reset Password</p>
                         <div class="d-flex justify-content-center">
+                            
                             <table class="w-50">
+                                <form action="verify-otp" class="w-100" method="post">
                                 <tr>
                                     <td colspan="3">Email</td>
                                 </tr>
                                 <tr>
-                                    <td class="w-70 py-2"><input class="w-100 ps-2" type="text"
-                                            placeholder="example@gmail.com" name="email"></td>
+                                    <td class="w-70 py-2"><input class="w-100 ps-2" id="email" type="text"
+                                            placeholder="example@gmail.com" name="Email" required></td>
                                     <td class="w-20">
                                         <div class="text-center btn-send w-75 float-end" onclick="startCountdown(this)">
                                             <i class="fa-solid fa-paper-plane"></i>
@@ -59,13 +63,13 @@ and open the template in the editor.
                                     <td colspan="3">OTP Code (send via Email)</td>
                                 </tr>
                                 <tr>
-                                    <td colspan="2" class="py-2"><input class="w-100" type="text" placeholder="" name="otp">
+                                    <td colspan="2" class="py-2"><input class="w-100 ps-2" type="text" placeholder="" name="txtOTP">
                                     </td>
                                     <td></td>
                                 </tr>
                                 <tr class="hidden-error">
                                     <td colspan="3">
-                                        <p class="text-error m-0">OTP không đúng</p>
+                                        <p class="text-error m-0">${requestScope.message}</p>
                                     </td>
                                 </tr>
                                 <tr>
@@ -73,9 +77,13 @@ and open the template in the editor.
                                             value="CONTINUE"></td>
                                     <td></td>
                                 </tr>
-                                <tr>
+<!--                                <tr>
                                     <td colspan="3" class="py-2">Không nhận được mail? Hãy thử lại</td>
+                                </tr>-->
+                                <tr>
+                                    <td colspan="3" class="py-2"><span id="notice" ></span></td>
                                 </tr>
+                                </form>
                             </table>
                         </div>
                     </div>
@@ -93,6 +101,11 @@ and open the template in the editor.
         var btn_send = 0;
 
         function startCountdown(btn) {
+            var notice = document.getElementById("notice");
+            var Email = document.getElementById("email").value;
+            if(Email===""){
+                alert("Bạn chưa nhập email!");
+            }else{
             btn.classList.add('btn-fade');
             btn.onclick = null;
             btn_send++;
@@ -100,7 +113,22 @@ and open the template in the editor.
             var countdown = document.querySelector('.countdown');
             var countdown_box = document.querySelector('.countdown-box');
             countdown_box.classList.remove('hidden');
-            const countdownInterval = setInterval(() => {
+            $.ajax({
+                url: "forgot-password",
+               type: "post", //send it through post method
+                     data: { 
+                    txtEmail: Email
+                },
+            success: function(response) {
+                 console.log("response ",response);
+                 notice.innerHTML = response;
+                         },
+                    error: function(xhr) {
+             //Do Something to handle error
+             alert("Có lỗi xảy ra, vui lòng thử lại sau ít phút");
+              }
+        });
+    const countdownInterval = setInterval(() => {
                 seconds--;
                 if (seconds >= 10) {
                     countdown.innerHTML = seconds + "s";
@@ -114,10 +142,9 @@ and open the template in the editor.
                     countdown_box.classList.add('hidden');
                     clearInterval(countdownInterval);
                 }
-            }, 1000);
+            }, 1000);}
         }
     </script>
-
 </body>
 
 </html>

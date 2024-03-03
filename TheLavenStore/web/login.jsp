@@ -60,7 +60,7 @@ and open the template in the editor.
                                 </tr>
                                 <tr>
                                     <td class="remember-login"><input type="checkbox" name="Remember" ${cookie.Remember !=null ? 'checked' : ''}><p>Remember me</p></td>
-                                    <td class="forgot-pass"><a href="#" class="float-end">Quên mật khẩu ?</a></td>
+                                    <td class="forgot-pass"><a href="MainController?action=forgot-password" class="float-end">Quên mật khẩu ?</a></td>
                                 </tr>
                                 <tr>
                                     <td colspan="2" class="login-btn py-2"><input type="submit" class="p-2" value="Đăng nhập"></td>
