@@ -79,7 +79,7 @@ and open the template in the editor.
                                     <tr>
                                         <td colspan="2" class="captcha-login" >
                                             <div class="recaptcha" >
-                                                <div class="captcha-content py-3 text-center g-recaptcha w-100" style="border: none"s data-sitekey="6Ldd1YgpAAAAAIjwVH7ElCx5-F7qH682FQwMVErx"></div>
+                                                <div class="captcha-content py-3 text-center g-recaptcha w-100" style="border: none"s data-sitekey="6Lft3YgpAAAAAHtCCJwG4kV6ZOIuIDXv1wulOFf6"></div>
                                                 
                                             </div><div id="captcha-error" style="color: red; font-size: 15px;"></div>
                                         </td>
