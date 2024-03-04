@@ -6,7 +6,8 @@
 package lavenstore.controller;
 
 import java.io.IOException;
-import java.io.PrintWriter;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -15,15 +16,13 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import lavenstore.users.UserDAO;
 import lavenstore.users.UserDTO;
-import java.util.regex.Pattern;
-import java.util.regex.Matcher;
 
 /**
  *
  * @author huyhu
  */
-@WebServlet(name = "RegisterController", urlPatterns = {"/register"})
-public class RegisterController extends HttpServlet {
+@WebServlet(name = "ProfilePasswordController", urlPatterns = {"/profile-password"})
+public class ProfilePasswordController extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -34,60 +33,47 @@ public class RegisterController extends HttpServlet {
      * @throws ServletException if a servlet-specific error occurs
      * @throws IOException if an I/O error occurs
      */
-    private static final String ERROR = "register.jsp";
-    private static final String SUCCESS = "login.jsp";
+    private static final String ERROR = "profile_password.jsp";
+    private static final String SUCCESS = "logout"; //sua thanh profile controller
 
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+        response.setContentType("text/html;charset=UTF-8");
         String url = ERROR;
-        boolean isValidUser = true;
         try {
-            String username = request.getParameter("Username");
+            boolean isValidPassword = true;
+            String oldPassword = request.getParameter("oldPassword");
+            String newPassword1 = request.getParameter("newPassword1");
+            String newPassword2 = request.getParameter("newPassword2");
+            HttpSession session = request.getSession(false);
             UserDAO u = new UserDAO();
-            UserDTO user = u.getUserByUsername(username);
-            if (user != null) {
-                request.setAttribute("errorUsername", "Tài khoản đã tồn tại");
-                isValidUser = false;
+            UserDTO user = (UserDTO) session.getAttribute("account");
+            //old pasword
+            String onDBPassword = user.getPassword();
+            if (!oldPassword.equals(onDBPassword)) {
+                request.setAttribute("errorOldPassword", "Mật khẩu không đúng!");
+                isValidPassword = false;
             }
-            //email
-            String email = request.getParameter("Email");
-            String regexEmail = "^[A-Za-z0-9+_.-]+@(.+)$";
-            Pattern patternEmail = Pattern.compile(regexEmail);
-            Matcher matcherEmail = patternEmail.matcher(email);
-            if (!matcherEmail.matches()) {
-                request.setAttribute("errorEmail", "Email không hợp lệ");
-                isValidUser = false;
-
-            } else {
-                user = u.getUserByEmail(email);
-                if (user != null) {
-                    request.setAttribute("errorEmail", "Email đã tồn tại");
-                    isValidUser = false;
-                }
-
-                //password
-                String password = request.getParameter("Password");
-                String regexPassword = "^[A-Za-z0-9]{4,}$";
-                Pattern patternPassword = Pattern.compile(regexPassword);
-                Matcher matcherPassword = patternPassword.matcher(password);
-                if (!matcherPassword.matches()) {
-                    request.setAttribute("errorPassword", "Password phải có từ 4 kí tự trở lên");
-                    isValidUser = false;
-                }
-                //confirm password
-                String password2 = request.getParameter("Password2");
-                if (!password.equals(password2)) {
-                    request.setAttribute("errorPassword2", "Mật khẩu không trùng khớp");
-                    isValidUser = false;
-                }
-                if (isValidUser) {
-                    UserDTO newUser = new UserDTO(u.getAllUser().size() + 1, username, password, email, null, null, null, null);
-                    u.insert(newUser);
-                    url = SUCCESS;
-                }
+            // new password
+            String regexPassword = "^[A-Za-z0-9]{4,}$";
+            Pattern patternPassword = Pattern.compile(regexPassword);
+            Matcher matcherPassword = patternPassword.matcher(newPassword1);
+            if (!matcherPassword.matches()) {
+                request.setAttribute("errorNewPassword1", "Password phải có từ 4 kí tự trở lên");
+                isValidPassword = false;
+            }
+            //confirm password
+            if (!newPassword1.equals(newPassword2)) {
+                request.setAttribute("errorNewPassword2", "Mật khẩu không trùng khớp");
+                isValidPassword = false;
+            }
+            if (isValidPassword) {
+                user.setPassword(newPassword1);
+                u.updatePassword(user);
+                url = SUCCESS;
             }
         } catch (Exception e) {
-            log("Error at RegisterController: " + e.toString());
+            log("Error at ProfilePasswordController: " + e.toString());
             request.setAttribute("MESSAGE", "Somethings are error...");
         } finally {
             request.getRequestDispatcher(url).forward(request, response);

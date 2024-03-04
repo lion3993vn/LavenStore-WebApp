@@ -69,7 +69,7 @@ public class LoginController extends HttpServlet {
                 response.addCookie(cRem);
             }
         } catch (Exception e) {
-            log("Error at HomeController: " + e.toString());
+            log("Error at LoginController: " + e.toString());
             request.setAttribute("MESSAGE", "Somethings are error...");
         } finally {
             request.getRequestDispatcher(url).forward(request, response);
