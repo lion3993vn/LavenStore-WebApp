@@ -71,10 +71,10 @@ and open the template in the editor.
                             </table>
                         </div>
                         <div class="d-flex justify-content-center">
-                            <div class="login-google text-center">
+                            <a class="login-google text-center d-flex justify-content-center align-items-center" href="https://accounts.google.com/o/oauth2/auth?scope=profile email&redirect_uri=http://localhost:8080/thelavenstore/login-google&response_type=code&client_id=115927365135-90o9anknfgf5hur4crt016fe8cuift5s.apps.googleusercontent.com&approval_prompt=force">
                                 <img src="./assets/img/logogoogle.png" class="" alt=""> 
-                                <p class="mb-0">Đăng nhập với Google</p>
-                            </div>
+                                <p class="mb-0 ps-2" style="color:black;">Đăng nhập với Google</p>
+                            </a>
                         </div>
                     </form>
                 </div>

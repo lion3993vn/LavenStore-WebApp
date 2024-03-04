@@ -14,7 +14,7 @@ public class Constants {
 
     public static String GOOGLE_CLIENT_SECRET = "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";
 
-    public static String GOOGLE_REDIRECT_URI = "http://localhost:8080/thelavenstore/LoginGoogleController";
+    public static String GOOGLE_REDIRECT_URI = "http://localhost:8080/thelavenstore/login-google";
 
     public static String GOOGLE_LINK_GET_TOKEN = "https://accounts.google.com/o/oauth2/token";
 

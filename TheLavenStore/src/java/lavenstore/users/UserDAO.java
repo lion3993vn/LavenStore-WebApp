@@ -23,7 +23,7 @@ public class UserDAO {
     private static final String LOGIN = "SELECT * FROM Users WHERE Username = ? AND [Password] = ?";
     private static final String GET_USER_BY_USERNAME = "SELECT * FROM Users WHERE Username = ?";
     private static final String GET_USER_BY_EMAIL = "SELECT * FROM Users WHERE Email = ?";
-    private static final String ADD_USER = "INSERT INTO [Users] ([Username],[Password],[Email],[Role]) VALUES (?,?,?,?)";
+    private static final String ADD_USER = "INSERT INTO [Users] ([Username],[Password],[Email],[Role],[Fullname],[PhoneNumber],[Address]) VALUES (?,?,?,?,?,?,?)";
     private static final String GET_ALL_USER = "SELECT * FROM Users";
     private static final String UPDATE_PASSWORD = "UPDATE Users SET [Password] = ? WHERE ID = ?";
 
@@ -134,8 +134,13 @@ public class UserDAO {
                 ptm.setString(2, newUser.getPassword());
                 ptm.setString(3, newUser.getEmail());
                 ptm.setString(4, "user");
+                ptm.setString(5, newUser.getFullName());
+                ptm.setString(6, newUser.getPhoneNumber());
+                ptm.setString(7, newUser.getAddress());
                 check = ptm.executeUpdate() > 0 ? true : false;
             }
+        } catch (Exception e) {
+            e.printStackTrace();
         } finally {
             if (ptm != null) {
                 ptm.close();
