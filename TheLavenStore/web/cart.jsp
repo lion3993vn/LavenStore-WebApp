@@ -76,7 +76,7 @@ and open the template in the editor.
                                             </td>
                                             <td class="">
                                                 <div class="btn-quantity w-100 d-flex justify-content-center">
-                                                    <form action="processcart" method="post">
+                                                    <form action="process-cart" method="post">
                                                         <input type="hidden" value="-1" name="quantity">
                                                         <input type="hidden" value="${i.product.ID}" name="pid">
                                                         <input type="submit" href="" class="btn btn-secondary rounded-0 w-100 text-center p-2 px-3 h-100"
@@ -86,7 +86,7 @@ and open the template in the editor.
                                                         <input type="number" class="text-center w-100 p-2" id="quantity1"
                                                                value="${i.quantity}" readonly></input>
                                                     </div>
-                                                    <form action="processcart" method="post">
+                                                    <form action="process-cart" method="post">
                                                         <input type="hidden" value="1" name="quantity">
                                                         <input type="hidden" value="${i.product.ID}" name="pid">
                                                         <input type="submit" href="" class="btn btn-secondary rounded-0 w-100 text-center p-2 px-3 h-100"
@@ -154,7 +154,7 @@ and open the template in the editor.
                 }
 
                 // Cấu hình action và method của form
-                form.action = 'processcart';
+                form.action = 'process-cart';
                 form.method = 'post';
 
                 // Submit form

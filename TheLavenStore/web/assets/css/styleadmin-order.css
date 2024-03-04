@@ -135,6 +135,12 @@ body{
     border-radius: 5px;
     color: white;
 }
+.search-user-submit input{
+    background-color: #8869E1;
+    border: none;
+    border-radius: 5px;
+    color: white;
+}
 .search-user input::placeholder{
     color: #768490;
 }

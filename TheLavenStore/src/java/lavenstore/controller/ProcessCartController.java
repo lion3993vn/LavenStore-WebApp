@@ -23,7 +23,7 @@ import lavenstore.products.ProductDTO;
  *
  * @author Pham Hieu
  */
-@WebServlet(name = "ProcessCartController", urlPatterns = {"/processcart"})
+@WebServlet(name = "ProcessCartController", urlPatterns = {"/process-cart"})
 public class ProcessCartController extends HttpServlet {
 
     /**

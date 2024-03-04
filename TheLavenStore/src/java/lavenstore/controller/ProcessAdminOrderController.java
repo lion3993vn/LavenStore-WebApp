@@ -7,8 +7,6 @@ package lavenstore.controller;
 
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.util.ArrayList;
-import java.util.List;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -16,15 +14,13 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import lavenstore.orders.OrderDAO;
 import lavenstore.orders.OrderDTO;
-import lavenstore.users.UserDAO;
-import lavenstore.users.UserDTO;
 
 /**
  *
  * @author Pham Hieu
  */
-@WebServlet(name = "AdminOrderController", urlPatterns = {"/admin-order"})
-public class AdminOrderController extends HttpServlet {
+@WebServlet(name = "ProcessAdminOrderController", urlPatterns = {"/process-admin-order"})
+public class ProcessAdminOrderController extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -35,36 +31,36 @@ public class AdminOrderController extends HttpServlet {
      * @throws ServletException if a servlet-specific error occurs
      * @throws IOException if an I/O error occurs
      */
-    private static final String ERROR = "admin-order.jsp";
-    private static final String SUCCESS = "admin-order.jsp";
+    private static final String ERROR = "admin-order-modify";
+    private static final String SUCCESS = "admin-order";
 
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
+        request.setCharacterEncoding("UTF-8");
         String url = ERROR;
         try {
-            OrderDAO odao = new OrderDAO();
-            List<OrderDTO> listODao = new ArrayList<>();
-            UserDAO udao = new UserDAO();
-            List<UserDTO> listUDao = udao.getAllUserTwoInfo();
-            request.setAttribute("listuser", listUDao);
-
-            String searchCode = request.getParameter("searchCode"); //""
-            String statusSeach = request.getParameter("status-search"); //"NONE"
-            if ((searchCode != null && !searchCode.equals("")) || (statusSeach != null && !statusSeach.equals("NONE"))) {
-                listODao = odao.searchOrder(searchCode, statusSeach);
-                request.setAttribute("searchCode", searchCode);
-            } else {
-                listODao = odao.getAllOrder();
-                
-            }
-            request.setAttribute("statusSeach", statusSeach);
-            request.setAttribute("listorder", listODao);
+            
+            String phonenumber = request.getParameter("phonenumber");
+            String location = request.getParameter("location");
+            String status = request.getParameter("status");
+            String note = request.getParameter("note");
+            String id = request.getParameter("orderID");
+            
+            OrderDAO oDao = new OrderDAO();
+            OrderDTO order = oDao.getOrderByID(Integer.parseInt(id));
+            order.setPhoneNumber(phonenumber);
+            order.setLocation(location);
+            order.setStatus(status);
+            order.setNote(note);
+            
+            oDao.updateOrder(order);
+            url = SUCCESS;
+            
         } catch (Exception e) {
-            log("Error at HomeController: " + e.toString());
+            log("Error at ProcessAdminOrderController: " + e.toString());
             request.setAttribute("MESSAGE", "Somethings are error...");
         } finally {
-
             request.getRequestDispatcher(url).forward(request, response);
         }
     }

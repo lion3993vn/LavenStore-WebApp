@@ -27,7 +27,7 @@ import lavenstore.users.UserDTO;
  *
  * @author Pham Hieu
  */
-@WebServlet(name = "AdminOrderModify", urlPatterns = {"/AdminOrderModify"})
+@WebServlet(name = "AdminOrderModify", urlPatterns = {"/admin-order-modify"})
 public class AdminOrderModify extends HttpServlet {
 
     /**
@@ -51,7 +51,7 @@ public class AdminOrderModify extends HttpServlet {
             
             //lay order
             OrderDAO oDao = new OrderDAO();
-            OrderDTO order = oDao.getOneOrder(Integer.parseInt(oid));
+            OrderDTO order = oDao.getOrderByID(Integer.parseInt(oid));
             
             //lay ten user
             UserDAO uDao = new UserDAO();

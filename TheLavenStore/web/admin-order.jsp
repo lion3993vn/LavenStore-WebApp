@@ -32,7 +32,7 @@ and open the template in the editor.
             <div class="row">
                 <div class="col-md-2 nav-left">
                     <div class="logo d-flex justify-content-center w-100 mt-3">
-                        <a href="" class="">
+                        <a href="#" class="">
                             <p class="logo-left d-inline-block p-1 m-0">LAVEN STORE</p>
                             <p class="d-inline-block logo-right ms-2">ADMIN</p>
                         </a>
@@ -105,19 +105,23 @@ and open the template in the editor.
                                 </div>
                                 <div class="body-center">
                                     <div class="container-fluid">
-                                        <div class="row">
+                                        <div class="row"><form action="admin-order" method="post">
                                             <div class="col-md-12 d-flex justify-content-start">
                                                 <div class="search-user p-3"><input type="text" class="p-1 ps-3"
-                                                                                    placeholder="Search user"></div>
+                                                                                    placeholder="Search Order Code" name="searchCode"
+                                                                                    value="${requestScope.searchCode}"></div>
                                                 <div class="filter-status p-3">
-                                                    <select name="" id="" class="p-1">
-                                                        <option value="" selected disabled>Status</option>
-                                                        <option value="">Cancelled</option>
-                                                        <option value="">Pending</option>
-                                                        <option value="">Completed</option>
+                                                    <select name="status-search" id="" class="p-1">
+                                                        <option value="" ${requestScope.statusSeach == null ? "selected":""} disabled>Status</option>
+                                                        <option value="CANCELLED" ${requestScope.statusSeach eq "CANCELLED" ? "selected":""}>Cancelled</option>
+                                                        <option value="PENDING" ${requestScope.statusSeach eq "PENDING" ? "selected":""}>Pending</option>
+                                                        <option value="COMPLETED" ${requestScope.statusSeach eq "COMPLETED" ? "selected":""}>Completed</option>
+                                                        <option value="NONE" ${requestScope.statusSeach eq "NONE" ? "selected":""}>None</option>
                                                     </select>
                                                 </div>
-                                            </div>
+                                                <div class="search-user-submit p-3"><input type="submit" class="p-1 px-3"
+                                                                                    value="GO"></div>
+                                            </div></form>
                                             <div class="col-md-12 p-0">
                                                 <table class="w-100 table-body">
                                                     <tr class="table-header">
@@ -176,12 +180,6 @@ and open the template in the editor.
                                                     </c:forEach>
                                                 </table>
                                             </div>
-                                            <div class="col-md-12 d-flex justify-content-end paging p-2">
-                                                <a href="" class="p-2 me-3 active-paging">1</a>
-                                                <a href="" class="p-2 me-3">2</a>
-                                                <a href="" class="p-2 me-3">3</a>
-                                                <a href="" class="p-2 me-3">4</a>
-                                            </div>
                                         </div>
                                     </div>
                                 </div>
@@ -201,7 +199,7 @@ and open the template in the editor.
         <script>
             function formdetails(id){
                 var form = document.createElement('form');
-                form.setAttribute('action', 'AdminOrderModify'); // Chỉnh action
+                form.setAttribute('action', 'admin-order-modify'); // Chỉnh action
                 form.setAttribute('method', 'post'); // Chỉnh method
                 
                 var input = document.createElement('input');
