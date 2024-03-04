@@ -57,6 +57,7 @@
                         <div class="p-2">
                             <table class="w-100 text-center table-product-modal">
                                 <tr class="product-modal-title">
+                                    <td><span class="py-2">ID</span></td>
                                     <td><span class="py-2">Name</span></td>
                                     <td><span class="py-2">Quantity</span></td>
                                     <td class="w-25"><span class="float-start py-2">Price</span></td>
@@ -65,6 +66,7 @@
                                     <tr class="product-modal-list">
                                         <c:forEach items="${requestScope.listproduct}" var="lp">
                                             <c:if test="${lod.productID == lp.ID}">
+                                                <td><span class="py-2">${lp.ID}</span></td>
                                                 <td><span class="py-2">${lp.name}</span></td>
                                             </c:if>
                                         </c:forEach>
@@ -73,8 +75,9 @@
                                     </tr>
                                 </c:forEach>
                                 <tr class="product-modal-title">
-                                    <td><span class="py-2">Total</span></td>
-                                    <td><span class="py-2 text-important">12</span></td>
+                                    <td><span class="py-2"></span></td>
+                                    <td><span class="py-2"style="color: #FFCC33">Total</span></td>
+                                    <td><span class="py-2 text-important">${requestScope.totalQuantity}</span></td>
                                     <td class="w-25"><span class="float-start py-2 text-important"><fmt:formatNumber pattern="#,###" value="${requestScope.order.amount}"/></span></td>
                                 </tr>
                             </table>
@@ -83,16 +86,16 @@
                             <table class="w-100 table-option-modal">
                                 <tr>
                                     <td class="py-2 w-20"><span>Status:</span></td>
-                                    <td class="py-2 w-80"><select name="" id="" class="ps-2">
-                                            <option value="">Cancelled</option>
-                                            <option value="">Pending</option>
-                                            <option value="">Completed</option>
+                                    <td class="py-2 w-80"><select name="" id="" class="ps-2 py-1">
+                                            <option value="CANCELLED" ${(requestScope.order.status == "CANCELLED") ? "selected":""}>Cancelled</option>
+                                            <option value="PENDING" ${(requestScope.order.status == "PENDING") ? "selected":""}>Pending</option>
+                                            <option value="COMPLETED" ${(requestScope.order.status == "COMPLETED") ? "selected":""}>Completed</option>
                                         </select></td>
                                 </tr>
                                 <tr>
                                     <td class="py-2 w-20"><span>Note:</span></td>
                                     <td class="py-2 w-80"><textarea id="myTextarea" name="myTextarea" rows="4" cols="50"
-                                                                    class="w-75 p-2"></textarea></td>
+                                                                    class="w-75 p-2">${requestScope.order.note}</textarea></td>
                                 </tr>
                             </table>
                         </div>
@@ -108,6 +111,7 @@
                 </div>
             </div>
         </div>
+                                
         <script src="./assets/js/bootstrap/bootstrap.bundle.min.js"></script>
         <script src="./assets/js/bootstrap/bootstrap.min.js"></script>
         <script src="./assets/js/bootstrap/bootstrap.esm.min.js"></script>

@@ -62,14 +62,17 @@ public class AdminOrderModify extends HttpServlet {
             List<OrderDetailsDTO> listOrderDetails = deDao.getOrderDetailsByID(Integer.parseInt(oid));
             
             //lay product
+            int totalQuantity = 0;
             ProductDAO pDao = new ProductDAO();
             List<ProductDTO> listProductOrder = new ArrayList<>();
             for (OrderDetailsDTO o : listOrderDetails) {
                 listProductOrder.add(pDao.getProductByID(o.getProductID()));
+                totalQuantity += o.getQuantity();
             }
             
             request.setAttribute("order", order);
             request.setAttribute("user", user);
+            request.setAttribute("totalQuantity", totalQuantity);
             request.setAttribute("listOrderDetails", listOrderDetails);
             request.setAttribute("listproduct", listProductOrder);
         } catch (Exception e) {
