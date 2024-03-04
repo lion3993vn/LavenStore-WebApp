@@ -12,14 +12,14 @@ package lavenstore.orders;
 public class OrderDetailsDTO {
     private int ID;
     private int orderID;
-    private int ProductID;
+    private int productID;
     private int quantity;
     private int price;
 
-    public OrderDetailsDTO(int ID, int orderID, int ProductID, int quantity, int price) {
+    public OrderDetailsDTO(int ID, int orderID, int productID, int quantity, int price) {
         this.ID = ID;
         this.orderID = orderID;
-        this.ProductID = ProductID;
+        this.productID = productID;
         this.quantity = quantity;
         this.price = price;
     }
@@ -44,12 +44,14 @@ public class OrderDetailsDTO {
     }
 
     public int getProductID() {
-        return ProductID;
+        return productID;
     }
 
-    public void setProductID(int ProductID) {
-        this.ProductID = ProductID;
+    public void setProductID(int productID) {
+        this.productID = productID;
     }
+
+
 
     public int getQuantity() {
         return quantity;
