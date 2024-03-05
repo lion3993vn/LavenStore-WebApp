@@ -20,7 +20,7 @@
     <body>
         <!-- banner -->
         <div class="banner container-fluid text-center py-5">
-            <h1 class="banner-title">Boxes</h1>
+            <h1 class="banner-title">${cname}</h1>
             <div class="banner-subtitle">
                 <a class="tab-links" href="HomeController">Home</a>
                 <i class="tab-links fa-solid fa-angle-right"></i>

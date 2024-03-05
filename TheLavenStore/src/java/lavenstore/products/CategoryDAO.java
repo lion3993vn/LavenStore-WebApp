@@ -20,6 +20,7 @@ import lavenstore.utils.DBUtils;
 public class CategoryDAO {
 
     private static final String GET_LIST_CATEGORY = "SELECT * FROM Category";
+    private static final String GET_CATE_NAME_BY_CATEID = "SELECT CateName FROM Category WHERE CateID = ?";
 
     public List<CategoryDTO> getListCategory() {
         Connection conn = null;
@@ -38,6 +39,34 @@ public class CategoryDAO {
         }
         return list;
     }
-    
-    
+
+    public String getCateNameByCateID(int id) throws SQLException {
+        Connection conn = null;
+        PreparedStatement pst = null;
+        ResultSet rs = null;
+        String value = null;
+        
+        try {
+            conn = DBUtils.getConnection();
+            pst = conn.prepareStatement(GET_CATE_NAME_BY_CATEID);
+            pst.setInt(1, id);
+            rs = pst.executeQuery();
+            if (rs.next()) {
+                value = rs.getString("cateName");
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            if (rs != null) {
+                rs.close();
+            }
+            if (pst != null) {
+                pst.close();
+            }
+            if (conn != null) {
+                conn.close();
+            }
+        }
+        return value;
+    }
 }

@@ -1,3 +1,4 @@
+
 package lavenstore.controller;
 
 import java.io.IOException;
@@ -13,16 +14,15 @@ import lavenstore.products.CategoryDTO;
 import lavenstore.products.ProductDAO;
 import lavenstore.products.ProductDTO;
 
-@WebServlet(name = "ShopController", urlPatterns = {"/shop"})
-public class ShopController extends HttpServlet {
-
+@WebServlet(name = "ProcessShopController", urlPatterns = {"/processshop"})
+public class ProcessShopController extends HttpServlet {
     private static final String ERROR = "shop.jsp";
     private static final String SUCCESS = "shop.jsp";
 
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
-        String url = ERROR;
+               String url = ERROR;
         String cid = request.getParameter("cateid");
         String search = request.getParameter("txt");
         String sort = request.getParameter("sortPrice");

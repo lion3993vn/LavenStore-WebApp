@@ -135,7 +135,7 @@ and open the template in the editor.
                                                 </c:forEach>
                                                 
                                                 <tr class="table-content">
-                                                    <td class="p-3 px-4 "><span class="float-start">B${}</span></td>
+                                                    <td class="p-3 px-4 "><span class="float-start">B</span></td>
                                                     <td class="p-3 px-4 "><span class="float-start">Wild</span></td>
                                                     <td class="p-3 px-4 "><span class="float-start">Box</span></td>
                                                     <td class="p-3 px-4 "><span>10</span></td>
