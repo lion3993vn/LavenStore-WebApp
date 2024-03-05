@@ -6,6 +6,7 @@
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
 <!DOCTYPE html>
 <!--
 To change this license header, choose License Headers in Project Properties.
@@ -106,22 +107,22 @@ and open the template in the editor.
                                 <div class="body-center">
                                     <div class="container-fluid">
                                         <div class="row"><form action="admin-order" method="post">
-                                            <div class="col-md-12 d-flex justify-content-start">
-                                                <div class="search-user p-3"><input type="text" class="p-1 ps-3"
-                                                                                    placeholder="Search Order Code" name="searchCode"
-                                                                                    value="${requestScope.searchCode}"></div>
-                                                <div class="filter-status p-3">
-                                                    <select name="status-search" id="" class="p-1">
-                                                        <option value="" ${requestScope.statusSeach == null ? "selected":""} disabled>Status</option>
-                                                        <option value="CANCELLED" ${requestScope.statusSeach eq "CANCELLED" ? "selected":""}>Cancelled</option>
-                                                        <option value="PENDING" ${requestScope.statusSeach eq "PENDING" ? "selected":""}>Pending</option>
-                                                        <option value="COMPLETED" ${requestScope.statusSeach eq "COMPLETED" ? "selected":""}>Completed</option>
-                                                        <option value="NONE" ${requestScope.statusSeach eq "NONE" ? "selected":""}>None</option>
-                                                    </select>
-                                                </div>
-                                                <div class="search-user-submit p-3"><input type="submit" class="p-1 px-3"
-                                                                                    value="GO"></div>
-                                            </div></form>
+                                                <div class="col-md-12 d-flex justify-content-start">
+                                                    <div class="search-user p-3"><input type="text" class="p-1 ps-3"
+                                                                                        placeholder="Search Order Code" name="searchCode"
+                                                                                        value="${requestScope.searchCode}"></div>
+                                                    <div class="filter-status p-3">
+                                                        <select name="status-search" id="" class="p-1">
+                                                            <option value="" ${requestScope.statusSeach == null ? "selected":""} disabled>Status</option>
+                                                            <option value="CANCELLED" ${requestScope.statusSeach eq "CANCELLED" ? "selected":""}>Cancelled</option>
+                                                            <option value="PENDING" ${requestScope.statusSeach eq "PENDING" ? "selected":""}>Pending</option>
+                                                            <option value="COMPLETED" ${requestScope.statusSeach eq "COMPLETED" ? "selected":""}>Completed</option>
+                                                            <option value="NONE" ${requestScope.statusSeach eq "NONE" ? "selected":""}>None</option>
+                                                        </select>
+                                                    </div>
+                                                    <div class="search-user-submit p-3"><input type="submit" class="p-1 px-3"
+                                                                                               value="GO"></div>
+                                                </div></form>
                                             <div class="col-md-12 p-0">
                                                 <table class="w-100 table-body">
                                                     <tr class="table-header">
@@ -149,7 +150,7 @@ and open the template in the editor.
                                                             <td class="p-3 px-4 "><span class="float-start">${o.phoneNumber}</span>
                                                             </td>
                                                             <td class="p-3 px-4 "><span class="float-start">${o.paymentMethod}</span></td>
-                                                            <td class="p-3 px-4 "><span class="float-start">${o.amount}</span></td>
+                                                            <td class="p-3 px-4 "><span class="float-start"><fmt:formatNumber pattern="#,###" value="${o.amount}"/></span></td>
                                                             <td class="p-3 px-4 ">
                                                                 <c:if test="${o.status eq 'COMPLETED'}">
                                                                     <div class="status-order-complete px-1 py-2">
@@ -197,22 +198,22 @@ and open the template in the editor.
         <script src="./assets/js/bootstrap/bootstrap.min.js"></script>
         <script src="./assets/js/bootstrap/bootstrap.esm.min.js"></script>
         <script>
-            function formdetails(id){
-                var form = document.createElement('form');
-                form.setAttribute('action', 'admin-order-modify'); // Chỉnh action
-                form.setAttribute('method', 'post'); // Chỉnh method
-                
-                var input = document.createElement('input');
-                input.setAttribute('type', 'text');
-                input.setAttribute('name', 'orderID');
-                input.value = id;
-                
-                form.appendChild(input);
-                
-                form.style.display = 'none';
-                document.body.appendChild(form);
-                form.submit();
-            }
+                                                                    function formdetails(id) {
+                                                                        var form = document.createElement('form');
+                                                                        form.setAttribute('action', 'admin-order-modify'); // Chỉnh action
+                                                                        form.setAttribute('method', 'post'); // Chỉnh method
+
+                                                                        var input = document.createElement('input');
+                                                                        input.setAttribute('type', 'text');
+                                                                        input.setAttribute('name', 'orderID');
+                                                                        input.value = id;
+
+                                                                        form.appendChild(input);
+
+                                                                        form.style.display = 'none';
+                                                                        document.body.appendChild(form);
+                                                                        form.submit();
+                                                                    }
         </script>
     </body>
 

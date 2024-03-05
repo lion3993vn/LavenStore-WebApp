@@ -79,7 +79,7 @@
                                         <td><span class="py-2"></span></td>
                                         <td><span class="py-2"style="color: #FFCC33">Total</span></td>
                                         <td><span class="py-2 text-important">${requestScope.totalQuantity}</span></td>
-                                        <td class="w-25"><span class="float-start py-2 text-important"><fmt:formatNumber pattern="#,###" value="${requestScope.order.amount}"/></span></td>
+                                        <td class="w-25"><span class="float-start py-2 text-important"><fmt:formatNumber pattern="#,###" value="${requestScope.order.amount}"/> <span style="color: white; font-weight: 200">(25,000 Ship)</span></td>
                                     </tr>
                                 </table>
                             </div>
