@@ -96,7 +96,7 @@
                                     <tr>
                                         <td class="py-2 w-20"><span>Note:</span></td>
                                         <td class="py-2 w-80"><textarea id="myTextarea" name="note" rows="4" cols="50"
-                                                                        class="w-75 p-2">${requestScope.order.note}</textarea></td>
+                                                                        class="w-75 p-2" style="resize: none;">${requestScope.order.note}</textarea></td>
                                     </tr>
                                 </table>
                             </div>

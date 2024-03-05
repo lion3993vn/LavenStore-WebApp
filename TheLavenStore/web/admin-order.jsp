@@ -198,22 +198,22 @@ and open the template in the editor.
         <script src="./assets/js/bootstrap/bootstrap.min.js"></script>
         <script src="./assets/js/bootstrap/bootstrap.esm.min.js"></script>
         <script>
-                                                                    function formdetails(id) {
-                                                                        var form = document.createElement('form');
-                                                                        form.setAttribute('action', 'admin-order-modify'); // Chỉnh action
-                                                                        form.setAttribute('method', 'post'); // Chỉnh method
+            function formdetails(id) {
+                var form = document.createElement('form');
+                form.setAttribute('action', 'admin-order-modify'); // Chỉnh action
+                form.setAttribute('method', 'post'); // Chỉnh method
 
-                                                                        var input = document.createElement('input');
-                                                                        input.setAttribute('type', 'text');
-                                                                        input.setAttribute('name', 'orderID');
-                                                                        input.value = id;
+                var input = document.createElement('input');
+                input.setAttribute('type', 'text');
+                input.setAttribute('name', 'orderID');
+                input.value = id;
 
-                                                                        form.appendChild(input);
+                form.appendChild(input);
 
-                                                                        form.style.display = 'none';
-                                                                        document.body.appendChild(form);
-                                                                        form.submit();
-                                                                    }
+                form.style.display = 'none';
+                document.body.appendChild(form);
+                form.submit();
+            }
         </script>
     </body>
 
