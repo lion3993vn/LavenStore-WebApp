@@ -9,6 +9,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import javax.naming.NamingException;
 import lavenstore.utils.DBUtils;
 
 /**
@@ -18,6 +19,7 @@ import lavenstore.utils.DBUtils;
 public class UserDAO {
 
     private static final String GET_ONE_USER = "SELECT * FROM USERS WHERE ID = ?";
+    private static final String UPDATE_USER = "UPDATE [dbo].[Users] SET [Username] = ? ,[Password] = ? ,[Email] = ? ,[Role] = ? ,[Fullname] = ? ,[PhoneNumber] = ? ,[Address] = ? WHERE id = ?";
 
     public UserDTO getOneUser(int ID) throws SQLException {
         UserDTO user = null;
@@ -29,7 +31,7 @@ public class UserDAO {
             ps = conn.prepareStatement(GET_ONE_USER);
             ps.setInt(1, ID);
             rs = ps.executeQuery();
-            if (rs.next()){
+            if (rs.next()) {
                 String userName = rs.getString("userName");
                 String password = rs.getString("password");
                 String email = rs.getString("email");
@@ -41,11 +43,48 @@ public class UserDAO {
             }
         } catch (Exception e) {
             e.printStackTrace();
-        } finally{
-            if (rs != null) rs.close();
-            if (ps != null) ps.close();
-            if (conn != null) conn.close();
+        } finally {
+            if (rs != null) {
+                rs.close();
+            }
+            if (ps != null) {
+                ps.close();
+            }
+            if (conn != null) {
+                conn.close();
+            }
         }
         return user;
-    }   
+    }
+
+    public boolean update(UserDTO newUser) throws SQLException, ClassNotFoundException, NamingException {
+        boolean check = false;
+        Connection conn = null;
+        PreparedStatement ptm = null;
+        try {
+            conn = DBUtils.getConnection();
+            if (conn != null) {
+                ptm = conn.prepareStatement(UPDATE_USER);
+                ptm.setString(1, newUser.getUserName());
+                ptm.setString(2, newUser.getPassword());
+                ptm.setString(3, newUser.getEmail());
+                ptm.setString(4, "user");
+                ptm.setString(5, newUser.getFullName());
+                ptm.setString(6, newUser.getPhoneNumber());
+                ptm.setString(7, newUser.getAddress());
+                ptm.setInt(8, newUser.getID());
+                check = ptm.executeUpdate() > 0 ? true : false;
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            if (ptm != null) {
+                ptm.close();
+            }
+            if (conn != null) {
+                conn.close();
+            }
+        }
+        return check;
+    }
 }

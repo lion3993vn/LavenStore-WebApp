@@ -6,6 +6,7 @@
 package lavenstore.controller;
 
 import java.io.IOException;
+import java.io.PrintWriter;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 import javax.servlet.ServletException;
@@ -19,10 +20,10 @@ import lavenstore.users.UserDTO;
 
 /**
  *
- * @author Kudo
+ * @author huyhu
  */
-@WebServlet(name = "ProfileUserControll", urlPatterns = {"/profile"})
-public class ProfileUserController extends HttpServlet {
+@WebServlet(name = "ProfileUpdateController", urlPatterns = {"/profile-update"})
+public class ProfileUpdateController extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -35,15 +36,30 @@ public class ProfileUserController extends HttpServlet {
      */
     private static final String ERROR = "profile";
     private static final String SUCCESS = "profile";
+
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         try {
-            UserDAO dao = new UserDAO();
-            UserDTO account = dao.getOneUser(1);
-            HttpSession session = request.getSession();
-            session.setAttribute("account", account);
-
+            //process
+            HttpSession session = request.getSession(false);
+            UserDAO u = new UserDAO();
             UserDTO user = (UserDTO) session.getAttribute("account");
+            boolean isValidPhone = false;
+            String fullname = request.getParameter("fullname");
+            String phone = request.getParameter("phone");
+            String regex = "^1?(\\d{10})$";
+            Pattern pattern = Pattern.compile(regex);
+            Matcher matcher = pattern.matcher(phone);
+            if (matcher.matches() || phone == null) {
+                isValidPhone = true;
+            } else {
+                request.setAttribute("errorPhone","Số điện thoại không hợp lệ!");
+            }
+            if (isValidPhone){
+                user.setPhoneNumber(phone);
+            }
+            user.setFullName(fullname);
+            u.update(user);
         } catch (Exception e) {
             log("Error at ProfileUserController: " + e.toString());
             request.setAttribute("MESSAGE", "Somethings are error...");
