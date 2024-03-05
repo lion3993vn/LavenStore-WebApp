@@ -34,7 +34,7 @@ Customer and administrator can use this web
 #### Screen-shots
 
 - HomePage
-![The LAVEN STORE](https://cdn.discordapp.com/attachments/1202620106140680202/1202620593791311922/Home.png)
+![The LAVEN STORE](https://cdn.discordapp.com/attachments/1202620106140680202/1202620593791311922/Home.png?ex=65f308b5&is=65e093b5&hm=97cb8b734f59720a0dc80f021e4590a5a823634745c6016c21250c2f372f8355&)
 - Category
 ![The LAVEN STORE](https://cdn.discordapp.com/attachments/1202620106140680202/1202621225332117504/Shop.png?ex=65e9cecb&is=65d759cb&hm=3d67da21a362e3fa4bbbc8320663f57877cbcda4b4651352cd0d46808e33f7bc&)
 - Wishlist
