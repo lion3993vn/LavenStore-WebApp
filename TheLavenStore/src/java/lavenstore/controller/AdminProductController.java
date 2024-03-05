@@ -1,8 +1,4 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+
 package lavenstore.controller;
 
 import java.io.IOException;
@@ -13,32 +9,27 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import lavenstore.products.CategoryDTO;
 import lavenstore.products.ProductDAO;
 import lavenstore.products.ProductDTO;
 
-/**
- *
- * @author camsa
- */
-@WebServlet(name = "DetailControl", urlPatterns = {"/detail"})
-public class DetailController extends HttpServlet {
+@WebServlet(name = "ProductController", urlPatterns = {"/ProductController"})
+public class ProductController extends HttpServlet {
 
-    private static final String ERROR = "product.jsp";
-    private static final String SUCCESS = "product.jsp";
+
+    private static final String ERROR = "admin-product.jsp";
+    private static final String SUCCESS = "admin-product.jsp";
 
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         String url = ERROR;
         try {
-            String id = request.getParameter("pid");
             ProductDAO dao = new ProductDAO();
-            ProductDTO p = dao.getProductByID(id);
-            request.setAttribute("detail", p);
+            List<ProductDTO> list = dao.getListProduct();
+            request.setAttribute("list", list);
             url = SUCCESS;
         } catch (Exception e) {
-            log("Error at DetailController: " + e.toString());
+            log("Error at HomeController: " + e.toString());
             request.setAttribute("MESSAGE", "Somethings are error...");
         } finally {
             request.getRequestDispatcher(url).forward(request, response);
