@@ -45,7 +45,9 @@
                                 </tr>
                                 <tr>
                                     <td class="p-2">Phone Number: </td>
-                                    <td colspan="3" class="p-2"><input type="text" name="phonenumber" id="" class="w-50 ps-2 py-1" value="${requestScope.order.phoneNumber}"></td>
+                                    <td class="p-2"><input type="text" name="phonenumber" id="" class="w-100 ps-2 py-1" value="${requestScope.order.phoneNumber}"></td>
+                                    <td class="p-2">Payment Date: </td>
+                                    <td class="p-2 w-25">${requestScope.order.paymentDate}</td>
                                 </tr>
                                 <tr>
                                     <td class="p-2">Location: </td>

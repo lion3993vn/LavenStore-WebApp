@@ -7,6 +7,7 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
+<%@taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn"%>
 <!DOCTYPE html>
 <!--
 To change this license header, choose License Headers in Project Properties.
@@ -146,7 +147,12 @@ and open the template in the editor.
                                                                     </c:if>
                                                                 </c:forEach>
                                                             <td class="p-3 px-4 "><span class="float-start">${o.date}</span></td>
-                                                            <td class="p-3 px-4 "><span class="float-start">${o.location}</span></td>
+                                                            <td class="p-3 px-4 "><span class="float-start"><c:choose>
+                                                                        <c:when test="${fn:length(o.location) <= 8}">${o.location}
+                                                                        </c:when>
+                                                                        <c:otherwise>${fn:substring(o.location, 0, 8)}...
+                                                                        </c:otherwise>
+                                                                    </c:choose></span></td>
                                                             <td class="p-3 px-4 "><span class="float-start">${o.phoneNumber}</span>
                                                             </td>
                                                             <td class="p-3 px-4 "><span class="float-start">${o.paymentMethod}</span></td>
@@ -198,22 +204,22 @@ and open the template in the editor.
         <script src="./assets/js/bootstrap/bootstrap.min.js"></script>
         <script src="./assets/js/bootstrap/bootstrap.esm.min.js"></script>
         <script>
-            function formdetails(id) {
-                var form = document.createElement('form');
-                form.setAttribute('action', 'admin-order-modify'); // Chỉnh action
-                form.setAttribute('method', 'post'); // Chỉnh method
+                                                                    function formdetails(id) {
+                                                                        var form = document.createElement('form');
+                                                                        form.setAttribute('action', 'admin-order-modify'); // Chỉnh action
+                                                                        form.setAttribute('method', 'post'); // Chỉnh method
 
-                var input = document.createElement('input');
-                input.setAttribute('type', 'text');
-                input.setAttribute('name', 'orderID');
-                input.value = id;
+                                                                        var input = document.createElement('input');
+                                                                        input.setAttribute('type', 'text');
+                                                                        input.setAttribute('name', 'orderID');
+                                                                        input.value = id;
 
-                form.appendChild(input);
+                                                                        form.appendChild(input);
 
-                form.style.display = 'none';
-                document.body.appendChild(form);
-                form.submit();
-            }
+                                                                        form.style.display = 'none';
+                                                                        document.body.appendChild(form);
+                                                                        form.submit();
+                                                                    }
         </script>
     </body>
 
