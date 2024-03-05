@@ -20,6 +20,8 @@ public class ProductDAO {
     private static final String GET_DELETE_PRODUCT = "delete from Product where ID = ?";
     private static final String GET_LIST_PRODUCT_BY_CATEID = "SELECT * FROM Product WHERE CateID = ?";
     private static final String GET_PRODUCT_BY_ID = "SELECT * FROM Product WHERE ID = ?";
+    private static final String GET_LIST_PRODUCT_BY_SEARCH = "SELECT * FROM Product WHERE CateID = ? and [name] like ?";
+    private static String GET_LIST_PRODUCT_SORT_BY_PRICE = "select * from Product WHERE CateID = ? order by Price ?";
 
     public List<ProductDTO> getListProduct() throws SQLException {
         Connection conn = null;
@@ -95,7 +97,7 @@ public class ProductDAO {
         return list;
     }
 
-    public List<ProductDTO> getListByCateId(int id) {
+    public List<ProductDTO> getListByCateId(int id) throws SQLException {
         Connection conn = null;
         PreparedStatement pst = null;
         ResultSet rs = null;
@@ -110,16 +112,26 @@ public class ProductDAO {
             }
         } catch (Exception e) {
             e.printStackTrace();
+        } finally {
+            if (rs != null) {
+                rs.close();
+            }
+            if (pst != null) {
+                pst.close();
+            }
+            if (conn != null) {
+                conn.close();
+            }
         }
         return list;
     }
 
-    public ProductDTO getProductByID(String id) {
+    public ProductDTO getProductByID(String id) throws SQLException {
         Connection conn = null;
         PreparedStatement pst = null;
         ResultSet rs = null;
         try {
-            conn = new DBUtils().getConnection();
+            conn = DBUtils.getConnection();
             pst = conn.prepareStatement(GET_PRODUCT_BY_ID);
             pst.setString(1, id);
             rs = pst.executeQuery();
@@ -128,11 +140,68 @@ public class ProductDAO {
             }
         } catch (Exception e) {
             e.printStackTrace();
+        } finally {
+            if (rs != null) {
+                rs.close();
+            }
+            if (pst != null) {
+                pst.close();
+            }
+            if (conn != null) {
+                conn.close();
+            }
         }
         return null;
     }
 
-    public List<CategoryDTO> getListCategory() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public List<ProductDTO> getListBySearch(String search) throws SQLException {
+        Connection conn = null;
+        PreparedStatement pst = null;
+        ResultSet rs = null;
+        List<ProductDTO> list = new ArrayList<>();
+        try {
+            conn = DBUtils.getConnection();
+            pst = conn.prepareStatement(GET_LIST_PRODUCT_BY_SEARCH);
+
+            pst.setString(1, "%" + search + "%");
+            rs = pst.executeQuery();
+            while (rs.next()) {
+
+                list.add(new ProductDTO(rs.getInt("ID"), rs.getString("Name"), rs.getInt("CateID"), rs.getInt("Quantity"), rs.getInt("Price"), rs.getFloat("Rating"), rs.getString("Description"), rs.getString("Image")));
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            if (rs != null) {
+                rs.close();
+            }
+            if (pst != null) {
+                pst.close();
+            }
+            if (conn != null) {
+                conn.close();
+            }
+        }
+        return list;
+    }
+
+    public List<ProductDTO> listSortByPrice(int id, String sortCol) throws ClassNotFoundException {
+        Connection conn = null;
+        PreparedStatement pst = null;
+        ResultSet rs = null;
+        List<ProductDTO> list = new ArrayList<>();
+        try {
+            conn = DBUtils.getConnection();
+            pst = conn.prepareStatement(GET_LIST_PRODUCT_SORT_BY_PRICE);
+            pst.setInt(1, id);
+            pst.setString(2, sortCol);
+            rs = pst.executeQuery();
+            while (rs.next()) {
+                list.add(new ProductDTO(rs.getInt("ID"), rs.getString("Name"), rs.getInt("CateID"), rs.getInt("Quantity"), rs.getInt("Price"), rs.getFloat("Rating"), rs.getString("Description"), rs.getString("Image")));
+            }
+        } catch (SQLException ex) {
+            ex.printStackTrace();
+        }
+        return list;
     }
 }

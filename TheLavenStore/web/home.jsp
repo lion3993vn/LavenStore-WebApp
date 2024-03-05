@@ -23,8 +23,7 @@ and open the template in the editor.
     </head>
 
     <body>
-        <jsp:include page="header.jsp"></jsp:include>
-        <div class="banner container-fluid py-5" style="margin-top: 56.8px">
+        <div class="banner container-fluid py-5">
             <div class="row">
                 <div class="col-md-12 d-flex justify-content-center">
                     <table>
@@ -56,7 +55,7 @@ and open the template in the editor.
                                 <div class="item-sell">
                                     <div class="img-item text-center position-relative">
                                         <a href="detail?pid=${i.ID}"><img src="${i.image}" alt="" class="w-100"></a>
-                                        <a href="" class="addcart position-absolute start-50 translate-middle">ADD TO CART</a>
+                                        <a href="addtocart?id= &num=" class="addcart position-absolute start-50 translate-middle">ADD TO CART</a>
                                     </div>
                                     <div class="info-item text-center">
                                         <a href="detail?pid=${i.ID}">${i.name}</a>

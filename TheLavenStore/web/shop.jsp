@@ -52,20 +52,22 @@
                                 </a>
                                 <ul class="dropdown-menu">
                                     <li>
-                                        <a class="dropdown-item" href="#">Mặc định</a>
+                                        <a class="dropdown-item" href="shop?cateid=${requestScope.list.cateID}&sortPrice=null">Mặc định</a>
                                     </li>
                                     <li>
-                                        <a class="dropdown-item" href="#">Cao đến thấp</a>
+                                        <a class="dropdown-item" href="shop?cateid=${list}&sortPrice=null">Cao đến thấp</a>
                                     </li>
                                     <li>
-                                        <a class="dropdown-item" href="#">Thấp đến cao</a>
+                                        <a class="dropdown-item" href="shop?cateid=${list}&sortPrice=acs">Thấp đến cao</a>
                                     </li>
                                 </ul>
                             </div>
                         </li>
                     </ul>
-                    <form class="form-inline col-md-2 justify-content-center">
+                    <form action="shop" method="post" class="form-inline col-md-2 justify-content-center">
                         <input
+                            name="txt"
+                            value="${search}"
                             class="form-control mr-sm-2 border border-dark rounded-0"
                             type="search"
                             placeholder="Search"
@@ -84,7 +86,7 @@
                             <div class="item-sell">
                                 <div class="img-item text-center position-relative">
                                     <a href="detail?pid=${i.ID}"><img src="${i.image}" alt="" class="w-100"></a>
-                                    <a href="" class="addcart-bestseller position-absolute start-50 translate-middle">ADD TO CART</a>
+                                    <a href="addtocart?id= &num=" class="addcart-bestseller position-absolute start-50 translate-middle">ADD TO CART</a>
                                 </div>
                                 <div class="info-item text-center">
                                     <a href="detail?pid=${i.ID}">${i.name}</a>

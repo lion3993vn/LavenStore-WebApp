@@ -13,7 +13,7 @@ import lavenstore.products.ProductDAO;
 import lavenstore.products.ProductDTO;
 
 @WebServlet(name = "ProductController", urlPatterns = {"/ProductController"})
-public class ProductController extends HttpServlet {
+public class AdminProductController extends HttpServlet {
 
 
     private static final String ERROR = "admin-product.jsp";

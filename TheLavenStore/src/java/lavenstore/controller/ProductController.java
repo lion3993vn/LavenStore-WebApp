@@ -13,6 +13,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import lavenstore.products.CategoryDAO;
 import lavenstore.products.CategoryDTO;
 import lavenstore.products.ProductDAO;
 import lavenstore.products.ProductDTO;
@@ -22,7 +23,7 @@ import lavenstore.products.ProductDTO;
  * @author camsa
  */
 @WebServlet(name = "DetailControl", urlPatterns = {"/detail"})
-public class DetailController extends HttpServlet {
+public class ProductController extends HttpServlet {
 
     private static final String ERROR = "product.jsp";
     private static final String SUCCESS = "product.jsp";
@@ -34,8 +35,11 @@ public class DetailController extends HttpServlet {
         try {
             String id = request.getParameter("pid");
             ProductDAO dao = new ProductDAO();
+            CategoryDAO dao2 = new CategoryDAO();
             ProductDTO p = dao.getProductByID(id);
+            String cname = dao2.getCateNameByCateID(p.getCateID());
             request.setAttribute("detail", p);
+            request.setAttribute("cname", cname);
             url = SUCCESS;
         } catch (Exception e) {
             log("Error at DetailController: " + e.toString());
