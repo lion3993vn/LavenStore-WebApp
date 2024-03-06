@@ -85,7 +85,7 @@ public class Cart {
             }
         }
         }catch(Exception e){
-            
+            e.printStackTrace();
         }
         
     }

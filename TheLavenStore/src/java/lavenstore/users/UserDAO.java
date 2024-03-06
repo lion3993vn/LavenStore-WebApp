@@ -20,6 +20,7 @@ import lavenstore.utils.DBUtils;
 public class UserDAO {
     private static final String GET_ALL_USERID_USERNAME = "SELECT ID, UserName FROM Users";
     private static final String GET_ONE_USERID_USERNAME = "SELECT ID, UserName FROM Users WHERE ID = ?";
+    private static final String GET_USER_BY_ID = "SELECT * FROM Users WHERE ID = ?";
     
     public List<UserDTO> getAllUserTwoInfo() throws SQLException{
         Connection conn = null;
@@ -44,6 +45,7 @@ public class UserDAO {
         }
         return list;
     }
+    
     public UserDTO getOneUserTwoInfo(int id) throws SQLException{
         Connection conn = null;
         UserDTO user = null;
@@ -58,6 +60,37 @@ public class UserDAO {
                 int userID = rs.getInt("ID");
                 String userName = rs.getString("Username");
                 user = new UserDTO(userID, userName, null, null, null, null, null, null);
+            }
+        }catch(Exception e){
+            e.printStackTrace();
+        }finally {
+            if (rs != null) rs.close();
+            if (psm != null) psm.close();
+            if (conn != null) conn.close();
+        }
+        return user;
+    }
+    
+    public UserDTO getUserByID(int id) throws SQLException{
+        Connection conn = null;
+        UserDTO user = null;
+        PreparedStatement psm = null;
+        ResultSet rs = null;
+        try{
+            conn = DBUtils.getConnection();
+            psm = conn.prepareStatement(GET_USER_BY_ID);
+            psm.setInt(1, id);
+            rs = psm.executeQuery();
+            if(rs.next()){
+                int userID = rs.getInt("ID");
+                String userName = rs.getString("Username");
+                String password = rs.getString("Password");
+                String email = rs.getString("Email");
+                String role = rs.getString("Role");
+                String fullname = rs.getString("FullName");
+                String phoneNumber = rs.getString("phoneNumber");
+                String address = rs.getString("Address");
+                user = new UserDTO(id, userName, password, email, role, fullname, phoneNumber, address);
             }
         }catch(Exception e){
             e.printStackTrace();
