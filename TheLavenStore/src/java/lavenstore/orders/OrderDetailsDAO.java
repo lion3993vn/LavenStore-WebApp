@@ -10,7 +10,6 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 import lavenstore.utils.DBUtils;
 
@@ -19,10 +18,11 @@ import lavenstore.utils.DBUtils;
  * @author Pham Hieu
  */
 public class OrderDetailsDAO {
-    
+
     private static final String GET_ORDER_DETAILS_BY_ID = "SELECT * FROM OrderDetail WHERE OrderID = ?";
-    
-    public List<OrderDetailsDTO> getOrderDetailsByID(int id) throws SQLException{
+    private static final String INSERT_ORDER_DETAILS = "INSERT INTO [dbo].[OrderDetail] ([OrderID],[ProductID],[Quantity],[Price]) VALUES (?,?,?,?)";
+
+    public List<OrderDetailsDTO> getOrderDetailsByID(int id) throws SQLException {
         Connection conn = null;
         PreparedStatement psm = null;
         List<OrderDetailsDTO> list = new ArrayList<>();
@@ -54,5 +54,30 @@ public class OrderDetailsDAO {
             }
         }
         return list;
+    }
+    
+    public boolean insertOrderDetails(ItemCart ic, int orderID) throws SQLException {
+        Connection conn = null;
+        PreparedStatement psm = null;
+        boolean check = false;
+        try {
+            conn = DBUtils.getConnection();
+            psm = conn.prepareStatement(INSERT_ORDER_DETAILS);
+            psm.setInt(1, orderID);
+            psm.setInt(2, ic.getProduct().getID());
+            psm.setInt(3, ic.getQuantity());
+            psm.setInt(4, ic.getPrice());
+            check = psm.executeUpdate() > 0 ? true : false;
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            if (psm != null) {
+                psm.close();
+            }
+            if (conn != null) {
+                conn.close();
+            }
+        }
+        return check;
     }
 }

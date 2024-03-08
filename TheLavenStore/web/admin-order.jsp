@@ -146,7 +146,7 @@ and open the template in the editor.
                                                                     <td class="p-3 px-4"><span class="float-start">${u.userName}</span></td>
                                                                     </c:if>
                                                                 </c:forEach>
-                                                            <td class="p-3 px-4 "><span class="float-start">${o.date}</span></td>
+                                                            <td class="p-3 px-4 "><span class="float-start"><fmt:formatDate value="${o.date}" pattern="dd/MM/yyyy HH:mm:ss"/></span></td>
                                                             <td class="p-3 px-4 "><span class="float-start"><c:choose>
                                                                         <c:when test="${fn:length(o.location) <= 8}">${o.location}
                                                                         </c:when>

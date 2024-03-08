@@ -9,6 +9,8 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Timestamp;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -22,7 +24,7 @@ import lavenstore.utils.DBUtils;
 public class OrderDAO {
 
     private static final String GET_ALL_ORDER = "SELECT * FROM [Order]";
-    private static final String GET_ONE_ORDER = "SELECT * FROM [Order] where ID = ?";
+    private static final String GET_ONE_ORDER = "SELECT * FROM [Order] WHERE ID = ?";
     private static final String UPDATE_ORDER = "UPDATE [Order]"
             + "SET   [Location] = ?"
             + "      ,[PhoneNumber] = ?"
@@ -31,6 +33,11 @@ public class OrderDAO {
             + " WHERE ID = ?";
     private static final String REQUIRE_SEARCH_CODE = "OrderCode LIKE ?";
     private static final String REQUIRE_SEARCH_STATUS = "Status = ?";
+    private static final String INSERT_ORDER = "INSERT INTO [dbo].[Order]"
+            + "           ([UserID],[Date],[PaymentDate],[PaymentMethod],"
+            + "		   [Location],[PhoneNumber],[Price],[Status],[OrderCode],[Note])"
+            + "            VALUES (?,?,?,?,?,?,?,?,?,?)";
+    private static final String GET_ORDER_BY_ORDER_CODE = "SELECT * FROM [Order] WHERE OrderCode = ?";
     
     public List<OrderDTO> getAllOrder() throws SQLException {
         Connection conn = null;
@@ -44,8 +51,8 @@ public class OrderDAO {
             while (rs.next()) {
                 int ID = rs.getInt("ID");
                 int userID = rs.getInt("UserID");
-                Date date = rs.getDate("Date");
-                Date paymentDate = rs.getDate("PaymentDate");
+                Timestamp date = rs.getTimestamp("Date");
+                Timestamp paymentDate = rs.getTimestamp("PaymentDate");
                 String paymentMethod = rs.getString("PaymentMethod");
                 String location = rs.getString("Location");
                 String phoneNumber = rs.getString("PhoneNumber");
@@ -84,8 +91,8 @@ public class OrderDAO {
             if (rs.next()) {
                 int ID = rs.getInt("ID");
                 int userID = rs.getInt("UserID");
-                Date date = rs.getDate("Date");
-                Date paymentDate = rs.getDate("PaymentDate");
+                Timestamp date = rs.getTimestamp("Date");
+                Timestamp paymentDate = rs.getTimestamp("PaymentDate");
                 String paymentMethod = rs.getString("PaymentMethod");
                 String location = rs.getString("Location");
                 String phoneNumber = rs.getString("PhoneNumber");
@@ -141,26 +148,26 @@ public class OrderDAO {
         }
         return check;
     }
-    
+
     public List<OrderDTO> searchOrder(String oCode, String oStatus) throws SQLException {
         Connection conn = null;
         List<OrderDTO> list = new ArrayList<>();
         PreparedStatement psm = null;
         ResultSet rs = null;
-        if(oStatus.equals("NONE")){
+        if (oStatus.equals("NONE")) {
             oStatus = "";
         }
         try {
             conn = DBUtils.getConnection();
-            if(!oCode.equals("") && !oStatus.equals("")){
+            if (!oCode.equals("") && !oStatus.equals("")) {
                 psm = conn.prepareStatement(GET_ALL_ORDER + " WHERE " + REQUIRE_SEARCH_CODE + " AND " + REQUIRE_SEARCH_STATUS);
                 System.out.println(GET_ALL_ORDER + " WHERE " + REQUIRE_SEARCH_CODE + " AND " + REQUIRE_SEARCH_STATUS);
-                psm.setString(1, oCode+"%");
+                psm.setString(1, oCode + "%");
                 psm.setString(2, oStatus);
-            } else if(!oCode.equals("") && oStatus.equals("")){
+            } else if (!oCode.equals("") && oStatus.equals("")) {
                 psm = conn.prepareStatement(GET_ALL_ORDER + " WHERE " + REQUIRE_SEARCH_CODE);
-                psm.setString(1, oCode+"%");
-            } else if(oCode.equals("") && !oStatus.equals("")){
+                psm.setString(1, oCode + "%");
+            } else if (oCode.equals("") && !oStatus.equals("")) {
                 psm = conn.prepareStatement(GET_ALL_ORDER + " WHERE " + REQUIRE_SEARCH_STATUS);
                 psm.setString(1, oStatus);
             }
@@ -168,8 +175,8 @@ public class OrderDAO {
             while (rs.next()) {
                 int ID = rs.getInt("ID");
                 int userID = rs.getInt("UserID");
-                Date date = rs.getDate("Date");
-                Date paymentDate = rs.getDate("PaymentDate");
+                Timestamp date = rs.getTimestamp("Date");
+                Timestamp paymentDate = rs.getTimestamp("PaymentDate");
                 String paymentMethod = rs.getString("PaymentMethod");
                 String location = rs.getString("Location");
                 String phoneNumber = rs.getString("PhoneNumber");
@@ -193,5 +200,82 @@ public class OrderDAO {
             }
         }
         return list;
+    }
+
+    public int insertOrder(OrderDTO o) throws SQLException {
+        Connection conn = null;
+        OrderDTO order = null;
+        PreparedStatement psm = null;
+        boolean check = false;
+        int orderID = 0;
+        try {
+            conn = DBUtils.getConnection();
+            psm = conn.prepareStatement(INSERT_ORDER);
+
+            psm.setInt(1, o.getUserID());
+            psm.setTimestamp(2, o.getDate());
+            psm.setTimestamp(3, o.getPaymentDate());
+            psm.setString(4, o.getPaymentMethod());
+            psm.setString(5, o.getLocation());
+            psm.setString(6, o.getPhoneNumber());
+            psm.setInt(7, o.getAmount());
+            psm.setString(8, o.getStatus());
+            psm.setString(9, o.getOrderCode());
+            psm.setString(10, o.getNote());
+
+            int row = psm.executeUpdate();
+
+            if (row > 0) {
+                // Lấy giá trị tự động tăng được tạo ra
+                try (ResultSet generatedKeys = psm.getGeneratedKeys()) {
+                    if (generatedKeys.next()) {
+                        orderID = generatedKeys.getInt(1);
+                    }
+                }
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            if (psm != null) {
+                psm.close();
+            }
+            if (conn != null) {
+                conn.close();
+            }
+        }
+        return orderID;
+    }
+
+    public OrderDTO getOrderByOrderCode(String orderCode) throws SQLException {
+        Connection conn = null;
+        OrderDTO order = null;
+        PreparedStatement psm = null;
+        boolean check = false;
+        int orderID = 0;
+        try {
+            conn = DBUtils.getConnection();
+            psm = conn.prepareStatement(GET_ORDER_BY_ORDER_CODE);
+
+            int row = psm.executeUpdate();
+
+            if (row > 0) {
+                // Lấy giá trị tự động tăng được tạo ra
+                try (ResultSet generatedKeys = psm.getGeneratedKeys()) {
+                    if (generatedKeys.next()) {
+                        orderID = generatedKeys.getInt(1);
+                    }
+                }
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            if (psm != null) {
+                psm.close();
+            }
+            if (conn != null) {
+                conn.close();
+            }
+        }
+        return orderID;
     }
 }

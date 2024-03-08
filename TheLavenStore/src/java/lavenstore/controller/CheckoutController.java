@@ -45,14 +45,7 @@ public class CheckoutController extends HttpServlet {
         response.setContentType("text/html;charset=UTF-8");
         String url = ERROR;
         try {
-            
-            //gia su dang nhap
-            HttpSession session = request.getSession();
-            UserDAO udao = new UserDAO();
-            UserDTO user = udao.getUserByID(3);
-            session.setAttribute("account", user);
-            //
-            
+            String error = request.getParameter("error3");
             ProductDAO pdao = new ProductDAO();
             List<ProductDTO> list = pdao.getAllProduct();
             Cookie[] listCookies = request.getCookies();
