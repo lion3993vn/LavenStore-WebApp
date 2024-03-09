@@ -66,7 +66,7 @@ public class OrderDetailsDAO {
             psm.setInt(1, orderID);
             psm.setInt(2, ic.getProduct().getID());
             psm.setInt(3, ic.getQuantity());
-            psm.setInt(4, ic.getPrice());
+            psm.setInt(4, ic.getPrice() * ic.getQuantity());
             check = psm.executeUpdate() > 0 ? true : false;
         } catch (Exception e) {
             e.printStackTrace();

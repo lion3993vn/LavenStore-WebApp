@@ -97,6 +97,11 @@
                                                 <td class="py-1 text-center w-15"><span class="Dongle text-center" style="color: #FF0000;">${requestScope['error'.concat(o.product.ID)]}</span></td>
                                             </tr>
                                         </c:forEach>
+                                        <c:if test="${requestScope.error == 1}">
+                                            <tr style="border-top: 1px solid black;">
+                                                <td class="w-20 py-3" style=""><div class="p-3 text-center" style="background-color: rgb(245, 245, 245); border-radius: 10px"><a href="#" style="text-decoration: none; color: #FF0000; font-weight: 600">Quay về Cart</a></div></td>
+                                        </tr>
+                                        </c:if>
                                     </table>
                                 </div>
                             </div>

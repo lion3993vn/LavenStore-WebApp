@@ -6,7 +6,6 @@
 package lavenstore.controller;
 
 import java.io.IOException;
-import java.io.PrintWriter;
 import java.sql.Timestamp;
 import java.util.List;
 import javax.servlet.ServletException;
@@ -16,6 +15,8 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+import lavenstore.email.BillEmail;
+import lavenstore.email.Email;
 import lavenstore.orders.Cart;
 import lavenstore.orders.ItemCart;
 import lavenstore.orders.OrderDAO;
@@ -45,6 +46,8 @@ public class PaymentController extends HttpServlet {
      */
     private static final String ERROR = "checkout";
     private static final String SUCCESS = "";
+    private static final String PENDING = "payment-pending.jsp";
+    private static final String EMAIL_SUBJECT = "[TheLavenStore] Electronic Invoice #";
 
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
@@ -83,45 +86,78 @@ public class PaymentController extends HttpServlet {
                 }
             }
             if (error) {
-                request.getRequestDispatcher(url).forward(request, response);
+                request.setAttribute("error", 1);
+                return;
             }
-            
+
             //tao don hang
             HttpSession session = request.getSession(false);
             UserDTO user = (UserDTO) session.getAttribute("account");
+
+            //tao moi doi tuong
+            OrderDAO oDao = new OrderDAO();
+            OrderDTO order = new OrderDTO();
+
+            //tao ordercode
             String orderCode = Config.getRandomNumber(6);
-            
+            while (oDao.getOrderByOrderCode(orderCode) != null) {
+                orderCode = Config.getRandomNumber(6);
+            }
+
+            //lay thoi gian hien tai
+            long currentTimeMillis = System.currentTimeMillis();
+            Timestamp currentTimestamp = new Timestamp(currentTimeMillis);
+
+            //set thuoc tinh
+            order.setUserID(user.getID());
+            order.setDate(currentTimestamp);
+            order.setLocation(address);
+            order.setPhoneNumber(phoneNumber);
+            order.setAmount(cart.getTotalInCart() + 25000);
+            order.setOrderCode(orderCode);
+            order.setNote(note);
+
             //payment check
             if (payment.equals("cod")) {
-                //lay thoi gian hien tai
-                long currentTimeMillis = System.currentTimeMillis();
-                Timestamp currentTimestamp = new Timestamp(currentTimeMillis);
                 
-                //tao moi doi tuong
-                OrderDAO oDao = new OrderDAO();
-                OrderDTO order = new OrderDTO();
-                
-                //set thuoc tinh
-                order.setUserID(user.getID());
-                order.setDate(currentTimestamp);
+                //set thuoc tinh order cod
                 order.setPaymentMethod("COD");
-                order.setLocation(address);
-                order.setPhoneNumber(phoneNumber);
-                order.setAmount(cart.getTotalInCart() + 25000);
                 order.setStatus("PENDING");
-                order.setOrderCode(orderCode);
-                order.setNote(note);
                 
                 //insert vao order
                 int orderID = oDao.insertOrder(order);
-                
+
                 OrderDetailsDAO oDeDao = new OrderDetailsDAO();
                 OrderDetailsDTO oDetails = new OrderDetailsDTO();
-                
+
+                //insert order details & remove quantity san pham khoi database
+                int totalQuantity = 0;
                 for (ItemCart i : listInCart) {
-                    
+                    oDeDao.insertOrderDetails(i, orderID);
+                    pdao.updateQuantity(i);
+                    totalQuantity += i.getQuantity();
+                }
+
+                //xoa cart
+                for (Cookie c : listCookies) {
+                    if (c.getName().equals("cart")) {
+                        c.setMaxAge(0);
+                        response.addCookie(c);
+                    }
                 }
                 
+                //send email
+                String contentMail = BillEmail.billEmail(user, order, totalQuantity);
+                boolean email = Email.sendEmail(user.getEmail(), EMAIL_SUBJECT + orderCode, contentMail);
+                if (!email) {
+                    throw new Exception("Email send error");
+                }
+
+                url = PENDING;
+
+                //set attribute
+                request.setAttribute("order", order);
+                request.setAttribute("totalQuantity", totalQuantity);
             } else if (payment.equals("vnpay")) {
 
             }

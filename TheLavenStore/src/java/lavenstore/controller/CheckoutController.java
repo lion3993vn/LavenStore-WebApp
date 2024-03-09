@@ -45,7 +45,6 @@ public class CheckoutController extends HttpServlet {
         response.setContentType("text/html;charset=UTF-8");
         String url = ERROR;
         try {
-            String error = request.getParameter("error3");
             ProductDAO pdao = new ProductDAO();
             List<ProductDTO> list = pdao.getAllProduct();
             Cookie[] listCookies = request.getCookies();

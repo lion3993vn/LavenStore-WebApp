@@ -160,7 +160,7 @@ and open the template in the editor.
                                                             <td class="p-3 px-4 ">
                                                                 <c:if test="${o.status eq 'COMPLETED'}">
                                                                     <div class="status-order-complete px-1 py-2">
-                                                                        <span class="inter">${o.status}</span>
+                                                                        <span class="inter">COMPLETED</span>
                                                                     </div>
                                                                 </c:if>
                                                                 <c:if test="${o.status eq 'PENDING'}">
