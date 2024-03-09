@@ -123,4 +123,27 @@ public class ProductDAO {
         }
         return check;
     }
+    
+    public boolean refundQuantity(ItemCart cart) throws SQLException {
+        boolean check = false;
+        Connection conn = null;
+        PreparedStatement ptm = null;
+        try {
+            conn = DBUtils.getConnection();
+            ptm = conn.prepareStatement(UPDATE_QUANTITY);
+            ptm.setInt(1, cart.getProduct().getQuantity() + cart.getQuantity());
+            ptm.setInt(2, cart.getProduct().getID());
+            check = ptm.executeUpdate() > 0 ? true : false;
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            if (ptm != null) {
+                ptm.close();
+            }
+            if (conn != null) {
+                conn.close();
+            }
+        }
+        return check;
+    }
 }

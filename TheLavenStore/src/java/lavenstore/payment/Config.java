@@ -21,7 +21,7 @@ import javax.servlet.http.HttpServletRequest;
  public class Config {
 
     public static String vnp_PayUrl = "https://sandbox.vnpayment.vn/paymentv2/vpcpay.html";
-    public static String vnp_Returnurl = "";
+    public static String vnp_ReturnUrl = "http://localhost:8080/thelavenstore/vnpay-result";
     public static String vnp_TmnCode = "RCP4WI7B";
     public static String vnp_HashSecret = "XAASVMECOIDUQJXDHRREWVSEGUXWXSUK";
     public static String vnp_apiUrl = "https://sandbox.vnpayment.vn/merchant_webapi/api/transaction";

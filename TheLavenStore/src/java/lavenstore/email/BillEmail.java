@@ -67,7 +67,7 @@ public class BillEmail {
                 + "        .banner {\n"
                 + "            background-repeat: no-repeat;\n"
                 + "            background-size: cover;\n"
-                + "            background-image: url(https://media.discordapp.net/attachments/1202620106140680202/1215622690229059614/The_LAVEN_STORE.png?ex=65fd6bda&is=65eaf6da&hm=f2918dbc337303e8a0b0de9c5f4364cebb5375c1ea840baa6bb927550e5f7d05&=&format=webp&quality=lossless&width=1185&height=444);\n"
+                + "            background-image: url(https://cdn.discordapp.com/attachments/1202620106140680202/1215702834419601459/The_LAVEN_STORE.png?ex=65fdb67e&is=65eb417e&hm=808bfcb44759b2e2d14f4a527db434afae181c0d7d38de35731a0154719722a5&);\n"
                 + "            text-align: center;\n"
                 + "            height: 7em;\n"
                 + "        }\n"
@@ -242,4 +242,5 @@ public class BillEmail {
                 + "</html>";
         return billDetail;
     }
+    
 }
