@@ -10,6 +10,8 @@ import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  *
@@ -18,8 +20,16 @@ import java.util.Date;
 public class Utils {
 
     public static Timestamp convertStringToTimestamp(String dateString) throws ParseException {
-        SimpleDateFormat format = new SimpleDateFormat("yyyyMMddHHmmss");
-        java.util.Date parsedDate = format.parse(dateString);
-        return new Timestamp(parsedDate.getTime());
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyyMMddHHmmss");
+
+        Date date = null;
+        try {
+            date = sdf.parse(dateString);
+        } catch (ParseException ex) {
+            Logger.getLogger(Utils.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
+        return new Timestamp(date.getTime());
     }
+
 }

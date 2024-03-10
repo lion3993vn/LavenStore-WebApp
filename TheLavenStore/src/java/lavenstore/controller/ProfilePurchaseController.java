@@ -7,24 +7,28 @@ package lavenstore.controller;
 
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.sql.SQLException;
-import java.util.logging.Level;
-import java.util.logging.Logger;
+import java.util.ArrayList;
+import java.util.List;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
-import lavenstore.users.UserDAO;
+import lavenstore.orders.OrderDAO;
+import lavenstore.orders.OrderDTO;
+import lavenstore.orders.OrderDetailsDAO;
+import lavenstore.orders.OrderDetailsDTO;
+import lavenstore.products.ProductDAO;
+import lavenstore.products.ProductDTO;
 import lavenstore.users.UserDTO;
 
 /**
  *
  * @author Pham Hieu
  */
-@WebServlet(name = "giasudangnhap", urlPatterns = {"/giasudangnhap"})
-public class giasudangnhap extends HttpServlet {
+@WebServlet(name = "ProfilePurchaseController", urlPatterns = {"/ProfilePurchaseController"})
+public class ProfilePurchaseController extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -35,15 +39,42 @@ public class giasudangnhap extends HttpServlet {
      * @throws ServletException if a servlet-specific error occurs
      * @throws IOException if an I/O error occurs
      */
+    private static final String ERROR = "home.html";
+    private static final String SUCCESS = "home.html";
+
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        HttpSession session = request.getSession();
-        UserDAO udao = new UserDAO();
+        response.setContentType("text/html;charset=UTF-8");
+        String url = ERROR;
         try {
-            UserDTO user = udao.getUserByID(3);
-            session.setAttribute("account", user);
-        } catch (SQLException ex) {
-            Logger.getLogger(giasudangnhap.class.getName()).log(Level.SEVERE, null, ex);
+            
+            HttpSession session = request.getSession();
+            UserDTO user = (UserDTO) session.getAttribute("account");
+            
+            ProductDAO pdao = new ProductDAO();
+            
+            OrderDAO odao = new OrderDAO();
+            List<OrderDTO> listOrder = odao.getAllOrderByUserID(user.getID());
+            OrderDetailsDAO odedao = new OrderDetailsDAO();
+            for (OrderDTO o : listOrder) {
+                List<OrderDetailsDTO> listDetails = odedao.getOrderDetailsByID(o.getID());
+                request.setAttribute("details"+o.getID(), listDetails);
+                int totalMoney = 25000;
+                List<ProductDTO> listpro = new ArrayList<>();
+                for (OrderDetailsDTO i : listDetails) {
+                    listpro.add(pdao.getProductByID(i.getProductID()));
+                    totalMoney += i.getPrice();
+                }
+                request.setAttribute("listpro"+o.getID(), listpro);
+                request.setAttribute("totalMoney"+o.getID(), totalMoney);
+            }
+            request.setAttribute("listorder", listOrder);
+            url = "profile_purchase.jsp";
+        } catch (Exception e) {
+            log("Error at HomeController: " + e.toString());
+            request.setAttribute("MESSAGE", "Somethings are error...");
+        } finally {
+            request.getRequestDispatcher(url).forward(request, response);
         }
     }
 

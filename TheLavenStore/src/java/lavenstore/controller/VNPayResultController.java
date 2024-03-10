@@ -119,6 +119,7 @@ public class VNPayResultController extends HttpServlet {
                     //update order
                     Timestamp payment_date = Utils.convertStringToTimestamp(paymentDate);
                     order.setPaymentDate(payment_date);
+                    System.out.println(payment_date);
                     order.setStatus("COMPLETED");
                     odao.updateOrder(order);
 
