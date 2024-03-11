@@ -40,64 +40,34 @@ public class ProcessAdminUserController extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
+        String url = ERROR;
         try {
-            String url = ERROR;
             String action = (String) request.getParameter("admin-action");
             if (action.equals("add-user")) {
                 boolean isValidUser = true;
-                String username = request.getParameter("Username");
-                UserDAO u = new UserDAO();
-                UserDTO user = null;
-                String regexUsername = "^[a-zA-Z0-9_]{3,20}$";
-                Pattern patternUsername = Pattern.compile(regexUsername);
-                Matcher matcherUsername = patternUsername.matcher(username);
-                if (!matcherUsername.matches()) {
-                    request.setAttribute("errorUsername", "Username không hợp lệ");
-                    isValidUser = false;
-                } else {
-                    user = u.getUserByUsername(username);
-                    if (user != null) {
-                        request.setAttribute("errorUsername", "Tài khoản đã tồn tại");
-                        isValidUser = false;
-                    }
-                }
-
-                //password
-                String password = request.getParameter("Password");
-                String regexPassword = "^[A-Za-z0-9]{4,}$";
-                Pattern patternPassword = Pattern.compile(regexPassword);
-                Matcher matcherPassword = patternPassword.matcher(password);
-                if (!matcherPassword.matches()) {
-                    request.setAttribute("errorPassword", "Password phải có từ 4 kí tự trở lên");
-                    isValidUser = false;
-                }
-
-                //email
+                String userName = request.getParameter("username");
+                String password = request.getParameter("password");
                 String email = request.getParameter("email");
-                String regexEmail = "^[A-Za-z0-9+_.-]+@(.+)$";
-                Pattern patternEmail = Pattern.compile(regexEmail);
-                Matcher matcherEmail = patternEmail.matcher(email);
-                if (!matcherEmail.matches()) {
-                    request.setAttribute("errorEmail", "Email không hợp lệ");
-                    isValidUser = false;
-                } else {
-                    user = u.getUserByEmail(email);
-                    if (user != null) {
-                        request.setAttribute("errorEmail", "Email đã tồn tại");
-                        isValidUser = false;
-                    }
-                }
-                if (isValidUser) {
-                    UserDTO newUser = new UserDTO(u.getAllUser().size() + 1, username, password, email, null, null, null, null);
-                    u.insert(newUser);
-                    url = SUCCESS;
-                } 
+                String phoneNumber = request.getParameter("phoneNumber");
+                String address = request.getParameter("address");
+                String role = request.getParameter("role");
+                UserDAO u = new UserDAO();
+                UserDTO user = new UserDTO();
+                user.setUserName(userName);
+                user.setPassword(password);
+                user.setFullName(userName);
+                user.setEmail(email);
+                user.setPhoneNumber(phoneNumber);
+                user.setAddress(address);
+                user.setRole(role);
+                u.insert(user);
+                url = SUCCESS;
             }
         } catch (Exception e) {
             log("Error at ProfileUserController: " + e.toString());
             request.setAttribute("MESSAGE", "Somethings are error...");
         } finally {
-            request.getRequestDispatcher("profile_address.jsp").forward(request, response);
+            request.getRequestDispatcher(url).forward(request, response);
         }
     }
 

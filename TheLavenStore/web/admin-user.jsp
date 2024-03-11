@@ -171,23 +171,26 @@ and open the template in the editor.
 
                     <!-- Modal body -->
                     <div class="modal-body">
-                        <form action="ProcessAdminUserController" method="post">
+                        <form action="#" method="post" id="add-user-form">
                             <table class="w-100 table-modal">
                                 <tr>
                                     <td colspan="2" class="py-2"><span class="inter">Username</span></td>
                                 </tr>
                                 <tr>
-                                    <td class="pe-1 py-1"><input id="username" type="text" placeholder="" class="w-100 p-1" name="username" oninput="checkUser()"></td>
+                                    <td class="pe-1 py-1"><input id="username" type="text" placeholder="" class="w-100 p-1" name="username" value="" onchange="checkUser()"></td>
                                     <td></td>
                                 </tr>
-                                <tr class="row-error">
-                                    <td colspan="2"><span class="error-text">User name is already exist</span></td>
+                                <tr>
+                                    <td colspan="2"><span class="error-text" id="errorUsername"></span></td>
                                 </tr>
                                 <tr>
                                     <td colspan="2" class="py-2">Password</td>
                                 </tr>
                                 <tr>
-                                    <td colspan="2" class="pe-1 py-1"><input id="password" type="text" class="w-100 p-1" name="password"></td>
+                                    <td colspan="2" class="pe-1 py-1"><input id="password" type="text" class="w-100 p-1" name="password" value="" onchange="checkUser()"></td>
+                                </tr>
+                                <tr>
+                                    <td colspan="2"><span class="error-text" id="errorPassword"></span></td>
                                 </tr>
                                 <tr>
                                     <td class="py-2">Role</td>
@@ -198,115 +201,123 @@ and open the template in the editor.
                                             <option value="admin">Admin</option>
                                             <option value="user">User</option>
                                         </select></td>
-                                    <td class="pe-1 py-1"><input id="phoneNumber" type="text" class="w-100 p-1" name="phoneNumber"></td>
+                                    <td class="pe-1 py-1"><input id="phoneNumber" type="text" class="w-100 p-1" name="phoneNumber" value="" onchange="checkUser()"></td>
+                                </tr>
+                                <tr>
+                                    <td></td>
+                                    <td><span class="error-text" id="errorPhone"></span></td>
                                 </tr>
                                 <tr>
                                     <td colspan="2" class="py-2">Email</td>
                                 </tr>
                                 <tr>
-                                    <td colspan="2" class="pe-1 py-1"><input id="email" type="text" class="w-100 p-1" name="email"></td>
+                                    <td colspan="2" class="pe-1 py-1"><input id="email" type="text" class="w-100 p-1" name="email" value="" onchange="checkUser()"></td>
+                                </tr>
+                                <tr>
+                                    <td colspan="2"><span class="error-text" id="errorEmail"></span></td>
                                 </tr>
                                 <tr>
                                     <td colspan="2" class="py-2">Address</td>
                                 </tr>
                                 <tr>
-                                    <td colspan="2" class="pe-1 py-1"><input id="address" type="text" class="w-100 p-1" name="address"></td>
+                                    <td colspan="2" class="pe-1 py-1"><input id="address" type="text" class="w-100 p-1" name="address" required></td>
                                 </tr>
                             </table>
-                            <input name="action" type="hidden" value="add-user">
+                            <input name="admin-action" type="hidden" value="add-user">
+
+                            </div>
+
+                            <!-- Modal footer -->
+                            <div class="footer-modal py-4 d-flex justify-content-end">
+                                <div class="close me-4">
+                                    <div class="modal-btn-close p-2 px-4" data-bs-dismiss="modal"><span>Close</span></div>
+                                </div>
+                                <div class="save-modal me-4">
+                                    <input type="submit" value="Add user" class="input-submit p-2 px-3 inter">
+                                </div>
+                            </div>
                         </form>
                     </div>
-
-                    <!-- Modal footer -->
-                    <div class="footer-modal py-4 d-flex justify-content-end">
-                        <div class="close me-4">
-                            <div class="modal-btn-close p-2 px-4" data-bs-dismiss="modal"><span>Close</span></div>
-                        </div>
-                        <div class="save-modal me-4">
-                            <input type="submit" value="Add user" class="input-submit p-2 px-3 inter">
-                        </div>
-                    </div>
-
                 </div>
             </div>
-        </div>
-        <!-- Modal edit user -->
-        <div class="modal" id="edit-user">
-            <div class="modal-dialog modal-dialog-centered">
-                <div class="modal-content">
+            <!-- Modal edit user -->
+            <div class="modal" id="edit-user">
+                <div class="modal-dialog modal-dialog-centered">
+                    <div class="modal-content">
 
-                    <!-- Modal Header -->
-                    <div class="py-2 header-modal d-flex justify-content-between">
-                        <h4 class="modal-title inter ms-3">Edit user</h4>
-                        <div class="btn-close-modal me-3" data-bs-dismiss="modal"><i class="fa-solid fa-x"></i></div>
-                    </div>
-
-                    <!-- Modal body -->
-                    <div class="modal-body">
-                        <table class="w-100 table-modal">
-                            <tr>
-                                <td colspan="2" class="py-2"><span class="inter">Username</span></td>
-                            </tr>
-                            <tr>
-                                <td class="pe-1 py-1"><input type="text" placeholder="" class="w-100 p-1"></td>
-                                <td></td>
-                            </tr>
-                            <tr class="row-error">
-                                <td colspan="2"><span class="error-text">User name is already exist</span></td>
-                            </tr>
-                            <tr>
-                                <td colspan="2" class="py-2">Password</td>
-                            </tr>
-                            <tr>
-                                <td colspan="2" class="pe-1 py-1"><input type="text" class="w-100 p-1"></td>
-                            </tr>
-                            <tr>
-                                <td class="py-2">Role</td>
-                                <td class="py-2">Phone number</td>
-                            </tr>
-                            <tr>
-                                <td class="pe-1 py-1"><select class="w-100 p-1">
-                                        <option value="admin">Admin</option>
-                                        <option value="admin">User</option>
-                                    </select></td>
-                                <td class="pe-1 py-1"><input type="text" class="w-100 p-1"></td>
-                            </tr>
-                            <tr>
-                                <td colspan="2" class="py-2">Email</td>
-                            </tr>
-                            <tr>
-                                <td colspan="2" class="pe-1 py-1"><input type="text" class="w-100 p-1"></td>
-                            </tr>
-                            <tr>
-                                <td colspan="2" class="py-2">Address</td>
-                            </tr>
-                            <tr>
-                                <td colspan="2" class="pe-1 py-1"><input type="text" class="w-100 p-1"></td>
-                            </tr>
-                        </table>
-                    </div>
-
-                    <!-- Modal footer -->
-                    <div class="footer-modal py-4 d-flex justify-content-end">
-                        <div class="close me-4">
-                            <div class="modal-btn-close p-2 px-4" data-bs-dismiss="modal"><span>Close</span></div>
+                        <!-- Modal Header -->
+                        <div class="py-2 header-modal d-flex justify-content-between">
+                            <h4 class="modal-title inter ms-3">Edit user</h4>
+                            <div class="btn-close-modal me-3" data-bs-dismiss="modal"><i class="fa-solid fa-x"></i></div>
                         </div>
-                        <div class="save-modal me-4">
-                            <input type="submit" value="Save" class="input-submit p-2 px-4 inter">
-                        </div>
-                    </div>
 
+                        <!-- Modal body -->
+                        <div class="modal-body">
+                            <table class="w-100 table-modal">
+                                <tr>
+                                    <td colspan="2" class="py-2"><span class="inter">Username</span></td>
+                                </tr>
+                                <tr>
+                                    <td class="pe-1 py-1"><input type="text" placeholder="" class="w-100 p-1"></td>
+                                    <td></td>
+                                </tr>
+                                <tr class="row-error">
+                                    <td colspan="2"><span class="error-text">User name is already exist</span></td>
+                                </tr>
+                                <tr>
+                                    <td colspan="2" class="py-2">Password</td>
+                                </tr>
+                                <tr>
+                                    <td colspan="2" class="pe-1 py-1"><input type="text" class="w-100 p-1"></td>
+                                </tr>
+                                <tr>
+                                    <td class="py-2">Role</td>
+                                    <td class="py-2">Phone number</td>
+                                </tr>
+                                <tr>
+                                    <td class="pe-1 py-1"><select class="w-100 p-1">
+                                            <option value="admin">Admin</option>
+                                            <option value="admin">User</option>
+                                        </select></td>
+                                    <td class="pe-1 py-1"><input type="text" class="w-100 p-1"></td>
+                                </tr>
+                                <tr>
+                                    <td colspan="2" class="py-2">Email</td>
+                                </tr>
+                                <tr>
+                                    <td colspan="2" class="pe-1 py-1"><input type="text" class="w-100 p-1"></td>
+                                </tr>
+                                <tr>
+                                    <td colspan="2" class="py-2">Address</td>
+                                </tr>
+                                <tr>
+                                    <td colspan="2" class="pe-1 py-1"><input type="text" class="w-100 p-1"></td>
+                                </tr>
+                            </table>
+                        </div>
+
+                        <!-- Modal footer -->
+                        <div class="footer-modal py-4 d-flex justify-content-end">
+                            <div class="close me-4">
+                                <div class="modal-btn-close p-2 px-4" data-bs-dismiss="modal"><span>Close</span></div>
+                            </div>
+                            <div class="save-modal me-4">
+                                <input type="submit" value="Save" class="input-submit p-2 px-4 inter">
+                            </div>
+                        </div>
+
+                    </div>
                 </div>
             </div>
-        </div>
-        <!--script js bootstrap-->
-        <script src="./assets/js/bootstrap/bootstrap.bundle.min.js"></script>
-        <script src="./assets/js/bootstrap/bootstrap.min.js"></script>
-        <script src="./assets/js/bootstrap/bootstrap.esm.min.js"></script>
-        <script>
+            <!--script js bootstrap-->
+            <script src="./assets/js/bootstrap/bootstrap.bundle.min.js"></script>
+            <script src="./assets/js/bootstrap/bootstrap.min.js"></script>
+            <script src="./assets/js/bootstrap/bootstrap.esm.min.js"></script>
+            <script>
                                         function checkUser() {
+                                            var checker = 4;
                                             console.log("check user ne ");
-                                            var username = document.getElementById("usermame").value;
+                                            var username = document.getElementById("username").value;
                                             var email = document.getElementById("email").value;
                                             var password = document.getElementById("password").value;
                                             var phoneNumber = document.getElementById("phoneNumber").value;
@@ -314,14 +325,34 @@ and open the template in the editor.
                                                 url: "AjaxAdminUserController",
                                                 type: "post", //send it through post method
                                                 data: {
-                                                    txtUsername: username
-                                                    txtEmail: email
-                                                    txtPassword: password
+                                                    txtUsername: username,
+                                                    txtEmail: email,
+                                                    txtPassword: password,
                                                     txtPhoneNumber: phoneNumber
                                                 },
                                                 success: function (response) {
+                                                    var errorUsername = response.errorUsername;
+                                                    var errorEmail = response.errorEmail;
+                                                    var errorPassword = response.errorPassword;
+                                                    var errorPhone = response.errorPhone;
+
+                                                    document.getElementById("errorUsername").innerHTML = errorUsername;
+                                                    document.getElementById("errorPassword").innerHTML = errorPassword;
+                                                    document.getElementById("errorPhone").innerHTML = errorPhone;
+                                                    document.getElementById("errorEmail").innerHTML = errorEmail;
+
+                                                    if (errorUsername === "")
+                                                        checker--;
+                                                    if (errorPassword === "")
+                                                        checker--;
+                                                    if (errorPhone === "")
+                                                        checker--;
+                                                    if (errorEmail === "")
+                                                        checker--;
+                                                    if (checker == 0)
+                                                        document.getElementById("add-user-form").action = "ProcessAdminUserController";
+                                                    console.log(checker);
                                                     console.log("response ", response);
-                                                    
                                                 },
                                                 error: function (xhr) {
                                                     //Do Something to handle error
@@ -329,7 +360,7 @@ and open the template in the editor.
                                                 }
                                             });
                                         }
-        </script>
+            </script>
     </body>
 
 </html>

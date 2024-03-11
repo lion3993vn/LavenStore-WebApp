@@ -191,7 +191,7 @@ public class UserDAO {
         return user;
     }
 
-    public boolean insert(UserDTO newUser) throws SQLException, ClassNotFoundException, NamingException {
+    public boolean insert(UserDTO newUser) throws SQLException {
         boolean check = false;
         Connection conn = null;
         PreparedStatement ptm = null;
@@ -202,7 +202,7 @@ public class UserDAO {
                 ptm.setString(1, newUser.getUserName());
                 ptm.setString(2, newUser.getPassword());
                 ptm.setString(3, newUser.getEmail());
-                ptm.setString(4, "user");
+                ptm.setString(4, newUser.getRole());
                 ptm.setString(5, newUser.getFullName());
                 ptm.setString(6, newUser.getPhoneNumber());
                 ptm.setString(7, newUser.getAddress());
