@@ -74,7 +74,7 @@ public class RegisterController extends HttpServlet {
                 if (user != null) {
                     request.setAttribute("errorEmail", "Email đã tồn tại");
                     isValidUser = false;
-                }
+                }}
 
                 //password
                 String password = request.getParameter("Password");
