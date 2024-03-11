@@ -39,6 +39,7 @@ public class ProfileUpdateController extends HttpServlet {
 
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+        String url = ERROR;
         try {
             //process
             HttpSession session = request.getSession(false);
@@ -50,12 +51,16 @@ public class ProfileUpdateController extends HttpServlet {
             String regex = "^1?(\\d{10})$";
             Pattern pattern = Pattern.compile(regex);
             Matcher matcher = pattern.matcher(phone);
+            if (phone.isEmpty()) {
+                phone = null;
+            }
             if (matcher.matches() || phone == null) {
                 isValidPhone = true;
             } else {
-                request.setAttribute("errorPhone","Số điện thoại không hợp lệ!");
+                request.setAttribute("errorPhone", "Số điện thoại không hợp lệ!");
             }
-            if (isValidPhone){
+            if (isValidPhone) {
+                url = SUCCESS;
                 user.setPhoneNumber(phone);
             }
             user.setFullName(fullname);
@@ -64,7 +69,7 @@ public class ProfileUpdateController extends HttpServlet {
             log("Error at ProfileUserController: " + e.toString());
             request.setAttribute("MESSAGE", "Somethings are error...");
         } finally {
-            request.getRequestDispatcher("profile.jsp").forward(request, response);
+            request.getRequestDispatcher(url).forward(request, response);
         }
     }
 
