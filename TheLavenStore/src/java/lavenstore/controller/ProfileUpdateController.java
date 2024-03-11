@@ -34,8 +34,8 @@ public class ProfileUpdateController extends HttpServlet {
      * @throws ServletException if a servlet-specific error occurs
      * @throws IOException if an I/O error occurs
      */
-    private static final String ERROR = "profile";
-    private static final String SUCCESS = "profile";
+    private static final String ERROR = "profile.jsp";
+    private static final String SUCCESS = "profile.jsp";
 
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {

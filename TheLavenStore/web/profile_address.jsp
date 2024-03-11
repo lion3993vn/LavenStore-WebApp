@@ -3,8 +3,10 @@
     Created on : Mar 5, 2024, 10:47:57 AM
     Author     : huyhu
 --%>
-
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%@taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
+<%@taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn"%>
 <!DOCTYPE html>
 <!--
 To change this license header, choose License Headers in Project Properties.
@@ -41,7 +43,14 @@ and open the template in the editor.
                         <table class="w-100">
                             <tr class="text-center">
                                 <th colspan="2">
-                                    <p class="fw-normal fs-1 p-2">TaiLe</p>
+                                    <p class="fw-normal py-3 fs-3">
+                                        <c:choose>
+                                            <c:when test="${fn:length(sessionScope.account.userName) <= 12}">${sessionScope.account.userName}
+                                            </c:when>
+                                            <c:otherwise>${fn:substring(sessionScope.account.userName, 0, 12)}...
+                                            </c:otherwise>
+                                        </c:choose>
+                                    </p>
                                 </th>
                             </tr>
 
@@ -53,12 +62,12 @@ and open the template in the editor.
 
                             <tr>
                                 <td><i class=" fa-solid fa-user"></i></td>
-                                <td><a href="#">Information</a></td>
+                                <td><a href="MainController?action=profile">Information</a></td>
                             </tr>
 
                             <tr>
                                 <td></td>
-                                <td class="ps-3"><a href="#">Profile</a></td>
+                                <td class="ps-3"><a href="MainController?action=profile">Profile</a></td>
                             </tr>
                             <tr class=" profile">
                                 <td></td>
@@ -66,7 +75,7 @@ and open the template in the editor.
                             </tr>
                             <tr>
                                 <td></td>
-                                <td class="ps-3"><a href="#">Change password</a></td>
+                                <td class="ps-3"><a href="MainController?action=profile-password">Change password</a></td>
                             </tr>
                             <tr>
                                 <td><i class=" fa-solid fa-credit-card"></i></td>
@@ -84,33 +93,15 @@ and open the template in the editor.
 
                     <!-- Start form -->
                     <div class="col-md-10">
-                        <form action="">
+                        <form action="profile-address">
                             <h5 class="mt-4 fw-bold">My profile</h5>
                             <table class="fs-5 fw-medium">
                                 <tbody>
                                     <tr>
-                                        <td class="px-5 pb-2 w-25">City: </td>
+                                        <td class="px-5 pb-2 w-25">Address: </td>
                                         <td class="pb-2 w-75"><input
                                                 class="form-control w-75 border border-2 border-dark rounded-1" type="text"
-                                                name="City"></td>
-                                    </tr>
-                                    <tr>
-                                        <td class="px-5 pb-2 w-25">District: </td>
-                                        <td class="pb-2"><input
-                                                class="form-control w-75 border border-2 border-dark rounded-1" type="text"
-                                                name="district"></td>
-                                    </tr>
-                                    <tr>
-                                        <td class="px-5 pb-2 w-25">Ward: </td>
-                                        <td class="pb-2"><input
-                                                class="form-control w-75 border border-2 border-dark rounded-1" type="text"
-                                                name="ward"></td>
-                                    </tr>
-                                    <tr>
-                                        <td class="px-5 pb-2 w-25">Note: </td>
-                                        <td class="pb-2"><input
-                                                class="form-control w-75 border border-2 border-dark rounded-1" type="text"
-                                                name="note" placeholder="Street Name, Building, House No."></td>
+                                                name="address" value="${sessionScope.account.address}"></td>
                                     </tr>
                                     <tr>
                                         <td></td>

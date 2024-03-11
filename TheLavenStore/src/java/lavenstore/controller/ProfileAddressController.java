@@ -8,48 +8,58 @@ package lavenstore.controller;
 import java.io.IOException;
 import java.io.PrintWriter;
 import javax.servlet.ServletException;
+import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
+import lavenstore.users.UserDAO;
+import lavenstore.users.UserDTO;
 
 /**
  *
- * @author Pham Hieu
+ * @author huyhu
  */
-public class MainController extends HttpServlet {
+@WebServlet(name = "ProfileAddressController", urlPatterns = {"/profile-address"})
+public class ProfileAddressController extends HttpServlet {
 
-    private static final String NOT_FOUND = "notfound.html";
-    private static final String HOME_CONTROLLER = "HomeController";
-    private static final String PROFILE = "profile.jsp";
-    private static final String PROFILE_ADDRESS = "profile-address";
-    private static final String PROFILE_PASSWORD = "profile-password";
+    /**
+     * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
+     * methods.
+     *
+     * @param request servlet request
+     * @param response servlet response
+     * @throws ServletException if a servlet-specific error occurs
+     * @throws IOException if an I/O error occurs
+     */
+    private static final String ERROR = "profile_address.jsp";
+    private static final String SUCCESS = "profile_address.jsp";
 
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
-        String url = HOME_CONTROLLER;
+        String url = ERROR;
         try {
-            String action = request.getParameter("action");
-            if (action == null) {
-                url = HOME_CONTROLLER;
-            } else if (action.equals("profile")) {
-                url = PROFILE;
-            } else if (action.equals("profile-address")) {
-                url = PROFILE_ADDRESS;
-            } else if (action.equals("profile-password")) {
-                url = PROFILE_PASSWORD;
-            } else {
-                url = NOT_FOUND;
+            String address = request.getParameter("address");
+            HttpSession session = request.getSession();
+
+            UserDTO user = (UserDTO) session.getAttribute("account");
+            if (!address.equals(user.getAddress())) {
+                UserDAO dao = new UserDAO();
+                user.setAddress(address);
+                dao.update(user);
+                session.setAttribute("account", user);
+                url = SUCCESS;
             }
         } catch (Exception e) {
-            log("Error at MainController: " + e.toString());
+            log("Error at ProfileUserController: " + e.toString());
+            request.setAttribute("MESSAGE", "Somethings are error...");
         } finally {
             request.getRequestDispatcher(url).forward(request, response);
         }
-
     }
 
-    // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
+// <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
     /**
      * Handles the HTTP <code>GET</code> method.
      *

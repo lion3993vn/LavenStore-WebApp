@@ -8,45 +8,43 @@ package lavenstore.controller;
 import java.io.IOException;
 import java.io.PrintWriter;
 import javax.servlet.ServletException;
+import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
+import lavenstore.users.UserDAO;
+import lavenstore.users.UserDTO;
 
 /**
  *
- * @author Pham Hieu
+ * @author huyhu
  */
-public class MainController extends HttpServlet {
+@WebServlet(name = "GiaSuDangNhap", urlPatterns = {"/gsdn"})
+public class GiaSuDangNhap extends HttpServlet {
 
-    private static final String NOT_FOUND = "notfound.html";
-    private static final String HOME_CONTROLLER = "HomeController";
-    private static final String PROFILE = "profile.jsp";
-    private static final String PROFILE_ADDRESS = "profile-address";
-    private static final String PROFILE_PASSWORD = "profile-password";
-
+    /**
+     * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
+     * methods.
+     *
+     * @param request servlet request
+     * @param response servlet response
+     * @throws ServletException if a servlet-specific error occurs
+     * @throws IOException if an I/O error occurs
+     */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        response.setContentType("text/html;charset=UTF-8");
-        String url = HOME_CONTROLLER;
         try {
-            String action = request.getParameter("action");
-            if (action == null) {
-                url = HOME_CONTROLLER;
-            } else if (action.equals("profile")) {
-                url = PROFILE;
-            } else if (action.equals("profile-address")) {
-                url = PROFILE_ADDRESS;
-            } else if (action.equals("profile-password")) {
-                url = PROFILE_PASSWORD;
-            } else {
-                url = NOT_FOUND;
-            }
+            HttpSession session = request.getSession();
+            UserDAO dao = new UserDAO();
+            UserDTO account = dao.getOneUser(1);
+            session.setAttribute("account", account);
         } catch (Exception e) {
-            log("Error at MainController: " + e.toString());
+            log("Error at ProfileUserController: " + e.toString());
+            request.setAttribute("MESSAGE", "Somethings are error...");
         } finally {
-            request.getRequestDispatcher(url).forward(request, response);
+//            request.getRequestDispatcher("profile_address.jsp").forward(request, response);
         }
-
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">

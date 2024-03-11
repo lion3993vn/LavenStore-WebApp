@@ -3,9 +3,10 @@
     Created on : Mar 2, 2024, 10:36:09 PM
     Author     : Kudo
 --%>
-
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
-<%@taglib prefix="c"  uri="http://java.sun.com/jsp/jstl/core"%>
+<%@taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
+<%@taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn"%>
 <!DOCTYPE html>
 <!--
 To change this license header, choose License Headers in Project Properties.
@@ -42,7 +43,14 @@ and open the template in the editor.
                         <table class="w-100">
                             <tr class="text-center">
                                 <th colspan="2">
-                                    <p class="fw-normal fs-1 p-2">${a.userName}</p>
+                                    <p class="fw-normal py-3 fs-3">
+                                        <c:choose>
+                                            <c:when test="${fn:length(sessionScope.account.userName) <= 12}">${sessionScope.account.userName}
+                                            </c:when>
+                                            <c:otherwise>${fn:substring(sessionScope.account.userName, 0, 12)}...
+                                            </c:otherwise>
+                                        </c:choose>
+                                    </p>
                                 </th>
                             </tr>
 
@@ -54,20 +62,20 @@ and open the template in the editor.
 
                             <tr>
                                 <td><i class=" fa-solid fa-user"></i></td>
-                                <td><a href="#">Information</a></td>
+                                <td><a href="MainController?action=profile">Information</a></td>
                             </tr>
 
                             <tr class=" profile">
                                 <td></td>
                                 <td class="ps-3"><a href="#">Profile</a></td>
                             </tr>
-                            <tr>
+                            <tr >
                                 <td></td>
-                                <td class="ps-3"><a href="#">Address</a></td>
+                                <td class="ps-3"><a href="MainController?action=profile-address">Address</a></td>
                             </tr>
                             <tr>
                                 <td></td>
-                                <td class="ps-3"><a href="#">Change password</a></td>
+                                <td class="ps-3"><a href="MainController?action=profile-password">Change password</a></td>
                             </tr>
                             <tr>
                                 <td><i class=" fa-solid fa-credit-card"></i></td>
@@ -111,7 +119,7 @@ and open the template in the editor.
                                         <td class="px-5 w-25">Email: </td>
                                         <td class="w-75">${a.email}</td>
                                     </tr>
-                                        <tr>
+                                    <tr>
                                         <td class=""></td>
                                         <td class=""><p class="noticia-text text-error" style="color: #FF0000;">${requestScope.errorPhone}</p></td>
                                     </tr>
