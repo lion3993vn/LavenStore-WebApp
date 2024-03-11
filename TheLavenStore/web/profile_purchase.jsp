@@ -7,6 +7,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
+<%@taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn"%>
 <!DOCTYPE html>
 <!--
 To change this license header, choose License Headers in Project Properties.
@@ -29,7 +30,7 @@ and open the template in the editor.
         <!-- Start banner -->
         <div class="banner container-fuild pb-5">
             <h1 class="pt-5">My Profile</h1>
-            <p><a href="#">Home</a><span><i class="px-4 fa-solid fa-chevron-right"></i></span>Profile</p>
+            <p><a href="MainController">Home</a><span><i class="px-4 fa-solid fa-chevron-right"></i></span><a href="#">Profile</a></p>
         </div>
         <!-- End banner -->
 
@@ -41,10 +42,17 @@ and open the template in the editor.
                     <!-- Start Slider navbar -->
                     <div class="bar col-md-2">
                         <table class="w-100">
-                            <tr class="text-center">
-                                <th colspan="2">
-                                    <p class="fw-normal fs-1 p-2">${sessionScope.account.userName}</p>
-                                </th>
+                            <tr class="text-center nohover">
+                                <td colspan="2">
+                                    <p class="fw-normal py-3 fs-3">
+                                        <c:choose>
+                                            <c:when test="${fn:length(sessionScope.account.userName) <= 12}">${sessionScope.account.userName}
+                                            </c:when>
+                                            <c:otherwise>${fn:substring(sessionScope.account.userName, 0, 12)}...
+                                            </c:otherwise>
+                                        </c:choose>
+                                    </p>
+                                </td>
                             </tr>
 
                             <tr>
@@ -52,7 +60,7 @@ and open the template in the editor.
                                     <div class="hr ps-4 pe-4"></div>
                                 </td>
                             </tr>
-                            <tr>
+                            <tr class="nohover">
                                 <td><i class=" fa-solid fa-user "></i></td>
                                 <td><a href="#">
                                         <div class="subnav_group">
@@ -180,11 +188,15 @@ and open the template in the editor.
                             </div>
                         </c:forEach>
                         <div class="mb-5">
-                            <div class="col-md-12 d-flex justify-content-end paging">
-                                <a href="" class="me-3 active-paging">1</a>
-                                <a href="" class="me-3">2</a>
-                                <a href="" class="me-3">3</a>
-                                <a href="" class="me-3">4</a>
+                            <div class="col-md-12 d-flex justify-content-end p-2">
+                                <c:forEach begin="1" end="${requestScope.page}" var="p">
+                                    <form action="ProfilePurchaseController" method="post">
+                                        <input type="submit" class="p-2 me-3 paging ${requestScope.curr == p ? "active-paging":""}" value="${p}">
+                                        <input type="hidden" name="index" value="${p}">
+                                    </form>
+                                </c:forEach>
+
+
                             </div>
                         </div>
                     </div>

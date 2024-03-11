@@ -102,7 +102,7 @@ and open the template in the editor.
                         <p>See you again!</p>
                     </div>
                     <div class="payment-footer">
-                        <p><a href="#">Back to home page</a></p>
+                        <p><a href="MainController">Back to home page</a></p>
                     </div>
                 </div>
 

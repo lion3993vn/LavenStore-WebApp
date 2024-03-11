@@ -24,8 +24,11 @@ import lavenstore.utils.DBUtils;
  */
 public class OrderDAO {
 
-    private static final String GET_ALL_ORDER = "SELECT * FROM [Order]";
-    private static final String GET_ALL_ORDER_BY_USERID = "SELECT * FROM [Order] WHERE [UserID] = ? ORDER BY ID DESC";
+    private static final String GET_ALL_ORDER = "SELECT * FROM [Order] ORDER BY ID DESC OFFSET ? ROWS FETCH FIRST 8 ROWS ONLY";
+    private static final String GET_ALL_ORDER1 = "SELECT * FROM [Order]";
+    private static final String GET_PAGE_ALL_ORDER = "SELECT COUNT(*) FROM [Order]";
+    private static final String GET_ALL_ORDER_BY_USERID = "SELECT * FROM [Order] WHERE [UserID] = ? ORDER BY ID DESC OFFSET ? ROWS FETCH FIRST 3 ROWS ONLY";
+    private static final String GET_PAGE_ORDER_BY_USERID = "SELECT COUNT(*) FROM [Order] WHERE [UserID] = ?";
     private static final String GET_ONE_ORDER = "SELECT * FROM [Order] WHERE ID = ?";
     private static final String UPDATE_ORDER = "UPDATE [Order]"
             + "SET   [Location] = ?"
@@ -36,13 +39,14 @@ public class OrderDAO {
             + " WHERE ID = ?";
     private static final String REQUIRE_SEARCH_CODE = "OrderCode LIKE ?";
     private static final String REQUIRE_SEARCH_STATUS = "Status = ?";
+    private static final String OFFSET = "ORDER BY ID DESC OFFSET ? ROWS FETCH FIRST 8 ROWS ONLY";
     private static final String INSERT_ORDER = "INSERT INTO [dbo].[Order]"
             + "           ([UserID],[Date],[PaymentDate],[PaymentMethod],"
             + "		   [Location],[PhoneNumber],[Price],[Status],[OrderCode],[Note])"
             + "            VALUES (?,?,?,?,?,?,?,?,?,?)";
     private static final String GET_ORDER_BY_ORDER_CODE = "SELECT * FROM [Order] WHERE OrderCode = ?";
 
-    public List<OrderDTO> getAllOrder() throws SQLException {
+    public List<OrderDTO> getAllOrder(int index) throws SQLException {
         Connection conn = null;
         List<OrderDTO> list = new ArrayList<>();
         PreparedStatement psm = null;
@@ -50,6 +54,7 @@ public class OrderDAO {
         try {
             conn = DBUtils.getConnection();
             psm = conn.prepareStatement(GET_ALL_ORDER);
+            psm.setInt(1, (index - 1) * 8);
             rs = psm.executeQuery();
             while (rs.next()) {
                 int ID = rs.getInt("ID");
@@ -80,8 +85,65 @@ public class OrderDAO {
         }
         return list;
     }
-    
-    public List<OrderDTO> getAllOrderByUserID(int id) throws SQLException {
+
+    public int getPageAllOrder() throws SQLException {
+        Connection conn = null;
+        PreparedStatement psm = null;
+        ResultSet rs = null;
+        int count = 0;
+        try {
+            conn = DBUtils.getConnection();
+            psm = conn.prepareStatement(GET_PAGE_ALL_ORDER);
+            rs = psm.executeQuery();
+            if (rs.next()) {
+                count = rs.getInt(1);
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            if (rs != null) {
+                rs.close();
+            }
+            if (psm != null) {
+                psm.close();
+            }
+            if (conn != null) {
+                conn.close();
+            }
+        }
+        return count;
+    }
+
+    public int getAllOrderByUserID(int id) throws SQLException {
+        Connection conn = null;
+        PreparedStatement psm = null;
+        ResultSet rs = null;
+        int count = 0;
+        try {
+            conn = DBUtils.getConnection();
+            psm = conn.prepareStatement(GET_PAGE_ORDER_BY_USERID);
+            psm.setInt(1, id);
+            rs = psm.executeQuery();
+            if (rs.next()) {
+                count = rs.getInt(1);
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            if (rs != null) {
+                rs.close();
+            }
+            if (psm != null) {
+                psm.close();
+            }
+            if (conn != null) {
+                conn.close();
+            }
+        }
+        return count;
+    }
+
+    public List<OrderDTO> getOrderByUserID(int id, int index) throws SQLException {
         Connection conn = null;
         List<OrderDTO> list = new ArrayList<>();
         PreparedStatement psm = null;
@@ -90,6 +152,7 @@ public class OrderDAO {
             conn = DBUtils.getConnection();
             psm = conn.prepareStatement(GET_ALL_ORDER_BY_USERID);
             psm.setInt(1, id);
+            psm.setInt(2, (index-1)*3);
             rs = psm.executeQuery();
             while (rs.next()) {
                 int ID = rs.getInt("ID");
@@ -193,7 +256,7 @@ public class OrderDAO {
         return check;
     }
 
-    public List<OrderDTO> searchOrder(String oCode, String oStatus) throws SQLException {
+    public List<OrderDTO> searchOrder(String oCode, String oStatus, int index) throws SQLException {
         Connection conn = null;
         List<OrderDTO> list = new ArrayList<>();
         PreparedStatement psm = null;
@@ -204,16 +267,18 @@ public class OrderDAO {
         try {
             conn = DBUtils.getConnection();
             if (!oCode.equals("") && !oStatus.equals("")) {
-                psm = conn.prepareStatement(GET_ALL_ORDER + " WHERE " + REQUIRE_SEARCH_CODE + " AND " + REQUIRE_SEARCH_STATUS);
-                System.out.println(GET_ALL_ORDER + " WHERE " + REQUIRE_SEARCH_CODE + " AND " + REQUIRE_SEARCH_STATUS);
+                psm = conn.prepareStatement(GET_ALL_ORDER1 + " WHERE " + REQUIRE_SEARCH_CODE + " AND " + REQUIRE_SEARCH_STATUS + " " + OFFSET);
                 psm.setString(1, oCode + "%");
                 psm.setString(2, oStatus);
+                psm.setInt(3, (index - 1) * 8);
             } else if (!oCode.equals("") && oStatus.equals("")) {
-                psm = conn.prepareStatement(GET_ALL_ORDER + " WHERE " + REQUIRE_SEARCH_CODE);
+                psm = conn.prepareStatement(GET_ALL_ORDER1 + " WHERE " + REQUIRE_SEARCH_CODE + " " + OFFSET);
                 psm.setString(1, oCode + "%");
+                psm.setInt(2, (index - 1) * 8);
             } else if (oCode.equals("") && !oStatus.equals("")) {
-                psm = conn.prepareStatement(GET_ALL_ORDER + " WHERE " + REQUIRE_SEARCH_STATUS);
+                psm = conn.prepareStatement(GET_ALL_ORDER1 + " WHERE " + REQUIRE_SEARCH_STATUS + " " + OFFSET);
                 psm.setString(1, oStatus);
+                psm.setInt(2, (index - 1) * 8);
             }
             rs = psm.executeQuery();
             while (rs.next()) {
@@ -244,6 +309,44 @@ public class OrderDAO {
             }
         }
         return list;
+    }
+
+    public int getNumPageWithSearchOrder(String oCode, String oStatus) throws SQLException {
+        Connection conn = null;
+        PreparedStatement psm = null;
+        ResultSet rs = null;
+        int count = 0;
+        try {
+            conn = DBUtils.getConnection();
+            if (!oCode.equals("") && !oStatus.equals("")) {
+                psm = conn.prepareStatement(GET_PAGE_ALL_ORDER + " WHERE " + REQUIRE_SEARCH_CODE + " AND " + REQUIRE_SEARCH_STATUS);
+                psm.setString(1, oCode + "%");
+                psm.setString(2, oStatus);
+            } else if (!oCode.equals("") && oStatus.equals("")) {
+                psm = conn.prepareStatement(GET_PAGE_ALL_ORDER + " WHERE " + REQUIRE_SEARCH_CODE);
+                psm.setString(1, oCode + "%");
+            } else if (oCode.equals("") && !oStatus.equals("")) {
+                psm = conn.prepareStatement(GET_PAGE_ALL_ORDER + " WHERE " + REQUIRE_SEARCH_STATUS);
+                psm.setString(1, oStatus);
+            }
+            rs = psm.executeQuery();
+            if (rs.next()) {
+                count = rs.getInt(1);
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            if (rs != null) {
+                rs.close();
+            }
+            if (psm != null) {
+                psm.close();
+            }
+            if (conn != null) {
+                conn.close();
+            }
+        }
+        return count;
     }
 
     public int insertOrder(OrderDTO o) throws SQLException {

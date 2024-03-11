@@ -45,7 +45,7 @@ and open the template in the editor.
                 <banner>
                     <div class="banner container-fluid pb-5 mb-5">
                         <h1 class="pt-5">Shopping Cart</h1>
-                        <p class="myhome"><a href="#">Home</a><span><i class="px-4 fa-solid fa-chevron-right"></i></span>Cart</p>
+                        <p class="myhome"><a href="MainController">Home</a><span><i class="px-4 fa-solid fa-chevron-right"></i></span><a href="#">Cart</a></p>
                     </div>                         
                 </banner>
             </section>
@@ -76,7 +76,7 @@ and open the template in the editor.
                                             </td>
                                             <td class="">
                                                 <div class="btn-quantity w-100 d-flex justify-content-center">
-                                                    <form action="process-cart" method="post">
+                                                    <form action="ProcessCartController" method="post">
                                                         <input type="hidden" value="-1" name="quantity">
                                                         <input type="hidden" value="${i.product.ID}" name="pid">
                                                         <input type="submit" href="" class="btn btn-secondary rounded-0 w-100 text-center p-2 px-3 h-100"
@@ -86,7 +86,7 @@ and open the template in the editor.
                                                         <input type="number" class="text-center w-100 p-2" id="quantity1"
                                                                value="${i.quantity}" readonly></input>
                                                     </div>
-                                                    <form action="process-cart" method="post">
+                                                    <form action="ProcessCartController" method="post">
                                                         <input type="hidden" value="1" name="quantity">
                                                         <input type="hidden" value="${i.product.ID}" name="pid">
                                                         <input type="submit" href="" class="btn btn-secondary rounded-0 w-100 text-center p-2 px-3 h-100"
@@ -112,7 +112,7 @@ and open the template in the editor.
                                         <td></td>
                                         <td class="text-center  ">
                                             <div class="">
-                                                <a class="textbody checkout py-1 px-2" id="checkout" href="checkout" style="text-decoration: none">Checkout</a>                             
+                                                <a class="textbody checkout py-1 px-2" id="checkout" href="CheckoutController" style="text-decoration: none">Checkout</a>                             
                                             </div>
                                         </td>
                                     </tr>
@@ -154,7 +154,7 @@ and open the template in the editor.
                 }
 
                 // Cấu hình action và method của form
-                form.action = 'process-cart';
+                form.action = 'ProcessCartController';
                 form.method = 'post';
 
                 // Submit form

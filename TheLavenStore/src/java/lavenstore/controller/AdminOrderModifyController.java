@@ -26,8 +26,8 @@ import lavenstore.users.UserDTO;
  *
  * @author Pham Hieu
  */
-@WebServlet(name = "AdminOrderModify", urlPatterns = {"/admin-order-modify"})
-public class AdminOrderModify extends HttpServlet {
+@WebServlet(name = "AdminOrderModifyController", urlPatterns = {"/AdminOrderModifyController"})
+public class AdminOrderModifyController extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>

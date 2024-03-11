@@ -248,14 +248,14 @@ body{
 .error-text{
     color: #EA5455; */
 /* } */
-.paging a{
+.paging{
     text-decoration: none;
     color: white;
-    background-color: #202A41;
+    background-color: #202A41 !important;
     border-radius: 5px;
     border: 1px solid #757575;
 }
-.paging a:hover{
+.paging:hover{
     background-color: #182237;
     color: #F8B940;
 }

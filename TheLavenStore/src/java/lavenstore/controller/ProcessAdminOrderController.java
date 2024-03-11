@@ -18,7 +18,7 @@ import lavenstore.orders.OrderDTO;
  *
  * @author Pham Hieu
  */
-@WebServlet(name = "ProcessAdminOrderController", urlPatterns = {"/process-admin-order"})
+@WebServlet(name = "ProcessAdminOrderController", urlPatterns = {"/ProcessAdminOrderController"})
 public class ProcessAdminOrderController extends HttpServlet {
 
     /**
@@ -30,8 +30,8 @@ public class ProcessAdminOrderController extends HttpServlet {
      * @throws ServletException if a servlet-specific error occurs
      * @throws IOException if an I/O error occurs
      */
-    private static final String ERROR = "admin-order-modify";
-    private static final String SUCCESS = "admin-order";
+    private static final String ERROR = "AdminOrderModifyController";
+    private static final String SUCCESS = "AdminOrderController";
 
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {

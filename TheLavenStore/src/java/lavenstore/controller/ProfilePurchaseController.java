@@ -47,6 +47,14 @@ public class ProfilePurchaseController extends HttpServlet {
         response.setContentType("text/html;charset=UTF-8");
         String url = ERROR;
         try {
+            String index = request.getParameter("index");
+            
+            if (index == null) {
+                index = "1";
+            }
+            
+            int countPage = 0;
+            int currentPage = Integer.parseInt(index);
             
             HttpSession session = request.getSession();
             UserDTO user = (UserDTO) session.getAttribute("account");
@@ -54,7 +62,7 @@ public class ProfilePurchaseController extends HttpServlet {
             ProductDAO pdao = new ProductDAO();
             
             OrderDAO odao = new OrderDAO();
-            List<OrderDTO> listOrder = odao.getAllOrderByUserID(user.getID());
+            List<OrderDTO> listOrder = odao.getOrderByUserID(user.getID(), currentPage);
             OrderDetailsDAO odedao = new OrderDetailsDAO();
             for (OrderDTO o : listOrder) {
                 List<OrderDetailsDTO> listDetails = odedao.getOrderDetailsByID(o.getID());
@@ -68,6 +76,15 @@ public class ProfilePurchaseController extends HttpServlet {
                 request.setAttribute("listpro"+o.getID(), listpro);
                 request.setAttribute("totalMoney"+o.getID(), totalMoney);
             }
+            
+            countPage = odao.getAllOrderByUserID(user.getID()) /3;
+            
+            if (odao.getPageAllOrder() % 3 != 0) {
+                countPage++;
+            }
+            
+            request.setAttribute("page", countPage);
+            request.setAttribute("curr", currentPage);
             request.setAttribute("listorder", listOrder);
             url = "profile_purchase.jsp";
         } catch (Exception e) {

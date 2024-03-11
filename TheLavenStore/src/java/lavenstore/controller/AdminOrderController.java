@@ -22,7 +22,7 @@ import lavenstore.users.UserDTO;
  *
  * @author Pham Hieu
  */
-@WebServlet(name = "AdminOrderController", urlPatterns = {"/admin-order"})
+@WebServlet(name = "AdminOrderController", urlPatterns = {"/AdminOrderController"})
 public class AdminOrderController extends HttpServlet {
 
     /**
@@ -48,19 +48,38 @@ public class AdminOrderController extends HttpServlet {
             List<UserDTO> listUDao = udao.getAllUserTwoInfo();
             request.setAttribute("listuser", listUDao);
 
+            String index = request.getParameter("index");
+            
+            if (index == null) {
+                index = "1";
+            }
+            int countPage = 0;
+            int currentPage = Integer.parseInt(index);
             String searchCode = request.getParameter("searchCode"); //""
-            String statusSeach = request.getParameter("status-search"); //"NONE"
+            String statusSeach = request.getParameter("status-search"); //"NONE" //""
+            if(statusSeach == null || statusSeach.equals("")){
+                statusSeach = "NONE";
+            }
             if ((searchCode != null && !searchCode.equals("")) || (statusSeach != null && !statusSeach.equals("NONE"))) {
-                listODao = odao.searchOrder(searchCode, statusSeach);
+                listODao = odao.searchOrder(searchCode, statusSeach, currentPage);
+                countPage = odao.getNumPageWithSearchOrder(searchCode, statusSeach) / 8;
                 request.setAttribute("searchCode", searchCode);
             } else {
-                listODao = odao.getAllOrder();
-                
+                countPage = odao.getPageAllOrder() / 8;
+                listODao = odao.getAllOrder(currentPage);
             }
+
+            //lay so trang
+            if (odao.getPageAllOrder() % 8 != 0) {
+                countPage++;
+            }
+
+            request.setAttribute("page", countPage);
+            request.setAttribute("curr", currentPage);
             request.setAttribute("statusSeach", statusSeach);
             request.setAttribute("listorder", listODao);
         } catch (Exception e) {
-            log("Error at HomeController: " + e.toString());
+            log("Error at AdminOrderController: " + e.toString());
             request.setAttribute("MESSAGE", "Somethings are error...");
         } finally {
 

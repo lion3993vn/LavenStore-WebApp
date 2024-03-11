@@ -28,7 +28,7 @@
             <div class="row">
                 <div class="col-md-12 d-flex justify-content-center">
                     <div class="box-item w-75 p-3">
-                        <form action="process-admin-order" method="post" accept-charset="UTF-8">
+                        <form action="ProcessAdminOrderController" method="post" accept-charset="UTF-8">
                             <h4 class="modal-title inter ms-3 text-center mb-3">Details Order</h4>
                             <table class="w-100 table-modal">
                                 <tr>
@@ -104,7 +104,7 @@
                             </div>
                             <div class="footer-modal py-4 d-flex justify-content-end">
                                 <div class="close me-4">
-                                    <div class="modal-btn-close p-2 px-4"><a href="admin-order" style="color: white; text-decoration: none">Cancel</a></div>
+                                    <div class="modal-btn-close p-2 px-4"><a href="AdminOrderController" style="color: white; text-decoration: none">Cancel</a></div>
                                 </div>
                                 <div class="save-modal me-4">
                                     <input type="hidden" value="${requestScope.order.ID}" name="orderID">

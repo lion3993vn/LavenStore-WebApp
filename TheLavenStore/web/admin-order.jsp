@@ -107,7 +107,7 @@ and open the template in the editor.
                                 </div>
                                 <div class="body-center">
                                     <div class="container-fluid">
-                                        <div class="row"><form action="admin-order" method="post">
+                                        <div class="row"><form action="AdminOrderController" method="post">
                                                 <div class="col-md-12 d-flex justify-content-start">
                                                     <div class="search-user p-3"><input type="text" class="p-1 ps-3"
                                                                                         placeholder="Search Order Code" name="searchCode"
@@ -186,6 +186,18 @@ and open the template in the editor.
                                                         </tr>
                                                     </c:forEach>
                                                 </table>
+                                            </div>
+                                            <div class="col-md-12 d-flex justify-content-end p-2">
+                                                <c:forEach begin="1" end="${requestScope.page}" var="p">
+                                                    <form action="AdminOrderController" method="post">
+                                                        <input type="submit" class="p-2 me-3 paging ${requestScope.curr == p ? "active-paging":""}" value="${p}">
+                                                        <input type="hidden" name="index" value="${p}">
+                                                        <input type="hidden" name="status-search" value="${requestScope.statusSeach == null ? "NONE" : requestScope.searchCode}">
+                                                        <input type="hidden" name="searchCode" value="${requestScope.searchCode}">
+                                                    </form>
+                                                </c:forEach>
+
+
                                             </div>
                                         </div>
                                     </div>

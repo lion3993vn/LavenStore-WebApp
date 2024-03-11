@@ -36,12 +36,12 @@
             <banner>
                 <div class="banner container-fluid pb-5 mb-5">
                     <h1 class="pt-5">Checkout</h1>
-                    <p class="myhome"><a href="#">Home</a><span><i class="px-4 fa-solid fa-chevron-right"></i></span><a href="#">Cart</a><span><i class="px-4 fa-solid fa-chevron-right"></i></span><a href="#">Checkout</a>
+                    <p class="myhome"><a href="MainController">Home</a><span><i class="px-4 fa-solid fa-chevron-right"></i></span><a href="MainController?action=Cart">Cart</a><span><i class="px-4 fa-solid fa-chevron-right"></i></span><a href="#">Checkout</a>
                     </p>
                 </div>
             </banner>
         </section>
-        <form class="w-100" action="payment" method="post">
+        <form class="w-100" action="PaymentController" method="post">
             <div class="background-container">
                 <div class="container">
                     <div class="row">

@@ -45,7 +45,7 @@ import lavenstore.users.UserDTO;
  *
  * @author Pham Hieu
  */
-@WebServlet(name = "PaymentController", urlPatterns = {"/payment"})
+@WebServlet(name = "PaymentController", urlPatterns = {"/PaymentController"})
 public class PaymentController extends HttpServlet {
 
     /**
@@ -57,7 +57,7 @@ public class PaymentController extends HttpServlet {
      * @throws ServletException if a servlet-specific error occurs
      * @throws IOException if an I/O error occurs
      */
-    private static final String ERROR = "checkout";
+    private static final String ERROR = "CheckoutController";
     private static final String PENDING = "payment-pending.jsp";
     private static final String EMAIL_SUBJECT = "[TheLavenStore] Electronic Invoice #";
 

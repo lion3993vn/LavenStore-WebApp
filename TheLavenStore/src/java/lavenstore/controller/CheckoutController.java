@@ -25,7 +25,7 @@ import lavenstore.users.UserDTO;
  *
  * @author Pham Hieu
  */
-@WebServlet(name = "CheckoutController", urlPatterns = {"/checkout"})
+@WebServlet(name = "CheckoutController", urlPatterns = {"/CheckoutController"})
 public class CheckoutController extends HttpServlet {
 
     /**

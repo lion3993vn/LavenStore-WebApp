@@ -38,7 +38,7 @@ import lavenstore.utils.Utils;
  *
  * @author Pham Hieu
  */
-@WebServlet(name = "VNPayResultController", urlPatterns = {"/vnpay-result"})
+@WebServlet(name = "VNPayResultController", urlPatterns = {"/VNPayResultController"})
 public class VNPayResultController extends HttpServlet {
 
     /**

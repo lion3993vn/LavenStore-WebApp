@@ -20,7 +20,7 @@ import lavenstore.products.ProductDTO;
  *
  * @author Pham Hieu
  */
-@WebServlet(name = "AddToCartController", urlPatterns = {"/addtocart"})
+@WebServlet(name = "AddToCartController", urlPatterns = {"/AddToCartController"})
 public class AddToCartController extends HttpServlet {
 
     /**
@@ -60,7 +60,6 @@ public class AddToCartController extends HttpServlet {
             response.addCookie(cart);
         } catch (Exception e) {
             log("Error at AddToCartController: " + e.toString());
-            request.setAttribute("MESSAGE", "Somethings are error...");
         } finally {
 //            request.getRequestDispatcher("MainController").forward(request, response);
         }
