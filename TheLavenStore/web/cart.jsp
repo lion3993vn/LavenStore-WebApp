@@ -112,7 +112,7 @@ and open the template in the editor.
                                         <td></td>
                                         <td class="text-center  ">
                                             <div class="">
-                                                <a class="textbody checkout py-1 px-2" id="checkout" href="CheckoutController" style="text-decoration: none">Checkout</a>                             
+                                                <a class="textbody checkout py-1 px-2" id="checkout" href="MainController?action=Checkout" style="text-decoration: none">Checkout</a>                             
                                             </div>
                                         </td>
                                     </tr>

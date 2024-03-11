@@ -45,6 +45,35 @@ public class OrderDAO {
             + "		   [Location],[PhoneNumber],[Price],[Status],[OrderCode],[Note])"
             + "            VALUES (?,?,?,?,?,?,?,?,?,?)";
     private static final String GET_ORDER_BY_ORDER_CODE = "SELECT * FROM [Order] WHERE OrderCode = ?";
+    private static final String GET_TOTAL_REVENUE_DAILY = "SELECT SUM(Price) AS TotalRevenue "
+            + "FROM [dbo].[Order] "
+            + "WHERE CONVERT(date, [Date]) = CONVERT(date, GETDATE()) "
+            + "AND [Status] = 'COMPLETED'";
+    private static final String GET_TOTAL_REVENUE_MONTHLY = "SELECT SUM(Price) AS TotalRevenue "
+            + "FROM [dbo].[Order] "
+            + "WHERE MONTH([Date]) = MONTH(GETDATE()) AND YEAR([Date]) = YEAR(GETDATE()) "
+            + "AND [Status] = 'COMPLETED'";
+    private static final String GET_TOTAL_SOLD_PRODUCT_DAILY = "SELECT SUM(od.Quantity) AS TotalSoldProduct "
+            + "FROM [dbo].[OrderDetail] od "
+            + "INNER JOIN [dbo].[Order] o ON od.OrderID = o.ID "
+            + "WHERE CONVERT(date, o.[Date]) = CONVERT(date, GETDATE()) "
+            + "AND o.[Status] = 'COMPLETED'";
+    private static final String GET_TOTAL_SOLD_PRODUCT_MONTHLY = "SELECT SUM(od.Quantity) AS TotalSoldProduct "
+            + "FROM [dbo].[OrderDetail] od "
+            + "INNER JOIN [dbo].[Order] o ON od.OrderID = o.ID "
+            + "WHERE MONTH(o.[Date]) = MONTH(GETDATE()) AND YEAR(o.[Date]) = YEAR(GETDATE()) "
+            + "AND o.[Status] = 'COMPLETED'";
+    private static final String GET_TOTAL_ORDER_DAILY = "SELECT COUNT(*) AS TotalOrders "
+            + "FROM [dbo].[Order] "
+            + "WHERE CONVERT(date, [Date]) = CONVERT(date, GETDATE()) "
+            + "AND [Status] IN ('PENDING', 'COMPLETED') ";
+    private static final String GET_TOTAL_ORDER_MONTHLY = "SELECT COUNT(ID) AS NumberOfOrders "
+            + "FROM [dbo].[Order] "
+            + "WHERE MONTH([Date]) = MONTH(GETDATE()) AND YEAR([Date]) = YEAR(GETDATE()) "
+            + "AND [Status] IN ('PENDING', 'COMPLETED')";
+    private static final String GET_TOTAL_ORDER_PENDING_DAILY = "SELECT COUNT(*)"
+            + "FROM [dbo].[Order]"
+            + "WHERE CONVERT(date, [Date]) = CONVERT(date, GETDATE()) AND Status = 'PENDING'";
 
     public List<OrderDTO> getAllOrder(int index) throws SQLException {
         Connection conn = null;
@@ -152,7 +181,7 @@ public class OrderDAO {
             conn = DBUtils.getConnection();
             psm = conn.prepareStatement(GET_ALL_ORDER_BY_USERID);
             psm.setInt(1, id);
-            psm.setInt(2, (index-1)*3);
+            psm.setInt(2, (index - 1) * 3);
             rs = psm.executeQuery();
             while (rs.next()) {
                 int ID = rs.getInt("ID");
@@ -183,7 +212,7 @@ public class OrderDAO {
         }
         return list;
     }
-    
+
     public OrderDTO getOrderByID(int id) throws SQLException {
         Connection conn = null;
         OrderDTO order = null;
@@ -431,5 +460,201 @@ public class OrderDAO {
             }
         }
         return order;
+    }
+
+    public int getTotalRevenueDaily() throws SQLException {
+        Connection conn = null;
+        PreparedStatement psm = null;
+        ResultSet rs = null;
+        int count = 0;
+        try {
+            conn = DBUtils.getConnection();
+            psm = conn.prepareStatement(GET_TOTAL_REVENUE_DAILY);
+            rs = psm.executeQuery();
+            if (rs.next()) {
+                count = rs.getInt(1);
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            if (rs != null) {
+                rs.close();
+            }
+            if (psm != null) {
+                psm.close();
+            }
+            if (conn != null) {
+                conn.close();
+            }
+        }
+        return count;
+    }
+
+    public int getTotalRevenueMonthly() throws SQLException {
+        Connection conn = null;
+        PreparedStatement psm = null;
+        ResultSet rs = null;
+        int count = 0;
+        try {
+            conn = DBUtils.getConnection();
+            psm = conn.prepareStatement(GET_TOTAL_REVENUE_MONTHLY);
+            rs = psm.executeQuery();
+            if (rs.next()) {
+                count = rs.getInt(1);
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            if (rs != null) {
+                rs.close();
+            }
+            if (psm != null) {
+                psm.close();
+            }
+            if (conn != null) {
+                conn.close();
+            }
+        }
+        return count;
+    }
+
+    public int getTotalSoldProductDaily() throws SQLException {
+        Connection conn = null;
+        PreparedStatement psm = null;
+        ResultSet rs = null;
+        int count = 0;
+        try {
+            conn = DBUtils.getConnection();
+            psm = conn.prepareStatement(GET_TOTAL_SOLD_PRODUCT_DAILY);
+            rs = psm.executeQuery();
+            if (rs.next()) {
+                count = rs.getInt(1);
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            if (rs != null) {
+                rs.close();
+            }
+            if (psm != null) {
+                psm.close();
+            }
+            if (conn != null) {
+                conn.close();
+            }
+        }
+        return count;
+    }
+
+    public int getTotalSoldProductMonthly() throws SQLException {
+        Connection conn = null;
+        PreparedStatement psm = null;
+        ResultSet rs = null;
+        int count = 0;
+        try {
+            conn = DBUtils.getConnection();
+            psm = conn.prepareStatement(GET_TOTAL_SOLD_PRODUCT_MONTHLY);
+            rs = psm.executeQuery();
+            if (rs.next()) {
+                count = rs.getInt(1);
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            if (rs != null) {
+                rs.close();
+            }
+            if (psm != null) {
+                psm.close();
+            }
+            if (conn != null) {
+                conn.close();
+            }
+        }
+        return count;
+    }
+
+    public int getTotalOrderDaily() throws SQLException {
+        Connection conn = null;
+        PreparedStatement psm = null;
+        ResultSet rs = null;
+        int count = 0;
+        try {
+            conn = DBUtils.getConnection();
+            psm = conn.prepareStatement(GET_TOTAL_ORDER_DAILY);
+            rs = psm.executeQuery();
+            if (rs.next()) {
+                count = rs.getInt(1);
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            if (rs != null) {
+                rs.close();
+            }
+            if (psm != null) {
+                psm.close();
+            }
+            if (conn != null) {
+                conn.close();
+            }
+        }
+        return count;
+    }
+
+    public int getTotalOrderMonthly() throws SQLException {
+        Connection conn = null;
+        PreparedStatement psm = null;
+        ResultSet rs = null;
+        int count = 0;
+        try {
+            conn = DBUtils.getConnection();
+            psm = conn.prepareStatement(GET_TOTAL_ORDER_MONTHLY);
+            rs = psm.executeQuery();
+            if (rs.next()) {
+                count = rs.getInt(1);
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            if (rs != null) {
+                rs.close();
+            }
+            if (psm != null) {
+                psm.close();
+            }
+            if (conn != null) {
+                conn.close();
+            }
+        }
+        return count;
+    }
+
+    public int getTotalOrderPenDingDaily() throws SQLException {
+        Connection conn = null;
+        PreparedStatement psm = null;
+        ResultSet rs = null;
+        int count = 0;
+        try {
+            conn = DBUtils.getConnection();
+            psm = conn.prepareStatement(GET_TOTAL_ORDER_PENDING_DAILY);
+            rs = psm.executeQuery();
+            if (rs.next()) {
+                count = rs.getInt(1);
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            if (rs != null) {
+                rs.close();
+            }
+            if (psm != null) {
+                psm.close();
+            }
+            if (conn != null) {
+                conn.close();
+            }
+        }
+        return count;
     }
 }

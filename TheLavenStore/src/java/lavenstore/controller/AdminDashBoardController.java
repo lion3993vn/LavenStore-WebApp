@@ -6,57 +6,65 @@
 package lavenstore.controller;
 
 import java.io.IOException;
+import java.io.PrintWriter;
 import javax.servlet.ServletException;
+import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import lavenstore.orders.OrderDAO;
 
 /**
  *
  * @author Pham Hieu
  */
-public class MainController extends HttpServlet {
+@WebServlet(name = "AdminDashBoardController", urlPatterns = {"/AdminDashBoardController"})
+public class AdminDashBoardController extends HttpServlet {
 
-    private static final String NOT_FOUND = "notfound.html";
-    private static final String HOME_CONTROLLER = "HomeController";
-
-    private static final String CART = "Cart";
-    private static final String CART_CONTROLLER = "CartController";
-
-    private static final String CHECKOUT = "Checkout";
-    private static final String CHECKOUT_CONTROLLER = "CheckoutController";
-
-    private static final String ADMIN = "Admin";
-    private static final String ADMIN_CONTROLLER = "AdminDashBoardController";
-
-    private static final String ADMIN_ORDER = "AdminOrder";
-    private static final String ADMIN_ORDER_CONTROLLER = "AdminOrderController";
+    /**
+     * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
+     * methods.
+     *
+     * @param request servlet request
+     * @param response servlet response
+     * @throws ServletException if a servlet-specific error occurs
+     * @throws IOException if an I/O error occurs
+     */
+    private static final String ERROR = "home.html";
+    private static final String SUCCESS = "admin-dashboard.jsp";
 
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
-        String url = HOME_CONTROLLER;
+        String url = ERROR;
         try {
-            String action = request.getParameter("action");
-            if (action == null) {
-                url = HOME_CONTROLLER;
-            } else if (action.equals(CART)) {
-                url = CART_CONTROLLER;
-            } else if (action.equals(CHECKOUT)) {
-                url = CHECKOUT_CONTROLLER;
-            } else if (action.equals(ADMIN)) {
-                url = ADMIN_CONTROLLER;
-            } else if (action.equals(ADMIN_ORDER)) {
-                url = ADMIN_ORDER_CONTROLLER;
-            } else {
-                url = NOT_FOUND;
-            }
+            OrderDAO odao = new OrderDAO();
+            
+            int totalRevenueDaily = odao.getTotalRevenueDaily();
+            int totalSoldProductDaily = odao.getTotalSoldProductDaily();
+            int totalOrderDaily = odao.getTotalOrderDaily();
+            int totalOrderPendingDaily = odao.getTotalOrderPenDingDaily();
+            
+            int totalOrderMonthly = odao.getTotalOrderMonthly();
+            int totalSoldProductMonthly = odao.getTotalSoldProductMonthly();
+            int totalRevenueMonthly = odao.getTotalRevenueMonthly();
+            
+            request.setAttribute("totalRevenueDaily", totalRevenueDaily);
+            request.setAttribute("totalSoldProductDaily", totalSoldProductDaily);
+            request.setAttribute("totalOrderDaily", totalOrderDaily);
+            request.setAttribute("totalOrderPendingDaily", totalOrderPendingDaily);
+            
+            request.setAttribute("totalOrderMonthly", totalOrderMonthly);
+            request.setAttribute("totalSoldProductMonthly", totalSoldProductMonthly);
+            request.setAttribute("totalRevenueMonthly", totalRevenueMonthly);
+            
+            url = SUCCESS;
         } catch (Exception e) {
-            log("Error at MainController: " + e.toString());
+            log("Error at AdminDashBoardController: " + e.toString());
+            request.setAttribute("MESSAGE", "Somethings are error...");
         } finally {
             request.getRequestDispatcher(url).forward(request, response);
         }
-
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
