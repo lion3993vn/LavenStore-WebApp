@@ -80,7 +80,7 @@ and open the template in the editor.
                             </tr>
                             <tr>
                                 <th>Phone number:</th>
-                                <td>${sessionScope.account.phoneNumber}</td>
+                                <td>${requestScope.order.phoneNumber}</td>
                             </tr>
                             <tr>
                                 <th>Total quantity:</th>
