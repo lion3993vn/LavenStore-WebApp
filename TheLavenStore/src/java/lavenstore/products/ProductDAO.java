@@ -16,7 +16,11 @@ import lavenstore.utils.DBUtils;
 public class ProductDAO {
 
     private static final String GET_LIST_PRODUCT = "select ID, [Name], CateID, Quantity, Price, Rating, [Description], [Image]  from Product";
-    private static final String GET_RELEASE_PRODUCT = "select top 3 ID, [Name], CateID, Quantity, Price, Rating, [Description], [Image]  from Product order by id desc";
+    private static final String GET_BEST_SELLER = "SELECT TOP 8 ProductID"
+            + " FROM [dbo].[OrderDetail]"
+            + " GROUP BY ProductID"
+            + " ORDER BY SUM(Quantity) DESC";
+    private static final String GET_RELEASE_PRODUCT = "select top 3 * from Product order by id desc";
     private static final String GET_DELETE_PRODUCT = "delete from Product where ID = ?";
     private static final String GET_LIST_PRODUCT_BY_CATEID = "SELECT * FROM Product WHERE CateID = ?";
     private static final String GET_PRODUCT_BY_ID = "SELECT * FROM Product WHERE ID = ?";
@@ -126,17 +130,26 @@ public class ProductDAO {
         return list;
     }
 
-    public ProductDTO getProductByID(String id) throws SQLException {
+    public ProductDTO getProductByID(int id) throws SQLException {
         Connection conn = null;
         PreparedStatement pst = null;
         ResultSet rs = null;
+        ProductDTO product = null;
         try {
             conn = DBUtils.getConnection();
             pst = conn.prepareStatement(GET_PRODUCT_BY_ID);
-            pst.setString(1, id);
+            pst.setInt(1, id);
             rs = pst.executeQuery();
-            while (rs.next()) {
-                return (new ProductDTO(rs.getInt("ID"), rs.getString("Name"), rs.getInt("CateID"), rs.getInt("Quantity"), rs.getInt("Price"), rs.getFloat("Rating"), rs.getString("Description"), rs.getString("Image")));
+            if (rs.next()) {
+                product = new ProductDTO();
+                product.setID(id);
+                product.setCateID(rs.getInt("CateID"));
+                product.setName(rs.getString("Name"));
+                product.setQuantity(rs.getInt("Quantity"));
+                product.setPrice(rs.getInt("Price"));
+                product.setRate(rs.getFloat("Rating"));
+                product.setDescription(rs.getString("Description"));
+                product.setImage(rs.getString("Image"));
             }
         } catch (Exception e) {
             e.printStackTrace();
@@ -151,7 +164,7 @@ public class ProductDAO {
                 conn.close();
             }
         }
-        return null;
+        return product;
     }
 
     public List<ProductDTO> getListBySearch(String search) throws SQLException {
@@ -204,4 +217,35 @@ public class ProductDAO {
         }
         return list;
     }
+
+    public int[] getBestSeller() throws SQLException {
+        Connection conn = null;
+        int[] a = new int[8];
+        int check = 0;
+        PreparedStatement psm = null;
+        ResultSet rs = null;
+        try {
+            conn = DBUtils.getConnection();
+            psm = conn.prepareStatement(GET_BEST_SELLER);
+            rs = psm.executeQuery();
+            while (rs.next()) {
+                a[check] = rs.getInt("ProductID");
+                check++;
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            if (rs != null) {
+                rs.close();
+            }
+            if (psm != null) {
+                psm.close();
+            }
+            if (conn != null) {
+                conn.close();
+            }
+        }
+        return a;
+    }
+
 }

@@ -2,6 +2,7 @@ package lavenstore.controller;
 
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.ArrayList;
 import java.util.List;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -13,7 +14,7 @@ import lavenstore.products.CategoryDTO;
 import lavenstore.products.ProductDAO;
 import lavenstore.products.ProductDTO;
 
-@WebServlet(name = "ShopController", urlPatterns = {"/shop"})
+@WebServlet(name = "ShopController", urlPatterns = {"/ShopController"})
 public class ShopController extends HttpServlet {
 
     private static final String ERROR = "shop.jsp";
@@ -21,39 +22,27 @@ public class ShopController extends HttpServlet {
 
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        response.setContentType("text/html;charset=UTF-8");
         String url = ERROR;
-        String cid = request.getParameter("cateid");
-        String search = request.getParameter("txt");
-        String sort = request.getParameter("sortPrice");
-        int cateid = 0;
         try {
-            if (cid == null) {
-                cateid = 1;
-            } else {
-                cateid = Integer.parseInt(cid);
+            String cateId = request.getParameter("cateid");
+            if (cateId == null) {
+                cateId = "0";
             }
-            CategoryDAO dao = new CategoryDAO();
             ProductDAO pdao = new ProductDAO();
-            List<CategoryDTO> list = dao.getListCategory();
-            List<ProductDTO> plist = pdao.getListByCateId(cateid);
-            List<ProductDTO> listS = pdao.getListBySearch(search);
-            List<ProductDTO> listSortPrice = pdao.listSortByPrice(cateid, sort);
-            for (CategoryDTO c : list) {
-                if (c.getCateID() == cateid) {
-                    request.setAttribute("current", c);
-                }
+            List<ProductDTO> list = new ArrayList<>();
+            int cate = Integer.parseInt(cateId);
+            if (cate == 0) {
+                list = pdao.getListProduct();
+            } else {
+                list = pdao.getListByCateId(cate);
             }
 
-            if (search != null) {
-                request.setAttribute("plist", listS);
-            }
-            if (listSortPrice != null) {
-                request.setAttribute("plist", listSortPrice);
-            }
-            request.setAttribute("list", list);
-            request.setAttribute("search", search);
-            request.setAttribute("plist", plist);
+            CategoryDAO cdao = new CategoryDAO();
+            List<CategoryDTO> catelist = cdao.getListCategory();
+
+            request.setAttribute("current", cate);
+            request.setAttribute("plist", list);
+            request.setAttribute("listcate", catelist);
             url = SUCCESS;
         } catch (Exception e) {
             log("Error at HomeController: " + e.toString());

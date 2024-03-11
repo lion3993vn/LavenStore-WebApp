@@ -32,7 +32,15 @@ public class HomeController extends HttpServlet {
         String url = ERROR;
         try {
             ProductDAO dao = new ProductDAO();
+            int[] bestSellerProductID = dao.getBestSeller();
+            
+            List<ProductDTO> bestSeller = new ArrayList<>();
+            for (int i = 0; i < bestSellerProductID.length; i++) {
+                bestSeller.add(dao.getProductByID(bestSellerProductID[i]));
+            }
+            
             List<ProductDTO> releaseList = dao.getNewReleaseProduct();
+            request.setAttribute("best", bestSeller);
             request.setAttribute("release", releaseList);
             url = SUCCESS;
         } catch (Exception e) {

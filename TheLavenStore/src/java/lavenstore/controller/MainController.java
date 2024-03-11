@@ -20,8 +20,9 @@ public class MainController extends HttpServlet {
 
     private static final String NOT_FOUND = "notfound.html";
     private static final String HOME_CONTROLLER = "HomeController";
-    private static final String SHOP_CONTROLLER = "shop";
-    private static final String DETAIL_CONTROLLER = "detail";
+
+    private static final String SHOP = "shop";
+    private static final String SHOP_CONTROLLER = "ShopController";
 
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
@@ -31,13 +32,12 @@ public class MainController extends HttpServlet {
             String action = request.getParameter("action");
             if (action == null) {
                 url = HOME_CONTROLLER;
-            } else if (action.equals("shop")) {
-                url = SHOP_CONTROLLER;
-            } else if (action.equals("detail")) {
+            } else if (action.equals(SHOP)) {
                 url = SHOP_CONTROLLER;
             } else {
                 url = NOT_FOUND;
             }
+
         } catch (Exception e) {
             log("Error at MainController: " + e.toString());
         } finally {

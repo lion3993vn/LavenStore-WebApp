@@ -21,7 +21,16 @@
 
         <!-- banner -->
         <div class="banner container-fluid text-center py-5">
-            <h1 class="banner-title ">${requestScope.current.cateName}</h1>
+            <c:if test="${requestScope.current == null || requestScope.current == 0}">
+            <h1 class="banner-title ">All</h1>
+            </c:if>
+            <c:if test="${requestScope.current != null && requestScope.current != 0}">
+                <c:forEach items="${requestScope.listcate}" var="i">
+                    <c:if test="${requestScope.current == i.cateID}">
+                        <h1 class="banner-title ">${i.cateName}</h1>
+                    </c:if>
+                </c:forEach>
+            </c:if>
             <div class="banner-subtitle">
                 <a class="tab-links" href="/home.jsp">Home</a>
                 <i class="tab-links fa-solid fa-angle-right"></i>
@@ -33,9 +42,12 @@
             <div class="container-fluid">
                 <div class="row mt-5 mb-5">
                     <ul class="navigation-bar nav offset-md-1 col-md-8">
-                        <c:forEach items="${list}" var="i">
+                        <li class="nav-item">
+                            <a class="nav-link ${(requestScope.current == null || requestScope.current == 0)? "current":""}" href="MainController?action=shop&cateid=0">All</a>
+                        </li>
+                        <c:forEach items="${requestScope.listcate}" var="i">
                             <li class="nav-item">
-                                <a class="nav-link ${(i.cateID == requestScope.current.cateID)?"current":""}" href="shop?cateid=${i.cateID}">${i.cateName}</a>
+                                <a class="nav-link ${(requestScope.current == i.cateID)?"current":""}" href="MainController?action=shop&cateid=${i.cateID}">${i.cateName}</a>
                             </li>
                         </c:forEach>
 
@@ -81,7 +93,7 @@
         <section class="seller">
             <div class="container-fluid">
                 <div class="row mt-5 mb-5">
-                    <c:forEach items="${plist}" var="i">
+                    <c:forEach items="${requestScope.plist}" var="i">
                         <div class="col-md-3">
                             <div class="item-sell">
                                 <div class="img-item text-center position-relative">
