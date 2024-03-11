@@ -218,7 +218,7 @@ and open the template in the editor.
         <script>
                                                                     function formdetails(id) {
                                                                         var form = document.createElement('form');
-                                                                        form.setAttribute('action', 'admin-order-modify'); // Chỉnh action
+                                                                        form.setAttribute('action', 'AdminOrderModifyController'); // Chỉnh action
                                                                         form.setAttribute('method', 'post'); // Chỉnh method
 
                                                                         var input = document.createElement('input');
