@@ -24,10 +24,15 @@ public class ShopController extends HttpServlet {
             throws ServletException, IOException {
         String url = ERROR;
         try {
+            
+            String sortPrice = request.getParameter("sortPrice");
+            String search = request.getParameter("search");
             String cateId = request.getParameter("cateid");
+            
             if (cateId == null) {
                 cateId = "0";
             }
+            
             ProductDAO pdao = new ProductDAO();
             List<ProductDTO> list = new ArrayList<>();
             int cate = Integer.parseInt(cateId);

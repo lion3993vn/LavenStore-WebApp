@@ -64,13 +64,13 @@
                                 </a>
                                 <ul class="dropdown-menu">
                                     <li>
-                                        <a class="dropdown-item" href="shop?cateid=${requestScope.list.cateID}&sortPrice=null">Mặc định</a>
+                                        <a class="dropdown-item" href="ShopController?cateid=${requestScope.current}&sortPrice=null&search=">Mặc định</a>
                                     </li>
                                     <li>
-                                        <a class="dropdown-item" href="shop?cateid=${list}&sortPrice=null">Cao đến thấp</a>
+                                        <a class="dropdown-item" href="ShopController?cateid=${requestScope.current}&sortPrice=desc&search=">Cao đến thấp</a>
                                     </li>
                                     <li>
-                                        <a class="dropdown-item" href="shop?cateid=${list}&sortPrice=acs">Thấp đến cao</a>
+                                        <a class="dropdown-item" href="ShopController?cateid=${requestScope.current}&sortPrice=asc&search=">Thấp đến cao</a>
                                     </li>
                                 </ul>
                             </div>
@@ -78,7 +78,7 @@
                     </ul>
                     <form action="shop" method="post" class="form-inline col-md-2 justify-content-center">
                         <input
-                            name="txt"
+                            name="search"
                             value="${search}"
                             class="form-control mr-sm-2 border border-dark rounded-0"
                             type="search"
