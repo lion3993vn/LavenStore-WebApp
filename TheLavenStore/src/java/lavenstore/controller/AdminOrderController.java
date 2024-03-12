@@ -62,19 +62,20 @@ public class AdminOrderController extends HttpServlet {
             }
             if ((searchCode != null && !searchCode.equals("")) || (statusSeach != null && !statusSeach.equals("NONE"))) {
                 listODao = odao.searchOrder(searchCode, statusSeach, currentPage);
-                countPage = odao.getNumPageWithSearchOrder(searchCode, statusSeach) / 8;
+                countPage = odao.getNumPageWithSearchOrder(searchCode, statusSeach);
                 request.setAttribute("searchCode", searchCode);
             } else {
-                countPage = odao.getPageAllOrder() / 8;
+                countPage = odao.getPageAllOrder();
                 listODao = odao.getAllOrder(currentPage);
             }
 
             //lay so trang
-            if (odao.getPageAllOrder() % 8 != 0) {
-                countPage++;
+            int totalPage = countPage / 8;
+            if (countPage % 12 != 0) {
+                totalPage++;
             }
 
-            request.setAttribute("page", countPage);
+            request.setAttribute("page", totalPage);
             request.setAttribute("curr", currentPage);
             request.setAttribute("statusSeach", statusSeach);
             request.setAttribute("listorder", listODao);
