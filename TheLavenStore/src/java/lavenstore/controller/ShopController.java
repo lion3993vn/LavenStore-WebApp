@@ -24,28 +24,62 @@ public class ShopController extends HttpServlet {
             throws ServletException, IOException {
         String url = ERROR;
         try {
+            //bat parameter
+            String index = request.getParameter("index");
             
-            String sortPrice = request.getParameter("sortPrice");
-            String search = request.getParameter("search");
-            String cateId = request.getParameter("cateid");
-            
-            if (cateId == null) {
-                cateId = "0";
+            if (index == null) {
+                index = "1";
             }
+            int countPage = 0;
+            int currentPage = Integer.parseInt(index);
             
+            String cid = request.getParameter("cateid");
+            String search = request.getParameter("search");
+            String sort = request.getParameter("sort");
+
+            CategoryDAO dao = new CategoryDAO();
             ProductDAO pdao = new ProductDAO();
             List<ProductDTO> list = new ArrayList<>();
-            int cate = Integer.parseInt(cateId);
-            if (cate == 0) {
-                list = pdao.getListProduct();
+
+            //lay cate
+            int cateid = 0;
+            if (cid == null || cid.equals("")) {
+                cateid = 0;
             } else {
-                list = pdao.getListByCateId(cate);
+                cateid = Integer.parseInt(cid);
             }
 
+            if (search == null || search.equals("")) {
+                search = null;
+            }
+
+            if (sort == null || sort.equals("")) {
+                sort = null;
+            }
+
+            if (sort == null && search == null && cateid != 0) {
+                list = pdao.getListByCateId(cateid, currentPage);
+                countPage = pdao.getPageListByCateId(cateid);
+            } else if (sort == null && search == null && cateid == 0) {
+                list = pdao.getListProduct(currentPage);
+                countPage = pdao.getPageListProduct();
+            } else if (sort != null || search != null) {
+                list = pdao.getListRequireByCateId(cateid, search, sort, currentPage);
+                countPage = pdao.getPageListRequireByCateId(cateid, search, sort);
+            }
+            int totalPage = countPage / 12;
+            if (countPage % 12 != 0) {
+                totalPage++;
+            }
+            
             CategoryDAO cdao = new CategoryDAO();
             List<CategoryDTO> catelist = cdao.getListCategory();
 
-            request.setAttribute("current", cate);
+            request.setAttribute("page", totalPage);
+            request.setAttribute("curr", currentPage);
+            request.setAttribute("search", search);
+            request.setAttribute("sort", sort);
+            request.setAttribute("current", cateid);
             request.setAttribute("plist", list);
             request.setAttribute("listcate", catelist);
             url = SUCCESS;

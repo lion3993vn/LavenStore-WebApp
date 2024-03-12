@@ -1,5 +1,6 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
 <!DOCTYPE html>
 <html lang="en">
     <head>
@@ -22,7 +23,7 @@
         <!-- banner -->
         <div class="banner container-fluid text-center py-5">
             <c:if test="${requestScope.current == null || requestScope.current == 0}">
-            <h1 class="banner-title ">All</h1>
+                <h1 class="banner-title ">All</h1>
             </c:if>
             <c:if test="${requestScope.current != null && requestScope.current != 0}">
                 <c:forEach items="${requestScope.listcate}" var="i">
@@ -39,56 +40,46 @@
         </div>
         <!-- navbar -->
         <section>
-            <div class="container-fluid">
+            <div class="container">
                 <div class="row mt-5 mb-5">
-                    <ul class="navigation-bar nav offset-md-1 col-md-8">
+                    <ul class="navigation-bar nav col-md-6">
                         <li class="nav-item">
-                            <a class="nav-link ${(requestScope.current == null || requestScope.current == 0)? "current":""}" href="MainController?action=shop&cateid=0">All</a>
+                            <a class="nav-link ${(requestScope.current == null || requestScope.current == 0)? "current":""}" href="MainController?action=shop&cateid=0&search=${requestScope.search}&sort=${requestScope.sort}">All</a>
                         </li>
                         <c:forEach items="${requestScope.listcate}" var="i">
                             <li class="nav-item">
-                                <a class="nav-link ${(requestScope.current == i.cateID)?"current":""}" href="MainController?action=shop&cateid=${i.cateID}">${i.cateName}</a>
+                                <a class="nav-link ${(requestScope.current == i.cateID)?"current":""}" href="MainController?action=shop&cateid=${i.cateID}&search=${requestScope.search}&sort=${requestScope.sort}">${i.cateName}</a>
                             </li>
                         </c:forEach>
-
-                        <li class="nav-item dropdown" style="margin-left: auto;">
-                            <div class="dropdown">
-                                <a
-                                    type="button"
-                                    href="#"
-                                    class="dropdown-toggle"
-                                    style="text-decoration:none"
-                                    data-bs-toggle="dropdown"
-                                    >
-                                    Lọc giá
-                                </a>
-                                <ul class="dropdown-menu">
-                                    <li>
-                                        <a class="dropdown-item" href="ShopController?cateid=${requestScope.current}&sortPrice=null&search=">Mặc định</a>
-                                    </li>
-                                    <li>
-                                        <a class="dropdown-item" href="ShopController?cateid=${requestScope.current}&sortPrice=desc&search=">Cao đến thấp</a>
-                                    </li>
-                                    <li>
-                                        <a class="dropdown-item" href="ShopController?cateid=${requestScope.current}&sortPrice=asc&search=">Thấp đến cao</a>
-                                    </li>
-                                </ul>
-                            </div>
-                        </li>
                     </ul>
-                    <form action="shop" method="post" class="form-inline col-md-2 justify-content-center">
-                        <input
-                            name="search"
-                            value="${search}"
-                            class="form-control mr-sm-2 border border-dark rounded-0"
-                            type="search"
-                            placeholder="Search"
-                            style="font-family:Arial, FontAwesome"
-                            aria-label="Search"
-                            >
-                    </form>
+                    <div class="h-100 col-md-3" style="">
+                        <div class="w-100 d-flex justify-content-end">
+                            <form action="ShopController" method="GET">
+                                <select name="sort" id="" class="p-2" style="" class="w-25">
+                                    <option ${requestScope.sort == null ? "selected":""} disabled>Lọc giá</option>
+                                    <option value="DESC" ${requestScope.sort eq "DESC" ? "selected":""}>Cao đến thấp</option>
+                                    <option value="ASC" ${requestScope.sort eq "ASC" ? "selected":""}>Thấp đến cao</option>
+                                    <option value="">Không</option>
+                                </select>
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <div class="form-inline d-flex justify-content-between ">
+                            <input
+                                name="search"
+                                value="${requestScope.search}"
+                                class="form-control  border border-dark rounded-0 p-2 w-75"
+                                type="search"
+                                placeholder="Search"
+                                style="font-family:Arial, FontAwesome"
+                                aria-label="Search"
+                                >
+                            <input type="hidden" name="cateid" value="${requestScope.current}">
+                            <input type="submit" value="GO" class="w-20" style="background-color: #B68B3E; color: white">
+                            </form>
+                        </div>
+                    </div>
                 </div>
-            </div>
         </section>
         <section class="seller">
             <div class="container-fluid">
@@ -102,7 +93,7 @@
                                 </div>
                                 <div class="info-item text-center">
                                     <a href="detail?pid=${i.ID}">${i.name}</a>
-                                    <p>VND ${i.price}</p>
+                                    <p>VND <fmt:formatNumber pattern="#,###" value="${i.price}"/></p>
                                 </div>
                             </div>
                         </div>
@@ -110,12 +101,19 @@
                 </div>
                 <div class="row mb-5">
                     <div class="col-md-12 d-flex justify-content-end paging">
-                        <a href="" class="me-3 active-paging">1</a>
-                        <a href="" class="me-3">2</a>
-                        <a href="" class="me-3">3</a>
-                        <a href="" class="me-3">4</a>
+                        <c:forEach begin="1" end="${requestScope.page}" var="p">
+                            <form action="ShopController" method="POST">
+                                <input type="submit" class="py-2 px-3 me-3 ${requestScope.curr == p ? "active-paging":""}" value="${p}">
+                                <input type="hidden" name="cateid" value="${requestScope.cateid}">
+                                <input type="hidden" name="index" value="${p}">
+                                <input type="hidden" name="search" value="${requestScope.search}">
+                                <input type="hidden" name="sort" value="${requestScope.sort}">
+                            </form>
+                        </c:forEach>
                     </div>
+
                 </div>
+            </div>
         </section>
         <!--script js bootstrap-->
         <script src="./assets/js/bootstrap/popper.min.js"></script>

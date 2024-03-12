@@ -34,6 +34,8 @@ public class MainController extends HttpServlet {
                 url = HOME_CONTROLLER;
             } else if (action.equals(SHOP)) {
                 url = SHOP_CONTROLLER;
+            } else if (action.equals(SHOP)) {
+                url = SHOP_CONTROLLER;
             } else {
                 url = NOT_FOUND;
             }

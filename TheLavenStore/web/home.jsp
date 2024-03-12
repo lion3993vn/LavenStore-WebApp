@@ -1,5 +1,6 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
 <!DOCTYPE html>
 <!--
 To change this license header, choose License Headers in Project Properties.
@@ -64,7 +65,7 @@ and open the template in the editor.
                                     </div>
                                     <div class="info-item text-center">
                                         <a href="detail?pid=${i.ID}">${i.name}</a>
-                                        <p>VND ${i.price}</p>
+                                        <p>VND <fmt:formatNumber pattern="#,###" value="${i.price}"/></p>
                                     </div>
                                 </div>
                             </div>
@@ -91,7 +92,7 @@ and open the template in the editor.
                                 </div>
                                 <div class="info-item text-center">
                                     <a href="">${o.name}</a>
-                                    <p>VND ${o.price}</p>
+                                    <p>VND <fmt:formatNumber pattern="#,###" value="${o.price}"/></p>
                                 </div>
                             </div>
                         </div>
