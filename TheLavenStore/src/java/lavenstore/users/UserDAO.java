@@ -26,6 +26,13 @@ public class UserDAO {
     private static final String GET_USER_BY_USERNAME = "SELECT * FROM Users WHERE Username = ?";
     private static final String GET_USER_BY_EMAIL = "SELECT * FROM Users WHERE Email = ?";
     private static final String ADD_USER = "INSERT INTO [Users] ([Username],[Password],[Email],[Role],[Fullname],[PhoneNumber],[Address]) VALUES (?,?,?,?,?,?,?)";
+    private static final String GET_USER_BY_USERID = "SELECT * FROM Users WHERE id = ?";
+    private static final String DELETE_USER_BY_USERID = "DELETE FROM Users WHERE id = ?";
+    private static final String GET_LIST_USER_BY_KEYWORD = "SELECT * FROM users where username like ?";
+    private static final String GET_PAGE_NUMBER = "SELECT count(*) FROM Users";
+    private static final String GET_PAGING_USER = "SELECT * FROM users ORDER BY id OFFSET ? ROWS FETCH FIRST 8 ROWS ONLY";
+    private static final String GET_LIST_USER_BY_KEYWORD_PAGING = "SELECT * FROM users where username like ? ORDER BY id OFFSET ? ROWS FETCH FIRST 8 ROWS ONLY";
+    private static final String GET_PAGE_NUMBER_WITH_SEARCH = "SELECT count(*) FROM Users where username like ?";
 
     public UserDTO getOneUser(int ID) throws SQLException {
         UserDTO user = null;
@@ -110,7 +117,7 @@ public class UserDAO {
                 ptm.setString(1, newUser.getUserName());
                 ptm.setString(2, newUser.getPassword());
                 ptm.setString(3, newUser.getEmail());
-                ptm.setString(4, "user");
+                ptm.setString(4, newUser.getRole());
                 ptm.setString(5, newUser.getFullName());
                 ptm.setString(6, newUser.getPhoneNumber());
                 ptm.setString(7, newUser.getAddress());
@@ -219,5 +226,233 @@ public class UserDAO {
             }
         }
         return check;
+    }
+
+    public UserDTO getUserByUserID(int userID) throws SQLException {
+        UserDTO user = null;
+        Connection con = null;
+        PreparedStatement stmt = null;
+        ResultSet rs = null;
+        try {
+            con = DBUtils.getConnection();
+            stmt = con.prepareStatement(GET_USER_BY_USERID);
+            stmt.setInt(1, userID);
+            rs = stmt.executeQuery();
+            if (rs.next()) {
+                user = new UserDTO(rs.getInt(1), rs.getString(2), rs.getString(3), rs.getString(4), rs.getString(5), rs.getString(6), rs.getString(7), rs.getString(8));
+            }
+            con.close();
+        } catch (Exception ex) {
+            System.out.println("Error in servlet. Details:" + ex.getMessage());
+            ex.printStackTrace();
+        } finally {
+            if (rs != null) {
+                rs.close();
+            }
+            if (stmt != null) {
+                stmt.close();
+            }
+            if (con != null) {
+                con.close();
+            }
+        }
+        return user;
+    }
+
+    public boolean deleteUserByID(int userID) throws SQLException {
+        boolean check = false;
+        Connection con = null;
+        PreparedStatement stmt = null;
+
+        try {
+            con = DBUtils.getConnection();
+            stmt = con.prepareStatement(DELETE_USER_BY_USERID);
+            stmt.setInt(1, userID);
+            check = stmt.executeUpdate() > 0 ? true : false;
+        } catch (Exception ex) {
+            System.out.println("Error in servlet. Details:" + ex.getMessage());
+            ex.printStackTrace();
+        } finally {
+            if (stmt != null) {
+                stmt.close();
+            }
+            if (con != null) {
+                con.close();
+            }
+        }
+        return check;
+    }
+
+    public List<UserDTO> getUserByKeyword(String keyword) throws SQLException {
+        List<UserDTO> listUser = new ArrayList<>();
+        Connection conn = null;
+        PreparedStatement ptm = null;
+        ResultSet rs = null;
+        try {
+            conn = DBUtils.getConnection();
+            ptm = conn.prepareStatement(GET_LIST_USER_BY_KEYWORD);
+            ptm.setString(1, "%" + keyword + "%");
+            rs = ptm.executeQuery();
+            while (rs.next()) {
+                int ID = rs.getInt("ID");
+                String userName = rs.getString("userName");
+                String password = rs.getString("password");
+                String email = rs.getString("email");
+                String role = rs.getString("role");
+                String fullName = rs.getString("fullName");
+                String phoneNumber = rs.getString("phoneNumber");
+                String address = rs.getString("address");
+                listUser.add(new UserDTO(ID, userName, password, email, role, fullName, phoneNumber, address));
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            if (rs != null) {
+                rs.close();
+            }
+            if (ptm != null) {
+                ptm.close();
+            }
+            if (conn != null) {
+                conn.close();
+            }
+        }
+        return listUser;
+    }
+
+    public int getPageNumber() throws SQLException {
+        UserDTO user = null;
+        Connection con = null;
+        PreparedStatement stmt = null;
+        ResultSet rs = null;
+        int pageNumber = 0;
+        try {
+            con = DBUtils.getConnection();
+            stmt = con.prepareStatement(GET_PAGE_NUMBER);
+            rs = stmt.executeQuery();
+            if (rs.next()) {
+                pageNumber = rs.getInt(1);
+            }
+        } catch (Exception ex) {
+            System.out.println("Error in servlet. Details:" + ex.getMessage());
+            ex.printStackTrace();
+        } finally {
+            if (rs != null) {
+                rs.close();
+            }
+            if (stmt != null) {
+                stmt.close();
+            }
+            if (con != null) {
+                con.close();
+            }
+        }
+        return pageNumber;
+    }
+
+    public List<UserDTO> getPagingUser(int index) throws SQLException {
+        List<UserDTO> listUser = new ArrayList<>();
+        Connection conn = null;
+        PreparedStatement ptm = null;
+        ResultSet rs = null;
+        try {
+            conn = DBUtils.getConnection();
+            ptm = conn.prepareStatement(GET_PAGING_USER);
+            ptm.setInt(1, (index - 1) * 8);
+            rs = ptm.executeQuery();
+            while (rs.next()) {
+                int ID = rs.getInt("ID");
+                String userName = rs.getString("userName");
+                String password = rs.getString("password");
+                String email = rs.getString("email");
+                String role = rs.getString("role");
+                String fullName = rs.getString("fullName");
+                String phoneNumber = rs.getString("phoneNumber");
+                String address = rs.getString("address");
+                listUser.add(new UserDTO(ID, userName, password, email, role, fullName, phoneNumber, address));
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            if (rs != null) {
+                rs.close();
+            }
+            if (ptm != null) {
+                ptm.close();
+            }
+            if (conn != null) {
+                conn.close();
+            }
+        }
+        return listUser;
+    }
+
+    public List<UserDTO> getUserByKeywordPaging(String keyword, int index) throws SQLException {
+        List<UserDTO> listUser = new ArrayList<>();
+        Connection conn = null;
+        PreparedStatement ptm = null;
+        ResultSet rs = null;
+        try {
+            conn = DBUtils.getConnection();
+            ptm = conn.prepareStatement(GET_LIST_USER_BY_KEYWORD_PAGING);
+            ptm.setString(1, "%" + keyword + "%");
+            ptm.setInt(2, (index - 1) * 8);
+            rs = ptm.executeQuery();
+            while (rs.next()) {
+                int ID = rs.getInt("ID");
+                String userName = rs.getString("userName");
+                String password = rs.getString("password");
+                String email = rs.getString("email");
+                String role = rs.getString("role");
+                String fullName = rs.getString("fullName");
+                String phoneNumber = rs.getString("phoneNumber");
+                String address = rs.getString("address");
+                listUser.add(new UserDTO(ID, userName, password, email, role, fullName, phoneNumber, address));
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            if (rs != null) {
+                rs.close();
+            }
+            if (ptm != null) {
+                ptm.close();
+            }
+            if (conn != null) {
+                conn.close();
+            }
+        }
+        return listUser;
+    }
+
+    public int getPageNumberWithSearch(String keyword) throws SQLException {
+        UserDTO user = null;
+        Connection con = null;
+        PreparedStatement stmt = null;
+        ResultSet rs = null;
+        int pageNumber = 0;
+        try {
+            con = DBUtils.getConnection();
+            stmt = con.prepareStatement(GET_PAGE_NUMBER_WITH_SEARCH);
+            stmt.setString(1, "%" + keyword + "%");
+            rs = stmt.executeQuery();
+            if (rs.next()) {
+                pageNumber = rs.getInt(1);
+            }
+        } catch (Exception ex) {
+            System.out.println("Error in servlet. Details:" + ex.getMessage());
+            ex.printStackTrace();
+        } finally {
+            if (rs != null) {
+                rs.close();
+            }
+            if (stmt != null) {
+                stmt.close();
+            }
+            if (con != null) {
+                con.close();
+            }
+        }
+        return pageNumber;
     }
 }

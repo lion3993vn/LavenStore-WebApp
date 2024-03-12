@@ -6,15 +6,12 @@
 package lavenstore.controller;
 
 import java.io.IOException;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
+import static java.lang.Integer.parseInt;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import static jdk.nashorn.tools.Shell.SUCCESS;
-import lavenstore.email.Email;
 import lavenstore.users.UserDAO;
 import lavenstore.users.UserDTO;
 
@@ -40,11 +37,11 @@ public class ProcessAdminUserController extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
+        request.setCharacterEncoding("UTF-8");
         String url = ERROR;
         try {
             String action = (String) request.getParameter("admin-action");
             if (action.equals("add-user")) {
-                boolean isValidUser = true;
                 String userName = request.getParameter("username");
                 String password = request.getParameter("password");
                 String email = request.getParameter("email");
@@ -62,6 +59,27 @@ public class ProcessAdminUserController extends HttpServlet {
                 user.setRole(role);
                 u.insert(user);
                 url = SUCCESS;
+            } else if (action.equals("edit-user")) {
+                String userName = request.getParameter("username");
+                String password = request.getParameter("password");
+                String email = request.getParameter("email");
+                String phoneNumber = request.getParameter("phoneNumber");
+                String address = request.getParameter("address");
+                String role = request.getParameter("role");
+                UserDAO u = new UserDAO();
+                UserDTO user = u.getUserByUsername(userName);
+                user.setUserName(userName);
+                user.setPassword(password);
+                user.setFullName(userName);
+                user.setEmail(email);
+                user.setPhoneNumber(phoneNumber);
+                user.setAddress(address);
+                user.setRole(role);
+                u.update(user);
+            } else if (action.equals("delete-user")) {
+                int userID = parseInt(request.getParameter("userID"));
+                UserDAO u = new UserDAO();
+                u.deleteUserByID(userID);
             }
         } catch (Exception e) {
             log("Error at ProfileUserController: " + e.toString());

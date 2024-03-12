@@ -8,6 +8,7 @@ package lavenstore.controller;
 import com.google.gson.JsonObject;
 import java.io.IOException;
 import java.io.PrintWriter;
+import static java.lang.Integer.parseInt;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 import javax.servlet.ServletException;
@@ -37,66 +38,131 @@ public class AjaxAdminUserController extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
+        String ajaxAdminAction = request.getParameter("ajaxAdminAction");
+        request.setCharacterEncoding("UTF-8");
         try {
-            String txtUsername = request.getParameter("txtUsername");
-            String txtEmail = request.getParameter("txtEmail");
-            String txtPassword = request.getParameter("txtPassword");
-            String txtPhoneNumber = request.getParameter("txtPhoneNumber");
-            String errorUsername = "", errorEmail = "", errorPassword = "", errorPhone = "";
-            UserDAO u = new UserDAO();
-            UserDTO user = null;
-            String regexUsername = "^[a-zA-Z0-9_]{3,20}$";
-            Pattern patternUsername = Pattern.compile(regexUsername);
-            Matcher matcherUsername = patternUsername.matcher(txtUsername);
-            if (!matcherUsername.matches()) {
-                errorUsername = "Username không hợp lệ";
-            } else {
-                user = u.getUserByUsername(txtUsername);
-                if (user != null) {
-                    errorUsername = "Tài khoản đã tồn tại";
+            if (ajaxAdminAction.equals("add-user")) {
+                String txtUsername = request.getParameter("txtUsername");
+                String txtEmail = request.getParameter("txtEmail");
+                String txtPassword = request.getParameter("txtPassword");
+                String txtPhoneNumber = request.getParameter("txtPhoneNumber");
+                String errorUsername = "", errorEmail = "", errorPassword = "", errorPhone = "";
+                UserDAO u = new UserDAO();
+                UserDTO user = null;
+                String regexUsername = "^[a-zA-Z0-9_]{3,20}$";
+                Pattern patternUsername = Pattern.compile(regexUsername);
+                Matcher matcherUsername = patternUsername.matcher(txtUsername);
+                if (!matcherUsername.matches()) {
+                    errorUsername = "Username không hợp lệ";
+                } else {
+                    user = u.getUserByUsername(txtUsername);
+                    if (user != null) {
+                        errorUsername = "Tài khoản đã tồn tại";
+                    }
                 }
-            }
 
-            //password
-            String regexPassword = "^[A-Za-z0-9]{4,}$";
-            Pattern patternPassword = Pattern.compile(regexPassword);
-            Matcher matcherPassword = patternPassword.matcher(txtPassword);
-            if (!matcherPassword.matches()) {
-                errorPassword = "Password phải có từ 4 kí tự trở lên";
-            }
-
-            //email
-            String regexEmail = "^[A-Za-z0-9+_.-]+@(.+)$";
-            Pattern patternEmail = Pattern.compile(regexEmail);
-            Matcher matcherEmail = patternEmail.matcher(txtEmail);
-            if (!matcherEmail.matches()) {
-                errorEmail = "Email không hợp lệ";
-            } else {
-                user = u.getUserByEmail(txtEmail);
-                if (user != null) {
-                    errorEmail = "Email đã tồn tại";
+                //password
+                String regexPassword = "^[A-Za-z0-9]{4,}$";
+                Pattern patternPassword = Pattern.compile(regexPassword);
+                Matcher matcherPassword = patternPassword.matcher(txtPassword);
+                if (!matcherPassword.matches()) {
+                    errorPassword = "Password phải có từ 4 kí tự trở lên";
                 }
+
+                //email
+                String regexEmail = "^[A-Za-z0-9+_.-]+@(.+)$";
+                Pattern patternEmail = Pattern.compile(regexEmail);
+                Matcher matcherEmail = patternEmail.matcher(txtEmail);
+                if (!matcherEmail.matches()) {
+                    errorEmail = "Email không hợp lệ";
+                } else {
+                    user = u.getUserByEmail(txtEmail);
+                    if (user != null) {
+                        errorEmail = "Email đã tồn tại";
+                    }
+                }
+                String regex = "^1?(\\d{10})$";
+                Pattern patternPhone = Pattern.compile(regex);
+                Matcher matcherPhone = patternPhone.matcher(txtPhoneNumber);
+                if (txtPhoneNumber.isEmpty()) {
+                    txtPhoneNumber = null;
+                }
+                if (!matcherPhone.matches() && txtPhoneNumber != null) {
+                    errorPhone = "Số điện thoại không hợp lệ!";
+                }
+                JsonObject json = new JsonObject();
+                json.addProperty("errorUsername", errorUsername);
+                json.addProperty("errorPassword", errorPassword);
+                json.addProperty("errorEmail", errorEmail);
+                json.addProperty("errorPhone", errorPhone);
+                response.setContentType("application/json");
+                PrintWriter out = response.getWriter();
+                out.print(json.toString());
+                out.flush();
+            } else if (ajaxAdminAction.equals("edit-user")) {
+                int txtUserID = parseInt(request.getParameter("txtUserID"));
+                UserDAO dao = new UserDAO();
+                UserDTO user = dao.getUserByUserID(txtUserID);
+                JsonObject json = new JsonObject();
+                json.addProperty("username", user.getUserName());
+                json.addProperty("password", user.getPassword());
+                json.addProperty("email", user.getEmail());
+                json.addProperty("phoneNumber", user.getPhoneNumber());
+                json.addProperty("role", user.getRole());
+                json.addProperty("address", user.getAddress());
+                response.setContentType("application/json");
+                PrintWriter out = response.getWriter();
+                out.print(json.toString());
+                out.flush();
+            } else if (ajaxAdminAction.equals("check-edit")) {
+                int userID = parseInt(request.getParameter("userID"));
+                String txtPassword = request.getParameter("txtPassword");
+                String txtEmail = request.getParameter("txtEmail");
+                String txtPhoneNumber = request.getParameter("txtPhoneNumber");
+                String errorEmail = "", errorPassword = "", errorPhone = "";
+                UserDAO u = new UserDAO();
+                UserDTO editingUser = u.getUserByUserID(userID);
+                //password
+                String regexPassword = "^[A-Za-z0-9]{4,}$";
+                Pattern patternPassword = Pattern.compile(regexPassword);
+                Matcher matcherPassword = patternPassword.matcher(txtPassword);
+                if (!matcherPassword.matches()) {
+                    errorPassword = "Password phải có từ 4 kí tự trở lên";
+                }
+                //email
+                String regexEmail = "^[A-Za-z0-9+_.-]+@(.+)$";
+                Pattern patternEmail = Pattern.compile(regexEmail);
+                Matcher matcherEmail = patternEmail.matcher(txtEmail);
+                if (!matcherEmail.matches()) {
+                    errorEmail = "Email không hợp lệ";
+                } else {
+                    //check if user exist
+                    UserDTO user = u.getUserByEmail(txtEmail);
+                    if (user != null && user.getID() != editingUser.getID()) {
+                        errorEmail = "Email đã tồn tại";
+                    }
+                }
+                //phone
+                String regex = "^1?(\\d{10})$";
+                Pattern patternPhone = Pattern.compile(regex);
+                Matcher matcherPhone = patternPhone.matcher(txtPhoneNumber);
+                if (txtPhoneNumber.isEmpty()) {
+                    txtPhoneNumber = null;
+                }
+                if (!matcherPhone.matches() && txtPhoneNumber != null) {
+                    errorPhone = "Số điện thoại không hợp lệ!";
+                }
+                JsonObject json = new JsonObject();
+                json.addProperty("errorPassword", errorPassword);
+                json.addProperty("errorEmail", errorEmail);
+                json.addProperty("errorPhone", errorPhone);
+                response.setContentType("application/json");
+                PrintWriter out = response.getWriter();
+                out.print(json.toString());
+                out.flush();
             }
-            String regex = "^1?(\\d{10})$";
-            Pattern patternPhone = Pattern.compile(regex);
-            Matcher matcherPhone = patternPhone.matcher(txtPhoneNumber);
-            if (txtPhoneNumber.isEmpty()) {
-                txtPhoneNumber = null;
-            }
-            if (!matcherPhone.matches() && txtPhoneNumber != null) {
-                errorPhone = "Số điện thoại không hợp lệ!";
-            }
-            JsonObject json = new JsonObject();
-            json.addProperty("errorUsername", errorUsername);
-            json.addProperty("errorPassword", errorPassword);
-            json.addProperty("errorEmail", errorEmail);
-            json.addProperty("errorPhone", errorPhone);
-            response.setContentType("application/json");
-            PrintWriter out = response.getWriter();
-            out.print(json.toString());
-            out.flush();
         } catch (Exception e) {
-            log("Error at ProfileUserController: " + e.toString());
+            log("Error at AjaxAdminUserController: " + e.toString());
             request.setAttribute("MESSAGE", "Somethings are error...");
         } finally {
 //            request.getRequestDispatcher("profile_address.jsp").forward(request, response);

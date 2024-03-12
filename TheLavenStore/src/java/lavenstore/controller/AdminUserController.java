@@ -6,6 +6,7 @@
 package lavenstore.controller;
 
 import java.io.IOException;
+import static java.lang.Integer.parseInt;
 import java.util.ArrayList;
 import java.util.List;
 import javax.servlet.ServletException;
@@ -40,9 +41,32 @@ public class AdminUserController extends HttpServlet {
         response.setContentType("text/html;charset=UTF-8");
         String url = ERROR;
         try {
+            String index = request.getParameter("index");
+            if (index==null){
+                index = "1";
+            }
+            int countPage = 0;
+            int currentPage = parseInt(index);
             UserDAO dao = new UserDAO();
+            
             List<UserDTO> userList = new ArrayList();
-            userList = dao.getAllUser();
+            String searchUser = request.getParameter("searchUser");
+            if (searchUser == null || searchUser.equals("")) {
+                countPage = dao.getPageNumber();
+                
+                userList = dao.getPagingUser(currentPage);
+            } else {
+                countPage = dao.getPageNumberWithSearch(searchUser);
+                userList = dao.getUserByKeywordPaging(searchUser,currentPage);
+                
+            }
+            int totalPage = countPage/8;
+            if (countPage%8 != 0){
+                totalPage++;
+            }
+            request.setAttribute("searchUser",searchUser);
+            request.setAttribute("totalPage",totalPage);
+            request.setAttribute("currentPage", currentPage);
             request.setAttribute("userList", userList);
         } catch (Exception e) {
             log("Error at ProfileUserController: " + e.toString());

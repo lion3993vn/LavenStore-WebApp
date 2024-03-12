@@ -90,7 +90,7 @@ and open the template in the editor.
                         </div>
                         <div class="col-md-2 d-flex align-content-center justify-content-center">
                             <div class="pos-nav d-flex align-content-center p-2 py-3">
-                                <p class="m-0">phamhieu</p>
+                                <p class="m-0">${sessionScope.account.userName}</p>
                             </div>
                             <div class="icon-nav-log p-2 py-3">
                                 <i class="fa-solid fa-power-off"></i>
@@ -109,9 +109,11 @@ and open the template in the editor.
                                 <div class="body-center">
                                     <div class="container-fluid">
                                         <div class="row">
-                                            <div class="col-md-12">
-                                                <div class="search-user float-start p-3"><input type="text" class="p-1 ps-3" placeholder="Search user"></div>
-                                            </div>
+                                            <form action="AdminUserController" method="">
+                                                <div class="col-md-12">
+                                                    <div class="search-user float-start p-3"><input type="text" class="p-1 ps-3" placeholder="Search user" name="searchUser" value="${requestScope.searchUser}"></div>
+                                                    <div class="search-user-submit p-3 float-start"><input type="submit" class="p-1 px-3" value="GO"></div>
+                                                </div></form>
                                             <div class="col-md-12 p-0">
                                                 <table class="w-100 table-body">
                                                     <tr class="table-header">
@@ -133,19 +135,22 @@ and open the template in the editor.
                                                             <td class="p-3 px-4 "><span class="float-start">${u.role}</span></td>
                                                             <td class="p-3 px-4 d-flex justify-content-center">
                                                                 <div class="edit-user p-2" data-bs-toggle="modal" data-bs-target="#edit-user">
-                                                                    <i class="fa-solid fa-pen-to-square"></i>
+                                                                    <i class="fa-solid fa-pen-to-square" onclick="editUser(${u.ID})"></i>
                                                                 </div>
-                                                                <div class="delete-user p-2"><i class="fa-solid fa-trash"></i></div>
+                                                                <div class="delete-user p-2"><i class="fa-solid fa-trash" onclick="deleteUser(${u.ID})"></i></div>
                                                             </td>
                                                         </tr>
                                                     </c:forEach> 
                                                 </table>
                                             </div>
                                             <div class="col-md-12 d-flex justify-content-end paging p-2">
-                                                <a href="" class="p-2 me-3 active-paging">1</a>
-                                                <a href="" class="p-2 me-3">2</a>
-                                                <a href="" class="p-2 me-3">3</a>
-                                                <a href="" class="p-2 me-3">4</a>
+                                                <c:forEach begin="1" end="${requestScope.totalPage}" var="i">
+                                                    <form action="AdminUserController" method="post">
+                                                        <input type="hidden" name="index" value="${i}">
+                                                        <input type="hidden" name="searchUser" value="${requestScope.searchUser}">
+                                                        <input class="p-2 me-3 ${requestScope.currentPage == i?"active-paging":""}" type="submit" value="${i}">
+                                                    </form>
+                                                </c:forEach>
                                             </div>
                                         </div>
                                     </div>
@@ -171,7 +176,7 @@ and open the template in the editor.
 
                     <!-- Modal body -->
                     <div class="modal-body">
-                        <form action="#" method="post" id="add-user-form">
+                        <form action="ProcessAdminUserController" method="post" id="add-user-form">
                             <table class="w-100 table-modal">
                                 <tr>
                                     <td colspan="2" class="py-2"><span class="inter">Username</span></td>
@@ -233,7 +238,7 @@ and open the template in the editor.
                                     <div class="modal-btn-close p-2 px-4" data-bs-dismiss="modal"><span>Close</span></div>
                                 </div>
                                 <div class="save-modal me-4">
-                                    <input type="submit" value="Add user" class="input-submit p-2 px-3 inter">
+                                    <input type="hidden" id="add-user-submit" value="Add user" class="input-submit p-2 px-3 inter">
                                 </div>
                             </div>
                         </form>
@@ -253,47 +258,61 @@ and open the template in the editor.
 
                         <!-- Modal body -->
                         <div class="modal-body">
-                            <table class="w-100 table-modal">
-                                <tr>
-                                    <td colspan="2" class="py-2"><span class="inter">Username</span></td>
-                                </tr>
-                                <tr>
-                                    <td class="pe-1 py-1"><input type="text" placeholder="" class="w-100 p-1"></td>
-                                    <td></td>
-                                </tr>
-                                <tr class="row-error">
-                                    <td colspan="2"><span class="error-text">User name is already exist</span></td>
-                                </tr>
-                                <tr>
-                                    <td colspan="2" class="py-2">Password</td>
-                                </tr>
-                                <tr>
-                                    <td colspan="2" class="pe-1 py-1"><input type="text" class="w-100 p-1"></td>
-                                </tr>
-                                <tr>
-                                    <td class="py-2">Role</td>
-                                    <td class="py-2">Phone number</td>
-                                </tr>
-                                <tr>
-                                    <td class="pe-1 py-1"><select class="w-100 p-1">
-                                            <option value="admin">Admin</option>
-                                            <option value="admin">User</option>
-                                        </select></td>
-                                    <td class="pe-1 py-1"><input type="text" class="w-100 p-1"></td>
-                                </tr>
-                                <tr>
-                                    <td colspan="2" class="py-2">Email</td>
-                                </tr>
-                                <tr>
-                                    <td colspan="2" class="pe-1 py-1"><input type="text" class="w-100 p-1"></td>
-                                </tr>
-                                <tr>
-                                    <td colspan="2" class="py-2">Address</td>
-                                </tr>
-                                <tr>
-                                    <td colspan="2" class="pe-1 py-1"><input type="text" class="w-100 p-1"></td>
-                                </tr>
-                            </table>
+                            <form action="ProcessAdminUserController" method="post" id="edit-user-form">
+                                <table class="w-100 table-modal">
+                                    <tr>
+                                        <td colspan="2" class="py-2"><span class="inter">Username</span></td>
+                                    </tr>
+                                    <tr>
+                                        <td class="pe-1 py-1"><input type="text" placeholder="" class="w-100 p-1" id="edit-username" readonly style="background-color: #182237" onchange="checkEdit(document.getElementById('edit-id').value)" name="username"></td>
+                                        <td></td>
+                                    </tr>
+                                    <tr>
+                                        <td colspan="2" class="py-2">Password</td>
+                                    </tr>
+                                    <tr>
+                                        <td colspan="2" class="pe-1 py-1"><input type="text" class="w-100 p-1" id="edit-password" onchange="checkEdit(document.getElementById('edit-id').value)" name="password"></td>
+                                    </tr>
+                                    <tr>
+                                        <td colspan="2"><span class="error-text" id="errorPasswordEdit"></span></td>
+                                    </tr>
+                                    <tr>
+                                        <td class="py-2">Role</td>
+                                        <td class="py-2">Phone number</td>
+                                    </tr>
+                                    <tr>
+                                        <td class="pe-1 py-1"><select class="w-100 p-1" id="edit-role" name="role">
+                                                <option value="admin">Admin</option>
+                                                <option value="user">User</option>
+                                            </select></td>
+                                        <td class="pe-1 py-1"><input type="text" class="w-100 p-1" id="edit-phone" onchange="checkEdit(document.getElementById('edit-id').value)" name="phoneNumber"> </td>
+                                    </tr>
+                                    <tr>
+                                        <td></td>
+                                        <td><span class="error-text" id="errorPhoneEdit"></span></td>
+                                    </tr>
+                                    <tr>
+                                        <td colspan="2" class="py-2">Email</td>
+                                    </tr>
+                                    <tr>
+                                        <td colspan="2" class="pe-1 py-1"><input type="text" class="w-100 p-1" id="edit-email" onchange="checkEdit(document.getElementById('edit-id').value)" name="email"> </td>
+                                    </tr>
+                                    <tr>
+                                        <td colspan="2"><span class="error-text" id="errorEmailEdit"></span></td>
+                                    </tr>
+                                    <tr>
+                                        <td colspan="2" class="py-2">Address</td>
+                                    </tr>
+                                    <tr>
+                                        <td colspan="2" class="pe-1 py-1"><input type="text" class="w-100 p-1" id="edit-address" name="address"></td>
+                                    </tr>
+                                    <tr>
+                                        <td><input type="hidden" id="edit-id"></td>
+                                        <td><input type="hidden" name="ajaxAdminAction" value="update-user"></td>
+                                    <input name="admin-action" type="hidden" value="edit-user">
+                                    </tr>
+                                </table>
+
                         </div>
 
                         <!-- Modal footer -->
@@ -302,10 +321,10 @@ and open the template in the editor.
                                 <div class="modal-btn-close p-2 px-4" data-bs-dismiss="modal"><span>Close</span></div>
                             </div>
                             <div class="save-modal me-4">
-                                <input type="submit" value="Save" class="input-submit p-2 px-4 inter">
+                                <input type="hidden" value="Save" id="edit-user-submit" class="input-submit p-2 px-4 inter">
                             </div>
                         </div>
-
+                        </form>
                     </div>
                 </div>
             </div>
@@ -314,52 +333,173 @@ and open the template in the editor.
             <script src="./assets/js/bootstrap/bootstrap.min.js"></script>
             <script src="./assets/js/bootstrap/bootstrap.esm.min.js"></script>
             <script>
-                                        function checkUser() {
-                                            var checker = 4;
-                                            console.log("check user ne ");
-                                            var username = document.getElementById("username").value;
-                                            var email = document.getElementById("email").value;
-                                            var password = document.getElementById("password").value;
-                                            var phoneNumber = document.getElementById("phoneNumber").value;
-                                            $.ajax({
-                                                url: "AjaxAdminUserController",
-                                                type: "post", //send it through post method
-                                                data: {
-                                                    txtUsername: username,
-                                                    txtEmail: email,
-                                                    txtPassword: password,
-                                                    txtPhoneNumber: phoneNumber
-                                                },
-                                                success: function (response) {
-                                                    var errorUsername = response.errorUsername;
-                                                    var errorEmail = response.errorEmail;
-                                                    var errorPassword = response.errorPassword;
-                                                    var errorPhone = response.errorPhone;
+                                            function checkUser() {
+                                                var checker = 4;
+                                                console.log("check user ne ");
+                                                var username = document.getElementById("username").value;
+                                                var email = document.getElementById("email").value;
+                                                var password = document.getElementById("password").value;
+                                                var phoneNumber = document.getElementById("phoneNumber").value;
+                                                $.ajax({
+                                                    url: "AjaxAdminUserController",
+                                                    type: "post", //send it through post method
+                                                    data: {
+                                                        ajaxAdminAction: "add-user",
+                                                        txtUsername: username,
+                                                        txtEmail: email,
+                                                        txtPassword: password,
+                                                        txtPhoneNumber: phoneNumber
+                                                    },
+                                                    success: function (response) {
+                                                        var errorUsername = response.errorUsername;
+                                                        var errorEmail = response.errorEmail;
+                                                        var errorPassword = response.errorPassword;
+                                                        var errorPhone = response.errorPhone;
+                                                        document.getElementById("errorUsername").innerHTML = errorUsername;
+                                                        document.getElementById("errorPassword").innerHTML = errorPassword;
+                                                        document.getElementById("errorPhone").innerHTML = errorPhone;
+                                                        document.getElementById("errorEmail").innerHTML = errorEmail;
+                                                        if (errorUsername === "")
+                                                            checker--;
+                                                        if (errorPassword === "")
+                                                            checker--;
+                                                        if (errorPhone === "")
+                                                            checker--;
+                                                        if (errorEmail === "")
+                                                            checker--;
+                                                        if (checker == 0) {
+                                                            document.getElementById("add-user-submit").type = "submit";
+                                                        } else {
+                                                            document.getElementById("add-user-submit").type = "hidden";
+                                                        }
+                                                        console.log(checker);
+                                                        console.log("response ", response);
+                                                    },
+                                                    error: function (xhr) {
+                                                        //Do Something to handle error
+                                                        alert("Có lỗi xảy ra, vui lòng thử lại sau ít phút");
+                                                    }
+                                                });
+                                            }
+            </script>
+            <script>
+                function editUser(userID) {
+                    console.log(userID);
+                    console.log("edit-user ne ");
+                    var username = "";
+                    var password = "";
+                    var role = "";
+                    var phoneNumber = "";
+                    var email = "";
+                    var address = "";
+                    $.ajax({
+                        url: "AjaxAdminUserController",
+                        type: "post", //send it through post method
+                        data: {
+                            ajaxAdminAction: "edit-user",
+                            txtUserID: userID
+                        },
+                        success: function (response) {
+                            username = response.username;
+                            password = response.password;
+                            role = response.role;
+                            phoneNumber = response.phoneNumber;
+                            email = response.email;
+                            address = response.address;
+                            document.getElementById("edit-id").value = userID;
+                            document.getElementById("edit-username").value = username;
+                            document.getElementById("edit-password").value = password;
+                            document.getElementById("edit-role").value = role;
+                            document.getElementById("edit-phone").value = phoneNumber;
+                            document.getElementById("edit-email").value = email;
+                            document.getElementById("edit-address").value = address;
+                            console.log("response ", response);
+                        },
+                        error: function (xhr) {
+                            //Do Something to handle error
+                            alert("Có lỗi xảy ra, vui lòng thử lại sau ít phút");
+                        }
+                    });
+                }
+            </script>
+            <script>
+                function checkEdit(userID) {
+                    var checker = 3;
+                    console.log("check edit ne ");
+                    var email = document.getElementById("edit-email").value;
+                    var password = document.getElementById("edit-password").value;
+                    var phoneNumber = document.getElementById("edit-phone").value;
+                    $.ajax({
+                        url: "AjaxAdminUserController",
+                        type: "post", //send it through post method
+                        data: {
+                            ajaxAdminAction: "check-edit",
+                            userID: userID,
+                            txtEmail: email,
+                            txtPassword: password,
+                            txtPhoneNumber: phoneNumber
+                        },
+                        success: function (response) {
+                            var errorEmail = response.errorEmail;
+                            var errorPassword = response.errorPassword;
+                            var errorPhone = response.errorPhone;
+                            document.getElementById("errorPasswordEdit").innerHTML = errorPassword;
+                            document.getElementById("errorPhoneEdit").innerHTML = errorPhone;
+                            document.getElementById("errorEmailEdit").innerHTML = errorEmail;
+                            if (errorPassword === "")
+                                checker--;
+                            if (errorPhone === "")
+                                checker--;
+                            if (errorEmail === "")
+                                checker--;
+                            if (checker == 0) {
+                                document.getElementById("edit-user-submit").type = "submit";
+                            } else {
+                                document.getElementById("edit-user-submit").type = "hidden";
+                            }
+                            console.log(checker);
+                            console.log("response ", response);
+                        }
+                        ,
+                        error: function (xhr) {
+                            //Do Something to handle error
+                            alert("Có lỗi xảy ra, vui lòng thử lại sau ít phút");
+                        }
+                    });
+                }
+            </script>
+            <script>
+                function deleteUser(userID) {
+                    console.log(userID);
+                    console.log("delete");
 
-                                                    document.getElementById("errorUsername").innerHTML = errorUsername;
-                                                    document.getElementById("errorPassword").innerHTML = errorPassword;
-                                                    document.getElementById("errorPhone").innerHTML = errorPhone;
-                                                    document.getElementById("errorEmail").innerHTML = errorEmail;
+                    // Tạo một phần tử form
+                    var form = document.createElement('form');
+                    form.action = "ProcessAdminUserController";
+                    form.method = "post";
 
-                                                    if (errorUsername === "")
-                                                        checker--;
-                                                    if (errorPassword === "")
-                                                        checker--;
-                                                    if (errorPhone === "")
-                                                        checker--;
-                                                    if (errorEmail === "")
-                                                        checker--;
-                                                    if (checker == 0)
-                                                        document.getElementById("add-user-form").action = "ProcessAdminUserController";
-                                                    console.log(checker);
-                                                    console.log("response ", response);
-                                                },
-                                                error: function (xhr) {
-                                                    //Do Something to handle error
-                                                    alert("Có lỗi xảy ra, vui lòng thử lại sau ít phút");
-                                                }
-                                            });
-                                        }
+                    // Tạo một input cho userID
+                    var inputUserID = document.createElement('input');
+                    inputUserID.type = 'text';
+                    inputUserID.name = 'userID';
+                    inputUserID.value = userID;
+
+                    // Tạo một input cho admin-action
+                    var inputAction = document.createElement('input');
+                    inputAction.type = 'text';
+                    inputAction.name = 'admin-action';
+                    inputAction.value = 'delete-user';
+
+                    // Thêm các input vào form
+                    form.appendChild(inputUserID);
+                    form.appendChild(inputAction);
+
+                    // Thêm form vào body để có thể submit
+                    document.body.appendChild(form);
+
+                    // Submit form
+                    form.submit();
+                }
             </script>
     </body>
 
