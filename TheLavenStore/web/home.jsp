@@ -55,7 +55,7 @@ and open the template in the editor.
                             <div class="col-md-4">                   
                                 <div class="item-sell">
                                     <div class="img-item text-center position-relative">
-                                        <a href="detail?pid=${i.ID}"><img src="${i.image}" alt="" class="w-100"></a>
+                                        <a href="MainController?action=product&id=${i.ID}"><img src="${i.image}" alt="" class="w-100"></a>
                                             <c:if test="${i.quantity != 0}">
                                             <a href="addtocart?id= &num=" class="addcart position-absolute start-50 translate-middle">ADD TO CART</a>
                                         </c:if>
@@ -64,7 +64,7 @@ and open the template in the editor.
                                         </c:if>
                                     </div>
                                     <div class="info-item text-center">
-                                        <a href="detail?pid=${i.ID}">${i.name}</a>
+                                        <a href="MainController?action=product&id=${i.ID}">${i.name}</a>
                                         <p>VND <fmt:formatNumber pattern="#,###" value="${i.price}"/></p>
                                     </div>
                                 </div>
@@ -82,7 +82,7 @@ and open the template in the editor.
                         <div class="col-md-3">
                             <div class="item-sell">
                                 <div class="img-item text-center position-relative">
-                                    <a href="#"><img src="${o.image}" alt="" class="w-100"></a>
+                                    <a href="MainController?action=product&id=${o.ID}"><img src="${o.image}" alt="" class="w-100"></a>
                                         <c:if test="${o.quantity != 0}">
                                         <a href="" class="addcart position-absolute start-50 translate-middle">ADD TO CART</a>
                                     </c:if>
@@ -91,7 +91,7 @@ and open the template in the editor.
                                     </c:if>
                                 </div>
                                 <div class="info-item text-center">
-                                    <a href="">${o.name}</a>
+                                    <a href="MainController?action=product&id=${o.ID}">${o.name}</a>
                                     <p>VND <fmt:formatNumber pattern="#,###" value="${o.price}"/></p>
                                 </div>
                             </div>

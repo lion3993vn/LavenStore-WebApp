@@ -29,10 +29,11 @@ public class ProductDAO {
     private static final String GET_PAGE_LIST_PRODUCT_BY_CATEID = "SELECT COUNT(*) FROM Product WHERE CateID = ?";
     private static final String GET_PRODUCT_BY_ID = "SELECT * FROM Product WHERE ID = ?";
     private static final String GET_LIST_PRODUCT_BY_SEARCH = "SELECT * FROM Product WHERE CateID = ? and [name] like ?";
-    private static String GET_LIST_PRODUCT_SORT_BY_PRICE = "select * from Product WHERE CateID = ? ORDER BY Price ?";
+    private static final String GET_LIST_PRODUCT_SORT_BY_PRICE = "select * from Product WHERE CateID = ? ORDER BY Price ?";
     private static final String OFFSET = " OFFSET ? ROWS FETCH FIRST 12 ROWS ONLY";
     private static final String OFFSET_WITH_ORDER_BY = " ORDER BY [ID] OFFSET ? ROWS FETCH FIRST 12 ROWS ONLY";
-    
+    private static final String GET_RELATED_PRODUCT = "SELECT TOP 4 * from Product WHERE CateID = ? AND [ID] <> ?";
+
     public List<ProductDTO> getListProduct(int index) throws SQLException {
         Connection conn = null;
         PreparedStatement pst = null;
@@ -42,10 +43,19 @@ public class ProductDAO {
         try {
             conn = DBUtils.getConnection();
             pst = conn.prepareStatement(GET_LIST_PRODUCT + OFFSET_WITH_ORDER_BY);
-            pst.setInt(1, (index-1)*12);
+            pst.setInt(1, (index - 1) * 12);
             rs = pst.executeQuery();
             while (rs.next()) {
-                list.add(new ProductDTO(rs.getInt("ID"), rs.getString("Name"), rs.getInt("CateID"), rs.getInt("Quantity"), rs.getInt("Price"), rs.getFloat("Rating"), rs.getString("Description"), rs.getString("Image")));
+                ProductDTO product = new ProductDTO();
+                product.setID(rs.getInt("ID"));
+                product.setCateID(rs.getInt("CateID"));
+                product.setName(rs.getString("Name"));
+                product.setQuantity(rs.getInt("Quantity"));
+                product.setPrice(rs.getInt("Price"));
+                product.setRate(rs.getFloat("Rating"));
+                product.setDescription(rs.getString("Description"));
+                product.setImage(rs.getString("Image"));
+                list.add(product);
             }
         } catch (Exception e) {
             e.printStackTrace();
@@ -92,7 +102,7 @@ public class ProductDAO {
 
         return count;
     }
-    
+
     public void deleteProduct(String id) {
         Connection conn = null;
         PreparedStatement pst = null;
@@ -118,7 +128,16 @@ public class ProductDAO {
             pst = conn.prepareStatement(GET_RELEASE_PRODUCT);
             rs = pst.executeQuery();
             while (rs.next()) {
-                list.add(new ProductDTO(rs.getInt("ID"), rs.getString("Name"), rs.getInt("CateID"), rs.getInt("Quantity"), rs.getInt("Price"), rs.getFloat("Rating"), rs.getString("Description"), rs.getString("Image")));
+                ProductDTO product = new ProductDTO();
+                product.setID(rs.getInt("ID"));
+                product.setCateID(rs.getInt("CateID"));
+                product.setName(rs.getString("Name"));
+                product.setQuantity(rs.getInt("Quantity"));
+                product.setPrice(rs.getInt("Price"));
+                product.setRate(rs.getFloat("Rating"));
+                product.setDescription(rs.getString("Description"));
+                product.setImage(rs.getString("Image"));
+                list.add(product);
             }
         } catch (Exception e) {
             e.printStackTrace();
@@ -146,10 +165,19 @@ public class ProductDAO {
             conn = DBUtils.getConnection();
             pst = conn.prepareStatement(GET_LIST_PRODUCT_BY_CATEID + OFFSET_WITH_ORDER_BY);
             pst.setInt(1, id);
-            pst.setInt(2, (index-1)*12);
+            pst.setInt(2, (index - 1) * 12);
             rs = pst.executeQuery();
             while (rs.next()) {
-                list.add(new ProductDTO(rs.getInt("ID"), rs.getString("Name"), rs.getInt("CateID"), rs.getInt("Quantity"), rs.getInt("Price"), rs.getFloat("Rating"), rs.getString("Description"), rs.getString("Image")));
+                ProductDTO product = new ProductDTO();
+                product.setID(rs.getInt("ID"));
+                product.setCateID(rs.getInt("CateID"));
+                product.setName(rs.getString("Name"));
+                product.setQuantity(rs.getInt("Quantity"));
+                product.setPrice(rs.getInt("Price"));
+                product.setRate(rs.getFloat("Rating"));
+                product.setDescription(rs.getString("Description"));
+                product.setImage(rs.getString("Image"));
+                list.add(product);
             }
         } catch (Exception e) {
             e.printStackTrace();
@@ -195,7 +223,7 @@ public class ProductDAO {
         }
         return count;
     }
-    
+
     public List<ProductDTO> getListRequireByCateId(int id, String search, String sort, int index) throws SQLException {
         Connection conn = null;
         PreparedStatement pst = null;
@@ -207,36 +235,36 @@ public class ProductDAO {
                 if (search != null && sort == null) {
                     pst = conn.prepareStatement(GET_LIST_PRODUCT + " WHERE " + REQUIRE_SEARCH + OFFSET_WITH_ORDER_BY);
                     pst.setString(1, "%" + search + "%");
-                    pst.setInt(2, (index-1)*12);
-                }else if (search == null && sort != null) {
+                    pst.setInt(2, (index - 1) * 12);
+                } else if (search == null && sort != null) {
                     pst = conn.prepareStatement(GET_LIST_PRODUCT + REQUIRE_SORT + sort + OFFSET);
-                    pst.setInt(1, (index-1)*12);
-                }else if (search != null && sort != null) {
+                    pst.setInt(1, (index - 1) * 12);
+                } else if (search != null && sort != null) {
                     pst = conn.prepareStatement(GET_LIST_PRODUCT + " WHERE " + REQUIRE_SEARCH + REQUIRE_SORT + sort + OFFSET);
                     pst.setString(1, "%" + search + "%");
-                    pst.setInt(2, (index-1)*12);
+                    pst.setInt(2, (index - 1) * 12);
                 }
             } else if (id != 0) {
                 if (search != null && sort == null) {
                     pst = conn.prepareStatement(GET_LIST_PRODUCT_BY_CATEID + " AND " + REQUIRE_SEARCH + OFFSET_WITH_ORDER_BY);
                     pst.setInt(1, id);
                     pst.setString(2, "%" + search + "%");
-                    pst.setInt(3, (index-1)*12);
+                    pst.setInt(3, (index - 1) * 12);
                 } else if (search == null && sort != null) {
                     pst = conn.prepareStatement(GET_LIST_PRODUCT_BY_CATEID + REQUIRE_SORT + sort + OFFSET);
                     pst.setInt(1, id);
-                    pst.setInt(2, (index-1)*12);
+                    pst.setInt(2, (index - 1) * 12);
                 } else if (search != null && sort != null) {
                     pst = conn.prepareStatement(GET_LIST_PRODUCT_BY_CATEID + " AND " + REQUIRE_SEARCH + REQUIRE_SORT + sort + OFFSET);
                     pst.setInt(1, id);
                     pst.setString(2, "%" + search + "%");
-                    pst.setInt(3, (index-1)*12);
+                    pst.setInt(3, (index - 1) * 12);
                 }
             }
             rs = pst.executeQuery();
             while (rs.next()) {
                 ProductDTO product = new ProductDTO();
-                product.setID(id);
+                product.setID(rs.getInt("ID"));
                 product.setCateID(rs.getInt("CateID"));
                 product.setName(rs.getString("Name"));
                 product.setQuantity(rs.getInt("Quantity"));
@@ -273,9 +301,9 @@ public class ProductDAO {
                 if (search != null && sort == null) {
                     pst = conn.prepareStatement(GET_PAGE_LIST_PRODUCT + " WHERE " + REQUIRE_SEARCH);
                     pst.setString(1, "%" + search + "%");
-                }else if (search == null && sort != null) {
+                } else if (search == null && sort != null) {
                     pst = conn.prepareStatement(GET_PAGE_LIST_PRODUCT + REQUIRE_SORT + sort);
-                }else if (search != null && sort != null) {
+                } else if (search != null && sort != null) {
                     pst = conn.prepareStatement(GET_PAGE_LIST_PRODUCT + " WHERE " + REQUIRE_SEARCH + REQUIRE_SORT + sort);
                     pst.setString(1, "%" + search + "%");
                 }
@@ -312,7 +340,7 @@ public class ProductDAO {
         }
         return count;
     }
-    
+
     public ProductDTO getProductByID(int id) throws SQLException {
         Connection conn = null;
         PreparedStatement pst = null;
@@ -325,7 +353,7 @@ public class ProductDAO {
             rs = pst.executeQuery();
             if (rs.next()) {
                 product = new ProductDTO();
-                product.setID(id);
+                product.setID(rs.getInt("ID"));
                 product.setCateID(rs.getInt("CateID"));
                 product.setName(rs.getString("Name"));
                 product.setQuantity(rs.getInt("Quantity"));
@@ -362,8 +390,16 @@ public class ProductDAO {
             pst.setString(1, "%" + search + "%");
             rs = pst.executeQuery();
             while (rs.next()) {
-
-                list.add(new ProductDTO(rs.getInt("ID"), rs.getString("Name"), rs.getInt("CateID"), rs.getInt("Quantity"), rs.getInt("Price"), rs.getFloat("Rating"), rs.getString("Description"), rs.getString("Image")));
+                ProductDTO product = new ProductDTO();
+                product.setID(rs.getInt("ID"));
+                product.setCateID(rs.getInt("CateID"));
+                product.setName(rs.getString("Name"));
+                product.setQuantity(rs.getInt("Quantity"));
+                product.setPrice(rs.getInt("Price"));
+                product.setRate(rs.getFloat("Rating"));
+                product.setDescription(rs.getString("Description"));
+                product.setImage(rs.getString("Image"));
+                list.add(product);
             }
         } catch (Exception e) {
             e.printStackTrace();
@@ -393,7 +429,16 @@ public class ProductDAO {
             pst.setString(2, sortCol);
             rs = pst.executeQuery();
             while (rs.next()) {
-                list.add(new ProductDTO(rs.getInt("ID"), rs.getString("Name"), rs.getInt("CateID"), rs.getInt("Quantity"), rs.getInt("Price"), rs.getFloat("Rating"), rs.getString("Description"), rs.getString("Image")));
+                ProductDTO product = new ProductDTO();
+                product.setID(rs.getInt("ID"));
+                product.setCateID(rs.getInt("CateID"));
+                product.setName(rs.getString("Name"));
+                product.setQuantity(rs.getInt("Quantity"));
+                product.setPrice(rs.getInt("Price"));
+                product.setRate(rs.getFloat("Rating"));
+                product.setDescription(rs.getString("Description"));
+                product.setImage(rs.getString("Image"));
+                list.add(product);
             }
         } catch (SQLException ex) {
             ex.printStackTrace();
@@ -431,4 +476,32 @@ public class ProductDAO {
         return a;
     }
 
+    public List<ProductDTO> getRelatedProduct(int id, int cateid) throws ClassNotFoundException {
+        Connection conn = null;
+        PreparedStatement pst = null;
+        ResultSet rs = null;
+        List<ProductDTO> list = new ArrayList<>();
+        try {
+            conn = DBUtils.getConnection();
+            pst = conn.prepareStatement(GET_RELATED_PRODUCT);
+            pst.setInt(1, cateid);
+            pst.setInt(2, id);
+            rs = pst.executeQuery();
+            while (rs.next()) {
+                ProductDTO product = new ProductDTO();
+                product.setID(rs.getInt("ID"));
+                product.setCateID(rs.getInt("CateID"));
+                product.setName(rs.getString("Name"));
+                product.setQuantity(rs.getInt("Quantity"));
+                product.setPrice(rs.getInt("Price"));
+                product.setRate(rs.getFloat("Rating"));
+                product.setDescription(rs.getString("Description"));
+                product.setImage(rs.getString("Image"));
+                list.add(product);
+            }
+        } catch (SQLException ex) {
+            ex.printStackTrace();
+        }
+        return list;
+    }
 }

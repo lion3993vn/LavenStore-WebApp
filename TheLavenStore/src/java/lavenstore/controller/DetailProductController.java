@@ -7,50 +7,71 @@ package lavenstore.controller;
 
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.ArrayList;
+import java.util.List;
 import javax.servlet.ServletException;
+import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
+import lavenstore.products.CategoryDAO;
+import lavenstore.products.ProductDAO;
+import lavenstore.products.ProductDTO;
+import lavenstore.users.UserDTO;
+import lavenstore.wishlist.WishListDAO;
 
 /**
  *
  * @author Pham Hieu
  */
-public class MainController extends HttpServlet {
+@WebServlet(name = "DetailProductController", urlPatterns = {"/DetailProductController"})
+public class DetailProductController extends HttpServlet {
 
-    private static final String NOT_FOUND = "notfound.html";
-    private static final String HOME_CONTROLLER = "HomeController";
-
-    private static final String SHOP = "shop";
-    private static final String SHOP_CONTROLLER = "ShopController";
-
-    private static final String PRODUCT = "product";
-    private static final String PRODUCT_CONTROLLER = "DetailProductController";
-
+    /**
+     * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
+     * methods.
+     *
+     * @param request servlet request
+     * @param response servlet response
+     * @throws ServletException if a servlet-specific error occurs
+     * @throws IOException if an I/O error occurs
+     */
+    private static final String ERROR = "home.jsp";
+    private static final String SUCCESS = "product.jsp";
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
-        String url = HOME_CONTROLLER;
+        String url = ERROR;
         try {
-            String action = request.getParameter("action");
-            if (action == null) {
-                url = HOME_CONTROLLER;
-            } else if (action.equals(SHOP)) {
-                url = SHOP_CONTROLLER;
-            } else if (action.equals(SHOP)) {
-                url = SHOP_CONTROLLER;
-            } else if (action.equals(PRODUCT)) {
-                url = PRODUCT_CONTROLLER;
-            } else {
-                url = NOT_FOUND;
+            String id = request.getParameter("id");
+            ProductDAO pdao = new ProductDAO();
+            ProductDTO product = pdao.getProductByID(Integer.parseInt(id));
+            List<ProductDTO> listp = pdao.getRelatedProduct(product.getID(), product.getCateID());
+            
+            HttpSession session = request.getSession(false);
+            UserDTO user = (UserDTO) session.getAttribute("account");
+            
+            boolean isWishlist = false;
+            if(user != null){
+                WishListDAO wdao = new WishListDAO();
+                isWishlist = wdao.isWishList(product.getID(), user.getID());
             }
-
+            
+            CategoryDAO cdao = new CategoryDAO();
+            String cateName = cdao.getCateNameByCateID(product.getCateID());
+            
+            request.setAttribute("wishlist", isWishlist);
+            request.setAttribute("cate", cateName);
+            request.setAttribute("product", product);
+            request.setAttribute("related", listp);
+            url = SUCCESS;
         } catch (Exception e) {
-            log("Error at MainController: " + e.toString());
+            log("Error at HomeController: " + e.toString());
+            request.setAttribute("MESSAGE", "Somethings are error...");
         } finally {
             request.getRequestDispatcher(url).forward(request, response);
         }
-
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">

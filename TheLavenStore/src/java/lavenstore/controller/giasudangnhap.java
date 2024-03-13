@@ -8,49 +8,44 @@ package lavenstore.controller;
 import java.io.IOException;
 import java.io.PrintWriter;
 import javax.servlet.ServletException;
+import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
+import lavenstore.users.UserDAO;
+import lavenstore.users.UserDTO;
 
 /**
  *
  * @author Pham Hieu
  */
-public class MainController extends HttpServlet {
+@WebServlet(name = "giasudangnhap", urlPatterns = {"/gsdn"})
+public class giasudangnhap extends HttpServlet {
 
-    private static final String NOT_FOUND = "notfound.html";
-    private static final String HOME_CONTROLLER = "HomeController";
-
-    private static final String SHOP = "shop";
-    private static final String SHOP_CONTROLLER = "ShopController";
-
-    private static final String PRODUCT = "product";
-    private static final String PRODUCT_CONTROLLER = "DetailProductController";
-
+    /**
+     * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
+     * methods.
+     *
+     * @param request servlet request
+     * @param response servlet response
+     * @throws ServletException if a servlet-specific error occurs
+     * @throws IOException if an I/O error occurs
+     */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
-        String url = HOME_CONTROLLER;
         try {
-            String action = request.getParameter("action");
-            if (action == null) {
-                url = HOME_CONTROLLER;
-            } else if (action.equals(SHOP)) {
-                url = SHOP_CONTROLLER;
-            } else if (action.equals(SHOP)) {
-                url = SHOP_CONTROLLER;
-            } else if (action.equals(PRODUCT)) {
-                url = PRODUCT_CONTROLLER;
-            } else {
-                url = NOT_FOUND;
-            }
-
+            HttpSession session = request.getSession();
+            UserDTO user = new UserDTO();
+            user.setID(1);
+            user.setUserName("lionvn");
+            session.setAttribute("account", user);
         } catch (Exception e) {
-            log("Error at MainController: " + e.toString());
+            e.printStackTrace();
         } finally {
-            request.getRequestDispatcher(url).forward(request, response);
-        }
 
+        }
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">

@@ -1,5 +1,6 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -20,13 +21,13 @@
     <body>
         <!-- banner -->
         <div class="banner container-fluid text-center py-5">
-            <h1 class="banner-title">${cname}</h1>
+            <h1 class="banner-title">${requestScope.cate}</h1>
             <div class="banner-subtitle">
                 <a class="tab-links" href="HomeController">Home</a>
                 <i class="tab-links fa-solid fa-angle-right"></i>
-                <a class="tab-links" href="shop">Shop</a>
+                <a class="tab-links" href="MainController?action=shop">Shop</a>
                 <i class="tab-links fa-solid fa-angle-right"></i>
-                <a class="tab-links" href="">${detail.name}</a>
+                <a class="tab-links" href="#">${requestScope.product.name}</a>
             </div>
         </div>
         <!-- product -->
@@ -34,19 +35,28 @@
             <div class="container">
                 <div class="row">
                     <div class="col-md-6">
-                        <div class="img-content p-5"><img src="${detail.image}" alt="" class="w-100"></div>
+                        <div class="img-content p-5"><img src="${requestScope.product.image}" alt="" class="w-100"></div>
                     </div>
                     <div class="col-md-6">
                         <div class="title-info-product pt-5">
                             <table class="w-100">
                                 <tr>
                                     <td class="w-75">
-                                        <p class="name-product">${detail.name}</p>
+                                        <p class="name-product">${requestScope.product.name}</p>
                                     </td>
                                     <td class="">
-                                        <div class="d-flex justify-content-center"><a href="" class="add-wishlist">
-                                                <div class="box-wishlist"><i class="fa-solid fa-star icon-wishlist"></i></div>
-                                            </a></div>
+                                        <div class="d-flex justify-content-center">
+                                            <c:if test="${requestScope.wishlist == false}">
+                                                <div href="" class="add-wishlist" style="cursor: pointer" onclick="wishlist(${requestScope.product.ID})">
+                                                    <div class="box-wishlist"><i class="fa-solid fa-star icon-wishlist"></i></div>
+                                                </div>
+                                            </c:if>
+                                            <c:if test="${requestScope.wishlist == true}">
+                                                <div href="" class="add-wishlist" style="cursor: pointer" onclick="wishlist(${requestScope.product.ID})">
+                                                    <div class="box-wishlist-added"><i class="fa-solid fa-star icon-wishlist-added" ></i></div>
+                                                </div>
+                                            </c:if>
+                                        </div>
                                     </td>
                                 </tr>
                                 <tr>
@@ -59,22 +69,17 @@
                             </table>
                         </div>
                         <div class="product-desb mt-3">
-                            <p>${detail.description}</p>
+                            <p>${requestScope.product.description}</p>
                         </div>
                         <div class="product-price">
-                            <p>VND ${detail.price}</p>
+                            <p style="font-weight: 600">VND <fmt:formatNumber pattern="#,###" value="${requestScope.product.price}"/></p>
                         </div>
                         <div class="delivery w-25 text-center p-3 mt-4">
                             <i class="fa-solid fa-truck-fast"></i>
                             <p class="mt-3 mb-0">Local Delivery</p>
                         </div>
                         <div class="select-time w-50 mt-3">
-                            <p class="m-0">Delivery / Pickup Time :</p>
-                            <select name="" id="" class="w-100 ps-2">
-                                <option disabled selected>Please select</option>
-                                <option value="1">12:00 PM - 6:00 PM</option>
-                                <option value="2">6:00 PM - 10:00 PM</option>
-                            </select>
+                            <p class="m-0">Product Buy Info :</p>
                         </div>
                         <div class="info-cart-product w-50 mt-3 mb-4">
                             <table class="w-100">
@@ -115,54 +120,20 @@
                     <p class="text-center real-title">RELATED FLOWERS</p></div>
             </div>
             <div class="row">
-                <div class="col-md-3">
-                    <div class="item-sell">
-                        <div class="img-item text-center position-relative">
-                            <a href="#"><img src="./assets/img/item.png" alt="" class="w-100"></a>
-                            <a href="" class="addcart-bestseller position-absolute start-50 translate-middle">ADD TO CART</a>
-                        </div>
-                        <div class="info-item text-center">
-                            <a href="">Wild</a>
-                            <p>VND 299.000</p>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-3">
-                    <div class="item-sell">
-                        <div class="img-item text-center position-relative">
-                            <a href="#"><img src="./assets/img/item.png" alt="" class="w-100"></a>
-                            <a href="" class="addcart-bestseller position-absolute start-50 translate-middle">ADD TO CART</a>
-                        </div>
-                        <div class="info-item text-center">
-                            <a href="">Wild</a>
-                            <p>VND 299.000</p>
+                <c:forEach items="${requestScope.related}" var="o">
+                    <div class="col-md-3">
+                        <div class="item-sell">
+                            <div class="img-item text-center position-relative">
+                                <a href="MainController?action=product&id=${o.ID}"><img src="${o.image}" alt="" class="w-100"></a>
+                                <a href="" class="addcart-bestseller position-absolute start-50 translate-middle">ADD TO CART</a>
+                            </div>
+                            <div class="info-item text-center">
+                                <a href="MainController?action=product&id=${o.ID}">${o.name}</a>
+                                <p>VND <fmt:formatNumber pattern="#,###" value="${o.price}"/></p>
+                            </div>
                         </div>
                     </div>
-                </div>
-                <div class="col-md-3">
-                    <div class="item-sell">
-                        <div class="img-item text-center position-relative">
-                            <a href="#"><img src="./assets/img/item.png" alt="" class="w-100"></a>
-                            <a href="" class="addcart-bestseller position-absolute start-50 translate-middle">ADD TO CART</a>
-                        </div>
-                        <div class="info-item text-center">
-                            <a href="">Wild</a>
-                            <p>VND 299.000</p>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-3">
-                    <div class="item-sell">
-                        <div class="img-item text-center position-relative">
-                            <a href="#"><img src="./assets/img/item.png" alt="" class="w-100"></a>
-                            <a href="" class="addcart-bestseller position-absolute start-50 translate-middle">ADD TO CART</a>
-                        </div>
-                        <div class="info-item text-center">
-                            <a href="">Wild</a>
-                            <p>VND 299.000</p>
-                        </div>
-                    </div>
-                </div>
+                </c:forEach>
             </div>
         </div>
     </div>
@@ -172,18 +143,42 @@
     <script src="./assets/js/bootstrap/bootstrap.min.js"></script>
     <script src="./assets/js/bootstrap/bootstrap.esm.min.js"></script>
     <script>
-                                                function sub() {
-                                                    var input = document.getElementById('quantity');
-                                                    if (input.value > 1) {
-                                                        input.value = parseInt(input.value) - 1;
-                                                    }
-                                                }
-                                                function add() {
-                                                    var input = document.getElementById('quantity');
-                                                    if (input.value < 100) {
-                                                        input.value = parseInt(input.value) + 1;
-                                                    }
-                                                }
+                                                     function sub() {
+                                                         var input = document.getElementById('quantity');
+                                                         if (input.value > 1) {
+                                                             input.value = parseInt(input.value) - 1;
+                                                         }
+                                                     }
+                                                     function add() {
+                                                         var input = document.getElementById('quantity');
+                                                         if (input.value < 100) {
+                                                             input.value = parseInt(input.value) + 1;
+                                                         }
+                                                     }
+    </script>
+    <script>
+        function wishlist(id) {
+            var form = document.createElement("form");
+            form.setAttribute("method", "POST");
+            form.setAttribute("action", "WishListController");
+            
+            var input = document.createElement("input");
+            input.setAttribute("type", "text");
+            input.setAttribute("name", "productID");
+            input.value = id;
+            
+            var action = document.createElement("input");
+            action.setAttribute("type", "text");
+            action.setAttribute("name", "actionWL");
+            action.value = "add-wishlist";
+            
+            form.appendChild(input);
+            form.appendChild(action);
+            
+            document.body.appendChild(form);
+            
+            form.submit();
+        }
     </script>
 </body>
 

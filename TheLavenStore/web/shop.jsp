@@ -33,9 +33,9 @@
                 </c:forEach>
             </c:if>
             <div class="banner-subtitle">
-                <a class="tab-links" href="/home.jsp">Home</a>
+                <a class="tab-links" href="MainController">Home</a>
                 <i class="tab-links fa-solid fa-angle-right"></i>
-                <a class="tab-links" href="/shop.jsp">Shop</a>
+                <a class="tab-links" href="#">Shop</a>
             </div>
         </div>
         <!-- navbar -->
@@ -56,10 +56,10 @@
                         <div class="w-100 d-flex justify-content-end">
                             <form action="ShopController" method="GET">
                                 <select name="sort" id="" class="p-2" style="" class="w-25">
-                                    <option ${requestScope.sort == null ? "selected":""} disabled>Lọc giá</option>
-                                    <option value="DESC" ${requestScope.sort eq "DESC" ? "selected":""}>Cao đến thấp</option>
-                                    <option value="ASC" ${requestScope.sort eq "ASC" ? "selected":""}>Thấp đến cao</option>
-                                    <option value="">Không</option>
+                                    <option class="dropdown" ${requestScope.sort == null ? "selected":""} disabled>Lọc giá</option>
+                                    <option class="dropdown" value="DESC" ${requestScope.sort eq "DESC" ? "selected":""}>Cao đến thấp</option>
+                                    <option class="dropdown" value="ASC" ${requestScope.sort eq "ASC" ? "selected":""}>Thấp đến cao</option>
+                                    <option class="dropdown" value="">Không</option>
                                 </select>
                         </div>
                     </div>
@@ -84,16 +84,16 @@
         <section class="seller">
             <div class="container-fluid">
                 <div class="row mt-5 mb-5">
-                    <c:forEach items="${requestScope.plist}" var="i">
+                    <c:forEach items="${requestScope.plist}" var="o">
                         <div class="col-md-3">
                             <div class="item-sell">
                                 <div class="img-item text-center position-relative">
-                                    <a href="detail?pid=${i.ID}"><img src="${i.image}" alt="" class="w-100"></a>
-                                    <a href="addtocart?id= &num=" class="addcart-bestseller position-absolute start-50 translate-middle">ADD TO CART</a>
+                                    <a href="MainController?action=product&id=${o.ID}"><img src="${o.image}" alt="" class="w-100"></a>
+                                    <a href="" class="addcart-bestseller position-absolute start-50 translate-middle">ADD TO CART</a>
                                 </div>
                                 <div class="info-item text-center">
-                                    <a href="detail?pid=${i.ID}">${i.name}</a>
-                                    <p>VND <fmt:formatNumber pattern="#,###" value="${i.price}"/></p>
+                                    <a href="MainController?action=product&id=${o.ID}">${o.name}</a>
+                                    <p>VND <fmt:formatNumber pattern="#,###" value="${o.price}"/></p>
                                 </div>
                             </div>
                         </div>
