@@ -61,6 +61,15 @@ public class DetailProductController extends HttpServlet {
             CategoryDAO cdao = new CategoryDAO();
             String cateName = cdao.getCateNameByCateID(product.getCateID());
             
+            float start = product.getRate(); //4.0
+            int starFull = (int) start; //4
+            int starHalf = start - starFull == 0.5 ? 1 : 0; //0
+            int starNo = 5 - starFull - starHalf; //1
+            
+            
+            request.setAttribute("starFull", starFull);
+            request.setAttribute("starHalf", starHalf);
+            request.setAttribute("starNo", starNo);
             request.setAttribute("wishlist", isWishlist);
             request.setAttribute("cate", cateName);
             request.setAttribute("product", product);

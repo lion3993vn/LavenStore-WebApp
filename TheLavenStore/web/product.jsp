@@ -16,9 +16,11 @@
         <link rel="stylesheet" href="./assets/css/bootstrap/bootstrap.css">
         <link rel="stylesheet" href="./assets/css/styleproduct.css">
         <link rel="stylesheet" href="./assets/css/font/css/all.css">
+        <link rel="stylesheet" href="./assets/css/toastMessage.css">
     </head>
 
     <body>
+        <div id="toast"></div>
         <!-- banner -->
         <div class="banner container-fluid text-center py-5">
             <h1 class="banner-title">${requestScope.cate}</h1>
@@ -61,9 +63,17 @@
                                 </tr>
                                 <tr>
                                     <td colspan="2">
-                                        <div class="rank-product"><i class="fa-solid fa-star"></i><i
-                                                class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i
-                                                class="fa-solid fa-star"></i><i class="fa-solid fa-star-half-stroke"></i></div>
+                                        <div class="rank-product">
+                                            <c:forEach begin="1" end="${requestScope.starFull}">
+                                                <i class="fa-solid fa-star"></i>
+                                            </c:forEach>
+                                            <c:if test="${requestScope.starHalf == 1}">
+                                                <i class="fa-solid fa-star-half-stroke"></i>
+                                            </c:if>
+                                            <c:forEach begin="1" end="${requestScope.starNo}">
+                                                <i class="fa-regular fa-star"></i>
+                                            </c:forEach> 
+                                        </div>
                                     </td>
                                 </tr>
                             </table>
@@ -86,16 +96,16 @@
                                 <tr>
                                     <td class="w-30">
                                         <div class="btn-quantity w-100 d-flex align-content-center">
-                                            <div class="btn btn-secondary rounded-0 w-25 text-center p-2" id="quantity-down"
-                                                 onclick="sub()">
+                                            <div class="btn-secondary rounded-0 w-25 text-center p-2" id="quantity-down"
+                                                 onclick="sub()" style="background-color: #EDEDED; cursor: pointer">
                                                 <span>-</span>
                                             </div>
                                             <div class="button w-40">
                                                 <input type="number" class="text-center w-100 p-2" id="quantity" min="1" max="5"
                                                        value="1"></input>
                                             </div>
-                                            <div class="btn btn-secondary rounded-0 w-25 text-center p-2" id="quantity-up"
-                                                 onclick="add()">
+                                            <div class="btn-secondary rounded-0 w-25 text-center p-2" id="quantity-up"
+                                                 onclick="add()" style="background-color: #EDEDED; cursor: pointer">
                                                 <span>+</span>
                                             </div>
                                         </div>
@@ -104,8 +114,8 @@
                                             <p class="m-0 add-cart p-2">ADD TO CART</p>
                                         </a></td>
                                     <td class="w-15">
-                                        <a href="" class="float-end btn-share py-1 px-3"><i
-                                                class="fa-solid fa-share-nodes"></i></a>
+                                        <div onclick="copyUrl(${requestScope.product.ID})" class="float-end btn-share py-1 px-3" style="cursor: pointer"><i
+                                                class="fa-solid fa-share-nodes"></i></div>
                                     </td>
                                 </tr>
                             </table>
@@ -142,42 +152,63 @@
     <script src="./assets/js/bootstrap/bootstrap.bundle.min.js"></script>
     <script src="./assets/js/bootstrap/bootstrap.min.js"></script>
     <script src="./assets/js/bootstrap/bootstrap.esm.min.js"></script>
+    <script src="./assets/js/toastMessage.js"></script>
     <script>
-                                                     function sub() {
-                                                         var input = document.getElementById('quantity');
-                                                         if (input.value > 1) {
-                                                             input.value = parseInt(input.value) - 1;
-                                                         }
-                                                     }
-                                                     function add() {
-                                                         var input = document.getElementById('quantity');
-                                                         if (input.value < 100) {
-                                                             input.value = parseInt(input.value) + 1;
-                                                         }
-                                                     }
+                                            function sub() {
+                                                var input = document.getElementById('quantity');
+                                                if (input.value > 1) {
+                                                    input.value = parseInt(input.value) - 1;
+                                                }
+                                            }
+                                            function add() {
+                                                var input = document.getElementById('quantity');
+                                                if (input.value < 100) {
+                                                    input.value = parseInt(input.value) + 1;
+                                                }
+                                            }
     </script>
     <script>
         function wishlist(id) {
             var form = document.createElement("form");
             form.setAttribute("method", "POST");
             form.setAttribute("action", "WishListController");
-            
+
             var input = document.createElement("input");
             input.setAttribute("type", "text");
             input.setAttribute("name", "productID");
             input.value = id;
-            
+
             var action = document.createElement("input");
             action.setAttribute("type", "text");
             action.setAttribute("name", "actionWL");
             action.value = "add-wishlist";
-            
+
             form.appendChild(input);
             form.appendChild(action);
-            
+
             document.body.appendChild(form);
-            
+
             form.submit();
+        }
+        function showSuccessToast() {
+            toast({
+                title: 'Success',
+                message: 'Đã sao chép địa chỉ sản phẩm',
+                type: 'success',
+                duration: 5000
+            });
+        }
+        function copyUrl(id) {
+            var textToCopy = "http://localhost:8080/thelavenstore/MainController?action=product&id=" + id;
+
+            // Tạo một thẻ input ẩn để sao chép nội dung vào clipboard
+            var tempInput = document.createElement("input");
+            tempInput.setAttribute("value", textToCopy);
+            document.body.appendChild(tempInput);
+            tempInput.select();
+            document.execCommand("copy");
+            document.body.removeChild(tempInput);
+            showSuccessToast();
         }
     </script>
 </body>
