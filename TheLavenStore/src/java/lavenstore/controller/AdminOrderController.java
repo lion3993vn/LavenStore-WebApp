@@ -71,7 +71,7 @@ public class AdminOrderController extends HttpServlet {
 
             //lay so trang
             int totalPage = countPage / 8;
-            if (countPage % 12 != 0) {
+            if (countPage % 8 != 0) {
                 totalPage++;
             }
 
