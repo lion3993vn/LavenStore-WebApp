@@ -155,7 +155,7 @@ public class RegisterController extends HttpServlet {
                 + "            <h1>Chào mừng bạn đến với The Laven Store!</h1>\n"
                 + "            <p>Xin chào " + username + ",</p>\n"
                 + "            <p>Cảm ơn bạn đã đăng ký tài khoản tại The Laven Store. Chúng tôi rất vui mừng được chào đón bạn vào cộng đồng của chúng tôi.</p>\n"
-                + "            <p>Flower Shop là địa chỉ tốt nhất để tìm kiếm và mua sắm những bông hoa tuyệt vời nhất. Hãy khám phá các bộ sưu tập của chúng tôi và tìm kiếm những sản phẩm hoa độc đáo để làm cho mỗi dịp trở nên đặc biệt.</p>\n"
+                + "            <p>The Laven Store là địa chỉ tốt nhất để tìm kiếm và mua sắm những bông hoa tuyệt vời nhất. Hãy khám phá các bộ sưu tập của chúng tôi và tìm kiếm những sản phẩm hoa độc đáo để làm cho mỗi dịp trở nên đặc biệt.</p>\n"
                 + "            <p>Cảm ơn bạn đã lựa chọn The Laven Store!</p>\n"
                 + "            <p>Trân trọng,\n"
                 + "                <br>Đội ngũ The Laven Store\n"
