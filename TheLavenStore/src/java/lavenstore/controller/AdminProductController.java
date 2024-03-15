@@ -6,7 +6,7 @@
 package lavenstore.controller;
 
 import java.io.IOException;
-import java.io.PrintWriter;
+import static java.lang.Integer.parseInt;
 import java.util.ArrayList;
 import java.util.List;
 import javax.servlet.ServletException;
@@ -35,10 +35,9 @@ public class AdminProductController extends HttpServlet {
      * @throws ServletException if a servlet-specific error occurs
      * @throws IOException if an I/O error occurs
      */
-    
     private static final String ERROR = "home.jsp";
     private static final String SUCCESS = "admin-product.jsp";
-    
+
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
@@ -48,23 +47,39 @@ public class AdminProductController extends HttpServlet {
             if (index == null) {
                 index = "1";
             }
+
             int countPage = 0;
             int currentPage = Integer.parseInt(index);
-            
             ProductDAO pdao = new ProductDAO();
-            List<ProductDTO> listp = pdao.getListProduct(currentPage);
-            countPage = pdao.getPageListProduct();
-            
             CategoryDAO cdao = new CategoryDAO();
             List<CategoryDTO> listc = cdao.getListCategory();
-            
+            List<ProductDTO> listp = new ArrayList<>();
+            String keyword = request.getParameter("keyword");
+            String searchCateID = request.getParameter("searchCateID");
+            int cateID;
+            if (keyword == null || keyword.equals("")) {
+                keyword = "";
+            }
+            if (searchCateID == null || searchCateID.equals("")) {
+                cateID = 0;
+            } else {
+                cateID = parseInt(searchCateID);
+            }
+            if (keyword.equals("") && cateID == 0) {
+                listp = pdao.getListProduct(currentPage);
+                countPage = pdao.getPageListProduct();
+            } else {
+                listp = pdao.getListWithSearch(keyword, cateID, currentPage);
+                countPage = pdao.getTotalWithSearch(keyword, cateID);
+            }
             int totalPage = countPage / 12;
             if (countPage % 12 != 0) {
                 totalPage++;
             }
-            
+
             url = SUCCESS;
-            
+            request.setAttribute("keyword", keyword);
+            request.setAttribute("searchCateID", cateID);
             request.setAttribute("page", totalPage);
             request.setAttribute("curr", currentPage);
             request.setAttribute("listp", listp);
