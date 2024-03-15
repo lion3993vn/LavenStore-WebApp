@@ -13,6 +13,7 @@
         <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Noticia+Text">
         <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Josefin+Sans">
         <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Vidaloka">
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Merriweather">
         <link rel="stylesheet" href="./assets/css/bootstrap/bootstrap.css">
         <link rel="stylesheet" href="./assets/css/styleproduct.css">
         <link rel="stylesheet" href="./assets/css/font/css/all.css">
@@ -20,7 +21,7 @@
     </head>
 
     <body>
-        <div id="toast"></div>
+        <div id="toast-cus"></div>
         <!-- banner -->
         <div class="banner container-fluid text-center py-5">
             <h1 class="banner-title">${requestScope.cate}</h1>
@@ -50,7 +51,7 @@
                                         <div class="d-flex justify-content-center">
                                             <c:if test="${requestScope.wishlist == false}">
                                                 <div href="" class="add-wishlist" style="cursor: pointer" onclick="wishlist(${requestScope.product.ID})">
-                                                    <div class="box-wishlist"><i class="fa-solid fa-star icon-wishlist"></i></div>
+                                                    <div><i class="fa-regular fa-star"></i></div>
                                                 </div>
                                             </c:if>
                                             <c:if test="${requestScope.wishlist == true}">
@@ -79,7 +80,7 @@
                             </table>
                         </div>
                         <div class="product-desb mt-3">
-                            <p>${requestScope.product.description}</p>
+                            <p class="py-3" style="font-family: 'Merriweather'; font-size: 20px">${requestScope.product.description}</p>
                         </div>
                         <div class="product-price">
                             <p style="font-weight: 600">VND <fmt:formatNumber pattern="#,###" value="${requestScope.product.price}"/></p>
@@ -96,22 +97,22 @@
                                 <tr>
                                     <td class="w-30">
                                         <div class="btn-quantity w-100 d-flex align-content-center">
-                                            <div class="btn-secondary rounded-0 w-25 text-center p-2" id="quantity-down"
-                                                 onclick="sub()" style="background-color: #EDEDED; cursor: pointer">
+                                            <div class="btn btn-secondary rounded-0 w-25 text-center p-2" id="quantity-down"
+                                                 onclick="sub()" style="cursor: pointer">
                                                 <span>-</span>
                                             </div>
                                             <div class="button w-40">
                                                 <input type="number" class="text-center w-100 p-2" id="quantity" min="1" max="5"
                                                        value="1"></input>
                                             </div>
-                                            <div class="btn-secondary rounded-0 w-25 text-center p-2" id="quantity-up"
-                                                 onclick="add()" style="background-color: #EDEDED; cursor: pointer">
+                                            <div class="btn btn-secondary rounded-0 w-25 text-center p-2" id="quantity-up"
+                                                 onclick="add()" style="cursor: pointer">
                                                 <span>+</span>
                                             </div>
                                         </div>
                                     </td>
                                     <td class="w-30 text-center"><a href="" class="">
-                                            <p class="m-0 add-cart p-2">ADD TO CART</p>
+                                            <p class="m-0 add-cart p-2" style="font-family: serif">ADD TO CART</p>
                                         </a></td>
                                     <td class="w-15">
                                         <div onclick="copyUrl(${requestScope.product.ID})" class="float-end btn-share py-1 px-3" style="cursor: pointer"><i
@@ -191,11 +192,10 @@
             form.submit();
         }
         function showSuccessToast() {
-            toast({
-                title: 'Success',
-                message: 'Đã sao chép địa chỉ sản phẩm',
+            toastCus({
+                title: 'Copy to clip board',
+                message: 'Đã sao chép link sản phẩm',
                 type: 'success',
-                duration: 5000
             });
         }
         function copyUrl(id) {
