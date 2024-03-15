@@ -50,8 +50,9 @@ public class ForgotPasswordController extends HttpServlet {
                 Email eUtil = new Email();
                 String OTP_CONTENT = emailContent(user.getFullName(), otp);
                 eUtil.sendEmail(email, OTP_SUBJECT, OTP_CONTENT);
-                HttpSession s = request.getSession();
-                s.setAttribute("OTP", otp);
+                HttpSession session = request.getSession();
+                session.setMaxInactiveInterval(2*60);
+                session.setAttribute("OTP", otp);
                 out.print("Đã gửi email xác thực thành công!");
             } else {
                 out.print("Tài khoản không tồn tại");

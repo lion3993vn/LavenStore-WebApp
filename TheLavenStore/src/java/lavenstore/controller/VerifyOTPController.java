@@ -41,7 +41,7 @@ public class VerifyOTPController extends HttpServlet {
         response.setContentType("text/html;charset=UTF-8");
         String url = ERROR;
         try {
-            HttpSession session = request.getSession(false);
+            HttpSession session = request.getSession(false);    
             String otp = (String) session.getAttribute("OTP");
             String txtOTP = request.getParameter("txtOTP");
             String txtEmail = request.getParameter("Email");
