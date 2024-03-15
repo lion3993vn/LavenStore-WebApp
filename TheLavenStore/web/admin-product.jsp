@@ -1,7 +1,8 @@
 
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
-<%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
+<%@taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn"%>
 <!DOCTYPE html>
 <!--
 To change this license header, choose License Headers in Project Properties.
@@ -21,6 +22,7 @@ and open the template in the editor.
         <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Inter">
         <link rel="stylesheet" href="./assets/css/font/css/all.css">
         <link rel="stylesheet" href="./assets/css/styleadmin-product.css">
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
     </head>
 
     <body>
@@ -117,7 +119,7 @@ and open the template in the editor.
                                                     </select>
                                                 </div>
                                                 <div class="search-user-submit p-3"><input type="submit" class="p-1 px-3"
-                                                                                               value="GO"></div>
+                                                                                           value="GO"></div>
                                             </div>
                                             <div class="col-md-12 p-0">
                                                 <table class="w-100 table-body">
@@ -154,7 +156,7 @@ and open the template in the editor.
                                                             <td class="p-3 px-4 description-product"><span>${i.description}</span></td>
                                                             <td class="p-3 px-4">
                                                                 <div class="d-flex justify-content-center">
-                                                                    <div class="edit-product p-2" data-bs-toggle="modal" data-bs-target="#edit-product">
+                                                                    <div class="edit-product p-2" data-bs-toggle="modal" data-bs-target="#edit-product" onclick="editProduct(${i.ID})">
                                                                         <i class="fa-solid fa-pen-to-square"></i>
                                                                     </div>
                                                                     <div class="delete-product p-2"><i class="fa-solid fa-trash"></i></div>
@@ -301,20 +303,20 @@ and open the template in the editor.
                             <table class="w-100 table-modal">
                                 <tr>
                                     <td class="w-20"><span class="py-2">Name:</span></td>
-                                    <td class="py-2"><input type="text" class="ps-2 p-1 w-100"></td>
+                                    <td class="py-2"><input type="text" class="ps-2 p-1 w-100" id="edit-productName"></td>
                                 </tr>
                                 <tr>
                                     <td><span class="py-2">Type:</span></td>
-                                    <td class="py-2"><select name="" id="" class="ps-2 p-1">
+                                    <td class="py-2"><select name="" id="edit-cateID" class="ps-2 p-1">
                                             <option value="" selected disabled>Choose</option>
-                                            <option value="">Birthday</option>
-                                            <option value="">Weeding</option>
-                                            <option value="">Boxes</option>
+                                            <c:forEach items="${requestScope.listc}" var="i">
+                                                <option value="${i.cateID}">${i.cateName}</option>
+                                            </c:forEach>
                                         </select></td>
                                 </tr>
                                 <tr>
                                     <td><span class="py-2">Price:</span></td>
-                                    <td class="py-2"><input type="text" class="ps-2 p-1 w-100"></td>
+                                    <td class="py-2"><input type="text" class="ps-2 p-1 w-100" id="edit-price"></td>
                                 </tr>
                                 <tr>
                                     <td><span class="py-2">Quantity:</span></td>
@@ -325,8 +327,8 @@ and open the template in the editor.
                                                 <span>-</span>
                                             </div>
                                             <div class="button w-15">
-                                                <input type="number" class="text-center w-100 p-2" id="quantity2"
-                                                       value="5"></input>
+                                                <input type="number" class="text-center w-100 p-2" id="quantity2 edit-quantity"
+                                                       ></input>
                                             </div>
                                             <div class="btn btn-secondary rounded-0 w-10 text-center p-2"
                                                  id="quantity-up" onclick="add('quantity2')">
@@ -344,8 +346,7 @@ and open the template in the editor.
                                                 <span>-</span>
                                             </div>
                                             <div class="button w-15">
-                                                <input type="text" pattern="[0-9]*[.,]?[0-9]+" class="text-center w-100 p-2" id="rate2"
-                                                       value="5"></input>
+                                                <input type="text" pattern="[0-9]*[.,]?[0-9]+" class="text-center w-100 p-2" id="rate2 edit-rating"></input>
                                             </div>
                                             <div class="btn btn-secondary rounded-0 w-10 text-center p-2"
                                                  id="quantity-up" onclick="addfloat('rate2')">
@@ -360,13 +361,13 @@ and open the template in the editor.
                             <span class="w-100">Description: </span>
                         </div>
                         <div class="p-2 description-text">
-                            <textarea id="myTextarea" name="myTextarea" rows="4" cols="50" class="w-100 p-2"></textarea>
+                            <textarea id="myTextarea edit-description" name="myTextarea" rows="4" cols="50" class="w-100 p-2"></textarea>
                         </div>
                         <div class="title-product-modal p-2 my-1">
                             <span class="w-100">URL image: </span>
                         </div>
                         <div class="p-2 description-text">
-                            <textarea id="myTextarea" name="myTextarea" rows="4" cols="50" class="w-100 p-2"></textarea>
+                            <textarea id="myTextarea edit-image" name="myTextarea" rows="4" cols="50" class="w-100 p-2"></textarea>
                         </div>
 
                     </div>
@@ -413,6 +414,55 @@ and open the template in the editor.
                                                              input.value = parseFloat(input.value) + 0.5;
                                                          }
                                                      }
+        </script>
+        <script>
+            function editProduct(productID) {
+                console.log(productID);
+                console.log("edit-product ne ");
+                var productName = "";
+                var cateID = "";
+                var quantity = "";
+                var price = "";
+                var rating = "";
+                var description = "";
+                var image = "";
+                $.ajax({
+                    url: "AjaxAdminProductController",
+                    type: "post", //send it through post method
+                    data: {
+                        ajaxAdminAction: "edit-product",
+                        txtProductID: productID
+                    },
+                    success: function (response) {
+                        console.log("response", response);
+                        productName = response.productName;
+                        console.log(productName);
+                        cateID = response.cateID;
+                        console.log(cateID);
+                        quantity = response.quantity;
+                        console.log(quantity);
+                        price = response.price;
+                        console.log(price);
+                        rating = response.rating;
+                        console.log(rating);
+                        description = response.description;
+                        console.log(description);
+                        document.getElementById("edit-productName").value = productName;
+                        document.getElementById("edit-cateID").value = cateID;
+
+                        document.getElementById("edit-price").value = price;
+                        
+                        document.getElementById("edit-description").value = description;
+                        document.getElementById("edit-image").value = image;
+                        document.getElementById("edit-quantity").value = quantity;
+                        document.getElementById("edit-rating").value = rating;
+                    },
+                    error: function (xhr) {
+                        //Do Something to handle error
+                        alert("Có lỗi xảy ra, vui lòng thử lại sau ít phút");
+                    }
+                });
+            }
         </script>
     </body>
 
