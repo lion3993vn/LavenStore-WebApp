@@ -78,6 +78,7 @@ public class AdminOrderController extends HttpServlet {
             request.setAttribute("page", totalPage);
             request.setAttribute("curr", currentPage);
             request.setAttribute("statusSeach", statusSeach);
+            request.setAttribute("searchCode", searchCode);
             request.setAttribute("listorder", listODao);
         } catch (Exception e) {
             log("Error at AdminOrderController: " + e.toString());
