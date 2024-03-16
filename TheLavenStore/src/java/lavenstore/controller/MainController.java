@@ -19,6 +19,12 @@ public class MainController extends HttpServlet {
 
     private static final String NOT_FOUND = "notfound.html";
     private static final String HOME_CONTROLLER = "HomeController";
+    private static final String LOGIN_PAGE = "login.jsp";
+    private static final String REGISTER_PAGE = "register.jsp";
+    private static final String FORGOT_PASSWORD_PAGE = "forgot_password.jsp";
+    private static final String LOGIN = "login";
+    private static final String REGISTER = "register";
+    private static final String FORGOT_PASSWORD = "forgot-password";
 
     private static final String CART = "Cart";
     private static final String CART_CONTROLLER = "CartController";
@@ -48,6 +54,12 @@ public class MainController extends HttpServlet {
                 url = ADMIN_CONTROLLER;
             } else if (action.equals(ADMIN_ORDER)) {
                 url = ADMIN_ORDER_CONTROLLER;
+            } else if (action.equals(LOGIN)) {
+                url = LOGIN_PAGE;
+            } else if (action.equals(REGISTER)) {
+                url = REGISTER_PAGE;
+            } else if (action.equals(FORGOT_PASSWORD)) {
+                url = FORGOT_PASSWORD_PAGE;
             } else {
                 url = NOT_FOUND;
             }
@@ -59,7 +71,7 @@ public class MainController extends HttpServlet {
 
     }
 
-    // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
+// <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
     /**
      * Handles the HTTP <code>GET</code> method.
      *
