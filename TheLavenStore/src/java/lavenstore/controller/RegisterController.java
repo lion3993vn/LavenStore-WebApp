@@ -99,7 +99,6 @@ public class RegisterController extends HttpServlet {
                     eUtil.sendEmail(email, REGISTER_SUBJECT,REGISTER_CONTENT);
                     url = SUCCESS;
                 }
-            }
         } catch (Exception e) {
             log("Error at RegisterController: " + e.toString());
             request.setAttribute("MESSAGE", "Somethings are error...");
