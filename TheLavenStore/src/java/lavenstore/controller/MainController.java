@@ -43,6 +43,9 @@ public class MainController extends HttpServlet {
 
     private static final String PRODUCT = "product";
     private static final String PRODUCT_CONTROLLER = "DetailProductController";
+    private static final String PROFILE = "profile.jsp";
+    private static final String PROFILE_ADDRESS = "profile-address";
+    private static final String PROFILE_PASSWORD = "profile-password";
 
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
@@ -70,6 +73,12 @@ public class MainController extends HttpServlet {
                 url = REGISTER_PAGE;
             } else if (action.equals(FORGOT_PASSWORD)) {
                 url = FORGOT_PASSWORD_PAGE;
+            } else if (action.equals("profile")) {
+                url = PROFILE;
+            } else if (action.equals("profile-address")) {
+                url = PROFILE_ADDRESS;
+            } else if (action.equals("profile-password")) {
+                url = PROFILE_PASSWORD;
             } else {
                 url = NOT_FOUND;
             }

@@ -6,22 +6,22 @@
 package lavenstore.controller;
 
 import java.io.IOException;
-import java.util.List;
+import java.io.PrintWriter;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
-import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import lavenstore.products.ProductDAO;
-import lavenstore.products.ProductDTO;
+import javax.servlet.http.HttpSession;
+import lavenstore.users.UserDAO;
+import lavenstore.users.UserDTO;
 
 /**
  *
- * @author Pham Hieu
+ * @author huyhu
  */
-@WebServlet(name = "AddToCartController", urlPatterns = {"/AddToCartController"})
-public class AddToCartController extends HttpServlet {
+@WebServlet(name = "ProfileAddressController", urlPatterns = {"/profile-address"})
+public class ProfileAddressController extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -32,40 +32,34 @@ public class AddToCartController extends HttpServlet {
      * @throws ServletException if a servlet-specific error occurs
      * @throws IOException if an I/O error occurs
      */
+    private static final String ERROR = "profile_address.jsp";
+    private static final String SUCCESS = "profile_address.jsp";
+
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+        response.setContentType("text/html;charset=UTF-8");
+        String url = ERROR;
         try {
-            ProductDAO pdao = new ProductDAO();
-            List<ProductDTO> list = pdao.getAllProduct();
-            Cookie[] listCookies = request.getCookies();
-            String valueCart = "";
-            if (listCookies != null) {
-                for (Cookie c : listCookies) {
-                    if (c.getName().equals("cart")) {
-                        valueCart += c.getValue();
-                        c.setMaxAge(0);
-                        response.addCookie(c);
-                    }
-                }
+            String address = request.getParameter("address");
+            HttpSession session = request.getSession();
+
+            UserDTO user = (UserDTO) session.getAttribute("account");
+            if (!address.equals(user.getAddress())) {
+                UserDAO dao = new UserDAO();
+                user.setAddress(address);
+                dao.update(user);
+                session.setAttribute("account", user);
+                url = SUCCESS;
             }
-            String idProduct = request.getParameter("id");
-            String quantityProduct = request.getParameter("num");
-            if (valueCart.isEmpty()) {
-                valueCart = idProduct + ":" + quantityProduct;
-            } else{
-                valueCart = valueCart +","+ idProduct + ":" + quantityProduct;
-            }
-            Cookie cart = new Cookie("cart", valueCart);
-            cart.setMaxAge(60*60*24*60);
-            response.addCookie(cart);
         } catch (Exception e) {
-            log("Error at AddToCartController: " + e.toString());
+            log("Error at ProfileUserController: " + e.toString());
+            request.setAttribute("MESSAGE", "Somethings are error...");
         } finally {
-//            request.getRequestDispatcher("MainController").forward(request, response);
+            request.getRequestDispatcher(url).forward(request, response);
         }
     }
 
-    // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
+// <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
     /**
      * Handles the HTTP <code>GET</code> method.
      *

@@ -6,24 +6,23 @@
 package lavenstore.controller;
 
 import java.io.IOException;
+import static java.lang.Integer.parseInt;
+import java.util.ArrayList;
 import java.util.List;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
-import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import lavenstore.orders.Cart;
-import lavenstore.orders.ItemCart;
-import lavenstore.products.ProductDAO;
-import lavenstore.products.ProductDTO;
+import lavenstore.users.UserDAO;
+import lavenstore.users.UserDTO;
 
 /**
  *
- * @author Pham Hieu
+ * @author huyhu
  */
-@WebServlet(name = "CartController", urlPatterns = {"/CartController"})
-public class CartController extends HttpServlet {
+@WebServlet(name = "AdminUserController", urlPatterns = {"/AdminUserController"})
+public class AdminUserController extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -34,38 +33,46 @@ public class CartController extends HttpServlet {
      * @throws ServletException if a servlet-specific error occurs
      * @throws IOException if an I/O error occurs
      */
-    private static final String SUCCESS = "cart.jsp";
-    private static final String ERROR = "cart.jsp";
+    private static final String ERROR = "admin-user.jsp";
+    private static final String SUCCESS = "admin-user.jsp";
 
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+        response.setContentType("text/html;charset=UTF-8");
+        String url = ERROR;
         try {
-            ProductDAO pdao = new ProductDAO();
-            List<ProductDTO> list = pdao.getAllProduct();
-            Cookie[] listCookies = request.getCookies();
-            String valueCart = "";
-            if (listCookies != null) {
-                for (Cookie c : listCookies) {
-                    if (c.getName().equals("cart")) {
-                        valueCart += c.getValue();
-                    }
-                }
+            String index = request.getParameter("index");
+            if (index==null){
+                index = "1";
             }
-            Cart cart = new Cart(valueCart, list);
-            request.setAttribute("cartList", cart);
-            List<ItemCart> listItem = cart.getItems();
-            int n;
-            if(listItem !=null){
-                n=listItem.size();
-            } else{
-                n=0;
+            int countPage = 0;
+            int currentPage = parseInt(index);
+            UserDAO dao = new UserDAO();
+            
+            List<UserDTO> userList = new ArrayList();
+            String searchUser = request.getParameter("searchUser");
+            if (searchUser == null || searchUser.equals("")) {
+                countPage = dao.getPageNumber();
+                
+                userList = dao.getPagingUser(currentPage);
+            } else {
+                countPage = dao.getPageNumberWithSearch(searchUser);
+                userList = dao.getUserByKeywordPaging(searchUser,currentPage);
+                
             }
-            request.setAttribute("totalItemInCart", n);
+            int totalPage = countPage/8;
+            if (countPage%8 != 0){
+                totalPage++;
+            }
+            request.setAttribute("searchUser",searchUser);
+            request.setAttribute("totalPage",totalPage);
+            request.setAttribute("currentPage", currentPage);
+            request.setAttribute("userList", userList);
         } catch (Exception e) {
-            log("Error at CartController: " + e.toString());
+            log("Error at ProfileUserController: " + e.toString());
             request.setAttribute("MESSAGE", "Somethings are error...");
         } finally {
-            request.getRequestDispatcher(SUCCESS).forward(request, response);
+            request.getRequestDispatcher(url).forward(request, response);
         }
     }
 
