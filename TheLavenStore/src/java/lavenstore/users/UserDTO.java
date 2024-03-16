@@ -10,6 +10,7 @@ package lavenstore.users;
  * @author Pham Hieu
  */
 public class UserDTO {
+
     private int ID;
     private String userName;
     private String password;
@@ -96,5 +97,4 @@ public class UserDTO {
     public void setAddress(String address) {
         this.address = address;
     }
-    
 }

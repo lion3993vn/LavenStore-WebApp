@@ -6,45 +6,38 @@
 package lavenstore.controller;
 
 import java.io.IOException;
+import java.io.PrintWriter;
 import javax.servlet.ServletException;
+import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
-import lavenstore.products.ProductDAO;
-import lavenstore.products.ProductDTO;
 
 /**
  *
- * @author Pham Hieu
+ * @author giadu
  */
-public class HomeController extends HttpServlet {
+@WebServlet(name = "LogoutController", urlPatterns = {"/logout"})
+public class LogoutController extends HttpServlet {
 
-    private static final String ERROR = "home.jsp";
-    private static final String SUCCESS = "home.jsp";
+    private static final String ERROR = "MainController";
+    private static final String SUCCESS = "MainController";
 
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         String url = ERROR;
         try {
-            ProductDAO dao = new ProductDAO();
-            int[] bestSellerProductID = dao.getBestSeller();
-            
-            List<ProductDTO> bestSeller = new ArrayList<>();
-            for (int i = 0; i < bestSellerProductID.length; i++) {
-                bestSeller.add(dao.getProductByID(bestSellerProductID[i]));
+            HttpSession session = request.getSession(false);
+            if (session != null) {
+                session.invalidate();
+                url = SUCCESS;
             }
-            
-            List<ProductDTO> releaseList = dao.getNewReleaseProduct();
-            request.setAttribute("best", bestSeller);
-            request.setAttribute("release", releaseList);
-            url = SUCCESS;
         } catch (Exception e) {
-            log("Error at HomeController: " + e.toString());
-            request.setAttribute("MESSAGE", "Somethings are error...");
+            log("Error at LogoutController: " + e.toString());
         } finally {
-            request.getRequestDispatcher(url).forward(request, response);
+            response.sendRedirect(url);
         }
     }
 

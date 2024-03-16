@@ -6,42 +6,61 @@
 package lavenstore.controller;
 
 import java.io.IOException;
+import java.io.PrintWriter;
 import javax.servlet.ServletException;
+import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
-import lavenstore.products.ProductDAO;
-import lavenstore.products.ProductDTO;
+import lavenstore.orders.OrderDAO;
 
 /**
  *
  * @author Pham Hieu
  */
-public class HomeController extends HttpServlet {
+@WebServlet(name = "AdminDashBoardController", urlPatterns = {"/AdminDashBoardController"})
+public class AdminDashBoardController extends HttpServlet {
 
-    private static final String ERROR = "home.jsp";
-    private static final String SUCCESS = "home.jsp";
+    /**
+     * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
+     * methods.
+     *
+     * @param request servlet request
+     * @param response servlet response
+     * @throws ServletException if a servlet-specific error occurs
+     * @throws IOException if an I/O error occurs
+     */
+    private static final String ERROR = "home.html";
+    private static final String SUCCESS = "admin-dashboard.jsp";
 
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         String url = ERROR;
         try {
-            ProductDAO dao = new ProductDAO();
-            int[] bestSellerProductID = dao.getBestSeller();
+            OrderDAO odao = new OrderDAO();
             
-            List<ProductDTO> bestSeller = new ArrayList<>();
-            for (int i = 0; i < bestSellerProductID.length; i++) {
-                bestSeller.add(dao.getProductByID(bestSellerProductID[i]));
-            }
+            int totalRevenueDaily = odao.getTotalRevenueDaily();
+            int totalSoldProductDaily = odao.getTotalSoldProductDaily();
+            int totalOrderDaily = odao.getTotalOrderDaily();
+            int totalOrderPendingDaily = odao.getTotalOrderPenDingDaily();
             
-            List<ProductDTO> releaseList = dao.getNewReleaseProduct();
-            request.setAttribute("best", bestSeller);
-            request.setAttribute("release", releaseList);
+            int totalOrderMonthly = odao.getTotalOrderMonthly();
+            int totalSoldProductMonthly = odao.getTotalSoldProductMonthly();
+            int totalRevenueMonthly = odao.getTotalRevenueMonthly();
+            
+            request.setAttribute("totalRevenueDaily", totalRevenueDaily);
+            request.setAttribute("totalSoldProductDaily", totalSoldProductDaily);
+            request.setAttribute("totalOrderDaily", totalOrderDaily);
+            request.setAttribute("totalOrderPendingDaily", totalOrderPendingDaily);
+            
+            request.setAttribute("totalOrderMonthly", totalOrderMonthly);
+            request.setAttribute("totalSoldProductMonthly", totalSoldProductMonthly);
+            request.setAttribute("totalRevenueMonthly", totalRevenueMonthly);
+            
             url = SUCCESS;
         } catch (Exception e) {
-            log("Error at HomeController: " + e.toString());
+            log("Error at AdminDashBoardController: " + e.toString());
             request.setAttribute("MESSAGE", "Somethings are error...");
         } finally {
             request.getRequestDispatcher(url).forward(request, response);

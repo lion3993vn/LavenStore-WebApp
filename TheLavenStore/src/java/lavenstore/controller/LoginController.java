@@ -7,41 +7,69 @@ package lavenstore.controller;
 
 import java.io.IOException;
 import javax.servlet.ServletException;
+import javax.servlet.annotation.WebServlet;
+import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
-import lavenstore.products.ProductDAO;
-import lavenstore.products.ProductDTO;
+import lavenstore.users.UserDAO;
+import lavenstore.users.UserDTO;
 
 /**
  *
- * @author Pham Hieu
+ * @author huyhu
  */
-public class HomeController extends HttpServlet {
+@WebServlet(name = "LoginController", urlPatterns = {"/login"})
+public class LoginController extends HttpServlet {
 
-    private static final String ERROR = "home.jsp";
-    private static final String SUCCESS = "home.jsp";
+    /**
+     * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
+     * methods.
+     *
+     * @param request servlet request
+     * @param response servlet response
+     * @throws ServletException if a servlet-specific error occurs
+     * @throws IOException if an I/O error occurs
+     */
+    private static final String ERROR = "login.jsp";
+    private static final String SUCCESS = "HomeController";
 
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        response.setContentType("text/html;charset=UTF-8");
         String url = ERROR;
         try {
-            ProductDAO dao = new ProductDAO();
-            int[] bestSellerProductID = dao.getBestSeller();
-            
-            List<ProductDTO> bestSeller = new ArrayList<>();
-            for (int i = 0; i < bestSellerProductID.length; i++) {
-                bestSeller.add(dao.getProductByID(bestSellerProductID[i]));
+            String username = request.getParameter("Username");
+            String password = request.getParameter("Password");
+            String remember = request.getParameter("Remember");
+            UserDAO u = new UserDAO();
+            UserDTO user = u.login(username, password);
+            if (user == null) {
+                request.setAttribute("error", "Sai tài khoản hoặc mật khẩu");
+            } else {
+                url = SUCCESS;
+                //tao session
+                HttpSession s = request.getSession();
+                s.setAttribute("account", user);
+                //tao cookie
+                Cookie cUser = new Cookie("Username", username);
+                Cookie cPass = new Cookie("Password", password);
+                Cookie cRem = new Cookie("Remember", remember);
+                if (remember != null) {
+                    cUser.setMaxAge(60 * 60 * 24 * 365); //cookie ton tai 365 ngay
+                    cPass.setMaxAge(60 * 60 * 24 * 365);
+                    cRem.setMaxAge(60 * 60 * 24 * 365);
+                } else {
+                    cUser.setMaxAge(0);
+                    cPass.setMaxAge(0);
+                    cRem.setMaxAge(0);
+                }
+                response.addCookie(cUser);
+                response.addCookie(cPass);
+                response.addCookie(cRem);
             }
-            
-            List<ProductDTO> releaseList = dao.getNewReleaseProduct();
-            request.setAttribute("best", bestSeller);
-            request.setAttribute("release", releaseList);
-            url = SUCCESS;
         } catch (Exception e) {
-            log("Error at HomeController: " + e.toString());
+            log("Error at LoginController: " + e.toString());
             request.setAttribute("MESSAGE", "Somethings are error...");
         } finally {
             request.getRequestDispatcher(url).forward(request, response);

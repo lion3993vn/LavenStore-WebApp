@@ -6,11 +6,15 @@
 package lavenstore.controller;
 
 import java.io.IOException;
+import java.util.List;
 import javax.servlet.ServletException;
+import javax.servlet.annotation.WebServlet;
+import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
+import lavenstore.orders.Cart;
+import lavenstore.orders.ItemCart;
 import lavenstore.products.ProductDAO;
 import lavenstore.products.ProductDTO;
 
@@ -18,33 +22,50 @@ import lavenstore.products.ProductDTO;
  *
  * @author Pham Hieu
  */
-public class HomeController extends HttpServlet {
+@WebServlet(name = "CartController", urlPatterns = {"/CartController"})
+public class CartController extends HttpServlet {
 
-    private static final String ERROR = "home.jsp";
-    private static final String SUCCESS = "home.jsp";
+    /**
+     * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
+     * methods.
+     *
+     * @param request servlet request
+     * @param response servlet response
+     * @throws ServletException if a servlet-specific error occurs
+     * @throws IOException if an I/O error occurs
+     */
+    private static final String SUCCESS = "cart.jsp";
+    private static final String ERROR = "cart.jsp";
 
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        response.setContentType("text/html;charset=UTF-8");
-        String url = ERROR;
         try {
-            ProductDAO dao = new ProductDAO();
-            int[] bestSellerProductID = dao.getBestSeller();
-            
-            List<ProductDTO> bestSeller = new ArrayList<>();
-            for (int i = 0; i < bestSellerProductID.length; i++) {
-                bestSeller.add(dao.getProductByID(bestSellerProductID[i]));
+            ProductDAO pdao = new ProductDAO();
+            List<ProductDTO> list = pdao.getAllProduct();
+            Cookie[] listCookies = request.getCookies();
+            String valueCart = "";
+            if (listCookies != null) {
+                for (Cookie c : listCookies) {
+                    if (c.getName().equals("cart")) {
+                        valueCart += c.getValue();
+                    }
+                }
             }
-            
-            List<ProductDTO> releaseList = dao.getNewReleaseProduct();
-            request.setAttribute("best", bestSeller);
-            request.setAttribute("release", releaseList);
-            url = SUCCESS;
+            Cart cart = new Cart(valueCart, list);
+            request.setAttribute("cartList", cart);
+            List<ItemCart> listItem = cart.getItems();
+            int n;
+            if(listItem !=null){
+                n=listItem.size();
+            } else{
+                n=0;
+            }
+            request.setAttribute("totalItemInCart", n);
         } catch (Exception e) {
-            log("Error at HomeController: " + e.toString());
+            log("Error at CartController: " + e.toString());
             request.setAttribute("MESSAGE", "Somethings are error...");
         } finally {
-            request.getRequestDispatcher(url).forward(request, response);
+            request.getRequestDispatcher(SUCCESS).forward(request, response);
         }
     }
 

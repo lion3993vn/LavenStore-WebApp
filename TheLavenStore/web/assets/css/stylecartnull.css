@@ -47,20 +47,10 @@ p{
     font-family: 'Dongle' , serif;
     font-size: 30px;
 }
-.operator{
-    background-color: #EDEDED;   
-}
-.checkout{
-    background-color: #6F0505;
-    color: #FFFFFF;
-    margin: 20px;
-    border-radius: 5px;
-}
-.trash{
-    cursor: pointer;
-}
-input[type="number"]::-webkit-inner-spin-button,
-input[type="number"]::-webkit-outer-spin-button {
-    -webkit-appearance: none;
-    margin: 0;
+.cartnull a{
+    text-decoration: none;
+    color: white;
+    font-size: 20px;
+    background-color: #8B6E4A;
+    border-radius: 10px;
 }

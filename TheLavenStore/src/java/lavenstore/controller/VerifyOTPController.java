@@ -6,43 +6,54 @@
 package lavenstore.controller;
 
 import java.io.IOException;
+import java.io.PrintWriter;
+import java.text.DecimalFormat;
+import java.util.Random;
 import javax.servlet.ServletException;
+import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
-import lavenstore.products.ProductDAO;
-import lavenstore.products.ProductDTO;
+import lavenstore.email.Email;
 
 /**
  *
- * @author Pham Hieu
+ * @author huyhu
  */
-public class HomeController extends HttpServlet {
+@WebServlet(name = "VerifyOTP", urlPatterns = {"/verify-otp"})
+public class VerifyOTPController extends HttpServlet {
 
-    private static final String ERROR = "home.jsp";
-    private static final String SUCCESS = "home.jsp";
+    /**
+     * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
+     * methods.
+     *
+     * @param request servlet request
+     * @param response servlet response
+     * @throws ServletException if a servlet-specific error occurs
+     * @throws IOException if an I/O error occurs
+     */
+    private static final String ERROR = "forgot_password.jsp";
+    private static final String SUCCESS = "forgot_password2.jsp";
 
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         String url = ERROR;
         try {
-            ProductDAO dao = new ProductDAO();
-            int[] bestSellerProductID = dao.getBestSeller();
-            
-            List<ProductDTO> bestSeller = new ArrayList<>();
-            for (int i = 0; i < bestSellerProductID.length; i++) {
-                bestSeller.add(dao.getProductByID(bestSellerProductID[i]));
+            HttpSession session = request.getSession(false);    
+            String otp = (String) session.getAttribute("OTP");
+            String txtOTP = request.getParameter("txtOTP");
+            String txtEmail = request.getParameter("Email");
+            if (txtOTP.equals(otp)) {
+                session.setAttribute("Email",txtEmail);
+                url = SUCCESS;
+            } else {
+                request.setAttribute("message", "OTP không đúng, hãy thử lại!");
             }
-            
-            List<ProductDTO> releaseList = dao.getNewReleaseProduct();
-            request.setAttribute("best", bestSeller);
-            request.setAttribute("release", releaseList);
-            url = SUCCESS;
+            session.removeAttribute("OTP");
         } catch (Exception e) {
-            log("Error at HomeController: " + e.toString());
-            request.setAttribute("MESSAGE", "Somethings are error...");
+            log("Error at VerifyOTP " + e.toString());
         } finally {
             request.getRequestDispatcher(url).forward(request, response);
         }

@@ -1,3 +1,11 @@
+<%-- 
+    Document   : payment-pending
+    Created on : Mar 8, 2024, 8:29:12 PM
+    Author     : Pham Hieu
+--%>
+
+<%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%@taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
 <!DOCTYPE html>
 <!--
 To change this license header, choose License Headers in Project Properties.
@@ -16,7 +24,7 @@ and open the template in the editor.
     <link href="https://fonts.googleapis.com/css2?family=Josefin+Sans:wght@100;200;300;400&display=swap"
         rel="stylesheet">
     <link href='https://fonts.googleapis.com/css?family=Signika Negative' rel='stylesheet'>
-    <link rel="stylesheet" href="./assets/css/stylepayment-success.css">
+    <link rel="stylesheet" href="./assets/css/stylepayment-pending.css">
     <link rel="stylesheet" href="./assets/css/font/css/all.css">
 </head>
 
@@ -29,31 +37,27 @@ and open the template in the editor.
                 </div>
 
                 <div class="col-md-12 pay-img">
-                    <img src="./assets/img/checkout/success-icon.png" alt="" width="100px">
-                    <h4>Payment success</h4>
+                    <img src="./assets/img/checkout/pending.png" alt="" width="100px">
+                    <h4>Payment pending</h4>
                 </div>
                 <div class="col-md-12 payment-in4">
                     <table>
                         <tbody>
                             <tr>
                                 <th>Customer:</th>
-                                <td>Pham Van Tuan Hieu</td>
+                                <td>${sessionScope.account.userName}</td>
                             </tr>
                             <tr>
                                 <th>Email:</th>
-                                <td>lion2k3@gmail.com</td>
+                                <td>${sessionScope.account.email}</td>
                             </tr>
                             <tr>
                                 <th>Order code:</th>
-                                <td>ABC123456</td>
+                                <td>#${requestScope.order.orderCode}</td>
                             </tr>
                             <tr>
-                                <th>Amout paid:</th>
-                                <td class="amout">3.000.000 VND</td>
-                            </tr>
-                            <tr>
-                                <th>Transaction ID:</th>
-                                <td>2112122121</td>
+                                <th>Amount paid:</th>
+                                <td class="amout">VND <fmt:formatNumber pattern="#,###" value="${requestScope.order.amount}"/></td>
                             </tr>
                         </tbody>
                     </table>
@@ -67,24 +71,28 @@ and open the template in the editor.
                     <table>
                         <tbody>
                             <tr>
-                                <th>Billing content:</td>
-                                <td>Thanh toan don hang: 685787</td>
+                                <th>Order date:</th>
+                                <td><fmt:formatDate value="${requestScope.order.date}" pattern="dd/MM/yyyy"/></td>
                             </tr>
                             <tr>
-                                <th>Bank code:</td>
-                                <td>TP BANK</td>
+                                <th>Location:</th>
+                                <td>${requestScope.order.location}</td>
+                            </tr>
+                            <tr>
+                                <th>Phone number:</th>
+                                <td>${sessionScope.account.phoneNumber}</td>
+                            </tr>
+                            <tr>
+                                <th>Total quantity:</th>
+                                <td>${requestScope.totalQuantity}</td>
                             </tr>
                             <tr>
                                 <th>Payment type:</td>
-                                <td>VISA</td>
+                                <td>COD</td>
                             </tr>
                             <tr>
-                                <th>Bank transaction no:</td>
-                                <td>54325626226</td>
-                            </tr>
-                            <tr>
-                                <th>Payment date:</td>
-                                <td>25/06/2023 21:25</td>
+                                <th>Note:</th>
+                                <td>${requestScope.order.note}</td>
                             </tr>
                         </tbody>
                     </table>
@@ -94,8 +102,7 @@ and open the template in the editor.
                         <p>See you again!</p>
                     </div>
                     <div class="payment-footer">
-                        <p><a href="#">Back to home page</a></p>
-                        <p>Powered by <a href="#">VNPAY</a></p>
+                        <p><a href="MainController">Back to home page</a></p>
                     </div>
                 </div>
 
