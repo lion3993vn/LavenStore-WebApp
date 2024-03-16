@@ -6,47 +6,45 @@
 package lavenstore.controller;
 
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.List;
+import java.io.PrintWriter;
 import javax.servlet.ServletException;
+import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
-import lavenstore.products.ProductDAO;
-import lavenstore.products.ProductDTO;
+import lavenstore.users.UserDAO;
+import lavenstore.users.UserDTO;
 
 /**
  *
  * @author Pham Hieu
  */
-public class HomeController extends HttpServlet {
+@WebServlet(name = "giasudangnhap", urlPatterns = {"/gsdn"})
+public class giasudangnhap extends HttpServlet {
 
-    private static final String ERROR = "home.jsp";
-    private static final String SUCCESS = "home.jsp";
-
+    /**
+     * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
+     * methods.
+     *
+     * @param request servlet request
+     * @param response servlet response
+     * @throws ServletException if a servlet-specific error occurs
+     * @throws IOException if an I/O error occurs
+     */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
-        String url = ERROR;
         try {
-            ProductDAO dao = new ProductDAO();
-            int[] bestSellerProductID = dao.getBestSeller();
-            
-            List<ProductDTO> bestSeller = new ArrayList<>();
-            for (int i = 0; i < bestSellerProductID.length; i++) {
-                bestSeller.add(dao.getProductByID(bestSellerProductID[i]));
-            }
-            
-            List<ProductDTO> releaseList = dao.getNewReleaseProduct();
-            request.setAttribute("best", bestSeller);
-            request.setAttribute("release", releaseList);
-            url = SUCCESS;
+            HttpSession session = request.getSession();
+            UserDTO user = new UserDTO();
+            user.setID(1);
+            user.setUserName("lionvn");
+            session.setAttribute("account", user);
         } catch (Exception e) {
-            log("Error at HomeController: " + e.toString());
-            request.setAttribute("MESSAGE", "Somethings are error...");
+            e.printStackTrace();
         } finally {
-            request.getRequestDispatcher(url).forward(request, response);
+
         }
     }
 

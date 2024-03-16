@@ -47,7 +47,7 @@
 }
 
 /* CHUA ADD WISHLIST */
-/* .box-wishlist{
+ .box-wishlist{
     border: 1px solid black;
     border-radius: 50%;
 }
@@ -55,15 +55,15 @@
     padding: 10px;
     font-size: 20px;
     color: black;
-} */
+} 
 
 /* DA ADD WISHLIST */
-.box-wishlist{
+.box-wishlist-adder{
     border: 1px solid black;
     border-radius: 50%;
     background-color: black;
 }
-.icon-wishlist{
+.icon-wishlist-added{
     padding: 10px;
     font-size: 20px;
     color: #8B6E4A;

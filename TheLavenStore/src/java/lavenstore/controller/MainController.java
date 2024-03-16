@@ -38,6 +38,12 @@ public class MainController extends HttpServlet {
     private static final String ADMIN_ORDER = "AdminOrder";
     private static final String ADMIN_ORDER_CONTROLLER = "AdminOrderController";
 
+    private static final String SHOP = "shop";
+    private static final String SHOP_CONTROLLER = "ShopController";
+
+    private static final String PRODUCT = "product";
+    private static final String PRODUCT_CONTROLLER = "DetailProductController";
+
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
@@ -46,6 +52,10 @@ public class MainController extends HttpServlet {
             String action = request.getParameter("action");
             if (action == null) {
                 url = HOME_CONTROLLER;
+            } else if (action.equals(SHOP)) {
+                url = SHOP_CONTROLLER;
+            } else if (action.equals(PRODUCT)) {
+                url = PRODUCT_CONTROLLER;
             } else if (action.equals(CART)) {
                 url = CART_CONTROLLER;
             } else if (action.equals(CHECKOUT)) {
@@ -63,6 +73,7 @@ public class MainController extends HttpServlet {
             } else {
                 url = NOT_FOUND;
             }
+
         } catch (Exception e) {
             log("Error at MainController: " + e.toString());
         } finally {

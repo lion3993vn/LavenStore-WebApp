@@ -6,41 +6,74 @@
 package lavenstore.controller;
 
 import java.io.IOException;
+import java.io.PrintWriter;
 import java.util.ArrayList;
 import java.util.List;
 import javax.servlet.ServletException;
+import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+import lavenstore.products.CategoryDAO;
 import lavenstore.products.ProductDAO;
 import lavenstore.products.ProductDTO;
+import lavenstore.users.UserDTO;
+import lavenstore.wishlist.WishListDAO;
 
 /**
  *
  * @author Pham Hieu
  */
-public class HomeController extends HttpServlet {
+@WebServlet(name = "DetailProductController", urlPatterns = {"/DetailProductController"})
+public class DetailProductController extends HttpServlet {
 
+    /**
+     * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
+     * methods.
+     *
+     * @param request servlet request
+     * @param response servlet response
+     * @throws ServletException if a servlet-specific error occurs
+     * @throws IOException if an I/O error occurs
+     */
     private static final String ERROR = "home.jsp";
-    private static final String SUCCESS = "home.jsp";
-
+    private static final String SUCCESS = "product.jsp";
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         String url = ERROR;
         try {
-            ProductDAO dao = new ProductDAO();
-            int[] bestSellerProductID = dao.getBestSeller();
+            String id = request.getParameter("id");
+            ProductDAO pdao = new ProductDAO();
+            ProductDTO product = pdao.getProductByID(Integer.parseInt(id));
+            List<ProductDTO> listp = pdao.getRelatedProduct(product.getID(), product.getCateID());
             
-            List<ProductDTO> bestSeller = new ArrayList<>();
-            for (int i = 0; i < bestSellerProductID.length; i++) {
-                bestSeller.add(dao.getProductByID(bestSellerProductID[i]));
+            HttpSession session = request.getSession(false);
+            UserDTO user = (UserDTO) session.getAttribute("account");
+            
+            boolean isWishlist = false;
+            if(user != null){
+                WishListDAO wdao = new WishListDAO();
+                isWishlist = wdao.isWishList(product.getID(), user.getID());
             }
             
-            List<ProductDTO> releaseList = dao.getNewReleaseProduct();
-            request.setAttribute("best", bestSeller);
-            request.setAttribute("release", releaseList);
+            CategoryDAO cdao = new CategoryDAO();
+            String cateName = cdao.getCateNameByCateID(product.getCateID());
+            
+            float start = product.getRate(); //4.0
+            int starFull = (int) start; //4
+            int starHalf = start - starFull == 0.5 ? 1 : 0; //0
+            int starNo = 5 - starFull - starHalf; //1
+            
+            
+            request.setAttribute("starFull", starFull);
+            request.setAttribute("starHalf", starHalf);
+            request.setAttribute("starNo", starNo);
+            request.setAttribute("wishlist", isWishlist);
+            request.setAttribute("cate", cateName);
+            request.setAttribute("product", product);
+            request.setAttribute("related", listp);
             url = SUCCESS;
         } catch (Exception e) {
             log("Error at HomeController: " + e.toString());

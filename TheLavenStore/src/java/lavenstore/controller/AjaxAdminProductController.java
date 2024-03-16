@@ -5,48 +5,60 @@
  */
 package lavenstore.controller;
 
+import com.google.gson.JsonObject;
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.List;
+import java.io.PrintWriter;
+import static java.lang.Integer.parseInt;
 import javax.servlet.ServletException;
+import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 import lavenstore.products.ProductDAO;
 import lavenstore.products.ProductDTO;
 
 /**
  *
- * @author Pham Hieu
+ * @author huyhu
  */
-public class HomeController extends HttpServlet {
+@WebServlet(name = "AjaxAdminProductController", urlPatterns = {"/AjaxAdminProductController"})
+public class AjaxAdminProductController extends HttpServlet {
 
-    private static final String ERROR = "home.jsp";
-    private static final String SUCCESS = "home.jsp";
-
+    /**
+     * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
+     * methods.
+     *
+     * @param request servlet request
+     * @param response servlet response
+     * @throws ServletException if a servlet-specific error occurs
+     * @throws IOException if an I/O error occurs
+     */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
-        String url = ERROR;
+        String ajaxAdminAction = request.getParameter("ajaxAdminAction");
+        request.setCharacterEncoding("UTF-8");
         try {
-            ProductDAO dao = new ProductDAO();
-            int[] bestSellerProductID = dao.getBestSeller();
-            
-            List<ProductDTO> bestSeller = new ArrayList<>();
-            for (int i = 0; i < bestSellerProductID.length; i++) {
-                bestSeller.add(dao.getProductByID(bestSellerProductID[i]));
+            if (ajaxAdminAction.equals("edit-product")) {
+                int txtProductID = parseInt(request.getParameter("txtProductID"));
+                ProductDAO dao = new ProductDAO();
+                ProductDTO product = dao.getProductByID(txtProductID);
+                JsonObject json = new JsonObject();
+                json.addProperty("productName", product.getName());
+                json.addProperty("cateID", product.getCateID());
+                json.addProperty("quantity", product.getQuantity());
+                json.addProperty("price", product.getPrice());
+                json.addProperty("rating", product.getRate());
+                json.addProperty("description", product.getDescription());
+                json.addProperty("image", product.getImage());
+                response.setContentType("application/json");
+                PrintWriter out = response.getWriter();
+                out.print(json.toString());
+                out.flush();
             }
-            
-            List<ProductDTO> releaseList = dao.getNewReleaseProduct();
-            request.setAttribute("best", bestSeller);
-            request.setAttribute("release", releaseList);
-            url = SUCCESS;
         } catch (Exception e) {
-            log("Error at HomeController: " + e.toString());
+            log("Error at AjaxAdminUserController: " + e.toString());
             request.setAttribute("MESSAGE", "Somethings are error...");
-        } finally {
-            request.getRequestDispatcher(url).forward(request, response);
         }
     }
 
