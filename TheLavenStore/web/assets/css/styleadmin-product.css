@@ -147,6 +147,12 @@ body{
 .search-user input::placeholder{
     color: #768490;
 }
+.search-user-submit input{
+    background-color: #8869E1;
+    border: none;
+    border-radius: 5px;
+    color: white;
+}
 .filter-status select{
     background-color: #151C2C;
     color: #888888;
@@ -244,14 +250,14 @@ body{
 .error-text{
     color: #EA5455; */
 /* } */
-.paging a{
+.paging{
     text-decoration: none;
     color: white;
     background-color: #202A41;
     border-radius: 5px;
     border: 1px solid #757575;
 }
-.paging a:hover{
+.paging:hover{
     background-color: #182237;
     color: #F8B940;
 }
@@ -284,4 +290,8 @@ input[type="number"]::-webkit-inner-spin-button,
 input[type="number"]::-webkit-outer-spin-button {
     -webkit-appearance: none;
     margin: 0;
+}
+
+textArea{
+    resize: none;
 }

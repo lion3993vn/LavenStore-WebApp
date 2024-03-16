@@ -56,8 +56,10 @@
 .profile {
     background-color: #CF9142;
 }
-
-.bar tr:hover>td {
+.nohover:hover{
+    background-color: #CFA877 !important;
+}
+.bar tr:hover {
     background-color: #CF9142;
 }
 

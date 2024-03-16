@@ -5,7 +5,7 @@
  */
 package lavenstore.orders;
 
-import java.util.Date;
+import java.sql.Timestamp;
 
 /**
  *
@@ -14,8 +14,8 @@ import java.util.Date;
 public class OrderDTO {
     private int ID;
     private int userID;
-    private Date date;
-    private Date paymentDate;
+    private Timestamp  date;
+    private Timestamp  paymentDate;
     private String paymentMethod;
     private String location;
     private String phoneNumber;
@@ -24,7 +24,7 @@ public class OrderDTO {
     private String orderCode;
     private String note;
 
-    public OrderDTO(int ID, int userID, Date date, Date paymentDate, String paymentMethod, String location, String phoneNumber, int amount, String status, String orderCode, String note) {
+    public OrderDTO(int ID, int userID, Timestamp date, Timestamp paymentDate, String paymentMethod, String location, String phoneNumber, int amount, String status, String orderCode, String note) {
         this.ID = ID;
         this.userID = userID;
         this.date = date;
@@ -57,20 +57,28 @@ public class OrderDTO {
         this.userID = userID;
     }
 
-    public Date getDate() {
+    public Timestamp getDate() {
         return date;
     }
 
-    public void setDate(Date date) {
+    public void setDate(Timestamp date) {
         this.date = date;
     }
 
-    public Date getPaymentDate() {
+    public Timestamp getPaymentDate() {
         return paymentDate;
     }
 
-    public void setPaymentDate(Date paymentDate) {
+    public void setPaymentDate(Timestamp paymentDate) {
         this.paymentDate = paymentDate;
+    }
+
+    public int getAmount() {
+        return amount;
+    }
+
+    public void setAmount(int amount) {
+        this.amount = amount;
     }
 
     public String getPaymentMethod() {
@@ -95,14 +103,6 @@ public class OrderDTO {
 
     public void setPhoneNumber(String phoneNumber) {
         this.phoneNumber = phoneNumber;
-    }
-
-    public int getamount() {
-        return amount;
-    }
-
-    public void setamount(int amount) {
-        this.amount = amount;
     }
 
     public String getStatus() {
