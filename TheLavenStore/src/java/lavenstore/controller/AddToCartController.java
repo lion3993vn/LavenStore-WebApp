@@ -6,31 +6,62 @@
 package lavenstore.controller;
 
 import java.io.IOException;
+import java.util.List;
 import javax.servlet.ServletException;
+import javax.servlet.annotation.WebServlet;
+import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import lavenstore.products.ProductDAO;
+import lavenstore.products.ProductDTO;
 
 /**
  *
  * @author Pham Hieu
  */
-public class HomeController extends HttpServlet {
+@WebServlet(name = "AddToCartController", urlPatterns = {"/AddToCartController"})
+public class AddToCartController extends HttpServlet {
 
-    private static final String ERROR = "home.html";
-    private static final String SUCCESS = "home.html";
-
+    /**
+     * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
+     * methods.
+     *
+     * @param request servlet request
+     * @param response servlet response
+     * @throws ServletException if a servlet-specific error occurs
+     * @throws IOException if an I/O error occurs
+     */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        response.setContentType("text/html;charset=UTF-8");
-        String url = ERROR;
         try {
-            
+            ProductDAO pdao = new ProductDAO();
+            List<ProductDTO> list = pdao.getAllProduct();
+            Cookie[] listCookies = request.getCookies();
+            String valueCart = "";
+            if (listCookies != null) {
+                for (Cookie c : listCookies) {
+                    if (c.getName().equals("cart")) {
+                        valueCart += c.getValue();
+                        c.setMaxAge(0);
+                        response.addCookie(c);
+                    }
+                }
+            }
+            String idProduct = request.getParameter("id");
+            String quantityProduct = request.getParameter("num");
+            if (valueCart.isEmpty()) {
+                valueCart = idProduct + ":" + quantityProduct;
+            } else{
+                valueCart = valueCart +","+ idProduct + ":" + quantityProduct;
+            }
+            Cookie cart = new Cookie("cart", valueCart);
+            cart.setMaxAge(60*60*24*60);
+            response.addCookie(cart);
         } catch (Exception e) {
-            log("Error at HomeController: " + e.toString());
-            request.setAttribute("MESSAGE", "Somethings are error...");
+            log("Error at AddToCartController: " + e.toString());
         } finally {
-            request.getRequestDispatcher(url).forward(request, response);
+//            request.getRequestDispatcher("MainController").forward(request, response);
         }
     }
 

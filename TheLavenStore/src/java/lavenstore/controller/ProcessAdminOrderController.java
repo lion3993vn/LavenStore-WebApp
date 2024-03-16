@@ -7,27 +7,57 @@ package lavenstore.controller;
 
 import java.io.IOException;
 import javax.servlet.ServletException;
+import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import lavenstore.orders.OrderDAO;
+import lavenstore.orders.OrderDTO;
 
 /**
  *
  * @author Pham Hieu
  */
-public class HomeController extends HttpServlet {
+@WebServlet(name = "ProcessAdminOrderController", urlPatterns = {"/ProcessAdminOrderController"})
+public class ProcessAdminOrderController extends HttpServlet {
 
-    private static final String ERROR = "home.html";
-    private static final String SUCCESS = "home.html";
+    /**
+     * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
+     * methods.
+     *
+     * @param request servlet request
+     * @param response servlet response
+     * @throws ServletException if a servlet-specific error occurs
+     * @throws IOException if an I/O error occurs
+     */
+    private static final String ERROR = "AdminOrderModifyController";
+    private static final String SUCCESS = "AdminOrderController";
 
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
+        request.setCharacterEncoding("UTF-8");
         String url = ERROR;
         try {
             
+            String phonenumber = request.getParameter("phonenumber");
+            String location = request.getParameter("location");
+            String status = request.getParameter("status");
+            String note = request.getParameter("note");
+            String id = request.getParameter("orderID");
+            
+            OrderDAO oDao = new OrderDAO();
+            OrderDTO order = oDao.getOrderByID(Integer.parseInt(id));
+            order.setPhoneNumber(phonenumber);
+            order.setLocation(location);
+            order.setStatus(status);
+            order.setNote(note);
+            
+            oDao.updateOrder(order);
+            url = SUCCESS;
+            
         } catch (Exception e) {
-            log("Error at HomeController: " + e.toString());
+            log("Error at ProcessAdminOrderController: " + e.toString());
             request.setAttribute("MESSAGE", "Somethings are error...");
         } finally {
             request.getRequestDispatcher(url).forward(request, response);

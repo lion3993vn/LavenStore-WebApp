@@ -6,7 +6,6 @@
 package lavenstore.controller;
 
 import java.io.IOException;
-import java.io.PrintWriter;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -19,7 +18,6 @@ import javax.servlet.http.HttpServletResponse;
 public class MainController extends HttpServlet {
 
     private static final String NOT_FOUND = "notfound.html";
-
     private static final String HOME_CONTROLLER = "HomeController";
     private static final String LOGIN_PAGE = "login.jsp";
     private static final String REGISTER_PAGE = "register.jsp";
@@ -27,6 +25,18 @@ public class MainController extends HttpServlet {
     private static final String LOGIN = "login";
     private static final String REGISTER = "register";
     private static final String FORGOT_PASSWORD = "forgot-password";
+
+    private static final String CART = "Cart";
+    private static final String CART_CONTROLLER = "CartController";
+
+    private static final String CHECKOUT = "Checkout";
+    private static final String CHECKOUT_CONTROLLER = "CheckoutController";
+
+    private static final String ADMIN = "Admin";
+    private static final String ADMIN_CONTROLLER = "AdminDashBoardController";
+
+    private static final String ADMIN_ORDER = "AdminOrder";
+    private static final String ADMIN_ORDER_CONTROLLER = "AdminOrderController";
 
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
@@ -36,6 +46,14 @@ public class MainController extends HttpServlet {
             String action = request.getParameter("action");
             if (action == null) {
                 url = HOME_CONTROLLER;
+            } else if (action.equals(CART)) {
+                url = CART_CONTROLLER;
+            } else if (action.equals(CHECKOUT)) {
+                url = CHECKOUT_CONTROLLER;
+            } else if (action.equals(ADMIN)) {
+                url = ADMIN_CONTROLLER;
+            } else if (action.equals(ADMIN_ORDER)) {
+                url = ADMIN_ORDER_CONTROLLER;
             } else if (action.equals(LOGIN)) {
                 url = LOGIN_PAGE;
             } else if (action.equals(REGISTER)) {

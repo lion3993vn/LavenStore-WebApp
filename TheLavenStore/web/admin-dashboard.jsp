@@ -1,3 +1,11 @@
+<%-- 
+    Document   : admin-dashboard
+    Created on : Mar 11, 2024, 6:38:32 PM
+    Author     : Pham Hieu
+--%>
+
+<%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%@taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
 <!DOCTYPE html>
 <!--
 To change this license header, choose License Headers in Project Properties.
@@ -24,7 +32,7 @@ and open the template in the editor.
         <div class="row">
             <div class="col-md-2 nav-left">
                 <div class="logo d-flex justify-content-center w-100 mt-3">
-                    <a href="" class="">
+                    <a href="#" class="">
                         <p class="logo-left d-inline-block p-1 m-0">LAVEN STORE</p>
                         <p class="d-inline-block logo-right ms-2">ADMIN</p>
                     </a>
@@ -36,7 +44,7 @@ and open the template in the editor.
                         </tr>
                         <tr>
                             <td></td>
-                            <td class="py-1 active ps-3 active"><a href="" class=""><span>Dashboard</span></a></td>
+                            <td class="py-1 active ps-3 active"><a href="#" class=""><span>Dashboard</span></a></td>
                         </tr>
                         <tr>
                             <td colspan="2" class="py-1"><span class="nav-title">Shop</span></td>
@@ -48,7 +56,7 @@ and open the template in the editor.
                         </tr>
                         <tr>
                             <td></td>
-                            <td class="py-1 ps-3 hover-dashboard"><a href="" class=""><i
+                            <td class="py-1 ps-3 hover-dashboard"><a href="MainController?action=AdminOrder" class=""><i
                                         class="fa-solid fa-cart-shopping"></i> <span>Order Management</span></a></td>
                         </tr>
                         <tr>
@@ -77,12 +85,12 @@ and open the template in the editor.
                             <i class="fa-solid fa-house"></i>
                         </div>
                         <div class="pos-nav d-flex align-content-center p-2 py-3">
-                            <p class="m-0">Home</p><span>/Dashboard</span>
+                            <p class="m-0">Dashboard</p>
                         </div>
                     </div>
                     <div class="col-md-2 d-flex align-content-center justify-content-center">
                         <div class="pos-nav d-flex align-content-center p-2 py-3">
-                            <p class="m-0">phamhieu</p>
+                            <p class="m-0">${sessionScope.account.username}</p>
                         </div>
                         <div class="icon-nav-log p-2 py-3">
                             <i class="fa-solid fa-power-off"></i>
@@ -112,7 +120,7 @@ and open the template in the editor.
                                                             class="fa-solid fa-sack-dollar float-end"></i>
                                                     </td>
                                                     <td class="today-sub">
-                                                        <p class="m-0 float-start inter ps-2">240.000 VND</p>
+                                                        <p class="m-0 float-start inter ps-2"><fmt:formatNumber pattern="#,###" value="${requestScope.totalRevenueMonthly}"/> VND</p>
                                                     </td>
                                                 </tr>
                                             </table>
@@ -122,7 +130,7 @@ and open the template in the editor.
                                                 <tr>
                                                     <td></td>
                                                     <td class="today-title">
-                                                        <p class="m-0 inter float-start">NEW USER</p>
+                                                        <p class="m-0 inter float-start">PRODUCT SOLD</p>
                                                     </td>
                                                 </tr>
                                                 <tr>
@@ -130,7 +138,7 @@ and open the template in the editor.
                                                             class="fa-solid fa-users float-end"></i></i>
                                                     </td>
                                                     <td class="today-sub">
-                                                        <p class="m-0 float-start inter ps-2">200.000</p>
+                                                        <p class="m-0 float-start inter ps-2">${requestScope.totalSoldProductMonthly}</p>
                                                     </td>
                                                 </tr>
                                             </table>
@@ -140,7 +148,7 @@ and open the template in the editor.
                                                 <tr>
                                                     <td></td>
                                                     <td class="today-title">
-                                                        <p class="m-0 inter float-start">PRODUCT SALES</p>
+                                                        <p class="m-0 inter float-start">ORDER</p>
                                                     </td>
                                                 </tr>
                                                 <tr>
@@ -148,7 +156,7 @@ and open the template in the editor.
                                                             class="fa-solid fa-boxes-stacked float-end"></i></i>
                                                     </td>
                                                     <td class="today-sub">
-                                                        <p class="m-0 float-start inter ps-2">240</p>
+                                                        <p class="m-0 float-start inter ps-2">${requestScope.totalOrderMonthly}</p>
                                                     </td>
                                                 </tr>
                                             </table>
@@ -171,7 +179,7 @@ and open the template in the editor.
                                                             class="fa-solid fa-sack-dollar float-end"></i>
                                                     </td>
                                                     <td class="today-sub">
-                                                        <p class="m-0 float-start inter ps-2">240.000 VND</p>
+                                                        <p class="m-0 float-start inter ps-2"><fmt:formatNumber pattern="#,###" value="${requestScope.totalRevenueDaily}"/> VND</p>
                                                     </td>
                                                 </tr>
                                             </table>
@@ -181,25 +189,7 @@ and open the template in the editor.
                                                 <tr>
                                                     <td></td>
                                                     <td class="today-title">
-                                                        <p class="m-0 inter float-start">NEW USER</p>
-                                                    </td>
-                                                </tr>
-                                                <tr>
-                                                    <td class="icon-today p-2"><i
-                                                            class="fa-solid fa-users float-end"></i></i>
-                                                    </td>
-                                                    <td class="today-sub">
-                                                        <p class="m-0 float-start inter ps-2">200.000</p>
-                                                    </td>
-                                                </tr>
-                                            </table>
-                                        </div>
-                                        <div class="w-20 table-today p-3">
-                                            <table class="w-100">
-                                                <tr>
-                                                    <td></td>
-                                                    <td class="today-title">
-                                                        <p class="m-0 inter float-start">PRODUCT SALES</p>
+                                                        <p class="m-0 inter float-start">PRODUCT SOLD</p>
                                                     </td>
                                                 </tr>
                                                 <tr>
@@ -207,7 +197,7 @@ and open the template in the editor.
                                                             class="fa-solid fa-boxes-stacked float-end"></i></i>
                                                     </td>
                                                     <td class="today-sub">
-                                                        <p class="m-0 float-start inter ps-2">240</p>
+                                                        <p class="m-0 float-start inter ps-2"><fmt:formatNumber pattern="#,###" value="${requestScope.totalRevenueDaily}"/></p>
                                                     </td>
                                                 </tr>
                                             </table>
@@ -217,14 +207,31 @@ and open the template in the editor.
                                                 <tr>
                                                     <td></td>
                                                     <td class="today-title">
-                                                        <p class="m-0 inter float-start">ADD TO CART</p>
+                                                        <p class="m-0 inter float-start">NEW ORDER</p>
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td class="icon-today p-2"><i class="fa-solid fa-basket-shopping float-end"></i></i>
+                                                    </td>
+                                                    <td class="today-sub">
+                                                        <p class="m-0 float-start inter ps-2">${requestScope.totalOrderDaily}</p>
+                                                    </td>
+                                                </tr>
+                                            </table>
+                                        </div>
+                                        <div class="w-20 table-today p-3">
+                                            <table class="w-100">
+                                                <tr>
+                                                    <td></td>
+                                                    <td class="today-title">
+                                                        <p class="m-0 inter float-start">NEW ORDER PENDING</p>
                                                     </td>
                                                 </tr>
                                                 <tr>
                                                     <td class="icon-today p-2"><i class="fa-solid fa-boxes-packing float-end"></i></i>
                                                     </td>
                                                     <td class="today-sub">
-                                                        <p class="m-0 float-start inter ps-2">240</p>
+                                                        <p class="m-0 float-start inter ps-2">${requestScope.totalOrderPendingDaily}</p>
                                                     </td>
                                                 </tr>
                                             </table>
