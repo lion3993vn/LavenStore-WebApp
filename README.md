@@ -34,45 +34,53 @@ Customer and administrator can use this web
 #### Screen-shots
 
 - HomePage
-![The LAVEN STORE](https://cdn.discordapp.com/attachments/1202620106140680202/1202620593791311922/Home.png)
+![The LAVEN STORE](https://cdn.discordapp.com/attachments/1202620106140680202/1202620593791311922/Home.png?ex=66057db5&is=65f308b5&hm=e5946b1da68c9012da5a7f9b7b93e60caec8b988dbbdf1bd9197548332b02da8&)
 - Category
-![The LAVEN STORE](https://cdn.discordapp.com/attachments/1202620106140680202/1202621225332117504/Shop.png?ex=65e9cecb&is=65d759cb&hm=3d67da21a362e3fa4bbbc8320663f57877cbcda4b4651352cd0d46808e33f7bc&)
+![The LAVEN STORE](https://cdn.discordapp.com/attachments/1202620106140680202/1202621225332117504/Shop.png?ex=66057e4b&is=65f3094b&hm=8e796fed186ac740279bd54fa3ad4b6b14383d623be8dfa8d3ce18a3678aab73&)
 - Wishlist
-![The LAVEN STORE](https://cdn.discordapp.com/attachments/1202620106140680202/1202626836551438387/Wishlist.png?ex=65e9d405&is=65d75f05&hm=b02d90752b217fcdfe2a153abec97563765dce40f85eb8df54f4dbae7e566c31&)
+![The LAVEN STORE](https://cdn.discordapp.com/attachments/1202620106140680202/1202626836551438387/Wishlist.png?ex=66058385&is=65f30e85&hm=f6f32e17b6517abef4181a9751be0608f0d7872f1af86d42593e794806d79b3b&)
 - Product Info
-![The LAVEN STORE](https://cdn.discordapp.com/attachments/1202620106140680202/1202621448984989737/Product-Detail.png?ex=65e9cf01&is=65d75a01&hm=0056bf58591d3f287be72c56f3b8a63f8a6cf3d86ce5d8a76931b1d99b4e169c&)
+![The LAVEN STORE](https://cdn.discordapp.com/attachments/1202620106140680202/1202621448984989737/Product-Detail.png?ex=66057e81&is=65f30981&hm=5b42cc3764213d13914d28e900a6f44d8370b3f3df55f69f738ccf3f8524f9f7&)
 - Login
-![The LAVEN STORE](https://cdn.discordapp.com/attachments/1202620106140680202/1202621666459394078/Login.png?ex=65e9cf34&is=65d75a34&hm=9f9a598b68aef410fc8c2e9b39d99a2446fd87add2ffc8de2eb73ec304e93e8b&)
+![The LAVEN STORE](https://cdn.discordapp.com/attachments/1202620106140680202/1202621666459394078/Login.png?ex=66057eb4&is=65f309b4&hm=ebf04222cc145478480d3bd8aa41b4880bb7c6f53c951ba0417262ec32650a18&)
 - Register
-![The LAVEN STORE](https://cdn.discordapp.com/attachments/1202620106140680202/1202621909347606538/Register.png?ex=65e9cf6e&is=65d75a6e&hm=e12eb702670dde6842f44020b025ef2f82c4b9dfd7ebed1f358e389b926cccfb&)
+![The LAVEN STORE](https://cdn.discordapp.com/attachments/1202620106140680202/1202621909347606538/Register.png?ex=66057eee&is=65f309ee&hm=cc7f0d7b33fc5a1fe0bc95a5c56a6941294a14a814da28323cbe65bcb71fbed7&)
 - Forgot Password
-![The LAVEN STORE](https://cdn.discordapp.com/attachments/1202620106140680202/1202622163195269120/Forgot_password_-_1.png?ex=65e9cfab&is=65d75aab&hm=d5bb304d3ce656db45afc19041043cc5c38e039ecd2c73dbe452907dc2f884df&)
-![The LAVEN STORE](https://cdn.discordapp.com/attachments/1202620106140680202/1202622163501187092/Forgot_password_-_2.png?ex=65e9cfab&is=65d75aab&hm=5998f690837e63901c8dcb005273e943549235e098200a5c03735aa0a7b6fc5a&)
+![The LAVEN STORE](https://cdn.discordapp.com/attachments/1202620106140680202/1202622163195269120/Forgot_password_-_1.png?ex=66057f2b&is=65f30a2b&hm=069819c1713d334c105875f0a5a0158700ded261f1ee6992466f928655fe9449&)
+![The LAVEN STORE](https://cdn.discordapp.com/attachments/1202620106140680202/1202622163501187092/Forgot_password_-_2.png?ex=66057f2b&is=65f30a2b&hm=370bf7f5ee08f74abbe4a663b81b85711b8bdc583301682c4bb30570cc842b3b&)
 - Cart
-![The LAVEN STORE](https://cdn.discordapp.com/attachments/1202620106140680202/1202622536550973510/cart.png?ex=65e9d004&is=65d75b04&hm=7302005f8319bf89820e910c4e529fbac97966ab05d5dfa499d6f724627de7e9&)
-![The LAVEN STORE](https://cdn.discordapp.com/attachments/1202620106140680202/1202622536995831829/Cart-Detail.png?ex=65e9d004&is=65d75b04&hm=aa521cf68b71ea9cd763257b329e2ab7fbf2d79cf80c9dfeac323a83d3ba7dff&)
+![The LAVEN STORE](https://cdn.discordapp.com/attachments/1202620106140680202/1202622536550973510/cart.png?ex=66057f84&is=65f30a84&hm=619fc6a1a22c3676aa8bf036699f83a5087852a9f7b00b7ca1b5606b3b336b71&)
+![The LAVEN STORE](https://cdn.discordapp.com/attachments/1202620106140680202/1202622536995831829/Cart-Detail.png?ex=66057f84&is=65f30a84&hm=ae349893f291b85f71c55a86e9ccaec9c9beb757215286b8d2c8ee1db629f138&)
 - Profile
-![The LAVEN STORE](https://cdn.discordapp.com/attachments/1202620106140680202/1202622991729430538/Profile-Main.png?ex=65e9d070&is=65d75b70&hm=ce41dda488dc9fa61de1596e2e1b7dfe8d3a347eac11f40d457a9a664e8dba8f&)
-![The LAVEN STORE](https://cdn.discordapp.com/attachments/1202620106140680202/1202622991163330611/Profile_-_Address.png?ex=65e9d070&is=65d75b70&hm=faf019c1938ec5db145bcc9362dfd90871fabff27a7ff6b4ac68ff5f521da208&)
-![The LAVEN STORE](https://cdn.discordapp.com/attachments/1202620106140680202/1202622992153321552/Profile-password.png?ex=65e9d070&is=65d75b70&hm=446d912ef0b914e1a2d749ed4f9570fdb97dc29d507a006185f53c85498204ca&)
-![The LAVEN STORE](https://cdn.discordapp.com/attachments/1202620106140680202/1202622990517411940/Profile-Purchase.png?ex=65e9d070&is=65d75b70&hm=48f24504bb1bd3b14c43ff3edbe1ce0f018091c03468d217befdc80978d08aa1&)
+![The LAVEN STORE](https://cdn.discordapp.com/attachments/1202620106140680202/1202622991729430538/Profile-Main.png?ex=66057ff0&is=65f30af0&hm=0878d4a71aba5063b34d9eb34267f53f387bed26d16f28af21b658f469952c53&)
+![The LAVEN STORE](https://cdn.discordapp.com/attachments/1202620106140680202/1202622991163330611/Profile_-_Address.png?ex=66057ff0&is=65f30af0&hm=7283765afaec6caa3ab781f0e422d0d865ed0b3b397f35eddc00d51d7ed90c6a&)
+![The LAVEN STORE](https://cdn.discordapp.com/attachments/1202620106140680202/1202622992153321552/Profile-password.png?ex=66057ff0&is=65f30af0&hm=e5b342f6f45418d06ae0213ff9df033830f323300340d7a7a2852515b1f9e88f&)
+![The LAVEN STORE](https://cdn.discordapp.com/attachments/1202620106140680202/1202622990517411940/Profile-Purchase.png?ex=66057ff0&is=65f30af0&hm=5f2f0df32833c55fef26052bf6d45565898afc39ef69e43b10784b9db7c3d49b&)
 - Payment
-![The LAVEN STORE](https://cdn.discordapp.com/attachments/1202620106140680202/1202623702072688720/Desktop_-_2.png?ex=65e9d11a&is=65d75c1a&hm=69b06a3e5b3b7a3a967c42faa733a26498a039eb72facb541d2932ffbf09d85f&)
-![The LAVEN STORE](https://cdn.discordapp.com/attachments/1202620106140680202/1202623702462894110/Desktop_-_1.png?ex=65e9d11a&is=65d75c1a&hm=c27f99fc72319636c18f67dee4018886c58f13c103605339da035879eb3ceee2&)
+![The LAVEN STORE](https://cdn.discordapp.com/attachments/1202620106140680202/1202623702072688720/Desktop_-_2.png?ex=6605809a&is=65f30b9a&hm=8758779ad25ba2383037d1bba5ac05c545065e46068cd280b169de1f765a816c&)
+![The LAVEN STORE](https://cdn.discordapp.com/attachments/1202620106140680202/1202623702462894110/Desktop_-_1.png?ex=6605809a&is=65f30b9a&hm=cfbe690e127fda890fa64b7ce93bdf3621195e57185fd5d743862fe350df38c4&)
 - User-Management (Administrator)
-![The LAVEN STORE](https://cdn.discordapp.com/attachments/1202620106140680202/1202624127249416232/user-management.png?ex=65e9d17f&is=65d75c7f&hm=bcbd52269f8d8fe68b9ce5cf889d561839eb05db14a04a7defcc530811567dc7&)
-![The LAVEN STORE](https://cdn.discordapp.com/attachments/1202620106140680202/1202624127584833576/user-manager-modal.png?ex=65e9d17f&is=65d75c7f&hm=1cb07732c661d1f0d91bf19855783cb5a3663d025da6667945dd27507c9018e7&)
+![The LAVEN STORE](https://cdn.discordapp.com/attachments/1202620106140680202/1202624127249416232/user-management.png?ex=660580ff&is=65f30bff&hm=e166138dc7016975b2119e292b1b05bb905c78e70a5321cef3cad0c2a7ff5e21&)
+![The LAVEN STORE](https://cdn.discordapp.com/attachments/1202620106140680202/1202624127584833576/user-manager-modal.png?ex=660580ff&is=65f30bff&hm=120f639762c4c03055748ef662680250f63149d751f8afc549ee21902cccb1f6&)
 - Order-Management (Administrator)
-![The LAVEN STORE](https://cdn.discordapp.com/attachments/1202620106140680202/1202624472243511397/order-manager.png?ex=65e9d1d1&is=65d75cd1&hm=6c37bcfa543f3e90d2d25e2fcc15e362c68b4fabfe6efeef147865ab28675f88&)
-![The LAVEN STORE](https://cdn.discordapp.com/attachments/1202620106140680202/1202624471794716743/order-manager-modal.png?ex=65e9d1d1&is=65d75cd1&hm=1f03e238e0157998c560c736686e06328660f6c90e351331f358220ac3abf41d&)
+![The LAVEN STORE](https://cdn.discordapp.com/attachments/1202620106140680202/1202624472243511397/order-manager.png?ex=66058151&is=65f30c51&hm=7ab034c92b977e94766639eb8814f56e3c28ecfc0965974dd3e5b8a76b0e3c69&)
+![The LAVEN STORE](https://cdn.discordapp.com/attachments/1202620106140680202/1202624471794716743/order-manager-modal.png?ex=66058151&is=65f30c51&hm=cd01fb79b20ee3dd7c7999b2941cbd6b66449b8882dd7c467bd0a6f3034b9c0d&)
 - Product-Management (Administrator)
-![The LAVEN STORE](https://cdn.discordapp.com/attachments/1202620106140680202/1202624686039765063/product-manager.png?ex=65e9d204&is=65d75d04&hm=ea45251dc1cfb8f94f970c662ef79c618bee22f858edab886036ca14822d2e3d&)
-![The LAVEN STORE](https://cdn.discordapp.com/attachments/1202620106140680202/1202624686454866031/product-manager-add.png?ex=65e9d204&is=65d75d04&hm=2697dad7b455330ed504fa6ffeb761fda0f9ca09c52a3b7a8be00878b8295831&)
-![The LAVEN STORE](https://cdn.discordapp.com/attachments/1202620106140680202/1202624685670670436/product-manager-modify.png?ex=65e9d204&is=65d75d04&hm=08f18eb3b2117f7791708e0611ff795b000260f75e061b81b1a7d281363725d9&)
+![The LAVEN STORE](https://cdn.discordapp.com/attachments/1202620106140680202/1202624686039765063/product-manager.png?ex=66058184&is=65f30c84&hm=a42b5feb6e7900d9144dcb92d6001966330693ee1d8f352426ede91924103e29&)
+![The LAVEN STORE](https://cdn.discordapp.com/attachments/1202620106140680202/1202624685670670436/product-manager-modify.png?ex=66058184&is=65f30c84&hm=55fcba01a75f34a09ad7f376c8ec33c90fbffdf0e0a869304b39c3a8a1005423&)
 
 #### Entity Relationship Diagram
 
-![The LAVEN STORE](https://cdn.discordapp.com/attachments/1211586583120183337/1211870703100366878/image.png?ex=65efc58b&is=65dd508b&hm=67b921c390720794bafe4f4e0d7e78bb649f652290d94b1394927c940f96e282&)
+![The LAVEN STORE](https://cdn.discordapp.com/attachments/1202620106140680202/1211866057434865684/thelavenstore.png?ex=66023637&is=65efc137&hm=e65a926d6f113757f492f610b7df7fa4592c7435e6a969e86baa3d185b5b2bff&)
+
+#### System Design:
+
+Technologies:
+- Front-end: bootstrap 5.3
+- Back-end: Servlet Web Application, MS SQL Server, MVC 2
+- Payment: VNPay
+
+![The LAVEN STORE](https://cdn.discordapp.com/attachments/1202620106140680202/1219286914595688538/structure.png?ex=660ac06d&is=65f84b6d&hm=096172cdb779f25194f5c3be05ee9960f591fcfb35a28b04436a55dd0ee3040c&)
 
 #### References:
 - Figma: [The LAVEN STORE](https://www.figma.com/file/VwOE5jngD07N00OydAgRC9/version-1.0?type=design&node-id=138%3A2&mode=design&t=kRl7sah9T2KRONWB-1)
