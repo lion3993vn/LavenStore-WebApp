@@ -38,7 +38,7 @@ and open the template in the editor.
         <div class="container p-5" style="margin-top: 3.5em">
             <div class="row">
                 <div class="col-md-12 text-center nav-login">
-                    <p><a href="#">Home</a><span><i class="px-4 fa-solid fa-chevron-right"></i><a href="#">Account</a>
+                    <p><a href="MainController">Home</a><span><i class="px-4 fa-solid fa-chevron-right"></i><a href="#">Account</a>
                 </div>
             </div>
         </div>

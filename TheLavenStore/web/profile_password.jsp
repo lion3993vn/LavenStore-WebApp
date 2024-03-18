@@ -5,6 +5,8 @@
 --%>
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn"%>
 <!DOCTYPE html>
 <!--
 To change this license header, choose License Headers in Project Properties.
@@ -14,7 +16,8 @@ and open the template in the editor.
 <html>
 
     <head>
-        <title>TODO supply a title</title>
+        <title>Profile Password | The LAVEN STORE</title>
+        <link rel="icon" type="image/x-icon" href="assets/img/logo.png">
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <link rel="stylesheet" href="./assets/css/bootstrap/bootstrap.css">
@@ -23,25 +26,32 @@ and open the template in the editor.
     </head>
 
     <body>
+        <c:import url="header.jsp"></c:import>
+            <!-- Start banner -->
+            <div class="banner container-fuild pb-5" style="margin-top: 3.5em">
+                <h1 class="pt-5">My Profile</h1>
+                <p><a href="MainController">Home</a><span><i class="px-4 fa-solid fa-chevron-right"></i><a href="MainController?action=profile">Profile</a></p>
+            </div>
+            <!-- End banner -->
 
-        <!-- Start banner -->
-        <div class="banner container-fuild pb-5">
-            <h1 class="pt-5">My Profile</h1>
-            <p><a href="#">Home</a><span><i class="px-4 fa-solid fa-chevron-right"></i></span>Profile</p>
-        </div>
-        <!-- End banner -->
+            <!-- Start content -->
+            <div class="container-fluid my-5 py-5">
+                <div class="container">
+                    <div class="row">
 
-        <!-- Start content -->
-        <div class="container-fluid mb-5">
-            <div class="container">
-                <div class="row">
-
-                    <!-- Start Slider navbar -->
-                    <div class="bar col-md-2">
-                        <table class="w-100">
-                            <tr class="text-center">
-                                <th colspan="2">
-                                    <p class="fw-normal fs-1 p-2">TaiLe</p>
+                        <!-- Start Slider navbar -->
+                        <div class="bar col-md-2">
+                            <table class="w-100">
+                                <tr class="text-center">
+                                    <th colspan="2">
+                                        <p class="fw-normal py-3 fs-3">
+                                        <c:choose>
+                                            <c:when test="${fn:length(sessionScope.account.userName) <= 12}">${sessionScope.account.userName}
+                                            </c:when>
+                                            <c:otherwise>${fn:substring(sessionScope.account.userName, 0, 12)}...
+                                            </c:otherwise>
+                                        </c:choose>
+                                    </p>
                                 </th>
                             </tr>
 
@@ -51,30 +61,30 @@ and open the template in the editor.
                                 </td>
                             </tr>
 
-                            <tr>
+                            <tr class="nohover">
                                 <td><i class=" fa-solid fa-user"></i></td>
                                 <td><a href="#">Information</a></td>
                             </tr>
 
-                            <tr>
+                            <tr class="hover-form">
                                 <td></td>
-                                <td class="ps-3"><a href="#">Profile</a></td>
+                                <td class="ps-3"><a href="MainController?action=profile">Profile</a></td>
                             </tr>
-                            <tr>
+                            <tr class="hover-form">
                                 <td></td>
-                                <td class="ps-3"><a href="#">Address</a></td>
+                                <td class="ps-3"><a href="MainController?action=profile-address">Address</a></td>
                             </tr>
                             <tr class=" profile">
                                 <td></td>
                                 <td class="ps-3"><a href="#">Change password</a></td>
                             </tr>
-                            <tr>
+                            <tr class="hover-form">
                                 <td><i class=" fa-solid fa-credit-card"></i></td>
-                                <td><a href="#">My Purchase</a></td>
+                                <td><a href="MainController?action=profile-purchase">My Purchase</a></td>
                             </tr>
                             <tr>
                                 <td><i class=" fa-solid fa-arrow-right-from-bracket"></i></td>
-                                <td><a href="#">Logout</a></td>
+                                <td><a href="MainController?action=logout">Logout</a></td>
                             </tr>
                         </table>
 
@@ -144,7 +154,7 @@ and open the template in the editor.
             </div>
         </div>
         <!-- End content -->
-
+        <c:import url="footer.jsp"></c:import>
         <!--script js bootstrap-->
         <script src="./assets/js/bootstrap/bootstrap.bundle.min.js"></script>
         <script src="./assets/js/bootstrap/bootstrap.min.js"></script>

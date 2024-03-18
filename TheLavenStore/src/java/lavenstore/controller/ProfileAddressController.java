@@ -20,7 +20,7 @@ import lavenstore.users.UserDTO;
  *
  * @author huyhu
  */
-@WebServlet(name = "ProfileAddressController", urlPatterns = {"/profile-address"})
+@WebServlet(name = "ProfileAddressController", urlPatterns = {"/ProfileAddressController"})
 public class ProfileAddressController extends HttpServlet {
 
     /**
@@ -49,6 +49,7 @@ public class ProfileAddressController extends HttpServlet {
                 user.setAddress(address);
                 dao.update(user);
                 session.setAttribute("account", user);
+                request.setAttribute("tt", "Cập nhật địa chỉ thành công");
                 url = SUCCESS;
             }
         } catch (Exception e) {

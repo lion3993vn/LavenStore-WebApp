@@ -44,19 +44,35 @@ public class ForgotPasswordController extends HttpServlet {
         try {
             UserDAO u = new UserDAO();
             String email = request.getParameter("txtEmail");
-            UserDTO user = u.getUserByEmail(email);
-            if (user != null) {
-                String otp = new DecimalFormat("000000").format(new Random().nextInt(999999));
-                Email eUtil = new Email();
-                String OTP_CONTENT = emailContent(user.getFullName(), otp);
-                eUtil.sendEmail(email, OTP_SUBJECT, OTP_CONTENT);
-                HttpSession session = request.getSession();
-                session.setMaxInactiveInterval(2*60);
-                session.setAttribute("OTP", otp);
-                out.print("Đã gửi email xác thực thành công!");
-            } else {
-                out.print("Tài khoản không tồn tại");
+            HttpSession session = request.getSession();
+            UserDTO user = (UserDTO) session.getAttribute("account");
+            if (user == null) {
+                user = u.getUserByEmail(email);
+                if (user != null) {
+                    String otp = new DecimalFormat("000000").format(new Random().nextInt(999999));
+                    Email eUtil = new Email();
+                    String OTP_CONTENT = emailContent(user.getFullName(), otp);
+                    eUtil.sendEmail(email, OTP_SUBJECT, OTP_CONTENT);
+                    session.setMaxInactiveInterval(2 * 60);
+                    session.setAttribute("OTP", otp);
+                    out.print("Đã gửi email xác thực thành công!");
+                } else {
+                    out.print("Tài khoản không tồn tại");
+                }
+            } else if (user != null){
+                if(!user.getEmail().equalsIgnoreCase(email)){
+                    out.print("Email không trùng khớp");
+                } else{
+                    String otp = new DecimalFormat("000000").format(new Random().nextInt(999999));
+                    Email eUtil = new Email();
+                    String OTP_CONTENT = emailContent(user.getFullName(), otp);
+                    eUtil.sendEmail(email, OTP_SUBJECT, OTP_CONTENT);
+                    session.setMaxInactiveInterval(2 * 60);
+                    session.setAttribute("OTP", otp);
+                    out.print("Đã gửi email xác thực thành công!");
+                }
             }
+
         } catch (Exception e) {
             log("Error at ForgotPasswordController " + e.toString());
             out.print("Có lỗi xảy ra, vui lòng thử lại sau ít phút");
@@ -66,7 +82,7 @@ public class ForgotPasswordController extends HttpServlet {
     }
 
     private static String emailContent(String fullName, String txtOTP) {
-        if (fullName == null){
+        if (fullName == null) {
             fullName = "User";
         }
         return "<div style=\"background-color:#f8f8f8;font-family:sans-serif;padding:15px\">\n"
@@ -104,8 +120,6 @@ public class ForgotPasswordController extends HttpServlet {
                 + "</div>";
     }
 
-
-
 // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
     /**
      * Handles the HTTP <code>GET</code> method.
@@ -116,7 +130,7 @@ public class ForgotPasswordController extends HttpServlet {
      * @throws IOException if an I/O error occurs
      */
     @Override
-        protected void doGet(HttpServletRequest request, HttpServletResponse response)
+    protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         processRequest(request, response);
     }
@@ -130,7 +144,7 @@ public class ForgotPasswordController extends HttpServlet {
      * @throws IOException if an I/O error occurs
      */
     @Override
-        protected void doPost(HttpServletRequest request, HttpServletResponse response)
+    protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         processRequest(request, response);
     }
@@ -141,7 +155,7 @@ public class ForgotPasswordController extends HttpServlet {
      * @return a String containing servlet description
      */
     @Override
-        public String getServletInfo() {
+    public String getServletInfo() {
         return "Short description";
     }// </editor-fold>
 

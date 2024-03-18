@@ -16,7 +16,8 @@ and open the template in the editor.
 <html>
 
     <head>
-        <title>TODO supply a title</title>
+        <title>Profile Address | The LAVEN STORE</title>
+        <link rel="icon" type="image/x-icon" href="assets/img/logo.png">
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <link rel="stylesheet" href="./assets/css/bootstrap/bootstrap.css">
@@ -25,16 +26,16 @@ and open the template in the editor.
     </head>
 
     <body>
-
+        <c:import url="header.jsp"></c:import>
         <!-- Start banner -->
-        <div class="banner container-fuild pb-5">
+        <div class="banner container-fuild pb-5" style="margin-top: 3.5em">
             <h1 class="pt-5">My Profile</h1>
-            <p><a href="#">Home</a><span><i class="px-4 fa-solid fa-chevron-right"></i></span>Profile</p>
+            <p><a href="MainController">Home</a><span><i class="px-4 fa-solid fa-chevron-right"></i><a href="MainController?action=profile">Profile</a></p>
         </div>
         <!-- End banner -->
 
         <!-- Start content -->
-        <div class="container-fluid mb-5">
+        <div class="container-fluid my-5 py-5">
             <div class="container">
                 <div class="row">
 
@@ -60,12 +61,12 @@ and open the template in the editor.
                                 </td>
                             </tr>
 
-                            <tr>
+                            <tr class="nohover">
                                 <td><i class=" fa-solid fa-user"></i></td>
                                 <td><a href="MainController?action=profile">Information</a></td>
                             </tr>
 
-                            <tr>
+                            <tr class="hover-form">
                                 <td></td>
                                 <td class="ps-3"><a href="MainController?action=profile">Profile</a></td>
                             </tr>
@@ -73,17 +74,17 @@ and open the template in the editor.
                                 <td></td>
                                 <td class="ps-3"><a href="#">Address</a></td>
                             </tr>
-                            <tr>
+                            <tr class="hover-form">
                                 <td></td>
                                 <td class="ps-3"><a href="MainController?action=profile-password">Change password</a></td>
                             </tr>
-                            <tr>
+                            <tr class="hover-form">
                                 <td><i class=" fa-solid fa-credit-card"></i></td>
-                                <td><a href="#">My Purchase</a></td>
+                                <td><a href="MainController?action=profile-purchase">My Purchase</a></td>
                             </tr>
-                            <tr>
+                            <tr class="hover-form">
                                 <td><i class=" fa-solid fa-arrow-right-from-bracket"></i></td>
-                                <td><a href="#">Logout</a></td>
+                                <td><a href="MainController?action=logout">Logout</a></td>
                             </tr>
                         </table>
 
@@ -93,7 +94,7 @@ and open the template in the editor.
 
                     <!-- Start form -->
                     <div class="col-md-10">
-                        <form action="profile-address">
+                        <form action="MainController" method="post">
                             <h5 class="mt-4 fw-bold">My profile</h5>
                             <table class="fs-5 fw-medium">
                                 <tbody>
@@ -104,11 +105,16 @@ and open the template in the editor.
                                                 name="address" value="${sessionScope.account.address}"></td>
                                     </tr>
                                     <tr>
+                                        <td class=""></td>
+                                        <td class=""><p class="noticia-text" style="color: #FF0000;">${requestScope.tt}</p></td>
+                                    </tr>
+                                    <tr>
                                         <td></td>
                                         <td>
                                             <div class="my-3">
                                                 <input class="p-2 btn-submit fs-6 rounded-1" type="submit"
                                                        value="Save Changes">
+                                                <input type="hidden" name="action" value="address-update">
                                             </div>
                                         </td>
                                     </tr>
@@ -122,7 +128,7 @@ and open the template in the editor.
             </div>
         </div>
         <!-- End content -->
-
+        <c:import url="footer.jsp"></c:import>
         <!--script js bootstrap-->
         <script src="./assets/js/bootstrap/bootstrap.bundle.min.js"></script>
         <script src="./assets/js/bootstrap/bootstrap.min.js"></script>

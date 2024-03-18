@@ -50,7 +50,10 @@ public class ForgotPassword2Controller extends HttpServlet {
             String regexPassword = "^[A-Za-z0-9]{4,}$";
             Pattern patternPassword = Pattern.compile(regexPassword);
             Matcher matcherPassword = patternPassword.matcher(password);
-            if (!matcherPassword.matches()) {
+            if (password.equals(user.getPassword())) {
+                request.setAttribute("errorPassword", "Password đã bị trùng password cũ");
+                isValidPassword = false;
+            } else if (!matcherPassword.matches()) {
                 request.setAttribute("errorPassword", "Password phải có từ 4 kí tự trở lên");
                 isValidPassword = false;
             }
@@ -64,7 +67,7 @@ public class ForgotPassword2Controller extends HttpServlet {
                 user.setPassword(password);
                 u.updatePassword(user);
                 session.removeAttribute("Email");
-                url = SUCCESS;
+                url = "MainController?action=logout";
             }
         } catch (Exception e) {
             log("Error at ForgotPassword2Controller: " + e.toString());

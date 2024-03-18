@@ -50,6 +50,8 @@ public class MainController extends HttpServlet {
     private static final String PROFILE_PAGE = "profile.jsp";
     private static final String PROFILE_ADDRESS = "profile-address";
     private static final String PROFILE_ADDRESS_PAGE = "profile_address.jsp";
+    private static final String PROFILE_ADDRESS_UPDATE = "address-update";
+    private static final String PROFILE_ADDRESS_CONTROLLER = "ProfileAddressController";
     private static final String PROFILE_PURCHASE = "profile-purchase";
     private static final String PROFILE_PURCHASE_CONTROLLER = "ProfilePurchaseController";
     private static final String PROFILE_PASSWORD = "profile-password";
@@ -92,6 +94,8 @@ public class MainController extends HttpServlet {
                 url = PROFILE_UPDATE_CONTROLLER;
             } else if (action.equals(PROFILE_ADDRESS)) {
                 url = PROFILE_ADDRESS_PAGE;
+            } else if (action.equals(PROFILE_ADDRESS_UPDATE)) {
+                url = PROFILE_ADDRESS_CONTROLLER;
             } else if (action.equals(PROFILE_PASSWORD)) {
                 url = PROFILE_PASSWORD_PAGE;
             } else if (action.equals(PROFILE_PURCHASE)) {

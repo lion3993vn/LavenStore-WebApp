@@ -16,7 +16,7 @@ and open the template in the editor.
 <html>
 
     <head>
-        <title>The LAVEN STORE - Profile</title>
+        <title>Profile | The LAVEN STORE</title>
         <link rel="icon" type="image/x-icon" href="assets/img/logo.png">
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -31,7 +31,7 @@ and open the template in the editor.
         <!-- Start banner -->
         <div class="banner container-fuild pb-5" style="margin-top: 3.5em">
             <h1 class="pt-5">My Profile</h1>
-            <p><a href="#">Home</a><span><i class="px-4 fa-solid fa-chevron-right"></i></span>Profile</p>
+            <p><a href="MainController">Home</a><span><i class="px-4 fa-solid fa-chevron-right"></i></span>Profile</p>
         </div>
         <!-- End banner -->
 
