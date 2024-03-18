@@ -160,7 +160,7 @@ public class RegisterController extends HttpServlet {
                 + "                <br>Đội ngũ The Laven Store\n"
                 + "            </p>\n"
                 + "            <p>\n"
-                + "                <a href=\"[http://localhost:8080/thelavenstore]\" class=\"button\">Khám phá ngay</a>\n"
+                + "                <a href=\"http://localhost:8080/thelavenstore\" class=\"button\">Khám phá ngay</a>\n"
                 + "            </p>\n"
                 + "        </div>\n"
                 + "    </body>\n"

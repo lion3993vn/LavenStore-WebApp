@@ -15,7 +15,8 @@ and open the template in the editor.
 -->
 <html>
     <head>
-        <title>TODO supply a title</title>
+        <title>Cart | The LAVEN STORE</title>
+        <link rel="icon" type="image/x-icon" href="assets/img/logo.png">
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <link rel="stylesheet" href="./assets/css/bootstrap/bootstrap.css">
@@ -35,44 +36,40 @@ and open the template in the editor.
     </head>
 
     <body>
-
+        <c:import url="header.jsp"></c:import>
         <c:if test="${requestScope.totalItemInCart == 0}">
             <c:import url="cartnull.jsp"></c:import>
         </c:if>
 
         <c:if test="${requestScope.totalItemInCart != 0}">
-            <section>
-                <banner>
-                    <div class="banner container-fluid pb-5 mb-5">
-                        <h1 class="pt-5">Shopping Cart</h1>
-                        <p class="myhome"><a href="MainController">Home</a><span><i class="px-4 fa-solid fa-chevron-right"></i></span><a href="#">Cart</a></p>
-                    </div>                         
-                </banner>
-            </section>
+            <div class="banner container-fluid pb-5 mb-5" style="margin-top: 3.7em">
+                <h1 class="pt-5">Shopping Cart</h1>
+                <p class="myhome"><a href="MainController">Home</a><span><i class="px-4 fa-solid fa-chevron-right"></i></span><a href="#">Cart</a></p>
+            </div>                         
 
             <section>
-                <div class="container-fluid">
+                <div class="container-fluid py-5 mb-5">
                     <div class="container">
                         <div class="row">
                             <div class="col-md-12">
                                 <table class="w-100">
                                     <tr class="a">
-                                        <td class="text-center Dongle p-3">Product</td>
+                                        <td class="text-center Dongle p-3 dam">Product</td>
                                         <td class="text-center p-3"></td>
-                                        <td class="text-center Dongle p-3">Price</td>
-                                        <td class="text-center Dongle p-3">Quantity</td>
-                                        <td class="text-center Dongle p-3 w-15">Total</td>
-                                        <td class="text-center Dongle p-3">Remove</td>
+                                        <td class="text-center Dongle p-3 dam">Price</td>
+                                        <td class="text-center Dongle p-3 dam">Quantity</td>
+                                        <td class="text-center Dongle p-3 w-15 dam">Total</td>
+                                        <td class="text-center Dongle p-3 dam">Remove</td>
                                     </tr>
                                     <c:set var="o" value="${requestScope.cartList}"/>
                                     <c:forEach items="${o.items}" var="i">
                                         <tr>
                                             <td class="text-center p-1 w-25"><img src="${i.product.image}" alt="" class="w-25"></td>
                                             <td class="textbody">
-                                                <p class="mb-0">${i.product.name}</p>
+                                                <p class="mb-0 Dongle" style="font-size: 30px">${i.product.name}</p>
                                             </td>
                                             <td class="text-center textbody ">
-                                                <p class="mb-0">VND <fmt:formatNumber pattern="#,###" value="${i.price}"/></p>
+                                                <p class="mb-0 Dongle" style="font-size: 30px">VND <fmt:formatNumber pattern="#,###" value="${i.price}"/></p>
                                             </td>
                                             <td class="">
                                                 <div class="btn-quantity w-100 d-flex justify-content-center">
@@ -81,7 +78,7 @@ and open the template in the editor.
                                                         <input type="hidden" value="${i.product.ID}" name="pid">
                                                         <input type="submit" href="" class="btn btn-secondary rounded-0 w-100 text-center p-2 px-3 h-100"
                                                                value="-">
-                                                        </form>
+                                                    </form>
                                                     <div class="button w-15">
                                                         <input type="number" class="text-center w-100 p-2" id="quantity1"
                                                                value="${i.quantity}" readonly></input>
@@ -91,11 +88,11 @@ and open the template in the editor.
                                                         <input type="hidden" value="${i.product.ID}" name="pid">
                                                         <input type="submit" href="" class="btn btn-secondary rounded-0 w-100 text-center p-2 px-3 h-100"
                                                                value="+">
-                                                        </form>
+                                                    </form>
                                                 </div>
                                             </td>
                                             <td class="text-center textbody w-15">
-                                                <div class="mb-0 float-end w-100" style="color: #8B6E4A;"><span class="float-end Dongle">VND <fmt:formatNumber pattern="#,###" value="${(i.price*i.quantity)}"/></span></div>
+                                                <div class="mb-0 float-end w-100" style="color: #8B6E4A;"><span class="Dongle" style="font-size: 30px">VND <fmt:formatNumber pattern="#,###" value="${(i.price*i.quantity)}"/></span></div>
                                             </td>
                                             <td class="text-center ">
                                                 <div class="trash" onclick="submitDeleteForm(${i.product.ID})"><i class="fa-solid fa-trash-can"></i></div>
@@ -103,16 +100,16 @@ and open the template in the editor.
                                         </tr>
                                     </c:forEach>
                                     <tr class="a">
-                                        <td class="text-center Dongle">Total payment:</td>
-                                        <td class="Dongle p-3 ">
-                                            <p class="mb-0" style="color: #FF0000">VND <fmt:formatNumber pattern="#,###" value="${(o.totalInCart)}"/></p>   
+                                        <td class="text-center Dongle dam">Total payment:</td>
+                                        <td class="p-3">
+                                            <p class="mb-0 Dongle" style="color: #FF0000; font-size: 35px">VND <fmt:formatNumber pattern="#,###" value="${(o.totalInCart)}"/></p>   
                                         </td>
                                         <td></td>
                                         <td></td>
                                         <td></td>
                                         <td class="text-center  ">
                                             <div class="">
-                                                <a class="textbody checkout py-1 px-2" id="checkout" href="MainController?action=Checkout" style="text-decoration: none">Checkout</a>                             
+                                                <a class="textbody checkout py-3 px-3" id="checkout" href="MainController?action=Checkout" style="text-decoration: none; font-size: 16px">Checkout</a>                             
                                             </div>
                                         </td>
                                     </tr>
@@ -126,40 +123,40 @@ and open the template in the editor.
                 </div>
             </section>
         </c:if>
-
+        <c:import url="footer.jsp"></c:import>
         <!--script js bootstrap-->
         <script src="./assets/js/bootstrap/bootstrap.bundle.min.js"></script>
         <script src="./assets/js/bootstrap/bootstrap.min.js"></script>
         <script src="./assets/js/bootstrap/bootstrap.esm.min.js"></script>
         <script>
-            function submitDeleteForm(id) {
-                // Kiểm tra xem form đã tồn tại
-                var form = document.getElementById('deleteForm');
-                if (!form) {
-                    // Nếu không tồn tại, tạo mới form
-                    form = document.createElement('form');
-                    form.id = 'deleteForm';
+                                                    function submitDeleteForm(id) {
+                                                        // Kiểm tra xem form đã tồn tại
+                                                        var form = document.getElementById('deleteForm');
+                                                        if (!form) {
+                                                            // Nếu không tồn tại, tạo mới form
+                                                            form = document.createElement('form');
+                                                            form.id = 'deleteForm';
 
-                    // Tạo input ID
-                    var inputID = document.createElement('input');
-                    inputID.type = 'hidden';
-                    inputID.value = id;
-                    inputID.name = 'deleteID';
+                                                            // Tạo input ID
+                                                            var inputID = document.createElement('input');
+                                                            inputID.type = 'hidden';
+                                                            inputID.value = id;
+                                                            inputID.name = 'deleteID';
 
-                    // Thêm input vào form
-                    form.appendChild(inputID);
+                                                            // Thêm input vào form
+                                                            form.appendChild(inputID);
 
-                    // Thêm form vào body
-                    document.body.appendChild(form);
-                }
+                                                            // Thêm form vào body
+                                                            document.body.appendChild(form);
+                                                        }
 
-                // Cấu hình action và method của form
-                form.action = 'ProcessCartController';
-                form.method = 'post';
+                                                        // Cấu hình action và method của form
+                                                        form.action = 'ProcessCartController';
+                                                        form.method = 'post';
 
-                // Submit form
-                form.submit();
-            }
+                                                        // Submit form
+                                                        form.submit();
+                                                    }
         </script>
 
 

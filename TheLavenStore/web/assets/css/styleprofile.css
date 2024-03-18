@@ -61,10 +61,12 @@
     background-color: #CF9142;
 }
 
-.bar tr:hover>td {
+.hover-form:hover {
     background-color: #CF9142;
 }
-
+.nohover:hover{
+    background-color: #CFA877 !important;
+}
 /* CSS Form */
 
 .nameprofile[type=text] {

@@ -134,3 +134,11 @@
     background-color: #cca676 !important;
     color: white !important;
 }
+
+.cartnull a{
+    text-decoration: none;
+    color: white;
+    font-size: 20px;
+    background-color: #8B6E4A;
+    border-radius: 10px;
+}

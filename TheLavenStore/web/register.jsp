@@ -1,4 +1,5 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <!DOCTYPE html>
 <!--
 To change this license header, choose License Headers in Project Properties.
@@ -8,8 +9,8 @@ and open the template in the editor.
 <html>
 
     <head>
-        <title>Laven Store - Register</title>
-        <meta charset="UTF-8">
+        <title>Register | The LAVEN STORE</title>
+        <link rel="icon" type="image/x-icon" href="assets/img/logo.png">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
         <!-- link bootstrap -->
@@ -30,33 +31,34 @@ and open the template in the editor.
     </head>
 
     <body>
-        <!-- navbar -->
-        <div class="container p-5">
-            <div class="row">
-                <div class="col-md-12 text-center nav-login">
-                    <p><a href="#">Home</a><span><i class="px-4 fa-solid fa-chevron-right"></i><a href="#">Create
-                                Account</a>
+        <c:import url="header.jsp"></c:import>
+            <!-- navbar -->
+            <div class="container p-5" style="margin-top: 3.5em">
+                <div class="row">
+                    <div class="col-md-12 text-center nav-login">
+                        <p><a href="MainController">Home</a><span><i class="px-4 fa-solid fa-chevron-right"></i><a href="#">Create
+                                    Account</a>
+                    </div>
                 </div>
             </div>
-        </div>
 
 
-        <!-- body -->
-        <div class="body-register container-fluid mb-4">
-            <div class="container">
-                <div class="row">
-                    <div class="col-md-6">
-                        <form action="register" method="post" id="register-form">
-                            <div class="d-flex justify-content-center">
-                                <table class="table-reg">
-                                    <tr>
-                                        <td colspan="2"><p class="noticia-text title-login">Đăng ký</p></td>
-                                    </tr>
-                                    <tr>
-                                        <td colspan="2" class="input-login py-2"><input type="text" placeholder="Username" name="Username" required></td>
-                                    </tr>
-                                    <tr>
-                                        <td colspan="2"><p class="noticia-text text-error mb-0">${requestScope.errorUsername}</p></td>
+            <!-- body -->
+            <div class="body-register container-fluid mb-5 py-5">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-md-6">
+                            <form action="register" method="post" id="register-form">
+                                <div class="d-flex justify-content-center">
+                                    <table class="table-reg">
+                                        <tr>
+                                            <td colspan="2"><p class="noticia-text title-login">Đăng ký</p></td>
+                                        </tr>
+                                        <tr>
+                                            <td colspan="2" class="input-login py-2"><input type="text" placeholder="Username" name="Username" required></td>
+                                        </tr>
+                                        <tr>
+                                            <td colspan="2"><p class="noticia-text text-error mb-0">${requestScope.errorUsername}</p></td>
                                     </tr>
                                     <tr>
                                         <td colspan="2" class="input-login py-2"><input type="text" placeholder="Email" name="Email" required></td>
@@ -77,11 +79,12 @@ and open the template in the editor.
                                         <td colspan="2"><p class="noticia-text text-error mb-0">${requestScope.errorPassword2}</p></td>
                                     </tr>
                                     <tr>
-                                        <td colspan="2" class="captcha-login" >
+                                        <td colspan="2" class="captcha-login d-flex flex-column align-items-center justify-content-center" >
                                             <div class="recaptcha" >
                                                 <div class="captcha-content py-3 text-center g-recaptcha w-100" style="border: none"s data-sitekey="6Lft3YgpAAAAAHtCCJwG4kV6ZOIuIDXv1wulOFf6"></div>
-                                                
-                                            </div><div id="captcha-error" style="color: red; font-size: 15px;"></div>
+                                            </div>
+                                            <div id="captcha-error" style="color: red; font-size: 15px;">
+                                            </div>
                                         </td>
                                     </tr>
                                     <tr>
@@ -103,6 +106,7 @@ and open the template in the editor.
                 </div>
             </div>
         </div>
+        <c:import url="footer.jsp"></c:import>
         <!--script js bootstrap-->
         <script src="./assets/js/bootstrap/bootstrap.bundle.min.js"></script>
         <script src="./assets/js/bootstrap/bootstrap.min.js"></script>

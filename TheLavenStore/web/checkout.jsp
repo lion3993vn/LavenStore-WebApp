@@ -11,9 +11,8 @@
 <html lang="en">
 
     <head>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>TODO supply a title</title>
+        <title>Checkout | The LAVEN STORE</title>
+        <link rel="icon" type="image/x-icon" href="assets/img/logo.png">
         <link rel="stylesheet" href="./assets/css/bootstrap/bootstrap.css">
 
         <!-- link font google -->
@@ -32,29 +31,30 @@
     </head>
 
     <body>
-        <section>
-            <banner>
-                <div class="banner container-fluid pb-5 mb-5">
-                    <h1 class="pt-5">Checkout</h1>
-                    <p class="myhome"><a href="MainController">Home</a><span><i class="px-4 fa-solid fa-chevron-right"></i></span><a href="MainController?action=Cart">Cart</a><span><i class="px-4 fa-solid fa-chevron-right"></i></span><a href="#">Checkout</a>
-                    </p>
-                </div>
-            </banner>
-        </section>
-        <form class="w-100" action="PaymentController" method="post">
-            <div class="background-container">
-                <div class="container">
-                    <div class="row">
-                        <div class="col-md-7">
-                            <div class="w-100">
-                                <div class="profile-info w-100 d-flex justify-content-center">
-                                    <table class="w-75">
-                                        <tr>
-                                            <td class="py-2"><span class="Vidaloka" style="font-size: 25px;">Delivery
-                                                    information</span></td>
-                                        </tr>
-                                        <tr>
-                                            <td class="py-1"><input type="text" name="Fullname" id="" placeholder="Fullname" value="${sessionScope.account.fullName}"
+        <c:import url="header.jsp"></c:import>
+            <section>
+                <banner>
+                    <div class="banner container-fluid pb-5 mb-5" style="margin-top: 3.7em">
+                        <h1 class="pt-5">Checkout</h1>
+                        <p class="myhome"><a href="MainController">Home</a><span><i class="px-4 fa-solid fa-chevron-right"></i></span><a href="MainController?action=Cart">Cart</a><span><i class="px-4 fa-solid fa-chevron-right"></i></span><a href="#">Checkout</a>
+                        </p>
+                    </div>
+                </banner>
+            </section>
+            <form class="w-100 mb-5 pb-5" action="PaymentController" method="post">
+                <div class="background-container">
+                    <div class="container">
+                        <div class="row">
+                            <div class="col-md-7">
+                                <div class="w-100">
+                                    <div class="profile-info w-100 d-flex justify-content-center">
+                                        <table class="w-75">
+                                            <tr>
+                                                <td class="py-2"><span class="Vidaloka" style="font-size: 25px;">Delivery
+                                                        information</span></td>
+                                            </tr>
+                                            <tr>
+                                                <td class="py-1"><input type="text" name="Fullname" id="" placeholder="Fullname" value="${sessionScope.account.fullName}"
                                                                     class="w-100 p-1 ps-2 nochange" readonly></td>
                                         </tr>
                                         <tr>
@@ -100,7 +100,7 @@
                                         <c:if test="${requestScope.error == 1}">
                                             <tr style="border-top: 1px solid black;">
                                                 <td class="w-20 py-3" style=""><div class="p-3 text-center" style="background-color: rgb(245, 245, 245); border-radius: 10px"><a href="#" style="text-decoration: none; color: #FF0000; font-weight: 600">Quay về Cart</a></div></td>
-                                        </tr>
+                                            </tr>
                                         </c:if>
                                     </table>
                                 </div>
@@ -170,7 +170,7 @@
                 </div>
             </div>
         </form>
-
+        <c:import url="footer.jsp"></c:import>
         <script src="./assets/js/bootstrap/jquery.min.js"></script>
         <script src="./assets/js/bootstrap/popper.min.js"></script>
         <script src="./assets/js/bootstrap/bootstrap.bundle.min.js"></script>

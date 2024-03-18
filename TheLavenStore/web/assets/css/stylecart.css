@@ -39,13 +39,10 @@
 .Dongle
 {
     font-family: 'Dongle' , serif;
+}
+.dam{
     font-size: 30px;
     font-weight: 600;
-}
-.textbody,
-p{
-    font-family: 'Dongle' , serif;
-    font-size: 30px;
 }
 .operator{
     background-color: #EDEDED;   

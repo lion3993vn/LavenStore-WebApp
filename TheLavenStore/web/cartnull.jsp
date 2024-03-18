@@ -36,20 +36,24 @@ and open the template in the editor.
 <body>
     <section>
         <banner>
-            <div class="banner container-fluid pb-5 mb-5">
+            <div class="banner container-fluid pb-5 mb-5" style="margin-top: 3.7em">
                 <h1 class="pt-5">Shopping Cart</h1>
-                <p class="myhome"><a href="#">Home</a><span><i class="px-4 fa-solid fa-chevron-right"></i></span>Cart
+                <p class="myhome"><a href="MainController">Home</a><span><i class="px-4 fa-solid fa-chevron-right"></i></span>Cart
                 </p>
             </div>
         </banner>
     </section>
 
     <section>
-        <div class="container-fluid">
+        <div class="container-fluid mb-5">
                 <div class="row">
-                    <div class="col-md-12 text-center cartnull">
+                    <div class="col-md-12 text-center cartnull pb-5 py-5">
                         <p style="color: #8b8b8b; font-size: 40px;">Your cart is empty</p>
-                        <a href="MainController" class="p-3 mt-2">Back To Home</a>
+                        <div class="px-5 pb-5">
+                            <div class="d-inline-block py-3 px-3" style="background-color: #8B6E4A; border-radius: 10px">
+                                <a href="MainController" style="color: white; text-decoration: none">Back To Home</a>
+                            </div>
+                        </div>
                     </div>
 
             </div>

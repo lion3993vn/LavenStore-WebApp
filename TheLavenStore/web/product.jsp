@@ -5,7 +5,8 @@
 <html lang="en">
 
     <head>
-        <title>Product Details - The LAVEN STORE</title>
+        <title>${requestScope.product.name} | The LAVEN STORE</title>
+        <link rel="icon" type="image/x-icon" href="assets/img/logo.png">
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -21,12 +22,13 @@
     </head>
 
     <body>
-        <div id="toast-cus"></div>
-        <!-- banner -->
-        <div class="banner container-fluid text-center py-5">
-            <h1 class="banner-title">${requestScope.cate}</h1>
+        <c:import url="header.jsp"></c:import>
+            <div id="toast-cus" style="margin-top: 3em"></div>
+            <!-- banner -->
+            <div class="banner container-fluid text-center py-5" style="margin-top: 3.5em">
+                <h1 class="banner-title">${requestScope.cate}</h1>
             <div class="banner-subtitle">
-                <a class="tab-links" href="HomeController">Home</a>
+                <a class="tab-links" href="MainController">Home</a>
                 <i class="tab-links fa-solid fa-angle-right"></i>
                 <a class="tab-links" href="MainController?action=shop">Shop</a>
                 <i class="tab-links fa-solid fa-angle-right"></i>
@@ -102,7 +104,7 @@
                                                 <span>-</span>
                                             </div>
                                             <div class="button w-40">
-                                                <input type="number" class="text-center w-100 p-2" id="quantity" min="1" max="5"
+                                                <input type="number" class="text-center w-100 p-2" id="quantity" min="1"
                                                        value="1"></input>
                                             </div>
                                             <div class="btn btn-secondary rounded-0 w-25 text-center p-2" id="quantity-up"
@@ -111,9 +113,18 @@
                                             </div>
                                         </div>
                                     </td>
-                                    <td class="w-30 text-center"><a href="" class="">
-                                            <p class="m-0 add-cart p-2" style="font-family: serif">ADD TO CART</p>
-                                        </a></td>
+                                    <td class="w-30 text-center">
+                                        <c:if test="${requestScope.product.quantity != 0}">
+                                            <div onclick="addCart(${requestScope.product.ID})" class="" style="cursor: pointer">
+                                                <p class="m-0 add-cart p-2" style="font-family: serif">ADD TO CART</p>
+                                            </div>
+                                        </c:if>
+                                        <c:if test="${requestScope.product.quantity == 0}">
+                                            <div class="" style="opacity: 0.7; cursor: no-drop">
+                                                <p class="m-0 add-cart p-2" style="font-family: serif">SOLD OUT</p>
+                                            </div>
+                                        </c:if>
+                                    </td>
                                     <td class="w-15">
                                         <div onclick="copyUrl(${requestScope.product.ID})" class="float-end btn-share py-1 px-3" style="cursor: pointer"><i
                                                 class="fa-solid fa-share-nodes"></i></div>
@@ -125,10 +136,10 @@
                 </div>
             </div>
         </div>
-        <div class="container-fluid mt-5">
+        <div class="container-fluid mt-5 mb-5">
             <div class="row">
                 <div class="col-md-12">
-                    <p class="text-center real-title">RELATED FLOWERS</p></div>
+                    <p class="text-center real-title py-3">RELATED FLOWERS</p></div>
             </div>
             <div class="row">
                 <c:forEach items="${requestScope.related}" var="o">
@@ -136,7 +147,6 @@
                         <div class="item-sell">
                             <div class="img-item text-center position-relative">
                                 <a href="MainController?action=product&id=${o.ID}"><img src="${o.image}" alt="" class="w-100"></a>
-                                <a href="" class="addcart-bestseller position-absolute start-50 translate-middle">ADD TO CART</a>
                             </div>
                             <div class="info-item text-center">
                                 <a href="MainController?action=product&id=${o.ID}">${o.name}</a>
@@ -148,6 +158,7 @@
             </div>
         </div>
     </div>
+    <c:import url="footer.jsp"></c:import>
     <!--script js bootstrap-->
     <script src="./assets/js/bootstrap/jquery.min.js"></script>
     <script src="./assets/js/bootstrap/bootstrap.bundle.min.js"></script>
@@ -172,26 +183,32 @@
         function wishlist(id) {
             var form = document.createElement("form");
             form.setAttribute("method", "POST");
-            form.setAttribute("action", "WishListController");
+            form.setAttribute("action", "MainController");
 
             var input = document.createElement("input");
             input.setAttribute("type", "text");
             input.setAttribute("name", "productID");
             input.value = id;
 
+            var actionWL = document.createElement("input");
+            actionWL.setAttribute("type", "text");
+            actionWL.setAttribute("name", "actionWL");
+            actionWL.value = "add-wishlist";
+
             var action = document.createElement("input");
             action.setAttribute("type", "text");
-            action.setAttribute("name", "actionWL");
-            action.value = "add-wishlist";
+            action.setAttribute("name", "action");
+            action.value = "wishlist";
 
             form.appendChild(input);
+            form.appendChild(actionWL);
             form.appendChild(action);
-
+            form.style.display = 'none';
             document.body.appendChild(form);
 
             form.submit();
         }
-        function showSuccessToast() {
+        function showSuccessCopyUrl() {
             toastCus({
                 title: 'Copy to clip board',
                 message: 'Đã sao chép link sản phẩm',
@@ -208,7 +225,35 @@
             tempInput.select();
             document.execCommand("copy");
             document.body.removeChild(tempInput);
-            showSuccessToast();
+            showSuccessCopyUrl();
+        }
+
+        function addCart(id) {
+            var num = document.getElementById('quantity').value;
+            $.ajax({
+                url: "AddToCartController",
+                type: "post", //send it through post method
+                data: {
+                    id: id,
+                    num: num
+                },
+                success: function (response) {
+                    console.log(response);
+                    showSuccessCart(response);
+                },
+                error: function (xhr) {
+                    //Do Something to handle error
+                    alert("Có lỗi xảy ra, vui lòng thử lại sau ít phút");
+                }
+            });
+        }
+
+        function showSuccessCart(product) {
+            toastCus({
+                title: 'Add To Cart',
+                message: 'Đã thêm ' + product + ' vào giỏ hàng',
+                type: 'success'
+            });
         }
     </script>
 </body>

@@ -38,7 +38,7 @@ public class WishListController extends HttpServlet {
      * @throws IOException if an I/O error occurs
      */
     private static final String ERROR = "login.jsp";
-    private static final String SUCCESS = "DetailProductController";
+    private static final String SUCCESS = "MainController?action=product";
 
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
@@ -56,10 +56,10 @@ public class WishListController extends HttpServlet {
                     WishListDAO wdao = new WishListDAO();
                     if (wdao.isWishList(Integer.parseInt(id), user.getID())) {
                         wdao.removeWishList(Integer.parseInt(id), user.getID());
-                        url = SUCCESS + "?id=" + id;
+                        url = SUCCESS + "&id=" + id;
                     } else {
                         wdao.addWishList(Integer.parseInt(id), user.getID());
-                        url = SUCCESS + "?id=" + id;
+                        url = SUCCESS + "&id=" + id;
                     }
                     response.sendRedirect(url);
                 } else {
@@ -89,6 +89,7 @@ public class WishListController extends HttpServlet {
                     if (countPage % 12 != 0) {
                         totalPage++;
                     }
+                    request.setAttribute("size", listp.size());
                     request.setAttribute("page", totalPage);
                     request.setAttribute("curr", currentPage);
                     request.setAttribute("listp", listp);

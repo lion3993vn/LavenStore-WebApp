@@ -79,7 +79,7 @@ public class ProfilePurchaseController extends HttpServlet {
             
             countPage = odao.getAllOrderByUserID(user.getID()) /3;
             
-            if (odao.getPageAllOrder() % 3 != 0) {
+            if (odao.getAllOrderByUserID(user.getID()) % 3 != 0) {
                 countPage++;
             }
             

@@ -4,7 +4,8 @@
 <!DOCTYPE html>
 <html lang="en">
     <head>
-        <title>Boxes - The LAVEN STORE</title>
+        <title>Shop | The LAVEN STORE</title>
+        <link rel="icon" type="image/x-icon" href="assets/img/logo.png">
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -15,13 +16,16 @@
         <link rel="stylesheet" href="./assets/css/bootstrap/bootstrap.css">
         <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
         <link rel="stylesheet" href="./assets/css/styleshop.css">
         <link rel="stylesheet" href="./assets/css/font/css/all.css">
+        <link rel="stylesheet" href="./assets/css/toastMessage.css">
     </head>
     <body>
-
-        <!-- banner -->
-        <div class="banner container-fluid text-center py-5">
+        <c:import url="header.jsp"></c:import>
+            <div id="toast-cus" style="margin-top: 4em"></div>
+            <!-- banner -->
+            <div class="banner container-fluid text-center py-5" style="margin-top: 3.5em">
             <c:if test="${requestScope.current == null || requestScope.current == 0}">
                 <h1 class="banner-title ">All</h1>
             </c:if>
@@ -48,7 +52,7 @@
                         </li>
                         <c:forEach items="${requestScope.listcate}" var="i">
                             <li class="nav-item">
-                                <a class="nav-link ${(requestScope.current == i.cateID)?"current":""}" href="MainController?action=shop&cateid=${i.cateID}&search=${requestScope.search}&sort=${requestScope.sort}">${i.cateName}</a>
+                                <a class="nav-link ${(requestScope.current == i.cateID)? "current":""}" href="MainController?action=shop&cateid=${i.cateID}&search=${requestScope.search}&sort=${requestScope.sort}">${i.cateName}</a>
                             </li>
                         </c:forEach>
                     </ul>
@@ -89,7 +93,14 @@
                             <div class="item-sell">
                                 <div class="img-item text-center position-relative">
                                     <a href="MainController?action=product&id=${o.ID}"><img src="${o.image}" alt="" class="w-100"></a>
-                                    <a href="" class="addcart-bestseller position-absolute start-50 translate-middle">ADD TO CART</a>
+                                        <c:if test="${o.quantity != 0}">
+                                        <div class="addcart-bestseller position-absolute start-50 translate-middle" onclick="addCart(${o.ID}, 1)" style="cursor: pointer">ADD TO CART</div>
+                                    </c:if>
+                                    <c:if test="${o.quantity == 0}">
+                                        <div class="sold-out position-absolute top-50 start-50 translate-middle d-flex justify-content-center align-items-center">
+                                            <p class="m-0">SOLD OUT</p>
+                                        </div>
+                                    </c:if>
                                 </div>
                                 <div class="info-item text-center">
                                     <a href="MainController?action=product&id=${o.ID}">${o.name}</a>
@@ -115,12 +126,43 @@
                 </div>
             </div>
         </section>
+        <c:import url="footer.jsp"></c:import>
         <!--script js bootstrap-->
         <script src="./assets/js/bootstrap/popper.min.js"></script>
         <script src="./assets/js/bootstrap/jquery.min.js"></script>
+        <script src="./assets/js/toastMessage.js"></script>
         <!-- <script src="./assets/js/bootstrap/bootstrap.bundle.min.js"></script> -->
         <!-- <script src="./assets/js/bootstrap/bootstrap.min.js"></script> -->
         <!-- <script src="./assets/js/bootstrap/bootstrap.esm.min.js"></script> -->
+        <script>
+                                        function addCart(id, num) {
+                                            console.log('check1');
+                                            $.ajax({
+                                                url: "AddToCartController",
+                                                type: "post", //send it through post method
+                                                data: {
+                                                    id: id,
+                                                    num: num
+                                                },
+                                                success: function (response) {
+                                                    console.log(response);
+                                                    showSuccessToast(response);
+                                                },
+                                                error: function (xhr) {
+                                                    //Do Something to handle error
+                                                    alert("Có lỗi xảy ra, vui lòng thử lại sau ít phút");
+                                                }
+                                            });
+                                        }
+
+                                        function showSuccessToast(product) {
+                                            toastCus({
+                                                title: 'Add To Cart',
+                                                message: 'Đã thêm ' + product + ' vào giỏ hàng',
+                                                type: 'success',
+                                            });
+                                        }
+        </script>
     </body>
 </html>
 

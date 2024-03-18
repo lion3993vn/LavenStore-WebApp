@@ -43,9 +43,22 @@ public class MainController extends HttpServlet {
 
     private static final String PRODUCT = "product";
     private static final String PRODUCT_CONTROLLER = "DetailProductController";
-    private static final String PROFILE = "profile.jsp";
+
+    private static final String PROFILE = "profile";
+    private static final String PROFILE_UPDATE = "profile-update";
+    private static final String PROFILE_UPDATE_CONTROLLER = "ProfileUpdateController";
+    private static final String PROFILE_PAGE = "profile.jsp";
     private static final String PROFILE_ADDRESS = "profile-address";
+    private static final String PROFILE_ADDRESS_PAGE = "profile_address.jsp";
+    private static final String PROFILE_PURCHASE = "profile-purchase";
+    private static final String PROFILE_PURCHASE_CONTROLLER = "ProfilePurchaseController";
     private static final String PROFILE_PASSWORD = "profile-password";
+    private static final String PROFILE_PASSWORD_PAGE = "profile_password.jsp";
+    private static final String LOGOUT = "logout";
+    private static final String LOGOUT_CONTROLLER = "LogoutController";
+
+    private static final String WISHLIST = "wishlist";
+    private static final String WISHLIST_CONTROLLER = "WishListController";
 
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
@@ -73,12 +86,20 @@ public class MainController extends HttpServlet {
                 url = REGISTER_PAGE;
             } else if (action.equals(FORGOT_PASSWORD)) {
                 url = FORGOT_PASSWORD_PAGE;
-            } else if (action.equals("profile")) {
-                url = PROFILE;
-            } else if (action.equals("profile-address")) {
-                url = PROFILE_ADDRESS;
-            } else if (action.equals("profile-password")) {
-                url = PROFILE_PASSWORD;
+            } else if (action.equals(PROFILE)) {
+                url = PROFILE_PAGE;
+            } else if (action.equals(PROFILE_UPDATE)) {
+                url = PROFILE_UPDATE_CONTROLLER;
+            } else if (action.equals(PROFILE_ADDRESS)) {
+                url = PROFILE_ADDRESS_PAGE;
+            } else if (action.equals(PROFILE_PASSWORD)) {
+                url = PROFILE_PASSWORD_PAGE;
+            } else if (action.equals(PROFILE_PURCHASE)) {
+                url = PROFILE_PURCHASE_CONTROLLER;
+            } else if (action.equals(LOGOUT)) {
+                url = LOGOUT_CONTROLLER;
+            } else if (action.equals(WISHLIST)) {
+                url = WISHLIST_CONTROLLER;
             } else {
                 url = NOT_FOUND;
             }
