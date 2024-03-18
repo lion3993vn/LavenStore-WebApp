@@ -1,0 +1,168 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+.noticia{
+    font-family: 'Noticia Text', serif;
+}
+.box-sizing{
+    box-sizing: border-box;
+}
+.banner{
+    background-image: url(../img/banner.png);
+    background-position: center;
+    background-size: cover;
+}
+.banner-title{
+    font-size: 30px;
+    font-weight: 600;
+    color: #8B6E4A;
+}
+.banner-subtitle{
+    font-size: 13px;
+    color: #8b6e4a7d;
+}
+.width-btn-banner{
+    width: 20em;
+}
+.btn-banner{
+    text-decoration: none;
+    color: white;
+    background: linear-gradient(to right, #7f6749, #cca676, #7f6749, #cca676);
+    border-radius: 5px;
+    padding: 5px 0;
+}
+.btn-banner a{
+    text-decoration: none;
+    color: white;
+    font-size: 17px;
+}
+
+.real-title{
+    font-family: sans-serif;
+    font-size: 25px;
+    color: #8B6E4A;
+    font-weight: 600;
+}
+.item-sell{
+    padding: 1em;
+}
+.img-item{
+    overflow: hidden;
+}
+.img-item .addcart{
+    text-decoration: none;
+    color: black;
+    background-color: white;
+    font-size: 15px;
+    bottom: 0%;
+    border-radius: 5px;
+    width: 22em;
+    padding: 5px 0;
+    opacity: 0;
+    transition: bottom 0.3s ease, opacity 0.3s ease;
+}
+.img-item .addcart:hover{
+    color: white;
+    background: linear-gradient(to right, #7f6749, #cca676, #7f6749, #cca676);
+    width: 22em;
+    padding: 5px 0;
+}
+.img-item:hover .addcart{
+    opacity: 1;
+    bottom: 5%;
+}
+.img-item img{
+    transition: transform 0.3s ease;
+}
+.img-item:hover img{
+    transform: scale(1.2);
+}
+.img-item .sold-out{
+    text-decoration: none;
+    color: white;
+    background-color: #B1B1B1;
+    font-size: 20px;
+    border-radius: 50%;
+    padding: 10px 0;
+    width: 5em;
+    height: 5em;
+}
+.info-item{
+
+}
+.info-item a{
+    text-decoration: none;
+    color: #8B6E4A;
+    font-size: 25px;
+    font-family: 'Vidaloka', serif;
+}
+.info-item p{
+    font-size: 16px;
+}
+.img-item .addcart-bestseller{
+    text-decoration: none;
+    color: black;
+    background-color: white;
+    font-size: 15px;
+    bottom: 0%;
+    border-radius: 5px;
+    width: 18em;
+    padding: 5px 0;
+    opacity: 0;
+    transition: bottom 0.3s ease, opacity 0.3s ease;
+}
+.img-item .addcart-bestseller:hover{
+    color: white;
+    background: linear-gradient(to right, #7f6749, #cca676, #7f6749, #cca676);
+    width: 18em;
+    padding: 5px 0;
+}
+.img-item:hover .addcart-bestseller{
+    opacity: 1;
+    bottom: 5%;
+}
+.subscribe{
+    background-image: url(../img/subscribe.png);
+    background-position: center;
+    background-size: cover;
+    margin-top: 5em;
+}
+.content-submail{
+    width: 30%;
+    box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+    padding: 20px;
+    margin: 3em 0;
+}
+.table-submail{
+    width: 100%;
+}
+.submail-title{
+    color: #CFA877;
+    font-family: 'Josefin Sans', serif;
+    font-size: 24px;
+    font-weight: bold;
+}
+.submail-desb{
+    font-family: 'Josefin Sans', serif;
+    font-size: 15px;
+}
+.submail-title p{
+
+}
+.mail-input{
+    
+}
+.send{
+    background-color: #7f6749;
+    color: white;
+    border: 1px solid black;
+    cursor: pointer;
+}
+.send:hover{
+    background-color: #ffffff;
+    color: rgb(0, 0, 0);
+    border: 1px solid black;
+    cursor: pointer;
+}

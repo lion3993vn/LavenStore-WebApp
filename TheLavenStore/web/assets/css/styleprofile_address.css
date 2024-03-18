@@ -1,0 +1,78 @@
+@import url('https://fonts.googleapis.com/css2?family=Vidaloka&display=swap');
+
+/* CSS Banner */
+.banner {
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-image: url(../img/banner_profileedit.png);
+    text-align: center;
+    margin-bottom: 7rem;
+}
+
+.banner h1 {
+    font-family: 'Vidaloka', serif;
+}
+
+.banner p {
+    color: #8B6E4A;
+}
+
+.banner a {
+    text-decoration: none;
+    color: #8B6E4A;
+}
+
+/* CSS Bar */
+.bar {
+    background: #CFA877;
+    height: 35em;
+}
+
+.bar table {
+    width: 100%;
+}
+
+.bar .hr1 {
+    width: 100%;
+}
+
+.bar a {
+    text-decoration: none;
+    color: #000;
+}
+
+.bar .hr {
+    background: #000;
+    height: 1px;
+    width: 100%;
+}
+
+.birday {
+    width: 23.65%;
+    text-align: center;
+    display: inline-block;
+}
+
+.profile {
+    background-color: #CF9142;
+}
+
+.bar tr:hover>td {
+    background-color: #CF9142;
+}
+
+
+/* CSS Form */
+
+form .btn-submit {
+    background: linear-gradient(91.47deg, #8b6e4a -4.66%, #ddb481 31.82%, #8c6e4a 76.06%, #d6ae7c 115.4%);
+    color: #fff;
+    border: none;
+}
+
+form .btn-submit:hover {
+    background: linear-gradient(91.47deg, #8b6e4a -4.66%, #ddb481 31.82%, #8c6e4a 76.06%, #d6ae7c 115.4%);
+    color: #fff;
+    border: none;
+    box-shadow: #000;
+}
