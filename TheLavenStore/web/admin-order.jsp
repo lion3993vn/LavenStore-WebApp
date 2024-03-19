@@ -17,7 +17,8 @@ and open the template in the editor.
 <html>
 
     <head>
-        <title>TODO supply a title</title>
+        <title>Admin Order | The LAVEN STORE</title>
+        <link rel="icon" type="image/x-icon" href="assets/img/logo.png">
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <link rel="stylesheet" href="./assets/css/bootstrap/bootstrap.css">
@@ -53,7 +54,7 @@ and open the template in the editor.
                             </tr>
                             <tr>
                                 <td></td>
-                                <td class="py-1 ps-3 hover-dashboard"><a href="" class=""><i class="fa-solid fa-user"></i>
+                                <td class="py-1 ps-3 hover-dashboard"><a href="MainController?action=Admin-user" class=""><i class="fa-solid fa-user"></i>
                                         <span>User Management</span></a></td>
                             </tr>
                             <tr>
@@ -63,12 +64,12 @@ and open the template in the editor.
                             </tr>
                             <tr>
                                 <td></td>
-                                <td class="py-1 ps-3 hover-dashboard"><a href="" class=""><i
+                                <td class="py-1 ps-3 hover-dashboard"><a href="MainController?action=Admin-product" class=""><i
                                             class="fa-solid fa-box-open"></i> <span>Product Management</span></a></td>
                             </tr>
                             <tr>
                                 <td class="py-2"><i class="fa-solid fa-right-from-bracket"></i></td>
-                                <td><span>Logout</span></td>
+                                <td><span><a href="MainController?action=logout" style="text-decoration: none; color: white">Logout</a></span></td>
                             </tr>
                         </table>
                     </div>
@@ -77,7 +78,7 @@ and open the template in the editor.
                     <div class="row top-nav">
                         <div class="col-md-2 text-center">
                             <div class="dashboard p-2 py-3">
-                                <a href="" class="">
+                                <a href="MainController?action=Admin" class="">
                                     <p class="m-0">Dashboard</p>
                                 </a>
                             </div>
@@ -86,16 +87,19 @@ and open the template in the editor.
                             <div class="icon-nav p-2 py-3">
                                 <i class="fa-solid fa-house"></i>
                             </div>
-                            <div class="pos-nav d-flex align-content-center p-2 py-3" >
-                                <a href="MainController?action=Admin" class="m-0" style="text-decoration: none; color: white">Dashboard</a><a href="#" style="text-decoration: none; color: #7969E1">/User Management</a> 
+                            <div class="pos-nav d-flex align-content-center py-3">
+                                <p class="m-0"><a href="MainController" style="color: white">HomePage</a></p>
+                            </div>
+                            <div class="pos-nav d-flex align-content-center py-3">
+                                <p class="m-0"><a href="#" style="color: #8869E1">/Admin Order</a></p>
                             </div>
                         </div>
                         <div class="col-md-2 d-flex align-content-center justify-content-center">
                             <div class="pos-nav d-flex align-content-center p-2 py-3">
-                                <p class="m-0">${sessionScope.account.username}</p>
+                                <p class="m-0">${sessionScope.account.userName}</p>
                             </div>
                             <div class="icon-nav-log p-2 py-3">
-                                <i class="fa-solid fa-power-off"></i>
+                                <a href="MainController?action=logout" style="color: white"><i class="fa-solid fa-power-off"></i></a>
                             </div>
                         </div>
                         <div class="col-md-12 p-0">

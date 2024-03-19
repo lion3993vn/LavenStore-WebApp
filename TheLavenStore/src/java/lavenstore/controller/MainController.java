@@ -35,8 +35,14 @@ public class MainController extends HttpServlet {
     private static final String ADMIN = "Admin";
     private static final String ADMIN_CONTROLLER = "AdminDashBoardController";
 
-    private static final String ADMIN_ORDER = "AdminOrder";
+    private static final String ADMIN_ORDER = "Admin-order";
     private static final String ADMIN_ORDER_CONTROLLER = "AdminOrderController";
+
+    private static final String ADMIN_USER = "Admin-user";
+    private static final String ADMIN_USER_CONTROLLER = "AdminUserController";
+
+    private static final String ADMIN_PRODUCT = "Admin-product";
+    private static final String ADMIN_PRODUCT_CONTROLLER = "AdminProductController";
 
     private static final String SHOP = "shop";
     private static final String SHOP_CONTROLLER = "ShopController";
@@ -82,6 +88,10 @@ public class MainController extends HttpServlet {
                 url = ADMIN_CONTROLLER;
             } else if (action.equals(ADMIN_ORDER)) {
                 url = ADMIN_ORDER_CONTROLLER;
+            } else if (action.equals(ADMIN_USER)) {
+                url = ADMIN_USER_CONTROLLER;
+            } else if (action.equals(ADMIN_PRODUCT)) {
+                url = ADMIN_PRODUCT_CONTROLLER;
             } else if (action.equals(LOGIN)) {
                 url = LOGIN_PAGE;
             } else if (action.equals(REGISTER)) {

@@ -15,12 +15,12 @@ import javax.sql.DataSource;
 
 /**
  *
- * @author giadu
+ * @author phamhieu
  */
 public class DBUtils {
     private static final String DB_NAME = "TheLavenStore_PRJ301";
     private static final String DB_USER_NAME = "sa";
-    private static final String DB_PASSWORD = "sa123456";
+    private static final String DB_PASSWORD = "12345";
     
     public static Connection getConnection() throws ClassNotFoundException, SQLException {
         Connection conn = null;
