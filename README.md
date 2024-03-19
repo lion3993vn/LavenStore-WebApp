@@ -1,7 +1,7 @@
 # The LAVEN STORE - Flower Online Shop
 
 <div align="center">
-    <img style="width: 300px;" src="https://cdn.discordapp.com/attachments/1202620106140680202/1211155214036639744/Laven.png?ex=65ed2b31&is=65dab631&hm=585120783f424d9f25eaae1c831b251ea355ecc1b76fd534aed199e3b964ba0b&" />
+    <img style="width: 300px;" src="https://firebasestorage.googleapis.com/v0/b/thelavenstore-fe036.appspot.com/o/github%2FLaven.png?alt=media&token=549cf76c-cca9-4c03-8cc4-0706ed0ee1d9" />
     <p>A web application to buy flower</p>
 </div>
 
@@ -34,44 +34,44 @@ Customer and administrator can use this web
 #### Screen-shots
 
 - HomePage
-![The LAVEN STORE](https://cdn.discordapp.com/attachments/1202620106140680202/1202620593791311922/Home.png?ex=66057db5&is=65f308b5&hm=e5946b1da68c9012da5a7f9b7b93e60caec8b988dbbdf1bd9197548332b02da8&)
+![The LAVEN STORE](https://firebasestorage.googleapis.com/v0/b/thelavenstore-fe036.appspot.com/o/github%2FHome.png?alt=media&token=143a1523-eb5f-4081-b702-8db1ecf5541d)
 - Category
-![The LAVEN STORE](https://cdn.discordapp.com/attachments/1202620106140680202/1202621225332117504/Shop.png?ex=66057e4b&is=65f3094b&hm=8e796fed186ac740279bd54fa3ad4b6b14383d623be8dfa8d3ce18a3678aab73&)
+![The LAVEN STORE](https://firebasestorage.googleapis.com/v0/b/thelavenstore-fe036.appspot.com/o/github%2FShop.png?alt=media&token=68244154-d044-4d1a-b023-4c7502b493ad)
 - Wishlist
-![The LAVEN STORE](https://cdn.discordapp.com/attachments/1202620106140680202/1202626836551438387/Wishlist.png?ex=66058385&is=65f30e85&hm=f6f32e17b6517abef4181a9751be0608f0d7872f1af86d42593e794806d79b3b&)
+![The LAVEN STORE](https://firebasestorage.googleapis.com/v0/b/thelavenstore-fe036.appspot.com/o/github%2FWishlist.png?alt=media&token=690040f5-a57a-466a-a455-c29557ddf456)
 - Product Info
-![The LAVEN STORE](https://cdn.discordapp.com/attachments/1202620106140680202/1202621448984989737/Product-Detail.png?ex=66057e81&is=65f30981&hm=5b42cc3764213d13914d28e900a6f44d8370b3f3df55f69f738ccf3f8524f9f7&)
+![The LAVEN STORE](https://firebasestorage.googleapis.com/v0/b/thelavenstore-fe036.appspot.com/o/github%2FProfile-Main.png?alt=media&token=7f9a5c7c-9b9b-4a91-8260-8d30a9cace03)
 - Login
-![The LAVEN STORE](https://cdn.discordapp.com/attachments/1202620106140680202/1202621666459394078/Login.png?ex=66057eb4&is=65f309b4&hm=ebf04222cc145478480d3bd8aa41b4880bb7c6f53c951ba0417262ec32650a18&)
+![The LAVEN STORE](https://firebasestorage.googleapis.com/v0/b/thelavenstore-fe036.appspot.com/o/github%2FLogin.png?alt=media&token=cc6a5557-8f86-4aac-97de-5b71a76f4d5b)
 - Register
-![The LAVEN STORE](https://cdn.discordapp.com/attachments/1202620106140680202/1202621909347606538/Register.png?ex=66057eee&is=65f309ee&hm=cc7f0d7b33fc5a1fe0bc95a5c56a6941294a14a814da28323cbe65bcb71fbed7&)
+![The LAVEN STORE](https://firebasestorage.googleapis.com/v0/b/thelavenstore-fe036.appspot.com/o/github%2FRegister.png?alt=media&token=80760a3d-cbf8-4ff6-a929-14a8a093ef89)
 - Forgot Password
-![The LAVEN STORE](https://cdn.discordapp.com/attachments/1202620106140680202/1202622163195269120/Forgot_password_-_1.png?ex=66057f2b&is=65f30a2b&hm=069819c1713d334c105875f0a5a0158700ded261f1ee6992466f928655fe9449&)
-![The LAVEN STORE](https://cdn.discordapp.com/attachments/1202620106140680202/1202622163501187092/Forgot_password_-_2.png?ex=66057f2b&is=65f30a2b&hm=370bf7f5ee08f74abbe4a663b81b85711b8bdc583301682c4bb30570cc842b3b&)
+![The LAVEN STORE](https://firebasestorage.googleapis.com/v0/b/thelavenstore-fe036.appspot.com/o/github%2FForgot_password_-_1.png?alt=media&token=7d59b4da-8940-49cd-be47-8e2e653d28ba)
+![The LAVEN STORE](https://firebasestorage.googleapis.com/v0/b/thelavenstore-fe036.appspot.com/o/github%2FForgot_password_-_2.png?alt=media&token=6ac868fb-d2f4-44ab-a47d-5a2173baddc5)
 - Cart
-![The LAVEN STORE](https://cdn.discordapp.com/attachments/1202620106140680202/1202622536550973510/cart.png?ex=66057f84&is=65f30a84&hm=619fc6a1a22c3676aa8bf036699f83a5087852a9f7b00b7ca1b5606b3b336b71&)
-![The LAVEN STORE](https://cdn.discordapp.com/attachments/1202620106140680202/1202622536995831829/Cart-Detail.png?ex=66057f84&is=65f30a84&hm=ae349893f291b85f71c55a86e9ccaec9c9beb757215286b8d2c8ee1db629f138&)
+![The LAVEN STORE](https://firebasestorage.googleapis.com/v0/b/thelavenstore-fe036.appspot.com/o/github%2Fcart.png?alt=media&token=4d725a0e-8937-4322-ba35-e8a3e79f1ef9)
+![The LAVEN STORE](https://firebasestorage.googleapis.com/v0/b/thelavenstore-fe036.appspot.com/o/github%2FCart-Detail.png?alt=media&token=61fa2a0e-020f-4cf4-81a1-080574c7d6d7)
 - Profile
-![The LAVEN STORE](https://cdn.discordapp.com/attachments/1202620106140680202/1202622991729430538/Profile-Main.png?ex=66057ff0&is=65f30af0&hm=0878d4a71aba5063b34d9eb34267f53f387bed26d16f28af21b658f469952c53&)
-![The LAVEN STORE](https://cdn.discordapp.com/attachments/1202620106140680202/1202622991163330611/Profile_-_Address.png?ex=66057ff0&is=65f30af0&hm=7283765afaec6caa3ab781f0e422d0d865ed0b3b397f35eddc00d51d7ed90c6a&)
-![The LAVEN STORE](https://cdn.discordapp.com/attachments/1202620106140680202/1202622992153321552/Profile-password.png?ex=66057ff0&is=65f30af0&hm=e5b342f6f45418d06ae0213ff9df033830f323300340d7a7a2852515b1f9e88f&)
-![The LAVEN STORE](https://cdn.discordapp.com/attachments/1202620106140680202/1202622990517411940/Profile-Purchase.png?ex=66057ff0&is=65f30af0&hm=5f2f0df32833c55fef26052bf6d45565898afc39ef69e43b10784b9db7c3d49b&)
+![The LAVEN STORE](https://firebasestorage.googleapis.com/v0/b/thelavenstore-fe036.appspot.com/o/github%2FProfile-Main.png?alt=media&token=7f9a5c7c-9b9b-4a91-8260-8d30a9cace03)
+![The LAVEN STORE](https://firebasestorage.googleapis.com/v0/b/thelavenstore-fe036.appspot.com/o/github%2FProfile_-_Address.png?alt=media&token=f9343275-7847-4ed4-a874-c857f939dfdc)
+![The LAVEN STORE](https://firebasestorage.googleapis.com/v0/b/thelavenstore-fe036.appspot.com/o/github%2FProfile-password.png?alt=media&token=f7269477-a2e3-422f-aaf3-1c3f5fda9be7)
+![The LAVEN STORE](https://firebasestorage.googleapis.com/v0/b/thelavenstore-fe036.appspot.com/o/github%2FProfile-Purchase.png?alt=media&token=3f9e2b33-f97f-42ca-b3fa-25df2af58947)
 - Payment
-![The LAVEN STORE](https://cdn.discordapp.com/attachments/1202620106140680202/1202623702072688720/Desktop_-_2.png?ex=6605809a&is=65f30b9a&hm=8758779ad25ba2383037d1bba5ac05c545065e46068cd280b169de1f765a816c&)
-![The LAVEN STORE](https://cdn.discordapp.com/attachments/1202620106140680202/1202623702462894110/Desktop_-_1.png?ex=6605809a&is=65f30b9a&hm=cfbe690e127fda890fa64b7ce93bdf3621195e57185fd5d743862fe350df38c4&)
+![The LAVEN STORE](https://firebasestorage.googleapis.com/v0/b/thelavenstore-fe036.appspot.com/o/github%2FDesktop_-_1.png?alt=media&token=a768e45a-7bc8-4523-84b4-4fc3f3ac26e9)
+![The LAVEN STORE](https://firebasestorage.googleapis.com/v0/b/thelavenstore-fe036.appspot.com/o/github%2FDesktop_-_2.png?alt=media&token=d6a6206e-33bc-4b33-8cd3-dfca5ff09bf3)
 - User-Management (Administrator)
-![The LAVEN STORE](https://cdn.discordapp.com/attachments/1202620106140680202/1202624127249416232/user-management.png?ex=660580ff&is=65f30bff&hm=e166138dc7016975b2119e292b1b05bb905c78e70a5321cef3cad0c2a7ff5e21&)
-![The LAVEN STORE](https://cdn.discordapp.com/attachments/1202620106140680202/1202624127584833576/user-manager-modal.png?ex=660580ff&is=65f30bff&hm=120f639762c4c03055748ef662680250f63149d751f8afc549ee21902cccb1f6&)
+![The LAVEN STORE](https://firebasestorage.googleapis.com/v0/b/thelavenstore-fe036.appspot.com/o/github%2Fuser-management.png?alt=media&token=5bb5209c-51a1-4520-974f-e6cbb793a569)
+![The LAVEN STORE](https://firebasestorage.googleapis.com/v0/b/thelavenstore-fe036.appspot.com/o/github%2Fuser-manager-modal.png?alt=media&token=4827331b-e170-4fc5-b368-8e41e378ed81)
 - Order-Management (Administrator)
-![The LAVEN STORE](https://cdn.discordapp.com/attachments/1202620106140680202/1202624472243511397/order-manager.png?ex=66058151&is=65f30c51&hm=7ab034c92b977e94766639eb8814f56e3c28ecfc0965974dd3e5b8a76b0e3c69&)
-![The LAVEN STORE](https://cdn.discordapp.com/attachments/1202620106140680202/1202624471794716743/order-manager-modal.png?ex=66058151&is=65f30c51&hm=cd01fb79b20ee3dd7c7999b2941cbd6b66449b8882dd7c467bd0a6f3034b9c0d&)
+![The LAVEN STORE](https://firebasestorage.googleapis.com/v0/b/thelavenstore-fe036.appspot.com/o/github%2Forder-manager.png?alt=media&token=5611599f-b201-466b-90d6-e403a7fa81a3)
+![The LAVEN STORE](https://firebasestorage.googleapis.com/v0/b/thelavenstore-fe036.appspot.com/o/github%2Forder-manager-modal.png?alt=media&token=95990231-0899-4dc4-8e23-093b76af6651)
 - Product-Management (Administrator)
-![The LAVEN STORE](https://cdn.discordapp.com/attachments/1202620106140680202/1202624686039765063/product-manager.png?ex=66058184&is=65f30c84&hm=a42b5feb6e7900d9144dcb92d6001966330693ee1d8f352426ede91924103e29&)
-![The LAVEN STORE](https://cdn.discordapp.com/attachments/1202620106140680202/1202624685670670436/product-manager-modify.png?ex=66058184&is=65f30c84&hm=55fcba01a75f34a09ad7f376c8ec33c90fbffdf0e0a869304b39c3a8a1005423&)
+![The LAVEN STORE](https://firebasestorage.googleapis.com/v0/b/thelavenstore-fe036.appspot.com/o/github%2Fproduct-manager.png?alt=media&token=7e74a601-aecb-4409-8d03-88afd3b6cc3f)
+![The LAVEN STORE](https://firebasestorage.googleapis.com/v0/b/thelavenstore-fe036.appspot.com/o/github%2Fproduct-manager-add.png?alt=media&token=dd1b4737-7907-4119-b645-b60bf39baeae)
 
 #### Entity Relationship Diagram
 
-![The LAVEN STORE](https://cdn.discordapp.com/attachments/1202620106140680202/1211866057434865684/thelavenstore.png?ex=66023637&is=65efc137&hm=e65a926d6f113757f492f610b7df7fa4592c7435e6a969e86baa3d185b5b2bff&)
+![The LAVEN STORE](https://firebasestorage.googleapis.com/v0/b/thelavenstore-fe036.appspot.com/o/github%2Fthelavenstore.png?alt=media&token=33d58c40-33e2-4403-8344-6e4f911590a3)
 
 #### System Design:
 
@@ -80,7 +80,7 @@ Technologies:
 - Back-end: Servlet Web Application, MS SQL Server, MVC 2
 - Payment: VNPay
 
-![The LAVEN STORE](https://cdn.discordapp.com/attachments/1202620106140680202/1219286914595688538/structure.png?ex=660ac06d&is=65f84b6d&hm=096172cdb779f25194f5c3be05ee9960f591fcfb35a28b04436a55dd0ee3040c&)
+![The LAVEN STORE](https://firebasestorage.googleapis.com/v0/b/thelavenstore-fe036.appspot.com/o/github%2Fstructure.png?alt=media&token=22bfd953-f024-4339-9a70-b37bc8b07785)
 
 #### References:
 - Figma: [The LAVEN STORE](https://www.figma.com/file/VwOE5jngD07N00OydAgRC9/version-1.0?type=design&node-id=138%3A2&mode=design&t=kRl7sah9T2KRONWB-1)
