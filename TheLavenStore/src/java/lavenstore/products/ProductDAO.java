@@ -590,16 +590,16 @@ public class ProductDAO {
             if (!keyword.isEmpty() && cateID == 0) {
                 pst = conn.prepareStatement(GET_LIST_PRODUCT + " where " + REQUIRE_SEARCH + " ORDER BY ID " + OFFSET);
                 pst.setString(1, "%" + keyword + "%");
-                pst.setInt(2, index);
+                pst.setInt(2, (index-1)*12);
             } else if (keyword.isEmpty() && cateID != 0) {
                 pst = conn.prepareStatement(GET_LIST_PRODUCT + " where " + " CateID = ?" + " ORDER BY ID " + OFFSET);
                 pst.setInt(1, cateID);
-                pst.setInt(2, index);
+                pst.setInt(2, (index-1)*12);
             } else if (!keyword.isEmpty() && cateID != 0) {
                 pst = conn.prepareStatement(GET_LIST_PRODUCT + " where " + REQUIRE_SEARCH + " AND CateID = ?" + " ORDER BY ID " + OFFSET);
                 pst.setString(1, "%" + keyword + "%");
                 pst.setInt(2, cateID);
-                pst.setInt(3, index);
+                pst.setInt(3, (index-1)*12);
             }
 
             rs = pst.executeQuery();

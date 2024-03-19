@@ -201,7 +201,7 @@ and open the template in the editor.
                                                                 class="fa-solid fa-boxes-stacked float-end"></i></i>
                                                         </td>
                                                         <td class="today-sub">
-                                                            <p class="m-0 float-start inter ps-2"><fmt:formatNumber pattern="#,###" value="${requestScope.totalRevenueDaily}"/></p>
+                                                            <p class="m-0 float-start inter ps-2"><fmt:formatNumber pattern="#,###" value="${requestScope.totalSoldProductDaily}"/></p>
                                                         </td>
                                                     </tr>
                                                 </table>
