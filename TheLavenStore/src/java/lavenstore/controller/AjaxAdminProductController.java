@@ -57,7 +57,7 @@ public class AjaxAdminProductController extends HttpServlet {
                 out.flush();
             }
         } catch (Exception e) {
-            log("Error at AjaxAdminUserController: " + e.toString());
+            log("Error at AjaxAdminProductController: " + e.toString());
             request.setAttribute("MESSAGE", "Somethings are error...");
         }
     }

@@ -6,7 +6,7 @@ package lavenstore.payment;
 
 /**
  *
- * @author giadu
+ * @author PhamHieu
  */
 public class PaymentDTO {
     private long vnp_Amount; //so tien thanh toan

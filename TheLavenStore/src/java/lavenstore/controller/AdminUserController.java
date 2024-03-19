@@ -69,7 +69,7 @@ public class AdminUserController extends HttpServlet {
             request.setAttribute("currentPage", currentPage);
             request.setAttribute("userList", userList);
         } catch (Exception e) {
-            log("Error at ProfileUserController: " + e.toString());
+            log("Error at AdminUserController: " + e.toString());
             request.setAttribute("MESSAGE", "Somethings are error...");
         } finally {
             request.getRequestDispatcher(url).forward(request, response);

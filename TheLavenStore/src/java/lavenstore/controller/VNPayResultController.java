@@ -155,7 +155,7 @@ public class VNPayResultController extends HttpServlet {
                 throw new Exception("Mã vnp_SecureHash không đúng");
             }
         } catch (Exception e) {
-            log("Error at PaymentController: " + e.toString());
+            log("Error at VNPayResultController: " + e.toString());
             request.setAttribute("MESSAGE", "Somethings are error...");
         } finally {
             request.getRequestDispatcher(url).forward(request, response);

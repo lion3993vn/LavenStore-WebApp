@@ -53,7 +53,7 @@ public class ProfileAddressController extends HttpServlet {
                 url = SUCCESS;
             }
         } catch (Exception e) {
-            log("Error at ProfileUserController: " + e.toString());
+            log("Error at ProfileAddressController: " + e.toString());
             request.setAttribute("MESSAGE", "Somethings are error...");
         } finally {
             request.getRequestDispatcher(url).forward(request, response);

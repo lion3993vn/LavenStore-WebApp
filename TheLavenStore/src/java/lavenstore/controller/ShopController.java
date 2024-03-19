@@ -84,7 +84,7 @@ public class ShopController extends HttpServlet {
             request.setAttribute("listcate", catelist);
             url = SUCCESS;
         } catch (Exception e) {
-            log("Error at HomeController: " + e.toString());
+            log("Error at ShopController: " + e.toString());
             request.setAttribute("MESSAGE", "Somethings are error...");
         } finally {
             request.getRequestDispatcher(url).forward(request, response);

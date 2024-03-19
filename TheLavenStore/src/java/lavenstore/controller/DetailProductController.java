@@ -76,7 +76,7 @@ public class DetailProductController extends HttpServlet {
             request.setAttribute("related", listp);
             url = SUCCESS;
         } catch (Exception e) {
-            log("Error at HomeController: " + e.toString());
+            log("Error at DetailProductController: " + e.toString());
             request.setAttribute("MESSAGE", "Somethings are error...");
         } finally {
             request.getRequestDispatcher(url).forward(request, response);

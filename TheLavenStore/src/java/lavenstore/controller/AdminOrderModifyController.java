@@ -75,7 +75,7 @@ public class AdminOrderModifyController extends HttpServlet {
             request.setAttribute("listOrderDetails", listOrderDetails);
             request.setAttribute("listproduct", listProductOrder);
         } catch (Exception e) {
-            log("Error at HomeController: " + e.toString());
+            log("Error at AdminOrderModifyController: " + e.toString());
             request.setAttribute("MESSAGE", "Somethings are error...");
         } finally {
             request.getRequestDispatcher(url).forward(request, response);

@@ -88,7 +88,7 @@ public class ProfilePurchaseController extends HttpServlet {
             request.setAttribute("listorder", listOrder);
             url = "profile_purchase.jsp";
         } catch (Exception e) {
-            log("Error at HomeController: " + e.toString());
+            log("Error at ProfilePurchaseController: " + e.toString());
             request.setAttribute("MESSAGE", "Somethings are error...");
         } finally {
             request.getRequestDispatcher(url).forward(request, response);

@@ -82,7 +82,7 @@ public class ProcessAdminUserController extends HttpServlet {
                 u.deleteUserByID(userID);
             }
         } catch (Exception e) {
-            log("Error at ProfileUserController: " + e.toString());
+            log("Error at ProcessAdminUserController: " + e.toString());
             request.setAttribute("MESSAGE", "Somethings are error...");
         } finally {
             request.getRequestDispatcher(url).forward(request, response);
