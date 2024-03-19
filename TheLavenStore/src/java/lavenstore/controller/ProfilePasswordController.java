@@ -33,7 +33,7 @@ public class ProfilePasswordController extends HttpServlet {
      * @throws ServletException if a servlet-specific error occurs
      * @throws IOException if an I/O error occurs
      */
-    private static final String ERROR = "profile_password.jsp";
+    private static final String ERROR = "MainController?action=login";
     private static final String SUCCESS = "logout"; //sua thanh profile controller
 
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
@@ -41,37 +41,43 @@ public class ProfilePasswordController extends HttpServlet {
         response.setContentType("text/html;charset=UTF-8");
         String url = ERROR;
         try {
-            boolean isValidPassword = true;
-            String oldPassword = request.getParameter("oldPassword");
-            String newPassword1 = request.getParameter("newPassword1");
-            String newPassword2 = request.getParameter("newPassword2");
             HttpSession session = request.getSession(false);
-            UserDAO u = new UserDAO();
             UserDTO user = (UserDTO) session.getAttribute("account");
-            //old pasword
-            String onDBPassword = user.getPassword();
-            if (!oldPassword.equals(onDBPassword)) {
-                request.setAttribute("errorOldPassword", "Mật khẩu không đúng!");
-                isValidPassword = false;
+            if (user != null) {
+                if (user != null) {
+                    boolean isValidPassword = true;
+                    String oldPassword = request.getParameter("oldPassword");
+                    String newPassword1 = request.getParameter("newPassword1");
+                    String newPassword2 = request.getParameter("newPassword2");
+                    UserDAO u = new UserDAO();
+                    //old pasword
+                    String onDBPassword = user.getPassword();
+                    if (!oldPassword.equals(onDBPassword)) {
+                        request.setAttribute("errorOldPassword", "Mật khẩu không đúng!");
+                        isValidPassword = false;
+                    }
+                    // new password
+                    String regexPassword = "^[A-Za-z0-9]{4,}$";
+                    Pattern patternPassword = Pattern.compile(regexPassword);
+                    Matcher matcherPassword = patternPassword.matcher(newPassword1);
+                    if (!matcherPassword.matches()) {
+                        request.setAttribute("errorNewPassword1", "Password phải có từ 4 kí tự trở lên");
+                        isValidPassword = false;
+                    }
+                    //confirm password
+                    if (!newPassword1.equals(newPassword2)) {
+                        request.setAttribute("errorNewPassword2", "Mật khẩu không trùng khớp");
+                        isValidPassword = false;
+                    }
+                    if (isValidPassword) {
+                        user.setPassword(newPassword1);
+                        u.updatePassword(user);
+                        url = SUCCESS;
+                    } else url = "profile_password.jsp";
+                }
             }
-            // new password
-            String regexPassword = "^[A-Za-z0-9]{4,}$";
-            Pattern patternPassword = Pattern.compile(regexPassword);
-            Matcher matcherPassword = patternPassword.matcher(newPassword1);
-            if (!matcherPassword.matches()) {
-                request.setAttribute("errorNewPassword1", "Password phải có từ 4 kí tự trở lên");
-                isValidPassword = false;
-            }
-            //confirm password
-            if (!newPassword1.equals(newPassword2)) {
-                request.setAttribute("errorNewPassword2", "Mật khẩu không trùng khớp");
-                isValidPassword = false;
-            }
-            if (isValidPassword) {
-                user.setPassword(newPassword1);
-                u.updatePassword(user);
-                url = SUCCESS;
-            }
+            
+            
         } catch (Exception e) {
             log("Error at ProfilePasswordController: " + e.toString());
             request.setAttribute("MESSAGE", "Somethings are error...");

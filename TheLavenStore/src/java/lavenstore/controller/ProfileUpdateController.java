@@ -34,7 +34,7 @@ public class ProfileUpdateController extends HttpServlet {
      * @throws ServletException if a servlet-specific error occurs
      * @throws IOException if an I/O error occurs
      */
-    private static final String ERROR = "profile.jsp";
+    private static final String ERROR = "MainController?action=login";
     private static final String SUCCESS = "profile.jsp";
 
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
@@ -45,29 +45,32 @@ public class ProfileUpdateController extends HttpServlet {
         try {
             //process
             HttpSession session = request.getSession(false);
-            UserDAO u = new UserDAO();
             UserDTO user = (UserDTO) session.getAttribute("account");
-            boolean isValidPhone = false;
-            String fullname = request.getParameter("fullname");
-            String phone = request.getParameter("phone");
-            String regex = "^1?(\\d{10})$";
-            Pattern pattern = Pattern.compile(regex);
-            Matcher matcher = pattern.matcher(phone);
-            if (phone.isEmpty()) {
-                phone = null;
+            if (user != null) {
+                UserDAO u = new UserDAO();
+                boolean isValidPhone = false;
+                String fullname = request.getParameter("fullname");
+                String phone = request.getParameter("phone");
+                String regex = "^1?(\\d{10})$";
+                Pattern pattern = Pattern.compile(regex);
+                Matcher matcher = pattern.matcher(phone);
+                if (phone.isEmpty()) {
+                    phone = null;
+                }
+                if (matcher.matches() || phone == null) {
+                    isValidPhone = true;
+                } else {
+                    request.setAttribute("tt", "Số điện thoại không hợp lệ!");
+                }
+                if (isValidPhone) {
+                    url = SUCCESS;
+                    user.setPhoneNumber(phone);
+                    request.setAttribute("tt", "Đã cập nhật thông tin thành công!");
+                }
+                user.setFullName(fullname);
+                u.update(user);
             }
-            if (matcher.matches() || phone == null) {
-                isValidPhone = true;
-            } else {
-                request.setAttribute("tt", "Số điện thoại không hợp lệ!");
-            }
-            if (isValidPhone) {
-                url = SUCCESS;
-                user.setPhoneNumber(phone);
-                request.setAttribute("tt", "Đã cập nhật thông tin thành công!");
-            }
-            user.setFullName(fullname);
-            u.update(user);
+
         } catch (Exception e) {
             log("Error at ProfileUpdateController: " + e.toString());
             request.setAttribute("MESSAGE", "Somethings are error...");

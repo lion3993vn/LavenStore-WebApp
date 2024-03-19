@@ -153,13 +153,15 @@ and open the template in the editor.
                                                     <c:forEach items="${requestScope['listpro'.concat(a.ID)]}" var="c">
                                                         <c:if test="${b.productID == c.ID}">
                                                             <td>
-                                                                <div style="width: 3.5em" class="py-2">
-                                                                    <img class="w-100" src="${c.image}" alt="">
-                                                                </div>
+                                                                <a href="MainController?action=product&id=${c.ID}">
+                                                                    <div style="width: 3.5em" class="py-2">
+                                                                        <img class="w-100" src="${c.image}" alt="">
+                                                                    </div>
+                                                                </a>
                                                             </td>
                                                             <td class="w-75 fs-6" colspan="3">
                                                                 <div class="fs-5 ps-3">
-                                                                    <p class="mb-0">${c.name}</p>
+                                                                    <a href="MainController?action=product&id=${c.ID}" style="text-decoration: none; color: black"><p class="mb-0">${c.name}</p></a>
                                                                     <p class="mb-0">x${b.quantity}</p>
                                                                 </div>
                                                             </td>

@@ -12,6 +12,7 @@
 
     <head>
         <title>Checkout | The LAVEN STORE</title>
+        <meta charset="UTF-8">
         <link rel="icon" type="image/x-icon" href="assets/img/logo.png">
         <link rel="stylesheet" href="./assets/css/bootstrap/bootstrap.css">
 

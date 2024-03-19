@@ -10,6 +10,7 @@ and open the template in the editor.
 
     <head>
         <title>Register | The LAVEN STORE</title>
+        <meta charset="UTF-8">
         <link rel="icon" type="image/x-icon" href="assets/img/logo.png">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
 

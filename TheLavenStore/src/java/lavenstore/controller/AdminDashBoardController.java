@@ -12,7 +12,9 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 import lavenstore.orders.OrderDAO;
+import lavenstore.users.UserDTO;
 
 /**
  *
@@ -30,7 +32,7 @@ public class AdminDashBoardController extends HttpServlet {
      * @throws ServletException if a servlet-specific error occurs
      * @throws IOException if an I/O error occurs
      */
-    private static final String ERROR = "home.html";
+    private static final String ERROR = "MainController?action=";
     private static final String SUCCESS = "admin-dashboard.jsp";
 
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
@@ -38,27 +40,31 @@ public class AdminDashBoardController extends HttpServlet {
         response.setContentType("text/html;charset=UTF-8");
         String url = ERROR;
         try {
-            OrderDAO odao = new OrderDAO();
-            
-            int totalRevenueDaily = odao.getTotalRevenueDaily();
-            int totalSoldProductDaily = odao.getTotalSoldProductDaily();
-            int totalOrderDaily = odao.getTotalOrderDaily();
-            int totalOrderPendingDaily = odao.getTotalOrderPenDingDaily();
-            
-            int totalOrderMonthly = odao.getTotalOrderMonthly();
-            int totalSoldProductMonthly = odao.getTotalSoldProductMonthly();
-            int totalRevenueMonthly = odao.getTotalRevenueMonthly();
-            
-            request.setAttribute("totalRevenueDaily", totalRevenueDaily);
-            request.setAttribute("totalSoldProductDaily", totalSoldProductDaily);
-            request.setAttribute("totalOrderDaily", totalOrderDaily);
-            request.setAttribute("totalOrderPendingDaily", totalOrderPendingDaily);
-            
-            request.setAttribute("totalOrderMonthly", totalOrderMonthly);
-            request.setAttribute("totalSoldProductMonthly", totalSoldProductMonthly);
-            request.setAttribute("totalRevenueMonthly", totalRevenueMonthly);
-            
-            url = SUCCESS;
+            HttpSession session = request.getSession(false);
+            UserDTO user = (UserDTO) session.getAttribute("account");
+            if (user != null && user.getRole().equals("admin")) {
+                OrderDAO odao = new OrderDAO();
+
+                int totalRevenueDaily = odao.getTotalRevenueDaily();
+                int totalSoldProductDaily = odao.getTotalSoldProductDaily();
+                int totalOrderDaily = odao.getTotalOrderDaily();
+                int totalOrderPendingDaily = odao.getTotalOrderPenDingDaily();
+
+                int totalOrderMonthly = odao.getTotalOrderMonthly();
+                int totalSoldProductMonthly = odao.getTotalSoldProductMonthly();
+                int totalRevenueMonthly = odao.getTotalRevenueMonthly();
+
+                request.setAttribute("totalRevenueDaily", totalRevenueDaily);
+                request.setAttribute("totalSoldProductDaily", totalSoldProductDaily);
+                request.setAttribute("totalOrderDaily", totalOrderDaily);
+                request.setAttribute("totalOrderPendingDaily", totalOrderPendingDaily);
+
+                request.setAttribute("totalOrderMonthly", totalOrderMonthly);
+                request.setAttribute("totalSoldProductMonthly", totalSoldProductMonthly);
+                request.setAttribute("totalRevenueMonthly", totalRevenueMonthly);
+
+                url = SUCCESS;
+            }
         } catch (Exception e) {
             log("Error at AdminDashBoardController: " + e.toString());
             request.setAttribute("MESSAGE", "Somethings are error...");

@@ -3,23 +3,22 @@
     Created on : Mar 2, 2024, 10:36:09 PM
     Author     : Kudo
 --%>
-<%@page contentType="text/html" pageEncoding="UTF-8"%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
 <%@taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn"%>
+<%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <!--
 To change this license header, choose License Headers in Project Properties.
 To change this template file, choose Tools | Templates
 and open the template in the editor.
 -->
-<html>
+<html lang="en">
 
     <head>
         <title>Profile | The LAVEN STORE</title>
         <link rel="icon" type="image/x-icon" href="assets/img/logo.png">
         <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <link rel="stylesheet" href="./assets/css/bootstrap/bootstrap.css">
         <link rel="stylesheet" href="./assets/css/styleprofile.css">
         <link rel="stylesheet" href="./assets/css/font/css/all.css">
@@ -145,6 +144,8 @@ and open the template in the editor.
         <!-- End content -->
         <c:import url="footer.jsp"></c:import>
         <!--script js bootstrap-->
+        <script src="./assets/js/bootstrap/jquery.min.js"></script>
+        <script src="./assets/js/bootstrap/popper.min.js"></script>
         <script src="./assets/js/bootstrap/bootstrap.bundle.min.js"></script>
         <script src="./assets/js/bootstrap/bootstrap.min.js"></script>
         <script src="./assets/js/bootstrap/bootstrap.esm.min.js"></script>

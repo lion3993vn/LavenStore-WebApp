@@ -45,14 +45,13 @@ public class WishListController extends HttpServlet {
         response.setContentType("text/html;charset=UTF-8");
         String url = ERROR;
         try {
-            HttpSession session = request.getSession();
+            HttpSession session = request.getSession(false);
             UserDTO user = (UserDTO) session.getAttribute("account");
+            if (user != null) {
+                String actionWL = request.getParameter("actionWL");
+                if (actionWL.equals("add-wishlist")) {
+                    String id = request.getParameter("productID");
 
-            String actionWL = request.getParameter("actionWL");
-            if (actionWL.equals("add-wishlist")) {
-                String id = request.getParameter("productID");
-
-                if (user != null) {
                     WishListDAO wdao = new WishListDAO();
                     if (wdao.isWishList(Integer.parseInt(id), user.getID())) {
                         wdao.removeWishList(Integer.parseInt(id), user.getID());
@@ -62,42 +61,41 @@ public class WishListController extends HttpServlet {
                         url = SUCCESS + "&id=" + id;
                     }
                     response.sendRedirect(url);
-                } else {
-                    response.sendRedirect(ERROR);
+
+                } else if (actionWL.equals("show-wishlist")) {
+                    if (user != null) {
+
+                        String index = request.getParameter("index");
+
+                        if (index == null) {
+                            index = "1";
+                        }
+                        int countPage = 0;
+                        int currentPage = Integer.parseInt(index);
+
+                        WishListDAO wdao = new WishListDAO();
+                        List<WishListDTO> list = wdao.getWishListByUserID(user.getID(), currentPage);
+
+                        ProductDAO pdao = new ProductDAO();
+                        List<ProductDTO> listp = new ArrayList<>();
+                        for (WishListDTO i : list) {
+                            listp.add(pdao.getProductByID(i.getProductID()));
+                        }
+                        countPage = wdao.getPageWishListByUserID(user.getID());
+                        int totalPage = countPage / 12;
+                        if (countPage % 12 != 0) {
+                            totalPage++;
+                        }
+                        request.setAttribute("size", listp.size());
+                        request.setAttribute("page", totalPage);
+                        request.setAttribute("curr", currentPage);
+                        request.setAttribute("listp", listp);
+                        request.getRequestDispatcher("wishlist.jsp").forward(request, response);
+                    } else {
+                        response.sendRedirect(ERROR);
+                    }
                 }
-            } else if (actionWL.equals("show-wishlist")) {
-                if (user != null) {
-
-                    String index = request.getParameter("index");
-
-                    if (index == null) {
-                        index = "1";
-                    }
-                    int countPage = 0;
-                    int currentPage = Integer.parseInt(index);
-
-                    WishListDAO wdao = new WishListDAO();
-                    List<WishListDTO> list = wdao.getWishListByUserID(user.getID(), currentPage);
-
-                    ProductDAO pdao = new ProductDAO();
-                    List<ProductDTO> listp = new ArrayList<>();
-                    for (WishListDTO i : list) {
-                        listp.add(pdao.getProductByID(i.getProductID()));
-                    }
-                    countPage = wdao.getPageWishListByUserID(user.getID());
-                    int totalPage = countPage / 12;
-                    if (countPage % 12 != 0) {
-                        totalPage++;
-                    }
-                    request.setAttribute("size", listp.size());
-                    request.setAttribute("page", totalPage);
-                    request.setAttribute("curr", currentPage);
-                    request.setAttribute("listp", listp);
-                    request.getRequestDispatcher("wishlist.jsp").forward(request, response);
-                } else {
-                    response.sendRedirect(ERROR);
-                }
-            }
+            } else request.getRequestDispatcher("MainController?action=login").forward(request, response);
         } catch (Exception e) {
             e.printStackTrace();
         }

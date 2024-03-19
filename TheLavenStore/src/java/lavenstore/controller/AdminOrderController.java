@@ -13,6 +13,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 import lavenstore.orders.OrderDAO;
 import lavenstore.orders.OrderDTO;
 import lavenstore.users.UserDAO;
@@ -34,7 +35,7 @@ public class AdminOrderController extends HttpServlet {
      * @throws ServletException if a servlet-specific error occurs
      * @throws IOException if an I/O error occurs
      */
-    private static final String ERROR = "admin-order.jsp";
+    private static final String ERROR = "MainController?action=";
     private static final String SUCCESS = "admin-order.jsp";
 
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
@@ -42,44 +43,50 @@ public class AdminOrderController extends HttpServlet {
         response.setContentType("text/html;charset=UTF-8");
         String url = ERROR;
         try {
-            OrderDAO odao = new OrderDAO();
-            List<OrderDTO> listODao = new ArrayList<>();
-            UserDAO udao = new UserDAO();
-            List<UserDTO> listUDao = udao.getAllUserTwoInfo();
-            request.setAttribute("listuser", listUDao);
+            HttpSession session = request.getSession(false);
+            UserDTO user = (UserDTO) session.getAttribute("account");
+            if (user != null && user.getRole().equals("admin")) {
+                OrderDAO odao = new OrderDAO();
+                List<OrderDTO> listODao = new ArrayList<>();
+                UserDAO udao = new UserDAO();
+                List<UserDTO> listUDao = udao.getAllUserTwoInfo();
+                request.setAttribute("listuser", listUDao);
 
-            String index = request.getParameter("index");
-            
-            if (index == null) {
-                index = "1";
-            }
-            int countPage = 0;
-            int currentPage = Integer.parseInt(index);
-            String searchCode = request.getParameter("searchCode"); //""
-            String statusSeach = request.getParameter("status-search"); //"NONE" //""
-            if(statusSeach == null || statusSeach.equals("")){
-                statusSeach = "NONE";
-            }
-            if ((searchCode != null && !searchCode.equals("")) || (statusSeach != null && !statusSeach.equals("NONE"))) {
-                listODao = odao.searchOrder(searchCode, statusSeach, currentPage);
-                countPage = odao.getNumPageWithSearchOrder(searchCode, statusSeach);
+                String index = request.getParameter("index");
+
+                if (index == null) {
+                    index = "1";
+                }
+                int countPage = 0;
+                int currentPage = Integer.parseInt(index);
+                String searchCode = request.getParameter("searchCode"); //""
+                String statusSeach = request.getParameter("status-search"); //"NONE" //""
+                if (statusSeach == null || statusSeach.equals("")) {
+                    statusSeach = "NONE";
+                }
+                if ((searchCode != null && !searchCode.equals("")) || (statusSeach != null && !statusSeach.equals("NONE"))) {
+                    listODao = odao.searchOrder(searchCode, statusSeach, currentPage);
+                    countPage = odao.getNumPageWithSearchOrder(searchCode, statusSeach);
+                    request.setAttribute("searchCode", searchCode);
+                } else {
+                    countPage = odao.getPageAllOrder();
+                    listODao = odao.getAllOrder(currentPage);
+                }
+
+                //lay so trang
+                int totalPage = countPage / 8;
+                if (countPage % 8 != 0) {
+                    totalPage++;
+                }
+
+                request.setAttribute("page", totalPage);
+                request.setAttribute("curr", currentPage);
+                request.setAttribute("statusSeach", statusSeach);
                 request.setAttribute("searchCode", searchCode);
-            } else {
-                countPage = odao.getPageAllOrder();
-                listODao = odao.getAllOrder(currentPage);
+                request.setAttribute("listorder", listODao);
+                url = SUCCESS;
             }
 
-            //lay so trang
-            int totalPage = countPage / 8;
-            if (countPage % 8 != 0) {
-                totalPage++;
-            }
-
-            request.setAttribute("page", totalPage);
-            request.setAttribute("curr", currentPage);
-            request.setAttribute("statusSeach", statusSeach);
-            request.setAttribute("searchCode", searchCode);
-            request.setAttribute("listorder", listODao);
         } catch (Exception e) {
             log("Error at AdminOrderController: " + e.toString());
             request.setAttribute("MESSAGE", "Somethings are error...");

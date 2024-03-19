@@ -14,6 +14,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 import lavenstore.users.UserDAO;
 import lavenstore.users.UserDTO;
 
@@ -33,7 +34,7 @@ public class AdminUserController extends HttpServlet {
      * @throws ServletException if a servlet-specific error occurs
      * @throws IOException if an I/O error occurs
      */
-    private static final String ERROR = "admin-user.jsp";
+    private static final String ERROR = "MainController?action=";
     private static final String SUCCESS = "admin-user.jsp";
 
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
@@ -41,33 +42,38 @@ public class AdminUserController extends HttpServlet {
         response.setContentType("text/html;charset=UTF-8");
         String url = ERROR;
         try {
-            String index = request.getParameter("index");
-            if (index==null){
-                index = "1";
+            HttpSession session = request.getSession(false);
+            UserDTO user = (UserDTO) session.getAttribute("account");
+            if(user != null && user.getRole().equals("admin")){
+                String index = request.getParameter("index");
+                if (index == null) {
+                    index = "1";
+                }
+                int countPage = 0;
+                int currentPage = parseInt(index);
+                UserDAO dao = new UserDAO();
+
+                List<UserDTO> userList = new ArrayList();
+                String searchUser = request.getParameter("searchUser");
+                if (searchUser == null || searchUser.equals("")) {
+                    countPage = dao.getPageNumber();
+
+                    userList = dao.getPagingUser(currentPage);
+                } else {
+                    countPage = dao.getPageNumberWithSearch(searchUser);
+                    userList = dao.getUserByKeywordPaging(searchUser, currentPage);
+
+                }
+                int totalPage = countPage / 8;
+                if (countPage % 8 != 0) {
+                    totalPage++;
+                }
+                request.setAttribute("searchUser", searchUser);
+                request.setAttribute("totalPage", totalPage);
+                request.setAttribute("currentPage", currentPage);
+                request.setAttribute("userList", userList);
+                url = SUCCESS;
             }
-            int countPage = 0;
-            int currentPage = parseInt(index);
-            UserDAO dao = new UserDAO();
-            
-            List<UserDTO> userList = new ArrayList();
-            String searchUser = request.getParameter("searchUser");
-            if (searchUser == null || searchUser.equals("")) {
-                countPage = dao.getPageNumber();
-                
-                userList = dao.getPagingUser(currentPage);
-            } else {
-                countPage = dao.getPageNumberWithSearch(searchUser);
-                userList = dao.getUserByKeywordPaging(searchUser,currentPage);
-                
-            }
-            int totalPage = countPage/8;
-            if (countPage%8 != 0){
-                totalPage++;
-            }
-            request.setAttribute("searchUser",searchUser);
-            request.setAttribute("totalPage",totalPage);
-            request.setAttribute("currentPage", currentPage);
-            request.setAttribute("userList", userList);
         } catch (Exception e) {
             log("Error at AdminUserController: " + e.toString());
             request.setAttribute("MESSAGE", "Somethings are error...");

@@ -13,6 +13,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 import lavenstore.orders.OrderDAO;
 import lavenstore.orders.OrderDTO;
 import lavenstore.orders.OrderDetailsDAO;
@@ -38,7 +39,7 @@ public class AdminOrderModifyController extends HttpServlet {
      * @throws ServletException if a servlet-specific error occurs
      * @throws IOException if an I/O error occurs
      */
-    private static final String ERROR = "admin-order-modify.jsp";
+    private static final String ERROR = "MainController?action=";
     private static final String SUCCESS = "admin-order-modify.jsp";
 
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
@@ -46,7 +47,10 @@ public class AdminOrderModifyController extends HttpServlet {
         response.setContentType("text/html;charset=UTF-8");
         String url = ERROR;
         try {
-            String oid = request.getParameter("orderID"); //lay id
+            HttpSession session = request.getSession(false);
+            UserDTO users = (UserDTO) session.getAttribute("account");
+            if(users != null && users.getRole().equals("admin")){
+                String oid = request.getParameter("orderID"); //lay id
             
             //lay order
             OrderDAO oDao = new OrderDAO();
@@ -74,6 +78,9 @@ public class AdminOrderModifyController extends HttpServlet {
             request.setAttribute("totalQuantity", totalQuantity);
             request.setAttribute("listOrderDetails", listOrderDetails);
             request.setAttribute("listproduct", listProductOrder);
+            url = SUCCESS;
+            }
+            
         } catch (Exception e) {
             log("Error at AdminOrderModifyController: " + e.toString());
             request.setAttribute("MESSAGE", "Somethings are error...");

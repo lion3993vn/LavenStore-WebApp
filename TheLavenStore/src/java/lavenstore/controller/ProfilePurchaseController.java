@@ -39,54 +39,55 @@ public class ProfilePurchaseController extends HttpServlet {
      * @throws ServletException if a servlet-specific error occurs
      * @throws IOException if an I/O error occurs
      */
-    private static final String ERROR = "home.html";
-    private static final String SUCCESS = "home.html";
+    private static final String ERROR = "MainController?action=login";
+    private static final String SUCCESS = "profile_purchase.jsp";
 
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         String url = ERROR;
         try {
-            String index = request.getParameter("index");
-            
-            if (index == null) {
-                index = "1";
-            }
-            
-            int countPage = 0;
-            int currentPage = Integer.parseInt(index);
-            
-            HttpSession session = request.getSession();
+            HttpSession session = request.getSession(false);
             UserDTO user = (UserDTO) session.getAttribute("account");
-            
-            ProductDAO pdao = new ProductDAO();
-            
-            OrderDAO odao = new OrderDAO();
-            List<OrderDTO> listOrder = odao.getOrderByUserID(user.getID(), currentPage);
-            OrderDetailsDAO odedao = new OrderDetailsDAO();
-            for (OrderDTO o : listOrder) {
-                List<OrderDetailsDTO> listDetails = odedao.getOrderDetailsByID(o.getID());
-                request.setAttribute("details"+o.getID(), listDetails);
-                int totalMoney = 25000;
-                List<ProductDTO> listpro = new ArrayList<>();
-                for (OrderDetailsDTO i : listDetails) {
-                    listpro.add(pdao.getProductByID(i.getProductID()));
-                    totalMoney += i.getPrice();
+            if (user != null) {
+                String index = request.getParameter("index");
+
+                if (index == null) {
+                    index = "1";
                 }
-                request.setAttribute("listpro"+o.getID(), listpro);
-                request.setAttribute("totalMoney"+o.getID(), totalMoney);
+
+                int countPage = 0;
+                int currentPage = Integer.parseInt(index);
+
+                ProductDAO pdao = new ProductDAO();
+
+                OrderDAO odao = new OrderDAO();
+                List<OrderDTO> listOrder = odao.getOrderByUserID(user.getID(), currentPage);
+                OrderDetailsDAO odedao = new OrderDetailsDAO();
+                for (OrderDTO o : listOrder) {
+                    List<OrderDetailsDTO> listDetails = odedao.getOrderDetailsByID(o.getID());
+                    request.setAttribute("details" + o.getID(), listDetails);
+                    int totalMoney = 25000;
+                    List<ProductDTO> listpro = new ArrayList<>();
+                    for (OrderDetailsDTO i : listDetails) {
+                        listpro.add(pdao.getProductByID(i.getProductID()));
+                        totalMoney += i.getPrice();
+                    }
+                    request.setAttribute("listpro" + o.getID(), listpro);
+                    request.setAttribute("totalMoney" + o.getID(), totalMoney);
+                }
+
+                countPage = odao.getAllOrderByUserID(user.getID()) / 3;
+
+                if (odao.getAllOrderByUserID(user.getID()) % 3 != 0) {
+                    countPage++;
+                }
+
+                request.setAttribute("page", countPage);
+                request.setAttribute("curr", currentPage);
+                request.setAttribute("listorder", listOrder);
+                url = SUCCESS;
             }
-            
-            countPage = odao.getAllOrderByUserID(user.getID()) /3;
-            
-            if (odao.getAllOrderByUserID(user.getID()) % 3 != 0) {
-                countPage++;
-            }
-            
-            request.setAttribute("page", countPage);
-            request.setAttribute("curr", currentPage);
-            request.setAttribute("listorder", listOrder);
-            url = "profile_purchase.jsp";
         } catch (Exception e) {
             log("Error at ProfilePurchaseController: " + e.toString());
             request.setAttribute("MESSAGE", "Somethings are error...");
