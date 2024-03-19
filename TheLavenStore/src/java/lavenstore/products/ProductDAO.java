@@ -5,23 +5,7 @@
  */
 package lavenstore.products;
 
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.util.ArrayList;
-import java.util.List;
 import lavenstore.orders.ItemCart;
-import lavenstore.utils.DBUtils;
-
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.util.ArrayList;
-import java.util.List;
-import lavenstore.orders.ItemCart;
-import lavenstore.utils.DBUtils;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;

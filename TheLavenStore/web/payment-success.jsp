@@ -5,6 +5,7 @@
 --%>
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
 <!DOCTYPE html>
 <!--
@@ -15,7 +16,8 @@ and open the template in the editor.
 <html>
 
     <head>
-        <title>TODO supply a title</title>
+        <title>The LAVEN STORE</title>
+        <link rel="icon" type="image/x-icon" href="assets/img/logo.png">
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <link rel="stylesheet" href="./assets/css/bootstrap/bootstrap.css">
@@ -29,88 +31,91 @@ and open the template in the editor.
     </head>
 
     <body>
-        <div class="outline">
-            <div class="container payment-body">
-                <div class="row payment-container">
-                    <div class="col-md-12 pay-header">
-                        <h5>PAYMENT INFORMATION</h5>
-                    </div>
+        <c:import url="header.jsp"></c:import>
+            <div class="outline w-100 d-flex justify-content-center" style="margin-top: 3.5em">
+                <div class="w-50">
+                    <div class="container payment-body">
+                        <div class="row payment-container">
+                            <div class="col-md-12 pay-header">
+                                <h5>PAYMENT INFORMATION</h5>
+                            </div>
 
-                    <div class="col-md-12 pay-img">
-                        <img src="./assets/img/checkout/success-icon.png" alt="" width="100px">
-                        <h4>Payment success</h4>
-                    </div>
-                    <div class="col-md-12 payment-in4">
-                        <table>
-                            <tbody>
-                                <tr>
-                                    <th>Customer:</th>
-                                    <td>${sessionScope.account.userName}</td>
-                                </tr>
-                                <tr>
-                                    <th>Email:</th>
-                                    <td>${sessionScope.account.email}</td>
-                                </tr>
-                                <tr>
-                                    <th>Order code:</th>
-                                    <td>#${requestScope.order.orderCode}</td>
-                                </tr>
-                                <tr>
-                                    <th>Amount paid:</th>
-                                    <td class="amout">VND <fmt:formatNumber pattern="#,###" value="${requestScope.order.amount}"/></td>
-                            </tr>
-                            </tbody>
-                        </table>
-                    </div>
-                    <div class="col-md-12 break">
-                        <div class="line"></div>
-                        <span>Details</span>
-                        <div class="line"></div>
-                    </div>
-                    <div class="col-md-12 payment-details">
-                        <table>
-                            <tbody>
-                                <tr>
-                                    <th>Order date:</th>
-                                    <td><fmt:formatDate value="${requestScope.order.date}" pattern="dd/MM/yyyy"/></td>
-                            </tr>
-                            <tr>
-                                <th>Location:</th>
-                                <td>${requestScope.order.location}</td>
-                            </tr>
-                            <tr>
-                                <th>Phone number:</th>
-                                <td>${requestScope.order.phoneNumber}</td>
-                            </tr>
-                            <tr>
-                                <th>Total quantity:</th>
-                                <td>${requestScope.totalQuantity}</td>
-                            </tr>
-                            <tr>
-                                <th>Payment type:</td>
-                                <td>VNPAY</td>
-                            </tr>
-                            <tr>
-                                <th>Note:</th>
-                                <td>${requestScope.order.note}</td>
-                            </tr>
-                            </tbody>
-                        </table>
-                        <p>We'll email you an order confirmation with details information.</p>
-                        <div class="thanks">
-                            <p>Thank you for choosing us.</p>
-                            <p>See you again!</p>
+                            <div class="col-md-12 pay-img">
+                                <img src="./assets/img/checkout/success-icon.png" alt="" width="100px">
+                                <h4>Payment success</h4>
+                            </div>
+                            <div class="col-md-12 payment-in4">
+                                <table>
+                                    <tbody>
+                                        <tr>
+                                            <th>Customer:</th>
+                                            <td>${sessionScope.account.userName}</td>
+                                    </tr>
+                                    <tr>
+                                        <th>Email:</th>
+                                        <td>${sessionScope.account.email}</td>
+                                    </tr>
+                                    <tr>
+                                        <th>Order code:</th>
+                                        <td>#${requestScope.order.orderCode}</td>
+                                    </tr>
+                                    <tr>
+                                        <th>Amount paid:</th>
+                                        <td class="amout">VND <fmt:formatNumber pattern="#,###" value="${requestScope.order.amount}"/></td>
+                                    </tr>
+                                </tbody>
+                            </table>
                         </div>
-                        <div class="payment-footer">
-                            <p><a href="MainController">Back to home page</a></p>
-                            <p>Powered by <a href="#">VNPAY</a></p>
+                        <div class="col-md-12 break">
+                            <div class="line"></div>
+                            <span>Details</span>
+                            <div class="line"></div>
                         </div>
-                    </div>
+                        <div class="col-md-12 payment-details">
+                            <table>
+                                <tbody>
+                                    <tr>
+                                        <th>Order date:</th>
+                                        <td><fmt:formatDate value="${requestScope.order.date}" pattern="dd/MM/yyyy"/></td>
+                                    </tr>
+                                    <tr>
+                                        <th>Location:</th>
+                                        <td>${requestScope.order.location}</td>
+                                    </tr>
+                                    <tr>
+                                        <th>Phone number:</th>
+                                        <td>${requestScope.order.phoneNumber}</td>
+                                    </tr>
+                                    <tr>
+                                        <th>Total quantity:</th>
+                                        <td>${requestScope.totalQuantity}</td>
+                                    </tr>
+                                    <tr>
+                                        <th>Payment type:</td>
+                                        <td>VNPAY</td>
+                                    </tr>
+                                    <tr>
+                                        <th>Note:</th>
+                                        <td>${requestScope.order.note}</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                            <p>We'll email you an order confirmation with details information.</p>
+                            <div class="thanks">
+                                <p>Thank you for choosing us.</p>
+                                <p>See you again!</p>
+                            </div>
+                            <div class="payment-footer">
+                                <p><a href="MainController" style="color: black">Back to home page</a></p>
+                                <p>Powered by <a href="#">VNPAY</a></p>
+                            </div>
+                        </div>
 
+                    </div>
                 </div>
             </div>
         </div>
-
+        <c:import url="footer.jsp"></c:import>
         <!--script js bootstrap-->
         <script src="./assets/js/bootstrap/bootstrap.bundle.min.js"></script>
         <script src="./assets/js/bootstrap/bootstrap.min.js"></script>
