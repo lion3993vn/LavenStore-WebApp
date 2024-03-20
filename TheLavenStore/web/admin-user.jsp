@@ -36,7 +36,7 @@ and open the template in the editor.
             <div class="row">
                 <div class="col-md-2 nav-left">
                     <div class="logo d-flex justify-content-center w-100 mt-3">
-                        <a href="MainController?action=admin" class="">
+                        <a href="MainController?action=Admin" class="">
                             <p class="logo-left d-inline-block p-1 m-0">LAVEN STORE</p>
                             <p class="d-inline-block logo-right ms-2">ADMIN</p>
                         </a>

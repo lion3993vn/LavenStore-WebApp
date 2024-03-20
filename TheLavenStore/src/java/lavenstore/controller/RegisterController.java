@@ -92,7 +92,7 @@ public class RegisterController extends HttpServlet {
                     isValidUser = false;
                 }
                 if (isValidUser) {
-                    UserDTO newUser = new UserDTO(u.getAllUser().size() + 1, username, password, email, null, null, null, null);
+                    UserDTO newUser = new UserDTO(u.getAllUser().size() + 1, username, password, email, "user", null, null, null);
                     u.insert(newUser);
                     Email eUtil = new Email();
                     String REGISTER_CONTENT = emailContent(newUser.getUserName());

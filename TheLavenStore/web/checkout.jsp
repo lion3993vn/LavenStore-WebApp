@@ -64,11 +64,11 @@
                                         </tr>
                                         <tr>
                                             <td class="py-1"><input type="text" name="phoneNumber" id="" placeholder="Mobile Phone" value="${sessionScope.account.phoneNumber}"
-                                                                    class="w-100 p-1 ps-2" required=""></td>
+                                                                    class="w-100 p-1 ps-2" required></td>
                                         </tr>
                                         <tr>
                                             <td class="py-1"><input type="text" name="address" id="" placeholder="Address" value="${sessionScope.account.address}"
-                                                                    class="w-100 p-1 ps-2" required=""></td>
+                                                                    class="w-100 p-1 ps-2" required></td>
                                         </tr>
                                         <tr>
                                             <td class="py-1"><textarea name="note" id="" cols="30" rows="3" placeholder="Note"
@@ -147,18 +147,18 @@
                                                 <img src="./assets/img/checkout/vnpay.png" alt="" class="w-25">
                                                 <span class="Dongle ps-2">VNPAY</span>
                                             </div>
-                                            <input type="radio" name="payment" value="vnpay" id="vnpay" class="float-end">
+                                            <input type="radio" name="payment" value="vnpay" id="vnpay" class="float-end" required>
                                         </div>
                                         <div class="mt-3 payment w-100 d-flex justify-content-between pe-2" onclick="checkradio('cod')" style="cursor: pointer;">
                                             <div class="">
                                                 <img src="./assets/img/checkout/cod-icon.png" alt="" class="w-25">
                                                 <span class="Dongle ps-2">PAY ON DELIVERY</span>
                                             </div>
-                                            <input type="radio" name="payment" value="cod" id="cod" class="float-end">
+                                            <input type="radio" name="payment" value="cod" id="cod" class="float-end" required>
                                         </div>
                                     </div>
                                     <div class="terms d-flex justify-content-center mt-3">
-                                        <input type="checkbox" required="">
+                                        <input type="checkbox" required>
                                         <p class="m-0 ps-3">I have read and accept the terms and conditions</p>
                                     </div>
                                     <div class="w-100 d-flex justify-content-center mt-3">

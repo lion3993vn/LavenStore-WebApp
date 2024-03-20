@@ -33,8 +33,8 @@ public class ProfilePasswordController extends HttpServlet {
      * @throws ServletException if a servlet-specific error occurs
      * @throws IOException if an I/O error occurs
      */
-    private static final String ERROR = "MainController?action=login";
-    private static final String SUCCESS = "logout"; //sua thanh profile controller
+    private static final String ERROR = "profile_password.jsp";
+    private static final String SUCCESS = "MainController?action=logout"; //sua thanh profile controller
 
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
@@ -43,7 +43,6 @@ public class ProfilePasswordController extends HttpServlet {
         try {
             HttpSession session = request.getSession(false);
             UserDTO user = (UserDTO) session.getAttribute("account");
-            if (user != null) {
                 if (user != null) {
                     boolean isValidPassword = true;
                     String oldPassword = request.getParameter("oldPassword");
@@ -74,7 +73,6 @@ public class ProfilePasswordController extends HttpServlet {
                         u.updatePassword(user);
                         url = SUCCESS;
                     } else url = "profile_password.jsp";
-                }
             }
             
             

@@ -216,7 +216,7 @@ public class ProductDAO {
         int count = 0;
         try {
             conn = DBUtils.getConnection();
-            pst = conn.prepareStatement(GET_LIST_PRODUCT_BY_CATEID);
+            pst = conn.prepareStatement(GET_PAGE_LIST_PRODUCT_BY_CATEID);
             pst.setInt(1, id);
             rs = pst.executeQuery();
             if (rs.next()) {
@@ -316,9 +316,9 @@ public class ProductDAO {
                     pst = conn.prepareStatement(GET_PAGE_LIST_PRODUCT + " WHERE " + REQUIRE_SEARCH);
                     pst.setString(1, "%" + search + "%");
                 } else if (search == null && sort != null) {
-                    pst = conn.prepareStatement(GET_PAGE_LIST_PRODUCT + REQUIRE_SORT + sort);
+                    pst = conn.prepareStatement(GET_PAGE_LIST_PRODUCT);
                 } else if (search != null && sort != null) {
-                    pst = conn.prepareStatement(GET_PAGE_LIST_PRODUCT + " WHERE " + REQUIRE_SEARCH + REQUIRE_SORT + sort);
+                    pst = conn.prepareStatement(GET_PAGE_LIST_PRODUCT + " WHERE " + REQUIRE_SEARCH);
                     pst.setString(1, "%" + search + "%");
                 }
             } else if (id != 0) {
@@ -327,10 +327,10 @@ public class ProductDAO {
                     pst.setInt(1, id);
                     pst.setString(2, "%" + search + "%");
                 } else if (search == null && sort != null) {
-                    pst = conn.prepareStatement(GET_PAGE_LIST_PRODUCT_BY_CATEID + REQUIRE_SORT + sort);
+                    pst = conn.prepareStatement(GET_PAGE_LIST_PRODUCT_BY_CATEID);
                     pst.setInt(1, id);
                 } else if (search != null && sort != null) {
-                    pst = conn.prepareStatement(GET_PAGE_LIST_PRODUCT_BY_CATEID + " AND " + REQUIRE_SEARCH + REQUIRE_SORT + sort);
+                    pst = conn.prepareStatement(GET_PAGE_LIST_PRODUCT_BY_CATEID + " AND " + REQUIRE_SEARCH);
                     pst.setInt(1, id);
                     pst.setString(2, "%" + search + "%");
                 }
