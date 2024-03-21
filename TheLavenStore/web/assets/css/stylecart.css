@@ -13,7 +13,7 @@
 .banner {
     background-repeat: no-repeat;
     background-size: cover;
-    background-image: url("/web/assets/img/banner.png");
+    background-image: url("../img/banner_profileedit.png");
     text-align: center;
 }
 
@@ -39,13 +39,10 @@
 .Dongle
 {
     font-family: 'Dongle' , serif;
+}
+.dam{
     font-size: 30px;
     font-weight: 600;
-}
-.textbody,
-p{
-    font-family: 'Dongle' , serif;
-    font-size: 30px;
 }
 .operator{
     background-color: #EDEDED;   

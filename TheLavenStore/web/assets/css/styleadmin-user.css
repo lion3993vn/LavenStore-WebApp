@@ -132,6 +132,12 @@ body{
 .search-user input::placeholder{
     color: #768490;
 }
+.search-user-submit input{
+    background-color: #8869E1;
+    border: none;
+    border-radius: 5px;
+    color: white;
+}
 .table-body{
     color: white;
 }
@@ -185,14 +191,14 @@ body{
 .error-text{
     color: #EA5455;
 }
-.paging a{
+.paging input{
     text-decoration: none;
     color: white;
     background-color: #202A41;
     border-radius: 5px;
     border: 1px solid #757575;
 }
-.paging a:hover{
+.paging input:hover{
     background-color: #182237;
     color: #F8B940;
 }

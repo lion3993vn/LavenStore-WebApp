@@ -82,5 +82,23 @@ Technologies:
 
 ![The LAVEN STORE](https://firebasestorage.googleapis.com/v0/b/thelavenstore-fe036.appspot.com/o/github%2Fstructure.png?alt=media&token=22bfd953-f024-4339-9a70-b37bc8b07785)
 
+#### Conclusion And Discussion:
+
+- Pros: 
+User-friendly interface, easy to use: easy login, sign up, payment...
+Many features: Product search, filtering, and sharing
+Safety: Secure account login. Data is stored on servers and is obtained by using controllers.
+Easy management: orders, users, or products.
+
+- Cons:
+Slow performance. Not yet optimized.
+Not compatible across multiple devices.
+
+- What we've learned during developing of our application:
+We have understood more about how to build a web app. Now we understand the importance of teamwork. We have also become more proficient in identifying and fixing errors.
+
+- What would you improve your application in the future:
+We need to increase performance to load image product faster. Beside that, to reduce UX we need to save action when user click button. User address and email must be identify when register to server, ...
+
 #### References:
 - Figma: [The LAVEN STORE](https://www.figma.com/file/VwOE5jngD07N00OydAgRC9/version-1.0?type=design&node-id=138%3A2&mode=design&t=kRl7sah9T2KRONWB-1)

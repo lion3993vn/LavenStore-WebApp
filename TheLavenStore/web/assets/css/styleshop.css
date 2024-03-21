@@ -41,9 +41,13 @@
 
 .current {
     background: none;
-    text-decoration: underline;
+    text-decoration: underline !important;
 }
 
+
+.w-20{
+    width: 20%;
+}
 
 .item-sell {
     padding: 1em;
@@ -63,7 +67,7 @@
     font-size: 15px;
     bottom: 3%;
     border-radius: 5px;
-    width: 22em;
+    width: 15em;
     padding: 5px 0;
 }
 
