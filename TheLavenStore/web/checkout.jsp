@@ -55,12 +55,12 @@
                                                         information</span></td>
                                             </tr>
                                             <tr>
-                                                <td class="py-1"><input type="text" name="Fullname" id="" placeholder="Fullname" value="${sessionScope.account.fullName}"
-                                                                    class="w-100 p-1 ps-2 nochange" readonly></td>
+                                                <td class="py-1"><input type="text" name="Fullname" id="" placeholder="Fullname" value="${sessionScope.account.userName}"
+                                                                    class="w-100 p-1 ps-2 nochange" readonly required></td>
                                         </tr>
                                         <tr>
                                             <td class="py-1"><input type="text" name="Email" id="" placeholder="Email" value="${sessionScope.account.email}"
-                                                                    class="w-100 p-1 ps-2 nochange" readonly></td>
+                                                                    class="w-100 p-1 ps-2 nochange" readonly required></td>
                                         </tr>
                                         <tr>
                                             <td class="py-1"><input type="text" name="phoneNumber" id="" placeholder="Mobile Phone" value="${sessionScope.account.phoneNumber}"
